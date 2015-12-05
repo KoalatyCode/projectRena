@@ -42,6 +42,19 @@ $app->map("/search(/:term).json", function ($searchTerm = null) use ($app) {
     var_dump($app->Search->search($searchTerm));
 })->via("POST", "GET");
 
+// Discord
+$app->group("/discord", function() use ($app) {
+    $app->map("/create/", function() use ($app) {
+        (new \ProjectRena\Controller\DiscordController($app))->create();
+    })->via("GET", "POST");
+    $app->get("/:serverHash/auth/", function($serverHash) use ($app) {
+        (new \ProjectRena\Controller\DiscordController($app))->begin($serverHash);
+    });
+    $app->get("/:serverHash/verify/", function($serverHash) use ($app) {
+        (new \ProjectRena\Controller\DiscordController($app))->verify($serverHash);
+    });
+});
+
 // API
 $app->group("/api", function () use ($app) {
     // Data for a character

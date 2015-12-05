@@ -72,3 +72,8 @@ $config['twig'] = array(
     'strict_variables' => false,
     'autoescape' => true,
 );
+// Discord
+$config["discord"] = array(
+    "username" => "",
+    "password" => ""
+);

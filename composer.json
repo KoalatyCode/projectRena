@@ -27,7 +27,6 @@
     "filp/whoops": "~1.1.7",
     "domnikl/statsd": "~2.1.4",
     "3rdpartyeve/phealng": "~2.2.1",
-    "3rdpartyeve/perry": "~2.0.0",
     "robmorgan/phinx": "~0.4.5",
     "cilex/cilex": "~1.1.0",
     "chrisboulton/php-resque": "~1.2.0",
@@ -37,7 +36,8 @@
     "cboden/ratchet": "~0.3.3",
     "react/zmq": "~0.3.0",
     "zkillboard/redisq": "dev-master",
-    "ratchet/pawl": "~0.1.2"
+    "ratchet/pawl": "~0.1.2",
+    "cleanse/discord-hypertext": "dev-master"
   },
   "autoload": {
     "psr-4": {

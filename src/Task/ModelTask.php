@@ -84,6 +84,10 @@ class ModelTask extends Command
             // This is for the getByID selector(s)
             if (strstr($get["Field"], "ID"))
                 $idFields[] = $get["Field"];
+
+            // This is for the getByHash selector(s)
+            if (stristr($get["Field"], "Hash"))
+                $idFields[] = $get["Field"];
         }
 
         // Get generator

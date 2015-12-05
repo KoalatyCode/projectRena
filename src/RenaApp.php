@@ -38,6 +38,8 @@ use ProjectRena\Model\CCP\invTypes;
 use ProjectRena\Model\CCP\mapDenormalize;
 use ProjectRena\Model\CCP\mapRegions;
 use ProjectRena\Model\CCP\mapSolarSystems;
+use ProjectRena\Model\Database\discordServers;
+use ProjectRena\Model\Database\discordUsers;
 use ProjectRena\Model\EVE\alliances;
 use ProjectRena\Model\EVE\characters;
 use ProjectRena\Model\EVE\corporations;
@@ -165,6 +167,8 @@ use ProjectRena\Model\EVEApi\Server\ServerStatus as EVEServerServerStatus;
  * @property mapDenormalize mapDenormalize
  * @property mapRegions mapRegions
  * @property mapSolarSystems mapSolarSystems
+ * @property discordServers discordServers
+ * @property discordUsers discordUsers
  * @property alliances alliances
  * @property characters characters
  * @property corporations corporations

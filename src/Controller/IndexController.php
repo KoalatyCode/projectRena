@@ -30,6 +30,7 @@ class IndexController
      */
     public function index()
     {
+		$this->app->Db->query("SELECT 1", array(), 0);
         render("index.twig");
     }
 }

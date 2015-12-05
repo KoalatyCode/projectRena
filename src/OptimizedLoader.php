@@ -179,6 +179,16 @@ $app->container->singleton("mapSolarSystems", function($container) use ($app)
 		return new \ProjectRena\Model\CCP\mapSolarSystems($app);
 });
 
+$app->container->singleton("discordServers", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\discordServers($app);
+});
+
+$app->container->singleton("discordUsers", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\discordUsers($app);
+});
+
 $app->container->singleton("alliances", function($container) use ($app)
 {
 		return new \ProjectRena\Model\EVE\alliances($app);
