@@ -66,9 +66,6 @@ $app->group("/api", function () use ($app) {
 
     // Data for a corporation
     $app->group("/corporation", function () use ($app) {
-        $app->get("/", function () use ($app) {
-            echo "ermergerd";
-        });
         $app->get("/information/:corporationID/", function ($corporationID) use ($app) {
             (new \ProjectRena\Controller\APIController($app))->corporationInformation($corporationID);
         });

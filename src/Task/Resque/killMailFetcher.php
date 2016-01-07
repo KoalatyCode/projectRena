@@ -65,6 +65,7 @@ class killMailFetcher
                 $maxKillID = max($maxKillID, $killID);
 
                 // Push it to the queue if it inserted, also poke statsd to increment the tracker for it
+                // Move all of this to killmail parser, then add more data to the array, THEN push it out
                 if ($inserted > 0) {
                     $this->app->StatsD->increment("killmailsAdded");
 
@@ -109,11 +110,16 @@ class killMailFetcher
      */
     private function getData($apiKey, $vCode, $characterID = null, $fromID = null, $rowCount = null)
     {
-        if (!$characterID)
-            $data = $this->app->EVECorporationKillMails->getData($apiKey, $vCode, $fromID, $rowCount);
-        else
-            $data = $this->app->EVECharacterKillMails->getData($apiKey, $vCode, $characterID, $fromID, $rowCount);
+	try {
+	        if (!$characterID)
+	            $data = $this->app->EVECorporationKillMails->getData($apiKey, $vCode, $fromID, $rowCount);
+	        else
+	            $data = $this->app->EVECharacterKillMails->getData($apiKey, $vCode, $characterID, $fromID, $rowCount);
 
-        return $data;
+		return $data;
+	} catch(Exception $e) {
+		var_dump($e->getMessage());
+		return null;
+	}
     }
 }

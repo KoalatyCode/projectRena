@@ -72,6 +72,23 @@ $config['twig'] = array(
     'strict_variables' => false,
     'autoescape' => true,
 );
+// Stomp
+$config["stomp"] = array(
+    "server" => "tcp://127.0.0.1:61613",
+    "username" => "",
+    "password" => ""
+);
+// Websocket
+$config["websocket"] = array(
+    "host" => "ws.eve-kill.net",
+    "ip" => "0.0.0.0",
+    "port" => 8800
+);
+// ZMQ
+$config["zmq"] = array(
+    "host" => "127.0.0.1",
+    "port" => 5555
+);
 // Discord
 $config["discord"] = array(
     "username" => "",

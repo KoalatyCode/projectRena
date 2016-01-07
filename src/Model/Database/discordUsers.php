@@ -1011,6 +1011,6 @@ class discordUsers
 
     public function insertIntoDiscordUsers($serverID, $userID, $characterID, $corporationID, $allianceID, $authString, $created)
     {
-        $this->db->execute("INSERT INTO discordUsers (serverID, userID, characterID, corporationID, allianceID, authString, created) VALUES (:serverID, :userID, :characterID, :corporationID, :allianceID, :authString, :created)", array(":serverID" => $serverID, ":userID" => $userID, ":characterID" => $characterID, ":corporationID" => $corporationID, ":allianceID" => $allianceID, ":authString" => $authString, ":created" => $created));
+        $this->db->execute("INSERT IGNORE INTO discordUsers (serverID, userID, characterID, corporationID, allianceID, authString, created) VALUES (:serverID, :userID, :characterID, :corporationID, :allianceID, :authString, :created)", array(":serverID" => $serverID, ":userID" => $userID, ":characterID" => $characterID, ":corporationID" => $corporationID, ":allianceID" => $allianceID, ":authString" => $authString, ":created" => $created));
     }
 }

@@ -3,10 +3,21 @@ namespace ProjectRena\Task;
 
 use Cilex\Command\Command;
 use ProjectRena\RenaApp;
+use Ratchet\ConnectionInterface;
+use Ratchet\Http\HttpServer;
+use Ratchet\Server\IoServer;
 use Ratchet\Wamp\Topic;
+use Ratchet\Wamp\WampServer;
 use Ratchet\Wamp\WampServerInterface;
+use Ratchet\WebSocket\WsServer;
+use React\EventLoop\Factory;
+use React\Socket\Server;
+use React\ZMQ\Context;
+use Stomp;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Routing\Route;
+use Symfony\Component\Routing\RouteCollection;
 use ZMQ;
 
 /**
@@ -34,21 +45,21 @@ class RatchetTask extends Command
         $app = RenaApp::getInstance();
 
         // Setup the react event loop and call up the pusher class
-        $loop = \React\EventLoop\Factory::create();
+        $loop = Factory::create();
         $pusher = new Pusher();
         $stomper = new stompSend();
 
         // ZeroMQ server
-        $context = new \React\ZMQ\Context($loop);
+        $context = new Context($loop);
         $pull = $context->getSocket(ZMQ::SOCKET_PULL);
         $pull->bind("tcp://127.0.0.1:5555");
         $pull->on("message", array($pusher, "onMessage"));
         $pull->on("message", array($stomper, "onMessage"));
 
         // Websocket server
-        $webSock = new \React\Socket\Server($loop);
+        $webSock = new Server($loop);
         $webSock->listen(8800, "0.0.0.0");
-        $webServer = new \Ratchet\Server\IoServer(new \Ratchet\Http\HttpServer(new \Ratchet\WebSocket\WsServer(new \Ratchet\Wamp\WampServer($pusher))), $webSock);
+        $webServer = new IoServer(new HttpServer(new WsServer(new WampServer($pusher))), $webSock);
         $loop->run();
     }
 }
@@ -61,7 +72,7 @@ class stompSend
     public function __construct()
     {
         $this->app = RenaApp::getInstance();
-        $this->stomp = new \Stomp($this->app->baseConfig->getConfig("server", "stomp"), $this->app->baseConfig->getConfig("username", "stomp"), $this->app->baseConfig->getConfig("password", "stomp"));
+        $this->stomp = new Stomp($this->app->baseConfig->getConfig("server", "stomp"), $this->app->baseConfig->getConfig("username", "stomp"), $this->app->baseConfig->getConfig("password", "stomp"));
     }
 
     public function onMessage($message)
@@ -92,27 +103,27 @@ class Pusher implements WampServerInterface
     }
 
     /**
-     * @param \Ratchet\ConnectionInterface $conn
+     * @param ConnectionInterface $conn
      */
-    function onOpen(\Ratchet\ConnectionInterface $conn)
+    function onOpen(ConnectionInterface $conn)
     {
         $this->clients->attach($conn);
     }
 
     /**
-     * @param \Ratchet\ConnectionInterface $conn
+     * @param ConnectionInterface $conn
      */
-    function onClose(\Ratchet\ConnectionInterface $conn)
+    function onClose(ConnectionInterface $conn)
     {
         $this->clients->detach($conn);
         $conn->close();
     }
 
     /**
-     * @param \Ratchet\ConnectionInterface $conn
+     * @param ConnectionInterface $conn
      * @param \Exception $e
      */
-    function onError(\Ratchet\ConnectionInterface $conn, \Exception $e)
+    function onError(ConnectionInterface $conn, \Exception $e)
     {
         $this->clients->detach($conn);
         $conn->close();
@@ -129,39 +140,39 @@ class Pusher implements WampServerInterface
     }
 
     /**
-     * @param \Ratchet\ConnectionInterface $conn
+     * @param ConnectionInterface $conn
      * @param string $id
      * @param Topic|string $topic
      * @param array $params
      */
-    function onCall(\Ratchet\ConnectionInterface $conn, $id, $topic, array $params)
+    function onCall(ConnectionInterface $conn, $id, $topic, array $params)
     {
     }
 
     /**
-     * @param \Ratchet\ConnectionInterface $conn
+     * @param ConnectionInterface $conn
      * @param Topic|string $topic
      */
-    function onSubscribe(\Ratchet\ConnectionInterface $conn, $topic)
+    function onSubscribe(ConnectionInterface $conn, $topic)
     {
     }
 
     /**
-     * @param \Ratchet\ConnectionInterface $conn
+     * @param ConnectionInterface $conn
      * @param Topic|string $topic
      */
-    function onUnSubscribe(\Ratchet\ConnectionInterface $conn, $topic)
+    function onUnSubscribe(ConnectionInterface $conn, $topic)
     {
     }
 
     /**
-     * @param \Ratchet\ConnectionInterface $conn
+     * @param ConnectionInterface $conn
      * @param Topic|string $topic
      * @param string $event
      * @param array $exclude
      * @param array $eligible
      */
-    function onPublish(\Ratchet\ConnectionInterface $conn, $topic, $event, array $exclude, array $eligible)
+    function onPublish(ConnectionInterface $conn, $topic, $event, array $exclude, array $eligible)
     {
     }
 }

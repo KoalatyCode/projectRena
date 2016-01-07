@@ -82,6 +82,10 @@ class DiscordController
             $serverName = isset($_POST["serverName"]) ? $_POST["serverName"] : null;
             $region = isset($_POST["region"]) ? strtolower($_POST["region"]) : "london";
             $allowedEntities = isset($_POST["allowedEntities"]) ? json_decode($_POST["allowedEntities"], true) : array();
+            $ownerID = isset($_POST["ownerID"]) ? $_POST["ownerID"] : 0;
+
+            if($ownerID == 0)
+                throw new \Exception("Error, no userID provided");
 
             if (isset($serverName) && (isset($allowedEntities) && is_array($allowedEntities))) {
                 $guildData = $this->discord->api("guild")->create($serverName, $region);
@@ -96,21 +100,30 @@ class DiscordController
                 foreach ($allowedEntities as $entityType => $entityID) {
 
                     $name = null;
-                    if ($entityType == "allianceID")
-                        $name = $this->app->alliances->getAllByID($entityID)["allianceName"];
                     if ($entityType == "corporationID") {
-                        $name = $this->app->corporations->getAllByID($entityID) ? $this->app->corporations->getAllByID($entityID)["corporationName"] : $data = $this->app->EVECorporationCorporationSheet->getData(null, null, $entityID)["result"]["corporationName"];
-                        // Update the corp ID in resque
-                        \Resque::enqueue("default", "\\ProjectRena\\Task\\Resque\\updateCorporation", array("corporationID" => $entityID));
-                    }
-                    // If there is no name, continue
-                    if ($name == null || !isset($name) || empty($name))
-                        continue;
+                        foreach($entityID as $corporationID)
+                        {
+                            $name = $this->app->corporations->getAllByID($corporationID) ? $this->app->corporations->getAllByID($corporationID)["corporationName"] : $data = $this->app->EVECorporationCorporationSheet->getData(null, null, $corporationID)["result"]["corporationName"];
+                            // Update the corp ID in resque
+                            \Resque::enqueue("default", "\\ProjectRena\\Task\\Resque\\updateCorporation", array("corporationID" => $corporationID));
 
-                    // Create roles for entities (Regular users)
-                    $userPermissions = new \Discord\Helpers\Permissions(3398656);
-                    $userColor = new RoleColors();
-                    $this->discord->api("guild")->roles()->create($guildID, ucfirst($name), $userPermissions->finalPermissions(), $userColor->darkerGrey, true);
+                            // Create roles for entities (Regular users)
+                            $userPermissions = new \Discord\Helpers\Permissions(3398656);
+                            $userColor = new RoleColors();
+                            $this->discord->api("guild")->roles()->create($guildID, ucfirst($name), $userPermissions->finalPermissions(), $userColor->darkerGrey, true);
+                        }
+                    }
+                    if ($entityType == "allianceID") {
+                        $name = $this->app->alliances->getAllByID($entityID)["allianceName"];
+
+                        if($name == null || !isset($name) || empty($name))
+                            continue;
+
+                        // Create roles for entities (Regular users)
+                        $userPermissions = new \Discord\Helpers\Permissions(3398656);
+                        $userColor = new RoleColors();
+                        $this->discord->api("guild")->roles()->create($guildID, ucfirst($name), $userPermissions->finalPermissions(), $userColor->darkerGrey, true);
+                    }
                 }
 
                 // Add server to discordServers Table
@@ -164,11 +177,14 @@ class DiscordController
         {
             foreach($allowedEntities as $type => $ent)
             {
-                if($group["groupType"] . "ID" == $type)
+                if($type == "corporationID")
+                    if(in_array($group["groupID"], $ent))
+                        $allowed = true;
+
+                if($type == "allianceID")
                     if($group["groupID"] == $ent)
                         $allowed = true;
             }
-
         }
 
         // User is allowed
