@@ -35,6 +35,7 @@ class CronTask extends Command
         //gc_enable();
 
         // Get the slim instance
+        /** @var RenaApp $app */
         $app = RenaApp::getInstance();
 
         $run = true;
@@ -91,7 +92,7 @@ class CronTask extends Command
                                 // Get the PID
                                 $pid = getmypid();
 
-                                // Tell the cache that we're running the cronjobs will automatically remove it from the cache once they're done
+                                // Tell the cache that we're running
                                 $app->Cache->set($md5 . '_pid', $pid);
 
                                 // Execute the cronjob

@@ -30,6 +30,7 @@ class zkillboardReceiveTask extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         //Init rena
+        /** @var RenaApp $app */
         $app = RenaApp::getInstance();
         $run = true;
         $oldKillID = 0;

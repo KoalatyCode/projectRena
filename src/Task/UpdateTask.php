@@ -31,6 +31,7 @@ class UpdateTask extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        /** @var RenaApp $app */
         $app = RenaApp::getInstance();
 
             // Check if composer is in the dir

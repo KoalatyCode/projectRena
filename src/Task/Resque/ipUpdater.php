@@ -1,5 +1,6 @@
 <?php
 namespace ProjectRena\Task\Resque;
+use ProjectRena\RenaApp;
 
 /**
  * Updates the IP hostname and location in the usersLogin table, this way ipinfo.io can go down without the user will experience login lag
@@ -30,7 +31,7 @@ class ipUpdater
      */
     public function setUp()
     {
-        $this->app = \ProjectRena\RenaApp::getInstance();
+        $this->app = RenaApp::getInstance();
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
 namespace ProjectRena\Task\Resque;
 
+use ProjectRena\RenaApp;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
 /**
@@ -162,7 +163,7 @@ class killmailParser
      */
     public function setUp()
     {
-        $this->app = \ProjectRena\RenaApp::getInstance();
+        $this->app = RenaApp::getInstance();
     }
 
     /**

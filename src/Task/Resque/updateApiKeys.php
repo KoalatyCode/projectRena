@@ -1,5 +1,6 @@
 <?php
 namespace ProjectRena\Task\Resque;
+use ProjectRena\RenaApp;
 
 /**
  * Updates the APIKeys and populates the apiKeyCharacters table
@@ -52,7 +53,7 @@ class updateApiKeys
      */
     public function setUp()
     {
-        $this->app = \ProjectRena\RenaApp::getInstance();
+        $this->app = RenaApp::getInstance();
     }
 
     /**

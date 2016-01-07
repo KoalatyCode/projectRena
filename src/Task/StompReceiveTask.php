@@ -30,6 +30,7 @@ class StompReceiveTask extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         //Init rena
+        /** @var RenaApp $app */
         $app = RenaApp::getInstance();
 
         $startTime = time() + 3600; // Current time + 60 minutes

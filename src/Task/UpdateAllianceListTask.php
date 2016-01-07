@@ -29,6 +29,7 @@ class UpdateAllianceListTask extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         //Init rena
+        /** @var RenaApp $app */
         $app = RenaApp::getInstance();
 
         $app->StatsD->increment("ccpRequests");

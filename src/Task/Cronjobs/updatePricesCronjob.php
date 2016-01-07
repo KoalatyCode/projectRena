@@ -17,6 +17,7 @@ class updatePricesCronjob
      */
     public static function execute($pid, $md5)
     {
+        /** @var RenaApp $app */
         $app = RenaApp::getInstance();
         $typeIDs = $app->Db->query("SELECT typeID FROM invTypes WHERE published = 1 AND marketGroupID != 0");
         $cnt = 0;

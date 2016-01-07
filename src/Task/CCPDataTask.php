@@ -31,6 +31,7 @@ class CCPDataTask extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        /** @var RenaApp $app */
         $app = RenaApp::getInstance();
 
         // Setup the url and cache path

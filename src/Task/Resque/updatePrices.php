@@ -1,5 +1,6 @@
 <?php
 namespace ProjectRena\Task\Resque;
+use ProjectRena\RenaApp;
 
 /**
  * Fetches the data for the price table from EVE Central
@@ -199,7 +200,7 @@ class updatePrices
      */
     public function setUp()
     {
-        $this->app = \ProjectRena\RenaApp::getInstance();
+        $this->app = RenaApp::getInstance();
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
 
 namespace ProjectRena\Task\Resque;
+use ProjectRena\RenaApp;
 
 /**
  * Class updateCharacter
@@ -16,7 +17,7 @@ class updateAlliances
      */
     public function setUp()
     {
-        $this->app = \ProjectRena\RenaApp::getInstance();
+        $this->app = RenaApp::getInstance();
     }
 
     /**

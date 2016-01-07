@@ -15,6 +15,7 @@ class killMailFetcherCronjob
      */
     public static function execute($pid, $md5)
     {
+        /** @var RenaApp $app */
         $app = RenaApp::getInstance();
         if ($app->Storage->get("Api904") >= date("Y-m-d H:i:s"))
             return;
