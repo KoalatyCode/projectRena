@@ -4,7 +4,6 @@ namespace ProjectRena\Task\WebSockets;
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\Topic;
 use Ratchet\Wamp\WampServerInterface;
-use React\ZMQ\Context;
 
 class killsWebsocket implements WampServerInterface {
     /**
