@@ -59,7 +59,7 @@ class Db
         $this->timer = $app->Timer;
         $this->statsd = $app->StatsD;
 
-        if (!$this->persistence) $this->cache->persistence = false;
+        if ($this->persistence === false) $this->cache->persistence = false;
 
         $dsn = 'mysql:dbname=' . $app->baseConfig->getConfig('name', 'database') . ';unix_socket=/var/run/mysqld/mysqld.sock;charset=utf8';
         try {
