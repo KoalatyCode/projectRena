@@ -2,10 +2,10 @@
 namespace ProjectRena\Task\WebSockets;
 
 use Ratchet\ConnectionInterface;
+use Ratchet\MessageComponentInterface;
 use Ratchet\Wamp\Topic;
-use Ratchet\Wamp\WampServerInterface;
 
-class echoWebsocket implements WampServerInterface {
+class echoWebsocket implements MessageComponentInterface {
     /**
      * @var \SplObjectStorage
      */
@@ -95,11 +95,10 @@ class echoWebsocket implements WampServerInterface {
      */
     function onPublish(ConnectionInterface $conn, $topic, $event, array $exclude, array $eligible)
     {
-        $this->client->send($event);
     }
 
-    function onMessage($entry)
+    function onMessage(ConnectionInterface $conn, $msg)
     {
-
+        $conn->send($msg);
     }
 }

@@ -7,23 +7,12 @@ use ProjectRena\RenaApp;
 use ProjectRena\Task\WebSockets\echoWebsocket;
 use ProjectRena\Task\WebSockets\killsWebsocket;
 use Ratchet\App;
-use Ratchet\Client\WebSocket;
-use Ratchet\Http\HttpServer;
-use Ratchet\Server\IoServer;
-use Ratchet\Wamp\WampServer;
-use Ratchet\WebSocket\WsServer;
 use React\EventLoop\Factory;
-use React\Socket\Server;
 use React\ZMQ\Context;
+use Stomp;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Routing\Matcher\UrlMatcher;
-use Symfony\Component\Routing\RequestContext;
-use Symfony\Component\Routing\Route;
-use Symfony\Component\Routing\RouteCollection;
-use Symfony\Component\Routing\Router;
 use ZMQ;
-use Stomp;
 
 /**
  * Starts up the websocket server, including all the routes
@@ -36,7 +25,7 @@ class WebSocketTask extends Command
 
     protected function configure()
     {
-        $this->setName('WebSocket')->setDescription('Starts up the websocket server, including all the routes');
+        $this->setName('run:websocket')->setDescription('Starts up the websocket server, including all the routes');
     }
 
     /**
@@ -57,7 +46,7 @@ class WebSocketTask extends Command
         $killsWebsocket = new killsWebsocket();
         $stompOut = new sendToStomp();
 
-        // Setup ZMQ
+        // Setup ZMQ for killmails being sent around
         $context = new Context($loop);
         $pull = $context->getSocket(ZMQ::SOCKET_PULL);
         $pull->bind("tcp://" . $app->baseConfig->getConfig("host", "zmq", "127.0.0.1") . ":" . $app->baseConfig->getConfig("port", "zmq", 5555));
@@ -68,8 +57,9 @@ class WebSocketTask extends Command
         $ratchet = new App($app->baseConfig->getConfig("host", "websocket", "localhost"), $app->baseConfig->getConfig("port", "websocket", 8800), $app->baseConfig->getConfig("ip", "websocket", "0.0.0.0"), $loop);
 
         // Add routes here, / is entry and is just spamming kills, everything else is seperate
-        $ratchet->route("/", $killsWebsocket, array("*"));
-        $ratchet->route("/echo", new echoWebsocket, array("*"));
+        $ratchet->route("/", $killsWebsocket, array("*")); // Default route is killmails
+        $ratchet->route("/kills", $killsWebsocket, array("*")); // Seems someone uses this too for killmails
+        $ratchet->route("/echo", new echoWebsocket, array("*")); // Echo route, all it'll do is echo out whatever is sent to it
 
         $ratchet->run();
     }
