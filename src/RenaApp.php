@@ -27,6 +27,7 @@ use ProjectRena\Model\Storage;
 use ProjectRena\Model\Users;
 use ProjectRena\Model\UsersGroups;
 use ProjectRena\Model\UsersLogins;
+use ProjectRena\Model\crestHashGenerator;
 use ProjectRena\Model\CCP\dgmAttributeCategories;
 use ProjectRena\Model\CCP\dgmAttributeTypes;
 use ProjectRena\Model\CCP\dgmEffects;
@@ -156,6 +157,7 @@ use ProjectRena\Model\EVEApi\Server\ServerStatus as EVEServerServerStatus;
  * @property Users Users
  * @property UsersGroups UsersGroups
  * @property UsersLogins UsersLogins
+ * @property crestHashGenerator crestHashGenerator
  * @property dgmAttributeCategories dgmAttributeCategories
  * @property dgmAttributeTypes dgmAttributeTypes
  * @property dgmEffects dgmEffects

@@ -50,7 +50,7 @@ class killMailFetcher
                 $kill["killID"] = (int)$kill["killID"];
 
                 // Generate the hash
-                $hash = hash("sha256", ":" . $kill["killTime"] . ":" . $kill["solarSystemID"] . ":" . $kill["moonID"] . "::" . $kill["victim"]["characterID"] . ":" . $kill["victim"]["shipTypeID"] . ":" . $kill["victim"]["damageTaken"] . ":");
+                $hash = $this->app->crestHashGenerator->generateCRESTHash($kill);
 
                 // Create the source
                 $source = "apiKey:" . $keyID;
@@ -84,6 +84,30 @@ class killMailFetcher
     }
 
     /**
+     * @param $apiKey
+     * @param $vCode
+     * @param null $characterID
+     * @param null $fromID
+     * @param null $rowCount
+     *
+     * @return mixed
+     */
+    private function getData($apiKey, $vCode, $characterID = null, $fromID = null, $rowCount = null)
+    {
+        try {
+            if (!$characterID)
+                $data = $this->app->EVECorporationKillMails->getData($apiKey, $vCode, $fromID, $rowCount);
+            else
+                $data = $this->app->EVECharacterKillMails->getData($apiKey, $vCode, $characterID, $fromID, $rowCount);
+
+            return $data;
+        } catch (Exception $e) {
+            var_dump($e->getMessage());
+            return null;
+        }
+    }
+
+    /**
      * Sets up the task (Setup $this->crap and such here)
      */
     public function setUp()
@@ -97,29 +121,5 @@ class killMailFetcher
     public function tearDown()
     {
         $this->app = null;
-    }
-
-    /**
-     * @param $apiKey
-     * @param $vCode
-     * @param null $characterID
-     * @param null $fromID
-     * @param null $rowCount
-     *
-     * @return mixed
-     */
-    private function getData($apiKey, $vCode, $characterID = null, $fromID = null, $rowCount = null)
-    {
-	try {
-	        if (!$characterID)
-	            $data = $this->app->EVECorporationKillMails->getData($apiKey, $vCode, $fromID, $rowCount);
-	        else
-	            $data = $this->app->EVECharacterKillMails->getData($apiKey, $vCode, $characterID, $fromID, $rowCount);
-
-		return $data;
-	} catch(Exception $e) {
-		var_dump($e->getMessage());
-		return null;
-	}
     }
 }

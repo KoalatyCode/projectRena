@@ -124,6 +124,11 @@ $app->container->singleton("UsersLogins", function($container) use ($app)
 		return new \ProjectRena\Model\UsersLogins($app);
 });
 
+$app->container->singleton("crestHashGenerator", function($container) use ($app)
+{
+		return new \ProjectRena\Model\crestHashGenerator($app);
+});
+
 $app->container->singleton("dgmAttributeCategories", function($container) use ($app)
 {
 		return new \ProjectRena\Model\CCP\dgmAttributeCategories($app);

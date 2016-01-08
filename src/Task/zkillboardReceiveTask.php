@@ -45,7 +45,8 @@ class zkillboardReceiveTask extends Command
 
                 // Now lets make the json and hash
                 $json = json_encode($k, JSON_NUMERIC_CHECK);
-                $hash = hash("sha256", ":" . $k["killTime"] . ":" . $k["solarSystemID"] . ":" . $k["moonID"] . "::" . $k["victim"]["characterID"] . ":" . $k["victim"]["shipTypeID"] . ":" . $k["victim"]["damageTaken"] . ":");
+                $hash = $app->crestHashGenerator->generateCRESTHash($k);
+                //$hash = hash("sha256", ":" . $k["killTime"] . ":" . $k["solarSystemID"] . ":" . $k["moonID"] . "::" . $k["victim"]["characterID"] . ":" . $k["victim"]["shipTypeID"] . ":" . $k["victim"]["damageTaken"] . ":");
 
                 // Push it over zmq to the websocket
                 $context = new ZMQContext();
