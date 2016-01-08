@@ -3,7 +3,6 @@ namespace ProjectRena\Task\WebSockets;
 
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
-use Ratchet\Wamp\Topic;
 
 class echoWebsocket implements MessageComponentInterface {
     /**
