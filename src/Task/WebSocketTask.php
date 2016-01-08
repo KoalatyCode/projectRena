@@ -2,7 +2,6 @@
 namespace ProjectRena\Task;
 
 use Cilex\Command\Command;
-use ProjectRena\Lib;
 use ProjectRena\RenaApp;
 use ProjectRena\Task\WebSockets\echoWebsocket;
 use ProjectRena\Task\WebSockets\killsWebsocket;

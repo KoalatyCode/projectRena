@@ -82,9 +82,9 @@ class killmails
     /**
      * @param $killID
      * @param $processed
-     * @param $hash
-     * @param $source
-     * @param $kill_json
+     * @param string $hash
+     * @param string $source
+     * @param string $kill_json
      *
      * @return bool|int|string
      */

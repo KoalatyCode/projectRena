@@ -172,7 +172,7 @@ class alliances
 
     /**
      * @param $allianceID
-     * @param $lastUpdated
+     * @param string $lastUpdated
      */
     public function setLastUpdated($allianceID, $lastUpdated)
     {
