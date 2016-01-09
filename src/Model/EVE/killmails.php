@@ -143,6 +143,9 @@ class killmails
         $victimData["factionID"] = (int)@$victim["faction"]["id"];
         $victimData["factionName"] = (string)@$victim["faction"]["name"];
         $victimData["damageTaken"] = (int)@$victim["damageTaken"];
+        $victimData["x"] = (float)@$victim["position"]["x"];
+        $victimData["y"] = (float)@$victim["position"]["y"];
+        $victimData["z"] = (float)@$victim["position"]["z"];
 
         return $victimData;
     }
