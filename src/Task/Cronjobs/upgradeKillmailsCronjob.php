@@ -26,7 +26,7 @@ class upgradeKillmailsCronjob
         $toUpgrade = $app->Db->query("SELECT * FROM killmails WHERE upgraded = 0 ORDER BY dateAdded DESC LIMIT 100", array(), 1);
         if($toUpgrade)
             foreach($toUpgrade as $kill)
-                \Resque::enqueue("default", "\\ProjectRena\\Task\\Resque\\upgradeKillmail", array("killJson" => serialize($kill["kill_json"])));
+                \Resque::enqueue("now", "\\ProjectRena\\Task\\Resque\\upgradeKillmail", array("killJson" => serialize($kill["kill_json"])));
 
         exit ();
         // Keep this at the bottom, to make sure the fork exits
