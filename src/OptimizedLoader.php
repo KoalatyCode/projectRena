@@ -174,24 +174,9 @@ $app->container->singleton("mapDenormalize", function($container) use ($app)
 		return new \ProjectRena\Model\CCP\mapDenormalize($app);
 });
 
-$app->container->singleton("mapRegions", function($container) use ($app)
-{
-		return new \ProjectRena\Model\CCP\mapRegions($app);
-});
-
 $app->container->singleton("mapSolarSystems", function($container) use ($app)
 {
 		return new \ProjectRena\Model\CCP\mapSolarSystems($app);
-});
-
-$app->container->singleton("discordServers", function($container) use ($app)
-{
-		return new \ProjectRena\Model\Database\discordServers($app);
-});
-
-$app->container->singleton("discordUsers", function($container) use ($app)
-{
-		return new \ProjectRena\Model\Database\discordUsers($app);
 });
 
 $app->container->singleton("alliances", function($container) use ($app)
@@ -217,6 +202,26 @@ $app->container->singleton("killmails", function($container) use ($app)
 $app->container->singleton("participants", function($container) use ($app)
 {
 		return new \ProjectRena\Model\EVE\participants($app);
+});
+
+$app->container->singleton("mapAllCelestials", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\CCPTables\mapAllCelestials($app);
+});
+
+$app->container->singleton("mapRegions", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\CCPTables\mapRegions($app);
+});
+
+$app->container->singleton("discordServers", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\Discord\discordServers($app);
+});
+
+$app->container->singleton("discordUsers", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\Discord\discordUsers($app);
 });
 
 $app->container->singleton("EVEAPICallList", function($container) use ($app)
