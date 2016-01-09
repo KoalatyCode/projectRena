@@ -23,10 +23,10 @@ class upgradeKillmailsCronjob
         /** @var RenaApp $app */
         $app = RenaApp::getInstance();
 
-        $toUpgrade = $app->Db->query("SELECT * FROM killmails WHERE upgraded = 0 ORDER BY dateAdded DESC LIMIT 50", array(), 1);
+        $toUpgrade = $app->Db->query("SELECT * FROM killmails WHERE upgraded = 0 ORDER BY dateAdded DESC LIMIT 100", array(), 1);
         if($toUpgrade)
             foreach($toUpgrade as $kill)
-                \Resque::enqueue("test", "\\ProjectRena\\Task\\Resque\\upgradeKillmail", array("killJson" => serialize($kill["kill_json"])));
+                \Resque::enqueue("default", "\\ProjectRena\\Task\\Resque\\upgradeKillmail", array("killJson" => serialize($kill["kill_json"])));
 
         exit ();
         // Keep this at the bottom, to make sure the fork exits
@@ -38,7 +38,7 @@ class upgradeKillmailsCronjob
 
     public static function getRunTimes()
     {
-        return 0;
+        return 60;
         // Never runs
     }
 }

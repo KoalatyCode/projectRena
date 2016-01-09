@@ -96,4 +96,10 @@ class APIController
         $data = $this->app->alliances->getMembersByID($allianceID);
         render("", $data, null, $this->contentType);
     }
+
+    public function killData($killID)
+    {
+        $data = json_decode($this->app->killmails->getJSONByID($killID), true);
+        render("", $data, null, $this->contentType);
+    }
 }

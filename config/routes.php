@@ -83,4 +83,9 @@ $app->group("/api", function () use ($app) {
             (new \ProjectRena\Controller\APIController($app))->allianceMembers($allianceID);
         });
     });
+
+    // Killmail
+    $app->get("/killmail/:killID/", function($killID) use ($app) {
+        (new \ProjectRena\Controller\APIController($app))->killData($killID);
+    });
 });

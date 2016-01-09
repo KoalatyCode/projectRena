@@ -53,7 +53,7 @@ class upgradeKillmail
         $nk["shipValue"] = (float) $killValues["shipValue"];
         $nk["fittingValue"] = (float) $killValues["itemValue"];
         $nk["totalValue"] = (float) $killValues["totalValue"];
-        $nk["dna"] = $dna = $this->getDNA($killData["items"], $killData["victim"]["shipTypeID"]);
+        $nk["dna"] = $this->getDNA($killData["items"], $killData["victim"]["shipTypeID"]);
 
         // Victim Data
         $nk["victim"]["x"] = (float) $killData["victim"]["x"];
@@ -112,6 +112,8 @@ class upgradeKillmail
             $inner["typeID"] = (int) $item["typeID"];
             $inner["typeName"] = $this->app->invTypes->getNameByID($item["typeID"]);
             $inner["typeImageURL"] = $imageServer . "Type/" . $item["typeID"] . "_32.png";
+            $inner["groupID"] = $this->app->invTypes->getGroupIDByID($item["typeID"]);
+            $inner["categoryID"] = $this->app->Db->queryField("SELECT categoryID FROM invGroups WHERE groupID = :groupID", "categoryID" , array(":groupID" => $inner["groupID"]));
             $inner["flag"] = (int) $item["flag"];
             $inner["qtyDropped"] = (int) $item["qtyDropped"];
             $inner["qtyDestroyed"] = (int) $item["qtyDestroyed"];
@@ -124,13 +126,18 @@ class upgradeKillmail
         // Osmium fitting information
         // URL: https://o.smium.org/api/json/loadout/dna/attributes/loc:ship,a:hiSlots,a:medSlots,a:lowSlots,a:upgradeSlotsLeft,a:tank,a:ehpAndResonances,a:capacitors,a:damage?input=17703:12563;2:31490;2:2605;2:5973;1:3041;2:1999;2:31442;1:3244;1:2048;1::
         // Need to get max DPS with stock ammo, just gotta load some ammo into it - must be a way to determine what to load
+        $osmiumData = array();
 
-        var_dump($nk);
+        if(!empty($nk["items"]))
+            $osmiumData = json_decode($this->app->cURL->getData("https://o.smium.org/api/json/loadout/dna/attributes/loc:ship,a:tank,a:ehpAndResonances,a:capacitors,a:damage?input=" . $nk["dna"]), true);
+
+        $nk["osmium"] = $osmiumData;
+
         // generate new JSON
-        //$jsonData = json_encode($nk);
+        $jsonData = json_encode($nk, JSON_NUMERIC_CHECK);
 
         // Update the data in the database
-        //$this->app->Db->execute("UPDATE killmails SET kill_json = :json WHERE killID = :killID", array(":json" => $jsonData, ":killID" => $killID));
+        $this->app->Db->execute("UPDATE killmails SET kill_json = :json, upgraded = 1 WHERE killID = :killID", array(":json" => $jsonData, ":killID" => $killID));
     }
 
     private function getDNA($itemData = array(), $shipTypeID)
@@ -143,7 +150,7 @@ class upgradeKillmail
         {
             $flagName = $this->app->invFlags->getFlagNameByID($item["flag"]);
 
-            if(in_array($flagName, $slots))
+            if(in_array($flagName, $slots) || @$item["categoryID"] == 8)
             {
                 if(isset($fittingArray[$item["typeID"]]))
                     $fittingArray[$item["typeID"]]["count"] = $fittingArray[$item["typeID"]]["count"] + (@$item["qtyDropped"] + @$item["qtyDestroyed"]);
