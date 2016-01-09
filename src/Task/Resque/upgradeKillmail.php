@@ -27,6 +27,11 @@ class upgradeKillmail
         $killID = $killData["killID"];
         $killHash = $this->app->Db->queryField("SELECT hash FROM killmails WHERE killID = :killID", "hash", array(":killID" => $killID));
 
+        // Make sure it hasn't already been upgraded, if it has, exit.. this could happen if it's behind and the cron has already thrown more into the queue..
+        $upgraded = $this->app->Db->queryField("SELECT upgraded FROM killmails WHERE killID = :killID", "upgraded", array(":killID" => $killID), 0);
+        if($upgraded == 1)
+            exit;
+
         // If there is no XYZ refetch the data from CREST
         if(!isset($killData["victim"]["z"])) {
             $killMail = json_decode($this->app->cURL->getData("https://public-crest.eveonline.com/killmails/{$killID}/{$killHash}/"), true);
