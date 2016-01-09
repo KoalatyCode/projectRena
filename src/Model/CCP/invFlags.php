@@ -55,7 +55,7 @@ class invFlags
      */
     public function getFlagNameByID($flagID)
     {
-        return $this->db->queryField("SELECT flagName FROM invFlags WHERE flagID = :id", "", array(":id" => $flagID), 3600);
+        return $this->db->queryField("SELECT flagName FROM invFlags WHERE flagID = :id", "flagName", array(":id" => $flagID), 3600);
     }
 
     /**
@@ -65,7 +65,7 @@ class invFlags
      */
     public function getFlagIDByName($flagName)
     {
-        return $this->db->queryField("SELECT flagID FROM invFlags WHERE flagName = :name", "", array(":name" => $flagName), 3600);
+        return $this->db->queryField("SELECT flagID FROM invFlags WHERE flagName = :name", "flagID", array(":name" => $flagName), 3600);
     }
 
     /**
@@ -75,7 +75,7 @@ class invFlags
      */
     public function getFlagTextByID($flagID)
     {
-        return $this->db->queryField("SELECT flagText FROM invFlags WHERE flagID = :id", "", array(":id" => $flagID), 3600);
+        return $this->db->queryField("SELECT flagText FROM invFlags WHERE flagID = :id", "flagText", array(":id" => $flagID), 3600);
     }
 
     /**
@@ -85,7 +85,7 @@ class invFlags
      */
     public function getFlagTextByName($flagName)
     {
-        return $this->db->queryField("SELECT flagText FROM invFlags WHERE flagName = :name", "", array(":name" => $flagName), 3600);
+        return $this->db->queryField("SELECT flagText FROM invFlags WHERE flagName = :name", "flagText", array(":name" => $flagName), 3600);
     }
 
     /**
@@ -95,7 +95,7 @@ class invFlags
      */
     public function getOrderIDByID($flagID)
     {
-        return $this->db->queryField("SELECT orderID FROM invFlags WHERE flagID = :id", "", array(":id" => $flagID), 3600);
+        return $this->db->queryField("SELECT orderID FROM invFlags WHERE flagID = :id", "orderID", array(":id" => $flagID), 3600);
     }
 
     /**
@@ -105,6 +105,6 @@ class invFlags
      */
     public function getOrderIDByName($flagName)
     {
-        return $this->db->queryField("SELECT orderID FROM invFlags WHERE flagName = :name", "", array(":name" => $flagName), 3600);
+        return $this->db->queryField("SELECT orderID FROM invFlags WHERE flagName = :name", "orderID", array(":name" => $flagName), 3600);
     }
 }
