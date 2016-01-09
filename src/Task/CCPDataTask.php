@@ -6,6 +6,7 @@ use Cilex\Command\Command;
 use ProjectRena\Lib;
 use ProjectRena\RenaApp;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -20,7 +21,8 @@ class CCPDataTask extends Command
      */
     protected function configure()
     {
-        $this->setName('update:ccp')->setDescription('Updates the CCP database tables');
+        $this->setName('update:ccp')->setDescription('Updates the CCP database tables')
+            ->addOption("force", "f", InputOption::VALUE_NONE, "Force Update");;
     }
 
     /**
@@ -47,7 +49,7 @@ class CCPDataTask extends Command
 
         $lastSeenMD5 = $app->Storage->get("ccpdataMD5");
 
-        if ($lastSeenMD5 != $md5) {
+        if (($lastSeenMD5 !== $md5) || !$input->getOption("force") === false) {
             $output->writeln("Updating to latest CCP data dump");
             $dbFiles = array(
                 "dgmAttributeCategories",
@@ -61,6 +63,7 @@ class CCPDataTask extends Command
                 "mapDenormalize",
                 "mapRegions",
                 "mapSolarSystems",
+                "mapConstellations",
             );
             $type = ".sql.bz2";
 
