@@ -17,6 +17,7 @@ use ProjectRena\Lib\OAuth\EVEOAuth;
 use ProjectRena\Model\ApiKeyCharacters;
 use ProjectRena\Model\ApiKeys;
 use ProjectRena\Model\Config;
+use ProjectRena\Model\CrestFunctions;
 use ProjectRena\Model\EveCentral;
 use ProjectRena\Model\Groups;
 use ProjectRena\Model\Paste;
@@ -27,7 +28,6 @@ use ProjectRena\Model\Storage;
 use ProjectRena\Model\Users;
 use ProjectRena\Model\UsersGroups;
 use ProjectRena\Model\UsersLogins;
-use ProjectRena\Model\crestHashGenerator;
 use ProjectRena\Model\CCP\dgmAttributeCategories;
 use ProjectRena\Model\CCP\dgmAttributeTypes;
 use ProjectRena\Model\CCP\dgmEffects;
@@ -41,12 +41,12 @@ use ProjectRena\Model\CCP\mapSolarSystems;
 use ProjectRena\Model\EVE\alliances;
 use ProjectRena\Model\EVE\characters;
 use ProjectRena\Model\EVE\corporations;
-use ProjectRena\Model\EVE\killmails;
 use ProjectRena\Model\EVE\participants;
 use ProjectRena\Model\Database\CCPTables\mapAllCelestials;
 use ProjectRena\Model\Database\CCPTables\mapRegions;
 use ProjectRena\Model\Database\Discord\discordServers;
 use ProjectRena\Model\Database\Discord\discordUsers;
+use ProjectRena\Model\Database\EVE\killmails;
 use ProjectRena\Model\EVEApi\API\CallList as EVEAPICallList;
 use ProjectRena\Model\EVEApi\Account\APIKeyInfo as EVEAccountAPIKeyInfo;
 use ProjectRena\Model\EVEApi\Account\AccountStatus as EVEAccountAccountStatus;
@@ -148,6 +148,7 @@ use ProjectRena\Model\EVEApi\Server\ServerStatus as EVEServerServerStatus;
  * @property ApiKeyCharacters ApiKeyCharacters
  * @property ApiKeys ApiKeys
  * @property Config Config
+ * @property CrestFunctions CrestFunctions
  * @property EveCentral EveCentral
  * @property Groups Groups
  * @property Paste Paste
@@ -158,7 +159,6 @@ use ProjectRena\Model\EVEApi\Server\ServerStatus as EVEServerServerStatus;
  * @property Users Users
  * @property UsersGroups UsersGroups
  * @property UsersLogins UsersLogins
- * @property crestHashGenerator crestHashGenerator
  * @property dgmAttributeCategories dgmAttributeCategories
  * @property dgmAttributeTypes dgmAttributeTypes
  * @property dgmEffects dgmEffects
@@ -172,12 +172,12 @@ use ProjectRena\Model\EVEApi\Server\ServerStatus as EVEServerServerStatus;
  * @property alliances alliances
  * @property characters characters
  * @property corporations corporations
- * @property killmails killmails
  * @property participants participants
  * @property mapAllCelestials mapAllCelestials
  * @property mapRegions mapRegions
  * @property discordServers discordServers
  * @property discordUsers discordUsers
+ * @property killmails killmails
  * @property EVEAPICallList EVEAPICallList
  * @property EVEAccountAPIKeyInfo EVEAccountAPIKeyInfo
  * @property EVEAccountAccountStatus EVEAccountAccountStatus

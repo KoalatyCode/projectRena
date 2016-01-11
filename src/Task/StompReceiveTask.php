@@ -53,7 +53,7 @@ class StompReceiveTask extends Command
                     $killdata["killID"] = (int)$killdata["killID"];
 
                     $json = json_encode($killdata, JSON_NUMERIC_CHECK);
-                    $hash = $app->crestHashGenerator->generateCRESTHash($killdata);
+                    $hash = $app->CrestFunctions->generateCRESTHash($killdata);
 
                     $inserted = $app->Db->execute("INSERT IGNORE INTO killmails (killID, hash, source, kill_json) VALUES (:killID, :hash, :source, :kill_json)", array(":killID" => $killdata["killID"], ":hash" => $hash, ":source" => "stomp", ":kill_json" => $json));
                     if ($inserted > 0) {

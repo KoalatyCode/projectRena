@@ -74,6 +74,11 @@ $app->container->singleton("Config", function($container) use ($app)
 		return new \ProjectRena\Model\Config($app);
 });
 
+$app->container->singleton("CrestFunctions", function($container) use ($app)
+{
+		return new \ProjectRena\Model\CrestFunctions($app);
+});
+
 $app->container->singleton("EveCentral", function($container) use ($app)
 {
 		return new \ProjectRena\Model\EveCentral($app);
@@ -122,11 +127,6 @@ $app->container->singleton("UsersGroups", function($container) use ($app)
 $app->container->singleton("UsersLogins", function($container) use ($app)
 {
 		return new \ProjectRena\Model\UsersLogins($app);
-});
-
-$app->container->singleton("crestHashGenerator", function($container) use ($app)
-{
-		return new \ProjectRena\Model\crestHashGenerator($app);
 });
 
 $app->container->singleton("dgmAttributeCategories", function($container) use ($app)
@@ -194,11 +194,6 @@ $app->container->singleton("corporations", function($container) use ($app)
 		return new \ProjectRena\Model\EVE\corporations($app);
 });
 
-$app->container->singleton("killmails", function($container) use ($app)
-{
-		return new \ProjectRena\Model\EVE\killmails($app);
-});
-
 $app->container->singleton("participants", function($container) use ($app)
 {
 		return new \ProjectRena\Model\EVE\participants($app);
@@ -222,6 +217,11 @@ $app->container->singleton("discordServers", function($container) use ($app)
 $app->container->singleton("discordUsers", function($container) use ($app)
 {
 		return new \ProjectRena\Model\Database\Discord\discordUsers($app);
+});
+
+$app->container->singleton("killmails", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\EVE\killmails($app);
 });
 
 $app->container->singleton("EVEAPICallList", function($container) use ($app)

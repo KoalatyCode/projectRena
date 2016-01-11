@@ -35,7 +35,7 @@ class upgradeKillmail
         // If there is no XYZ refetch the data from CREST
         if(!isset($killData["victim"]["z"])) {
             $killMail = json_decode($this->app->cURL->getData("https://public-crest.eveonline.com/killmails/{$killID}/{$killHash}/"), true);
-            $killData = $this->app->killmails->generateFromCREST(array("killID" => $killID, "killmail" => $killMail));
+            $killData = $this->app->CrestFunctions->generateFromCREST(array("killID" => $killID, "killmail" => $killMail));
         }
 
         // Image server url

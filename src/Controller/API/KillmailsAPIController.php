@@ -66,7 +66,7 @@ class KillmailsAPIController
 
     public function killData($killID)
     {
-        $data = json_decode($this->app->killmails->getJSONByID($killID), true);
+        $data = json_decode($this->app->killmails->getKill_jsonByKillID($killID), true);
         render("", $data, null, $this->contentType);
     }
 }

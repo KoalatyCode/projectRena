@@ -38,14 +38,14 @@ class zkillboardReceiveTask extends Command
             $p = \RedisQ\Action::listen("redisq.zkillboard.com");
             if ($p["killID"] > $oldKillID) {
                 // Get the killmail data.
-                $k = $app->killmails->generateFromCREST($p);
+                $k = $app->CrestFunctions->generateFromCREST($p);
 
                 // Poke statsd
                 $app->StatsD->increment("zKillboardReceived");
 
                 // Now lets make the json and hash
                 $json = json_encode($k, JSON_NUMERIC_CHECK);
-                $hash = $app->crestHashGenerator->generateCRESTHash($k);
+                $hash = $app->CrestFunctions->generateCRESTHash($k);
                 //$hash = hash("sha256", ":" . $k["killTime"] . ":" . $k["solarSystemID"] . ":" . $k["moonID"] . "::" . $k["victim"]["characterID"] . ":" . $k["victim"]["shipTypeID"] . ":" . $k["victim"]["damageTaken"] . ":");
 
                 // Push it over zmq to the websocket
@@ -55,7 +55,7 @@ class zkillboardReceiveTask extends Command
                 $socket->send($json);
 
                 // Lets insert the killmail!
-                $app->killmails->insertKillmail($p["killID"], 0, $hash, "zkillboardRedisQ", $json);
+                $app->killmails->insertIntoKillmails($p["killID"], 0, $hash, "zkillboardRedisQ", $json);
             }
             $oldKillID = $p["killID"];
         } while ($run == true);

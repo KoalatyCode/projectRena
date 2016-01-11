@@ -50,7 +50,7 @@ class killMailFetcher
                 $kill["killID"] = (int)$kill["killID"];
 
                 // Generate the hash
-                $hash = $this->app->crestHashGenerator->generateCRESTHash($kill);
+                $hash = $this->app->CrestFunctions->generateCRESTHash($kill);
 
                 // Create the source
                 $source = "apiKey:" . $keyID;
@@ -59,7 +59,7 @@ class killMailFetcher
                 $json = json_encode($kill, JSON_NUMERIC_CHECK);
 
                 // insert the killData to the killmails table
-                $inserted = $this->app->killmails->insertKillmail($killID, 0, $hash, $source, $json);
+                $inserted = $this->app->killmails->insertIntoKillmails($killID, 0, $hash, $source, $json);
 
                 // Update the maxKillID
                 $maxKillID = max($maxKillID, $killID);
