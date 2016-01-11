@@ -23,10 +23,10 @@ class upgradeKillmailsCronjob
         /** @var RenaApp $app */
         $app = RenaApp::getInstance();
 
-        $toUpgrade = $app->Db->query("SELECT killID FROM killmails WHERE upgraded = 0 ORDER BY dateAdded DESC LIMIT 100", array(), 1);
+        $toUpgrade = $app->Db->query("SELECT killID FROM killmails WHERE upgraded = 0 AND processed != 1 ORDER BY dateAdded ASC LIMIT 100", array(), 1);
         if($toUpgrade)
             foreach($toUpgrade as $kill)
-                \Resque::enqueue("default", "\\ProjectRena\\Task\\Resque\\upgradeKillmail", array("killID" => $kill["killID"]));
+                \Resque::enqueue("turbo", "\\ProjectRena\\Task\\Resque\\upgradeKillmail", array("killID" => $kill["killID"]));
 
         exit ();
         // Keep this at the bottom, to make sure the fork exits

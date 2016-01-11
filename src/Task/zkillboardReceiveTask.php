@@ -49,10 +49,11 @@ class zkillboardReceiveTask extends Command
                 //$hash = hash("sha256", ":" . $k["killTime"] . ":" . $k["solarSystemID"] . ":" . $k["moonID"] . "::" . $k["victim"]["characterID"] . ":" . $k["victim"]["shipTypeID"] . ":" . $k["victim"]["damageTaken"] . ":");
 
                 // Lets insert the killmail!
-                $app->killmails->insertIntoKillmails($p["killID"], 0, $hash, "zkillboardRedisQ", $json);
+                $insert = $app->killmails->insertIntoKillmails($p["killID"], 0, $hash, "zkillboardRedisQ", $json);
 
                 // Upgrade it
-                \Resque::enqueue("turbo", "\\ProjectRena\\Task\\Resque\\upgradeKillmail", array("killID" => $p["killID"]));
+                if($insert > 0)
+                    \Resque::enqueue("turbo", "\\ProjectRena\\Task\\Resque\\upgradeKillmail", array("killID" => $p["killID"]));
             }
             $oldKillID = $p["killID"];
         } while ($run == true);

@@ -64,13 +64,13 @@ class killMailFetcher
                 // Update the maxKillID
                 $maxKillID = max($maxKillID, $killID);
 
-                // Process the killID
-                \Resque::enqueue("turbo", "\\ProjectRena\\Task\\Resque\\upgradeKillmail", array("killID" => $killID));
-
                 // Push it to the queue if it inserted, also poke statsd to increment the tracker for it
                 // Move all of this to killmail parser, then add more data to the array, THEN push it out
-                if ($inserted > 0)
+                if ($inserted > 0) {
                     $this->app->StatsD->increment("killmailsAdded");
+                    // Process the killID
+                    \Resque::enqueue("turbo", "\\ProjectRena\\Task\\Resque\\upgradeKillmail", array("killID" => $killID));
+                }
             }
         }
 

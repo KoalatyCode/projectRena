@@ -333,9 +333,10 @@ class killmails
      * @param $hash
      * @param $source
      * @param $kill_json
+     * @return bool|int|string
      */
     public function insertIntoKillmails($killID, $processed = 0, $hash, $source, $kill_json)
     {
-        $this->db->execute("INSERT IGNORE INTO killmails (killID, processed, hash, source, kill_json) VALUES (:killID, :processed, :hash, :source, :kill_json)", array(":killID" => $killID, ":processed" => $processed, ":hash" => $hash, ":source" => $source, ":kill_json" => $kill_json));
+        return $this->db->execute("INSERT IGNORE INTO killmails (killID, processed, hash, source, kill_json) VALUES (:killID, :processed, :hash, :source, :kill_json)", array(":killID" => $killID, ":processed" => $processed, ":hash" => $hash, ":source" => $source, ":kill_json" => $kill_json));
     }
 }
