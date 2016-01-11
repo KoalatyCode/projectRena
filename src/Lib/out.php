@@ -80,19 +80,7 @@ class out
         $xml = XMLParser::encode($dataArray, "rena");
         echo $xml->asXML();
     }
-
-    private function arrayToXML(\SimpleXMLElement $xml, $dataArray = array())
-    {
-        foreach($dataArray as $key => $value) {
-            if(is_array($value)) {
-                $newObject = $xml->addChild($key);
-                $this->arrayToXML($newObject, $value);
-            }
-            else {
-                $xml->addChild($key, $value);
-            }
-        }
-    }
+    
     /**
      * Outputs the template file together with the default twig data
      *
