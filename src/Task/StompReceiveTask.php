@@ -57,7 +57,7 @@ class StompReceiveTask extends Command
 
                     $inserted = $app->Db->execute("INSERT IGNORE INTO killmails (killID, hash, source, kill_json) VALUES (:killID, :hash, :source, :kill_json)", array(":killID" => $killdata["killID"], ":hash" => $hash, ":source" => "stomp", ":kill_json" => $json));
                     if ($inserted > 0)
-                        \Resque::enqueue("now", "\\ProjectRena\\Task\\Resque\\upgradeKillmail", array("killID" => $killdata["killID"]));
+                        \Resque::enqueue("turbo", "\\ProjectRena\\Task\\Resque\\upgradeKillmail", array("killID" => $killdata["killID"]));
                 }
                 $stomp->ack($frame->headers["message-id"]);
             }

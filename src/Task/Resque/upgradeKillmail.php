@@ -42,10 +42,7 @@ class upgradeKillmail
 
         // refetch it from CREST unless CREST bugs out
         $killMail = json_decode($this->app->cURL->getData("https://public-crest.eveonline.com/killmails/{$killID}/{$killHash}/"), true);
-
-        // Generate the killmail data if CREST returned valid data..
-        if(!empty($killMail))
-            $killData = $this->app->CrestFunctions->generateFromCREST(array("killID" => $killID, "killmail" => $killMail));
+        $killData = $this->app->CrestFunctions->generateFromCREST(array("killID" => $killID, "killmail" => $killMail));
 
         // Image server url
         $imageServer = $this->app->baseConfig->getConfig("imageServer", "ccp", "https://image.eveonline.com/");
@@ -54,6 +51,7 @@ class upgradeKillmail
         $nk = array();
 
         $nk["killID"] = (int)$killData["killID"];
+        $nk["killTime"] = $killData["killTime"];
         $nk["solarSystemID"] = (int)$killData["solarSystemID"];
         $nk["solarSystemName"] = $this->app->mapSolarSystems->getNameByID($killData["solarSystemID"]);
         $nk["regionID"] = (int)$this->app->mapSolarSystems->getRegionIDByID($killData["solarSystemID"]);
@@ -157,6 +155,8 @@ class upgradeKillmail
         $socket->connect("tcp://localhost:5555");
         $socket->send($jsonData);
 
+        // Call the killmail parser
+        \Resque::enqueue("turbo", "\\ProjectRena\\Task\\Resque\\killmailParser", array("killID" => $killID));
     }
 
     private function getNear($x, $y, $z, $solarSystemID)

@@ -336,11 +336,6 @@ class killmails
      */
     public function insertIntoKillmails($killID, $processed = 0, $hash, $source, $kill_json)
     {
-        $insert = $this->db->execute("INSERT IGNORE INTO killmails (killID, processed, hash, source, kill_json) VALUES (:killID, :processed, :hash, :source, :kill_json)", array(":killID" => $killID, ":processed" => $processed, ":hash" => $hash, ":source" => $source, ":kill_json" => $kill_json));
-        if($insert)
-        {
-            \Resque::enqueue("now", "\\ProjectRena\\Task\\Resque\\killmailParser", array("killID" => $killID));
-            $this->app->StatsD->increment("killmailsAdded");
-        }
+        $this->db->execute("INSERT IGNORE INTO killmails (killID, processed, hash, source, kill_json) VALUES (:killID, :processed, :hash, :source, :kill_json)", array(":killID" => $killID, ":processed" => $processed, ":hash" => $hash, ":source" => $source, ":kill_json" => $kill_json));
     }
 }

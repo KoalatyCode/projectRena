@@ -52,7 +52,7 @@ class zkillboardReceiveTask extends Command
                 $app->killmails->insertIntoKillmails($p["killID"], 0, $hash, "zkillboardRedisQ", $json);
 
                 // Upgrade it
-                \Resque::enqueue("now", "\\ProjectRena\\Task\\Resque\\upgradeKillmail", array("killID" => $p["killID"]));
+                \Resque::enqueue("turbo", "\\ProjectRena\\Task\\Resque\\upgradeKillmail", array("killID" => $p["killID"]));
             }
             $oldKillID = $p["killID"];
         } while ($run == true);
