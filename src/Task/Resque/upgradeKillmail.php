@@ -30,20 +30,22 @@ class upgradeKillmail
         if (!$killID)
             exit;
 
-        $killData = $this->app->Db->queryRow("SELECT * FROM killmails WHERE killID = :killID", array(":killID" => $killID));
-        $killHash = $killData["hash"];
-        $killData = json_decode($killData["kill_json"], true);
-
         // Make sure it hasn't already been upgraded, if it has, exit.. this could happen if it's behind and the cron has already thrown more into the queue..
         $upgraded = $this->app->Db->queryField("SELECT upgraded FROM killmails WHERE killID = :killID", "upgraded", array(":killID" => $killID), 0);
         if ($upgraded == 1)
             exit;
 
-        // If there is no XYZ refetch the data from CREST
-        if (!isset($killData["victim"]["z"])) {
-            $killMail = json_decode($this->app->cURL->getData("https://public-crest.eveonline.com/killmails/{$killID}/{$killHash}/"), true);
+        // Fetch the killmail data and lets get going with upgrading it!
+        $killData = $this->app->Db->queryRow("SELECT * FROM killmails WHERE killID = :killID", array(":killID" => $killID), 0);
+        $killHash = $killData["hash"];
+        $killData = json_decode($killData["kill_json"], true);
+
+        // refetch it from CREST unless CREST bugs out
+        $killMail = json_decode($this->app->cURL->getData("https://public-crest.eveonline.com/killmails/{$killID}/{$killHash}/"), true);
+
+        // Generate the killmail data if CREST returned valid data..
+        if(!empty($killMail))
             $killData = $this->app->CrestFunctions->generateFromCREST(array("killID" => $killID, "killmail" => $killMail));
-        }
 
         // Image server url
         $imageServer = $this->app->baseConfig->getConfig("imageServer", "ccp", "https://image.eveonline.com/");
