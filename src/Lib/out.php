@@ -80,7 +80,7 @@ class out
         $xml = XMLParser::encode($dataArray, "rena");
         echo $xml->asXML();
     }
-    
+
     /**
      * Outputs the template file together with the default twig data
      *
