@@ -67,13 +67,8 @@ class killMailFetcher
                 // Push it to the queue if it inserted, also poke statsd to increment the tracker for it
                 // Move all of this to killmail parser, then add more data to the array, THEN push it out
                 if ($inserted > 0) {
+                    \Resque::enqueue("now", "\\ProjectRena\\Task\\Resque\\upgradeKillmail", array("killID" => $killID));
                     $this->app->StatsD->increment("killmailsAdded");
-
-                    // Push it over zmq to the websocket
-                    $context = new ZMQContext();
-                    $socket = $context->getSocket(ZMQ::SOCKET_PUSH, "rena");
-                    $socket->connect("tcp://localhost:5555");
-                    $socket->send($json);
                 }
             }
         }

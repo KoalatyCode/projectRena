@@ -48,14 +48,11 @@ class zkillboardReceiveTask extends Command
                 $hash = $app->CrestFunctions->generateCRESTHash($k);
                 //$hash = hash("sha256", ":" . $k["killTime"] . ":" . $k["solarSystemID"] . ":" . $k["moonID"] . "::" . $k["victim"]["characterID"] . ":" . $k["victim"]["shipTypeID"] . ":" . $k["victim"]["damageTaken"] . ":");
 
-                // Push it over zmq to the websocket
-                $context = new ZMQContext();
-                $socket = $context->getSocket(ZMQ::SOCKET_PUSH, "rena");
-                $socket->connect("tcp://localhost:5555");
-                $socket->send($json);
-
                 // Lets insert the killmail!
                 $app->killmails->insertIntoKillmails($p["killID"], 0, $hash, "zkillboardRedisQ", $json);
+
+                // Upgrade it
+                \Resque::enqueue("now", "\\ProjectRena\\Task\\Resque\\upgradeKillmail", array("killID" => $p["killID"]));
             }
             $oldKillID = $p["killID"];
         } while ($run == true);

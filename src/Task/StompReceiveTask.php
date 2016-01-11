@@ -56,13 +56,8 @@ class StompReceiveTask extends Command
                     $hash = $app->CrestFunctions->generateCRESTHash($killdata);
 
                     $inserted = $app->Db->execute("INSERT IGNORE INTO killmails (killID, hash, source, kill_json) VALUES (:killID, :hash, :source, :kill_json)", array(":killID" => $killdata["killID"], ":hash" => $hash, ":source" => "stomp", ":kill_json" => $json));
-                    if ($inserted > 0) {
-                        // Push it over zmq to the websocket
-                        $context = new ZMQContext();
-                        $socket = $context->getSocket(ZMQ::SOCKET_PUSH, "rena");
-                        $socket->connect("tcp://localhost:5555");
-                        $socket->send($json);
-                    }
+                    if ($inserted > 0)
+                        \Resque::enqueue("now", "\\ProjectRena\\Task\\Resque\\upgradeKillmail", array("killID" => $killdata["killID"]));
                 }
                 $stomp->ack($frame->headers["message-id"]);
             }
