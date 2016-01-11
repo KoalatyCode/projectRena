@@ -32,4 +32,51 @@ $app->group("/api", function () use ($app) {
     $app->get("/killmail/:killID/", function($killID) use ($app) {
         (new \ProjectRena\Controller\API\KillmailsAPIController($app))->killData($killID);
     });
+
+    $app->group("/kill", function() use ($app) {
+        $app->get("/mail/:killID/", function($killID) use ($app) {
+            (new \ProjectRena\Controller\API\KillmailsAPIController($app))->killData($killID);
+        });
+
+        $app->get("/solarSystem/:solarSystemID/(:extraParameters+)", function($solarSystemID, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->solarSystemKills($solarSystemID, $parameters);
+        });
+
+        $app->get("/region/:regionID/(:extraParameters+)", function($regionID, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->regionKills($regionID, $parameters);
+        });
+
+        $app->get("/character/:characterID/(:extraParameters+)", function($characterID, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->characterKills($characterID, $parameters);
+        });
+
+        $app->get("/corporation/:corporationID/(:extraParameters+)", function($corporationID, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->corporationKills($corporationID, $parameters);
+        });
+
+        $app->get("/alliance/:allianceID/(:extraParameters+)", function($allianceID, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->allianceKills($allianceID, $parameters);
+        });
+
+        $app->get("/faction/:factionID/(:extraParameters+)", function($factionID, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->factionKills($factionID, $parameters);
+        });
+
+        $app->get("/shipType/:shipTypeID/(:extraParameters+)", function($shipTypeID, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->shipTypeKills($shipTypeID, $parameters);
+        });
+
+        $app->get("/group/:groupID/(:extraParameters+)", function($groupID, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->groupKills($groupID, $parameters);
+        });
+
+        $app->get("/vGroup/:vGroupID/(:extraParameters+)", function($vGroupID, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->vGroupKills($vGroupID, $parameters);
+        });
+
+        $app->get("/weaponType/:weaponTypeID/(:extraParameters+)", function($weaponTypeID, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->weaponTypeKills($weaponTypeID, $parameters);
+        });
+
+    });
 });

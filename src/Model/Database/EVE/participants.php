@@ -90,6 +90,7 @@ class participants
             "finalBlow",
             "isNPC",
         );
+
         if (!empty($extraArguments)) {
             foreach ($validArguments as $argument) {
                 if (isset($extraArguments[$argument])) {
