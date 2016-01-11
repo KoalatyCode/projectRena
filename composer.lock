@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c983792fa7caad93145275eccdd256a0",
-    "content-hash": "1c472ca1b48391cda7eacdd015229523",
+    "hash": "04fca2bffd0a83ee8c0a480fb3285db3",
+    "content-hash": "63ced3f63fe5a39450075626b8704c91",
     "packages": [
         {
             "name": "3rdpartyeve/phealng",
@@ -1084,6 +1084,33 @@
                 "uri"
             ],
             "time": "2015-11-03 01:34:55"
+        },
+        {
+            "name": "jtrumbull/xml-parser",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jtrumbull/xml-parser.git",
+                "reference": "593013e2dca772712307cd3141d3bc3cd8e43526"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jtrumbull/xml-parser/zipball/593013e2dca772712307cd3141d3bc3cd8e43526",
+                "reference": "593013e2dca772712307cd3141d3bc3cd8e43526",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "XMLParser\\": "lib/XMLParser"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "PHP Class that parses XML objects",
+            "time": "2015-08-05 20:47:01"
         },
         {
             "name": "monolog/monolog",
@@ -2988,7 +3015,8 @@
         "gossi/php-code-generator": 20,
         "gossi/php-code-formatter": 20,
         "zkillboard/redisq": 20,
-        "cleanse/discord-hypertext": 20
+        "cleanse/discord-hypertext": 20,
+        "jtrumbull/xml-parser": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

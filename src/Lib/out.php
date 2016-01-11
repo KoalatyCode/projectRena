@@ -2,6 +2,7 @@
 namespace ProjectRena\Lib;
 
 use ProjectRena\RenaApp;
+use XMLParser\XMLParser;
 
 /**
  * Shapes the output and calls up twig, outputs json or outputs xml
@@ -76,11 +77,22 @@ class out
         header("X-Bin-Request-Count: 10000000");
         header("X-Bin-Max-Requests: 10000000");
 
-        $xml = new \SimpleXMLElement("<rena/>");
-        array_walk_recursive($dataArray, array($xml, "addChild"));
+        $xml = XMLParser::encode($dataArray, "rena");
         echo $xml->asXML();
     }
 
+    private function arrayToXML(\SimpleXMLElement $xml, $dataArray = array())
+    {
+        foreach($dataArray as $key => $value) {
+            if(is_array($value)) {
+                $newObject = $xml->addChild($key);
+                $this->arrayToXML($newObject, $value);
+            }
+            else {
+                $xml->addChild($key, $value);
+            }
+        }
+    }
     /**
      * Outputs the template file together with the default twig data
      *
