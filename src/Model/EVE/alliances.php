@@ -155,8 +155,6 @@ class alliances
      * @param null $memberCount
      * @param null $executorCorporationID
      * @param null $information
-     *
-     * @internal param null $ceoID
      */
     public function updateAllianceDetails($allianceID, $allianceName = null, $allianceTicker = null, $memberCount = null, $executorCorporationID = null, $information = null)
     {
