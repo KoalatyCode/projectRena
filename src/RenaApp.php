@@ -41,12 +41,12 @@ use ProjectRena\Model\CCP\mapSolarSystems;
 use ProjectRena\Model\EVE\alliances;
 use ProjectRena\Model\EVE\characters;
 use ProjectRena\Model\EVE\corporations;
-use ProjectRena\Model\EVE\participants;
 use ProjectRena\Model\Database\CCPTables\mapAllCelestials;
 use ProjectRena\Model\Database\CCPTables\mapRegions;
 use ProjectRena\Model\Database\Discord\discordServers;
 use ProjectRena\Model\Database\Discord\discordUsers;
 use ProjectRena\Model\Database\EVE\killmails;
+use ProjectRena\Model\Database\EVE\participants;
 use ProjectRena\Model\EVEApi\API\CallList as EVEAPICallList;
 use ProjectRena\Model\EVEApi\Account\APIKeyInfo as EVEAccountAPIKeyInfo;
 use ProjectRena\Model\EVEApi\Account\AccountStatus as EVEAccountAccountStatus;
@@ -172,12 +172,12 @@ use ProjectRena\Model\EVEApi\Server\ServerStatus as EVEServerServerStatus;
  * @property alliances alliances
  * @property characters characters
  * @property corporations corporations
- * @property participants participants
  * @property mapAllCelestials mapAllCelestials
  * @property mapRegions mapRegions
  * @property discordServers discordServers
  * @property discordUsers discordUsers
  * @property killmails killmails
+ * @property participants participants
  * @property EVEAPICallList EVEAPICallList
  * @property EVEAccountAPIKeyInfo EVEAccountAPIKeyInfo
  * @property EVEAccountAccountStatus EVEAccountAccountStatus

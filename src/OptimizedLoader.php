@@ -194,11 +194,6 @@ $app->container->singleton("corporations", function($container) use ($app)
 		return new \ProjectRena\Model\EVE\corporations($app);
 });
 
-$app->container->singleton("participants", function($container) use ($app)
-{
-		return new \ProjectRena\Model\EVE\participants($app);
-});
-
 $app->container->singleton("mapAllCelestials", function($container) use ($app)
 {
 		return new \ProjectRena\Model\Database\CCPTables\mapAllCelestials($app);
@@ -222,6 +217,11 @@ $app->container->singleton("discordUsers", function($container) use ($app)
 $app->container->singleton("killmails", function($container) use ($app)
 {
 		return new \ProjectRena\Model\Database\EVE\killmails($app);
+});
+
+$app->container->singleton("participants", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\EVE\participants($app);
 });
 
 $app->container->singleton("EVEAPICallList", function($container) use ($app)
