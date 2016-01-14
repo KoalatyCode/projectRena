@@ -68,15 +68,23 @@ class CCPDataTask extends Command
             $type = ".sql.bz2";
 
             foreach ($dbFiles as $file) {
+                $output->writeln("Updating $file");
                 $dataURL = $url . "latest/" . $file . $type;
                 try {
-                    exec("wget -q {$dataURL} -O $cache/$file$type");
-                    exec("bzip2 -q -d $cache/$file$type");
+                    file_put_contents("$cache/$file$type", $app->cURL->getData($dataURL, 0));
+                    $sqlData = bzopen("$cache/$file$type", "r"); // Open the BZip data
+
+                    // Read the BZip data and append it to data
+                    $data = "";
+                    while(!feof($sqlData))
+                        $data .= bzread($sqlData, 4096);
+
                 } catch (\Exception $e) {
-                    echo "Error";
+                    throw new Exception($e->getMessage());
                 }
 
-                $data = file_get_contents($cache . "/" . $file . ".sql");
+
+                // Since rena uses tokuDB, we'll replace InnoDB with TokuDB here, just because we can..
                 $data = str_replace("ENGINE=InnoDB", "ENGINE=TokuDB", $data);
                 $dataParts = explode(";\n", $data);
                 foreach ($dataParts as $qry) {
@@ -84,7 +92,8 @@ class CCPDataTask extends Command
                     $app->Db->execute($query);
                 }
 
-                unlink("{$cache}/{$file}.sql");
+                // Remove the stored BZip file from the drive - no need to store it..
+                unlink("{$cache}/{$file}.sql.bz2");
             }
 
             $app->Storage->set("ccpdataMD5", $md5);
