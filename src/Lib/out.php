@@ -13,6 +13,7 @@ class out
      * @var null|string
      */
     protected $contentType;
+
     /**
      * The Slim Application
      */
@@ -41,9 +42,9 @@ class out
             $this->contentType = $contentType;
 
         if ($this->contentType == "application/json")
-            return $this->toJson($dataArray);
+            return $this->toJson($dataArray, $status);
         if ($this->contentType == "application/xml")
-            return $this->toXML($dataArray);
+            return $this->toXML($dataArray, $status);
 
         return $this->toTwig($templateFile, $dataArray, $status);
     }
@@ -53,14 +54,10 @@ class out
      *
      * @param array $dataArray
      */
-    public function toJson($dataArray = array())
+    public function toJson($dataArray = array(), $status = 200)
     {
         $this->app->contentType("application/javascript; charset=utf-8");
-        header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Methods: GET, POST");
-        header("X-Bin-Request-Count: 10000000");
-        header("X-Bin-Max-Requests: 10000000");
-
+        http_response_code($status);
         echo json_encode($dataArray, JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK | JSON_UNESCAPED_SLASHES);
     }
 
@@ -69,14 +66,10 @@ class out
      *
      * @param array $dataArray
      */
-    public function toXML($dataArray = array())
+    public function toXML($dataArray = array(), $status = 200)
     {
         $this->app->contentType("application/xml");
-        header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Methods: GET, POST");
-        header("X-Bin-Request-Count: 10000000");
-        header("X-Bin-Max-Requests: 10000000");
-
+        http_response_code($status);
         $xml = XMLParser::encode($dataArray, "rena");
         echo $xml->asXML();
     }
