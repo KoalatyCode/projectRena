@@ -79,7 +79,7 @@ class CCPDataTask extends Command
                     $data = "";
                     while(!feof($sqlData))
                         $data .= bzread($sqlData, 4096);
-                    
+
                 } catch (\Exception $e) {
                     throw new \Exception($e->getMessage());
                 }
