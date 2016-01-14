@@ -34,6 +34,7 @@ session_start();
 $app->add(new WhoopsMiddleware());
 
 // Load the translator
+// replace en_US with the language that the user has selected, and stored in a cookie (aka: load cookie, get language, use language)
 $translator = new \Symfony\Component\Translation\Translator("en_US", new \Symfony\Component\Translation\MessageSelector());
 $translator->setFallbackLocales(array("en_US"));
 $translator->addLoader("php", new \Symfony\Component\Translation\Loader\PhpFileLoader());
