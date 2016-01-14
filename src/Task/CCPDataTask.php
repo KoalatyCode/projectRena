@@ -3,6 +3,7 @@
 namespace ProjectRena\Task;
 
 use Cilex\Command\Command;
+use Exception;
 use ProjectRena\Lib;
 use ProjectRena\RenaApp;
 use Symfony\Component\Console\Input\InputInterface;
@@ -28,8 +29,8 @@ class CCPDataTask extends Command
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     *
-     * @return int|null|void
+     * @return void
+     * @throws Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -78,9 +79,9 @@ class CCPDataTask extends Command
                     $data = "";
                     while(!feof($sqlData))
                         $data .= bzread($sqlData, 4096);
-
+                    
                 } catch (\Exception $e) {
-                    throw new Exception($e->getMessage());
+                    throw new \Exception($e->getMessage());
                 }
 
 
