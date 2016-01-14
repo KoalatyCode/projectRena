@@ -35,16 +35,26 @@ class Cache
     }
 
     /**
+     * Returns the redis handle for usage in places where the cache functions aren't enough
+     *
+     * @return Redis
+     */
+    public function returnRedis()
+    {
+        return $this->redis;
+    }
+
+    /**
      * Sets expiration time for cache key.
      *
      * @param string $key The key to uniquely identify the cached item
-     * @param integer $timeout A `strtotime()`-compatible string or a Unix timestamp.
+     * @param integer $timeout
      *
      * @return bool
      */
-    protected function expireAt($key, $timeout)
+    protected function expire($key, $timeout)
     {
-        return $this->redis->expireAt($key, is_int($timeout) ? $timeout : strtotime($timeout));
+        return $this->redis->expire($key, $timeout);
     }
 
     /**
@@ -64,7 +74,7 @@ class Cache
      *
      * @param string $key The key to uniquely identify the cached item
      * @param mixed $value The value to be cached
-     * @param integer $timeout A strtotime() compatible cache time.
+     * @param integer $timeout.
      *
      * @return bool
      */
@@ -73,7 +83,7 @@ class Cache
         $result = $this->redis->set($key, $value);
 
         if ($timeout > 0) {
-            return $result ? $this->expireAt($key, $timeout) : $result;
+            return $result ? $this->expire($key, $timeout) : $result;
         }
 
         return $result;
@@ -120,11 +130,13 @@ class Cache
      */
     public function increment($key, $step = 1, $timeout = 0)
     {
+        $data = $this->redis->incr($key, $step);
+
         if ($timeout) {
-            self::expireAt($key, $timeout);
+            $this->expire($key, $timeout);
         }
 
-        return $this->redis->incr($key, $step);
+        return $data;
     }
 
     /**
@@ -142,11 +154,13 @@ class Cache
      */
     public function decrement($key, $step = 1, $timeout = 0)
     {
+        $data = $this->redis->decr($key, $step);
+
         if ($timeout) {
-            self::expireAt($key, $timeout);
+            $this->expire($key, $timeout);
         }
 
-        return $this->redis->decr($key, $step);
+        return $data;
     }
 
     /**
