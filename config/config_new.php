@@ -10,7 +10,7 @@ $config = array();
 $config['site'] = array(
     'debug' => true,
     'userAgent' => null, // Use pre-defined user agents
-
+    "apiRequestsPrMinute" => 1800,
 );
 
 // CCP
