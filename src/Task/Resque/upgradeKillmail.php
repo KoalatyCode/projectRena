@@ -52,6 +52,11 @@ class upgradeKillmail
 
         $nk["killID"] = (int)$killData["killID"];
         $nk["killTime"] = $killData["killTime"];
+
+        // Lets make sure that the data in question actually works, if it doesn't we'll just continue and leave it be for later.. (Could be CREST fucking up, who knows..
+        if($nk["killTime"] == "")
+            exit;
+
         $nk["solarSystemID"] = (int)$killData["solarSystemID"];
         $nk["solarSystemName"] = $this->app->mapSolarSystems->getNameByID($killData["solarSystemID"]);
         $nk["regionID"] = (int)$this->app->mapSolarSystems->getRegionIDByID($killData["solarSystemID"]);
