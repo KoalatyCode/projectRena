@@ -59,16 +59,6 @@ $app->container->singleton("EVEOAuth", function($container) use ($app)
 		return new \ProjectRena\Lib\OAuth\EVEOAuth($app);
 });
 
-$app->container->singleton("ApiKeyCharacters", function($container) use ($app)
-{
-		return new \ProjectRena\Model\ApiKeyCharacters($app);
-});
-
-$app->container->singleton("ApiKeys", function($container) use ($app)
-{
-		return new \ProjectRena\Model\ApiKeys($app);
-});
-
 $app->container->singleton("Config", function($container) use ($app)
 {
 		return new \ProjectRena\Model\Config($app);
@@ -82,51 +72,6 @@ $app->container->singleton("CrestFunctions", function($container) use ($app)
 $app->container->singleton("EveCentral", function($container) use ($app)
 {
 		return new \ProjectRena\Model\EveCentral($app);
-});
-
-$app->container->singleton("Groups", function($container) use ($app)
-{
-		return new \ProjectRena\Model\Groups($app);
-});
-
-$app->container->singleton("Paste", function($container) use ($app)
-{
-		return new \ProjectRena\Model\Paste($app);
-});
-
-$app->container->singleton("Points", function($container) use ($app)
-{
-		return new \ProjectRena\Model\Points($app);
-});
-
-$app->container->singleton("Prices", function($container) use ($app)
-{
-		return new \ProjectRena\Model\Prices($app);
-});
-
-$app->container->singleton("Search", function($container) use ($app)
-{
-		return new \ProjectRena\Model\Search($app);
-});
-
-$app->container->singleton("Storage", function($container) use ($app)
-{
-		return new \ProjectRena\Model\Storage($app);
-});
-
-$app->container->singleton("Users", function($container) use ($app)
-{
-		return new \ProjectRena\Model\Users($app);
-});
-
-$app->container->singleton("UsersGroups", function($container) use ($app)
-{
-		return new \ProjectRena\Model\UsersGroups($app);
-});
-
-$app->container->singleton("UsersLogins", function($container) use ($app)
-{
-		return new \ProjectRena\Model\UsersLogins($app);
 });
 
 $app->container->singleton("dgmAttributeCategories", function($container) use ($app)
@@ -179,21 +124,6 @@ $app->container->singleton("mapSolarSystems", function($container) use ($app)
 		return new \ProjectRena\Model\CCP\mapSolarSystems($app);
 });
 
-$app->container->singleton("alliances", function($container) use ($app)
-{
-		return new \ProjectRena\Model\EVE\alliances($app);
-});
-
-$app->container->singleton("characters", function($container) use ($app)
-{
-		return new \ProjectRena\Model\EVE\characters($app);
-});
-
-$app->container->singleton("corporations", function($container) use ($app)
-{
-		return new \ProjectRena\Model\EVE\corporations($app);
-});
-
 $app->container->singleton("mapAllCelestials", function($container) use ($app)
 {
 		return new \ProjectRena\Model\Database\CCPTables\mapAllCelestials($app);
@@ -214,6 +144,46 @@ $app->container->singleton("discordUsers", function($container) use ($app)
 		return new \ProjectRena\Model\Database\Discord\discordUsers($app);
 });
 
+$app->container->singleton("ApiKeyCharacters", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\EVE\ApiKeyCharacters($app);
+});
+
+$app->container->singleton("ApiKeys", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\EVE\ApiKeys($app);
+});
+
+$app->container->singleton("Points", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\EVE\Points($app);
+});
+
+$app->container->singleton("Prices", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\EVE\Prices($app);
+});
+
+$app->container->singleton("alliances", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\EVE\alliances($app);
+});
+
+$app->container->singleton("characters", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\EVE\characters($app);
+});
+
+$app->container->singleton("coalitions", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\EVE\coalitions($app);
+});
+
+$app->container->singleton("corporations", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\EVE\corporations($app);
+});
+
 $app->container->singleton("killmails", function($container) use ($app)
 {
 		return new \ProjectRena\Model\Database\EVE\killmails($app);
@@ -222,6 +192,41 @@ $app->container->singleton("killmails", function($container) use ($app)
 $app->container->singleton("participants", function($container) use ($app)
 {
 		return new \ProjectRena\Model\Database\EVE\participants($app);
+});
+
+$app->container->singleton("Groups", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\Site\Groups($app);
+});
+
+$app->container->singleton("Paste", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\Site\Paste($app);
+});
+
+$app->container->singleton("Search", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\Site\Search($app);
+});
+
+$app->container->singleton("Storage", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\Site\Storage($app);
+});
+
+$app->container->singleton("Users", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\Site\Users($app);
+});
+
+$app->container->singleton("UsersGroups", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\Site\UsersGroups($app);
+});
+
+$app->container->singleton("UsersLogins", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\Site\UsersLogins($app);
 });
 
 $app->container->singleton("EVEAPICallList", function($container) use ($app)

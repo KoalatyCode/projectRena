@@ -1,6 +1,6 @@
 <?php
 
-namespace ProjectRena\Model;
+namespace ProjectRena\Model\Database\EVE;
 
 use ProjectRena\RenaApp;
 

@@ -14,20 +14,9 @@ use ProjectRena\Lib\baseConfig;
 use ProjectRena\Lib\cURL;
 use ProjectRena\Lib\out;
 use ProjectRena\Lib\OAuth\EVEOAuth;
-use ProjectRena\Model\ApiKeyCharacters;
-use ProjectRena\Model\ApiKeys;
 use ProjectRena\Model\Config;
 use ProjectRena\Model\CrestFunctions;
 use ProjectRena\Model\EveCentral;
-use ProjectRena\Model\Groups;
-use ProjectRena\Model\Paste;
-use ProjectRena\Model\Points;
-use ProjectRena\Model\Prices;
-use ProjectRena\Model\Search;
-use ProjectRena\Model\Storage;
-use ProjectRena\Model\Users;
-use ProjectRena\Model\UsersGroups;
-use ProjectRena\Model\UsersLogins;
 use ProjectRena\Model\CCP\dgmAttributeCategories;
 use ProjectRena\Model\CCP\dgmAttributeTypes;
 use ProjectRena\Model\CCP\dgmEffects;
@@ -38,15 +27,27 @@ use ProjectRena\Model\CCP\invGroups;
 use ProjectRena\Model\CCP\invTypes;
 use ProjectRena\Model\CCP\mapDenormalize;
 use ProjectRena\Model\CCP\mapSolarSystems;
-use ProjectRena\Model\EVE\alliances;
-use ProjectRena\Model\EVE\characters;
-use ProjectRena\Model\EVE\corporations;
 use ProjectRena\Model\Database\CCPTables\mapAllCelestials;
 use ProjectRena\Model\Database\CCPTables\mapRegions;
 use ProjectRena\Model\Database\Discord\discordServers;
 use ProjectRena\Model\Database\Discord\discordUsers;
+use ProjectRena\Model\Database\EVE\ApiKeyCharacters;
+use ProjectRena\Model\Database\EVE\ApiKeys;
+use ProjectRena\Model\Database\EVE\Points;
+use ProjectRena\Model\Database\EVE\Prices;
+use ProjectRena\Model\Database\EVE\alliances;
+use ProjectRena\Model\Database\EVE\characters;
+use ProjectRena\Model\Database\EVE\coalitions;
+use ProjectRena\Model\Database\EVE\corporations;
 use ProjectRena\Model\Database\EVE\killmails;
 use ProjectRena\Model\Database\EVE\participants;
+use ProjectRena\Model\Database\Site\Groups;
+use ProjectRena\Model\Database\Site\Paste;
+use ProjectRena\Model\Database\Site\Search;
+use ProjectRena\Model\Database\Site\Storage;
+use ProjectRena\Model\Database\Site\Users;
+use ProjectRena\Model\Database\Site\UsersGroups;
+use ProjectRena\Model\Database\Site\UsersLogins;
 use ProjectRena\Model\EVEApi\API\CallList as EVEAPICallList;
 use ProjectRena\Model\EVEApi\Account\APIKeyInfo as EVEAccountAPIKeyInfo;
 use ProjectRena\Model\EVEApi\Account\AccountStatus as EVEAccountAccountStatus;
@@ -145,20 +146,9 @@ use ProjectRena\Model\EVEApi\Server\ServerStatus as EVEServerServerStatus;
  * @property cURL cURL
  * @property out out
  * @property EVEOAuth EVEOAuth
- * @property ApiKeyCharacters ApiKeyCharacters
- * @property ApiKeys ApiKeys
  * @property Config Config
  * @property CrestFunctions CrestFunctions
  * @property EveCentral EveCentral
- * @property Groups Groups
- * @property Paste Paste
- * @property Points Points
- * @property Prices Prices
- * @property Search Search
- * @property Storage Storage
- * @property Users Users
- * @property UsersGroups UsersGroups
- * @property UsersLogins UsersLogins
  * @property dgmAttributeCategories dgmAttributeCategories
  * @property dgmAttributeTypes dgmAttributeTypes
  * @property dgmEffects dgmEffects
@@ -169,15 +159,27 @@ use ProjectRena\Model\EVEApi\Server\ServerStatus as EVEServerServerStatus;
  * @property invTypes invTypes
  * @property mapDenormalize mapDenormalize
  * @property mapSolarSystems mapSolarSystems
- * @property alliances alliances
- * @property characters characters
- * @property corporations corporations
  * @property mapAllCelestials mapAllCelestials
  * @property mapRegions mapRegions
  * @property discordServers discordServers
  * @property discordUsers discordUsers
+ * @property ApiKeyCharacters ApiKeyCharacters
+ * @property ApiKeys ApiKeys
+ * @property Points Points
+ * @property Prices Prices
+ * @property alliances alliances
+ * @property characters characters
+ * @property coalitions coalitions
+ * @property corporations corporations
  * @property killmails killmails
  * @property participants participants
+ * @property Groups Groups
+ * @property Paste Paste
+ * @property Search Search
+ * @property Storage Storage
+ * @property Users Users
+ * @property UsersGroups UsersGroups
+ * @property UsersLogins UsersLogins
  * @property EVEAPICallList EVEAPICallList
  * @property EVEAccountAPIKeyInfo EVEAccountAPIKeyInfo
  * @property EVEAccountAccountStatus EVEAccountAccountStatus
