@@ -22,6 +22,7 @@ $config['ccp'] = array(
 // Database
 $config['database'] = array(
     'host' => '',
+    'unixSocket' => '',
     'username' => '',
     'password' => '',
     'name' => '',

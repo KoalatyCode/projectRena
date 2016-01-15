@@ -61,7 +61,9 @@ class Db
 
         if ($this->persistence === false) $this->cache->persistence = false;
 
-        $dsn = 'mysql:dbname=' . $app->baseConfig->getConfig('name', 'database') . ';unix_socket=/var/run/mysqld/mysqld.sock;charset=utf8';
+        // @todo - fix host and unixsocket stuff so it can actually be defined in the config
+        $host = $app->baseConfig->getConfig("unixSocket", "database", null) ? ";unix_socket=" . $app->baseConfig->getConfig("unixSocket", "database", "/var/run/mysqld/mysqld.sock") : ";host=" . $app->baseConfig->getConfig("host", "database", "127.0.0.1");
+        $dsn = 'mysql:dbname=' . $app->baseConfig->getConfig('name', 'database') . "$host;charset=utf8";
         try {
             $this->pdo = new PDO($dsn, $app->baseConfig->getConfig('username', 'database'), $app->baseConfig->getConfig('password', 'database'), array(
                 PDO::ATTR_PERSISTENT => $this->persistence,
