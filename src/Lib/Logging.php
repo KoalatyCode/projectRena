@@ -54,13 +54,13 @@ class Logging
         );
     }
 
+
     /**
-     * Logs data into the logfile.
+     * Logs data into the logfile
      *
-     * @static
-     *
-     * @param string $logType the type of logging, debug, info, warning, error
-     * @param string $logMessage the message for the log
+     * @param $logType
+     * @param $logMessage
+     * @param array $logData
      */
     public function log($logType, $logMessage, $logData = array())
     {
