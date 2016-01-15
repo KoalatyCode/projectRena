@@ -64,4 +64,8 @@ class SearchAPIController
         $this->contentType = "application/json";
     }
 
+    public function search($query){
+    	render("", $query, 501, $this->contentType);
+    }
+
 }
