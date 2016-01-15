@@ -17,18 +17,18 @@ use ProjectRena\Lib\OAuth\EVEOAuth;
 use ProjectRena\Model\Config;
 use ProjectRena\Model\CrestFunctions;
 use ProjectRena\Model\EveCentral;
-use ProjectRena\Model\CCP\dgmAttributeCategories;
-use ProjectRena\Model\CCP\dgmAttributeTypes;
-use ProjectRena\Model\CCP\dgmEffects;
-use ProjectRena\Model\CCP\dgmTypeAttributes;
-use ProjectRena\Model\CCP\dgmTypeEffects;
-use ProjectRena\Model\CCP\invFlags;
-use ProjectRena\Model\CCP\invGroups;
-use ProjectRena\Model\CCP\invTypes;
-use ProjectRena\Model\CCP\mapDenormalize;
-use ProjectRena\Model\CCP\mapSolarSystems;
-use ProjectRena\Model\Database\CCPTables\mapAllCelestials;
-use ProjectRena\Model\Database\CCPTables\mapRegions;
+use ProjectRena\Model\Database\CCP\dgmAttributeCategories;
+use ProjectRena\Model\Database\CCP\dgmAttributeTypes;
+use ProjectRena\Model\Database\CCP\dgmEffects;
+use ProjectRena\Model\Database\CCP\dgmTypeAttributes;
+use ProjectRena\Model\Database\CCP\dgmTypeEffects;
+use ProjectRena\Model\Database\CCP\invFlags;
+use ProjectRena\Model\Database\CCP\invGroups;
+use ProjectRena\Model\Database\CCP\invTypes;
+use ProjectRena\Model\Database\CCP\mapAllCelestials;
+use ProjectRena\Model\Database\CCP\mapDenormalize;
+use ProjectRena\Model\Database\CCP\mapRegions;
+use ProjectRena\Model\Database\CCP\mapSolarSystems;
 use ProjectRena\Model\Database\Discord\discordServers;
 use ProjectRena\Model\Database\Discord\discordUsers;
 use ProjectRena\Model\Database\EVE\ApiKeyCharacters;
@@ -157,10 +157,10 @@ use ProjectRena\Model\EVEApi\Server\ServerStatus as EVEServerServerStatus;
  * @property invFlags invFlags
  * @property invGroups invGroups
  * @property invTypes invTypes
- * @property mapDenormalize mapDenormalize
- * @property mapSolarSystems mapSolarSystems
  * @property mapAllCelestials mapAllCelestials
+ * @property mapDenormalize mapDenormalize
  * @property mapRegions mapRegions
+ * @property mapSolarSystems mapSolarSystems
  * @property discordServers discordServers
  * @property discordUsers discordUsers
  * @property ApiKeyCharacters ApiKeyCharacters

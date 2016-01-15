@@ -76,62 +76,62 @@ $app->container->singleton("EveCentral", function($container) use ($app)
 
 $app->container->singleton("dgmAttributeCategories", function($container) use ($app)
 {
-		return new \ProjectRena\Model\CCP\dgmAttributeCategories($app);
+		return new \ProjectRena\Model\Database\CCP\dgmAttributeCategories($app);
 });
 
 $app->container->singleton("dgmAttributeTypes", function($container) use ($app)
 {
-		return new \ProjectRena\Model\CCP\dgmAttributeTypes($app);
+		return new \ProjectRena\Model\Database\CCP\dgmAttributeTypes($app);
 });
 
 $app->container->singleton("dgmEffects", function($container) use ($app)
 {
-		return new \ProjectRena\Model\CCP\dgmEffects($app);
+		return new \ProjectRena\Model\Database\CCP\dgmEffects($app);
 });
 
 $app->container->singleton("dgmTypeAttributes", function($container) use ($app)
 {
-		return new \ProjectRena\Model\CCP\dgmTypeAttributes($app);
+		return new \ProjectRena\Model\Database\CCP\dgmTypeAttributes($app);
 });
 
 $app->container->singleton("dgmTypeEffects", function($container) use ($app)
 {
-		return new \ProjectRena\Model\CCP\dgmTypeEffects($app);
+		return new \ProjectRena\Model\Database\CCP\dgmTypeEffects($app);
 });
 
 $app->container->singleton("invFlags", function($container) use ($app)
 {
-		return new \ProjectRena\Model\CCP\invFlags($app);
+		return new \ProjectRena\Model\Database\CCP\invFlags($app);
 });
 
 $app->container->singleton("invGroups", function($container) use ($app)
 {
-		return new \ProjectRena\Model\CCP\invGroups($app);
+		return new \ProjectRena\Model\Database\CCP\invGroups($app);
 });
 
 $app->container->singleton("invTypes", function($container) use ($app)
 {
-		return new \ProjectRena\Model\CCP\invTypes($app);
-});
-
-$app->container->singleton("mapDenormalize", function($container) use ($app)
-{
-		return new \ProjectRena\Model\CCP\mapDenormalize($app);
-});
-
-$app->container->singleton("mapSolarSystems", function($container) use ($app)
-{
-		return new \ProjectRena\Model\CCP\mapSolarSystems($app);
+		return new \ProjectRena\Model\Database\CCP\invTypes($app);
 });
 
 $app->container->singleton("mapAllCelestials", function($container) use ($app)
 {
-		return new \ProjectRena\Model\Database\CCPTables\mapAllCelestials($app);
+		return new \ProjectRena\Model\Database\CCP\mapAllCelestials($app);
+});
+
+$app->container->singleton("mapDenormalize", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\CCP\mapDenormalize($app);
 });
 
 $app->container->singleton("mapRegions", function($container) use ($app)
 {
-		return new \ProjectRena\Model\Database\CCPTables\mapRegions($app);
+		return new \ProjectRena\Model\Database\CCP\mapRegions($app);
+});
+
+$app->container->singleton("mapSolarSystems", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\CCP\mapSolarSystems($app);
 });
 
 $app->container->singleton("discordServers", function($container) use ($app)

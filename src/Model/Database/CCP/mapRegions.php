@@ -1,5 +1,5 @@
 <?php
-namespace ProjectRena\Model\Database\CCPTables;
+namespace ProjectRena\Model\Database\CCP;
 
 use ProjectRena\RenaApp;
 
