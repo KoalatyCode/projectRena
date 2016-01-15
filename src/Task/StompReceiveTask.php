@@ -36,7 +36,7 @@ class StompReceiveTask extends Command
         $startTime = time() + 3600; // Current time + 60 minutes
         $run = true;
         $stomp = new \Stomp($app->baseConfig->getConfig("server", "stomp"), $app->baseConfig->getConfig("username", "stomp"), $app->baseConfig->getConfig("password", "stomp"));
-        $stomp->subscribe("/topic/kills", array("id" => "projectRena", "persistent" => "true", "ack" => "client", "prefetch-count" => 1));
+        $stomp->subscribe("/topic/kills", array("id" => $app->baseConfig->getConfig("queueName", "stomp", "projectRena"), "persistent" => "true", "ack" => "client", "prefetch-count" => 1));
 
         do {
             $frame = $stomp->readFrame();

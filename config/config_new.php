@@ -77,7 +77,8 @@ $config['twig'] = array(
 $config["stomp"] = array(
     "server" => "tcp://127.0.0.1:61613",
     "username" => "",
-    "password" => ""
+    "password" => "",
+    "queueName" => ""
 );
 // Websocket
 $config["websocket"] = array(
