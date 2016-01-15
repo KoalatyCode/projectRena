@@ -80,7 +80,7 @@ class wars
      */
     public function getWarByID($warID)
     {
-        return $this->app->Db->query("SELECT * FROM wars WHERE warID = :warID", array(":warID" => $warID));
+        return $this->app->Db->queryRow("SELECT * FROM wars WHERE warID = :warID LIMIT 1", array(":warID" => $warID));
     }
 
     /**
