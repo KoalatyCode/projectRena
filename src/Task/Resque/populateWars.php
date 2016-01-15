@@ -44,7 +44,7 @@ class populateWars
 
         // Throw the killmail url after the killmail populate task
         $killmailURL = $data["killmails"];
-        \Resque::enqueue("turbo", "\\ProjectRena\\Task\\Resque\\popúlateWarKillmails", array("url" => $killmailURL, "warID" => $warID));
+        \Resque::enqueue("turbo", "\\ProjectRena\\Task\\Resque\\populateWarKillmails", array("url" => $killmailURL, "warID" => $warID));
 
     }
 
