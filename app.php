@@ -42,6 +42,19 @@ $languageFiles = glob(__DIR__ . "/lang/*.php");
 foreach($languageFiles as $langFile)
     $translator->addResource("php", $langFile, str_replace(".php", "", basename($langFile)));
 
+// Setup logging
+$app->hook("slim.after.router", function($msg = null) use ($app) {
+    $data = array(
+        "Request URL"       => $app->request->getUrl() . $app->request->getPathInfo(),
+        "Request referrer"  => $app->request->getReferer(),
+        "Client IP"         => $app->request->getIp(),
+        "User Agent"        => $app->request->getUserAgent(),
+        "Script Name"       => $app->request->getScriptName()
+    );
+
+    $app->Logging->log("info", "", $data);
+});
+
 // Prepare view
 $app->view(new Twig());
 $app->view->parserExtensions = array(
