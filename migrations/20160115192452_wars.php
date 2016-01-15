@@ -28,8 +28,9 @@ class Wars extends AbstractMigration
      */
     public function change()
     {
-        $wars = $this->table("wars", array("engine" => "TokuDB", "id" => "warID"));
+        $wars = $this->table("wars", array("engine" => "TokuDB"));
         $wars
+            ->addColumn("warID", "integer", array("limit" => 11))
             ->addColumn("timeDeclared", "datetime", array("default" => "0000-00-00 00:00:00"))
             ->addColumn("timeStarted", "datetime", array("default" => "0000-00-00 00:00:00"))
             ->addColumn("timeFinished", "datetime", array("default" => "0000-00-00 00:00:00"))
@@ -43,6 +44,7 @@ class Wars extends AbstractMigration
             ->addColumn("defenderISKKilled", "float", array("default" => 0))
             ->addColumn("dateAdded", "datetime", array("default" => "CURRENT_TIMESTAMP"))
             ->addColumn("lastUpdated", "datetime", array("default" => "0000-00-00 00:00:00"))
+            ->addIndex("warID")
             ->addIndex("openForAllies")
             ->addIndex("aggressor")
             ->addIndex("defender")
