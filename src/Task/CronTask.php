@@ -44,7 +44,7 @@ class CronTask extends Command
         do {
             $cnt++;
             if ($cnt > 50) {
-                //gc_collect_cycles();
+                gc_collect_cycles();
                 $cnt = 0;
             }
 
@@ -66,7 +66,7 @@ class CronTask extends Command
                         if ($status == -1) $app->Cache->delete($md5 . '_pid');
 
                         usleep(500000);
-                        //continue;
+                        continue;
                     }
 
                     // Get last time this cronjob ran

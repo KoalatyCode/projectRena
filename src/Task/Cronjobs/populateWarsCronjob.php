@@ -41,10 +41,12 @@ class populateWarsCronjob
                 if (empty($inserted))
                     \Resque::enqueue("turbo", "\\ProjectRena\\Task\\Resque\\populateWars", array("url" => $war["href"]));
 
-                $date = new DateTime("+6 hour");
-                $dateIn6Hours = $date->format("Y-m-d H:i:s");
-                if (!empty($inserted) && $inserted["timeFinished"] == "0000-00-00 00:00:00" && $inserted["lastUpdated"] > $dateIn6Hours)
+                $date = new DateTime("+36 hour");
+                $dateIn36Hours = $date->format("Y-m-d H:i:s");
+                if (!empty($inserted) && $inserted["lastUpdated"] > $dateIn36Hours)
                     \Resque::enqueue("turbo", "\\ProjectRena\\Task\\Resque\\populateWars", array("url" => $war["href"]));
+
+                //$app->Cache->returnRedis()->sRem("queues")
 
             }
             // Increment the currentPage variable, so we can fetch the next set of wars
@@ -61,7 +63,7 @@ class populateWarsCronjob
 
     public static function getRunTimes()
     {
-        return 60;
+        return 3600;
         // Never runs
     }
 }

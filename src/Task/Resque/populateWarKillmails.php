@@ -35,6 +35,8 @@ class populateWarKillmails
 
             foreach($killmails as $killmail) {
                 $killmailURL = $killmail["href"];
+                $killID = $killmail["id"];
+                $this->app->Db->execute("INSERT INTO warKillmails (killID, warID) VALUES (:killID, :warID)", array(":killID" => $killID, ":warID" => $warID));
                 \Resque::enqueue("turbo", "\\ProjectRena\\Task\\Resque\\crestKillmailFetcher", array("url" => $killmailURL, "warID" => $warID));
             }
 
