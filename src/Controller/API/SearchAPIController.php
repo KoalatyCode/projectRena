@@ -65,8 +65,7 @@ class SearchAPIController
     }
 
     public function search($query){
-    	$results = $this->app->Search->search($query);
-
+    	$results = $this->app->Search->search($query, array("alliance"));
     	render("", $results, null, $this->contentType);
     }
 
