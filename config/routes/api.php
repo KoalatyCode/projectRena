@@ -79,4 +79,10 @@ $app->group("/api", function () use ($app) {
         });
 
     });
+    $app->group("/search", function() use ($app) {
+        $app->get("/:query", function($query) use ($app) {
+           (new \ProjectRena\Controller\API\SearchAPIController($app))->search($query);
+        });
+    });
+
 });

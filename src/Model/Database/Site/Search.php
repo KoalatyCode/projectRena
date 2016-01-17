@@ -70,8 +70,8 @@ class Search
         $searchArray = array();
         foreach ($searchIn as $lookIn)
             if (in_array($lookIn, $valid))
-                if (count($this->$lookIn($searchTerm)) > 0)
-                    $searchArray[$lookIn] = $this->$lookIn("%" . $searchTerm . "%");
+                if (count($this->$lookIn("%".$searchTerm. "%")) > 0)
+                    $searchArray[$lookIn] = $this->$lookIn("%".$searchTerm. "%");
 
         return $searchArray;
     }
@@ -81,7 +81,7 @@ class Search
         return $this->db->query("SELECT factionID, name FROM factions WHERE (name LIKE :searchTerm OR ticker LIKE :searchTerm) LIMIT 5", array(":searchTerm" => $searchTerm));
     }
 
-    private function alliance($searchTerm)
+    public function alliance($searchTerm)
     {
         return $this->db->query("SELECT allianceID, allianceName, allianceTicker FROM alliances WHERE (allianceName LIKE :searchTerm OR allianceTicker LIKE :searchTerm) LIMIT 5", array(":searchTerm" => $searchTerm));
     }
