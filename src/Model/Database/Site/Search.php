@@ -81,7 +81,7 @@ class Search
         return $this->db->query("SELECT factionID, name FROM factions WHERE (name LIKE :searchTerm OR ticker LIKE :searchTerm) LIMIT 5", array(":searchTerm" => $searchTerm));
     }
 
-    public function alliance($searchTerm)
+    private function alliance($searchTerm)
     {
         return $this->db->query("SELECT allianceID, allianceName, allianceTicker FROM alliances WHERE (allianceName LIKE :searchTerm OR allianceTicker LIKE :searchTerm) LIMIT 5", array(":searchTerm" => $searchTerm));
     }
