@@ -70,8 +70,8 @@ class Search
         $searchArray = array();
         foreach ($searchIn as $lookIn)
             if (in_array($lookIn, $valid))
-                if (count($this->$lookIn($searchTerm)) > 0)
-                    $searchArray[$lookIn] = $this->$lookIn("%" . $searchTerm . "%");
+                if (count($this->$lookIn("%".$searchTerm. "%")) > 0)
+                    $searchArray[$lookIn] = $this->$lookIn("%".$searchTerm. "%");
 
         return $searchArray;
     }
