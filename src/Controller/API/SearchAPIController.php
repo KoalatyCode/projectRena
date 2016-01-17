@@ -65,7 +65,9 @@ class SearchAPIController
     }
 
     public function search($query){
-    	render("", $query, 501, $this->contentType);
+    	$results = $this->app->Search->search($query);
+
+    	render("", $results, null, $this->contentType);
     }
 
 }
