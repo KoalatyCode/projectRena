@@ -43,8 +43,10 @@ class populateWars
         $this->app->Db->execute("UPDATE wars SET lastUpdated = :lastUpdated WHERE warID = :warID", array(":lastUpdated" => $lastUpdated, ":warID" => $warID));
 
         // Throw the killmail url after the killmail populate task
-        $killmailURL = $data["killmails"];
-        \Resque::enqueue("turbo", "\\ProjectRena\\Task\\Resque\\populateWarKillmails", array("url" => $killmailURL, "warID" => $warID));
+        if($aggressorShipsKilled > 0 || $defenderShipsKilled > 0) {
+            $killmailURL = $data["killmails"];
+            \Resque::enqueue("default", "\\ProjectRena\\Task\\Resque\\populateWarKillmails", array("url" => $killmailURL, "warID" => $warID));
+        }
 
     }
 

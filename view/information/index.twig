@@ -1,0 +1,12 @@
+{% set pageTitle = "Information" %}
+{% extends 'base.twig' %}
+
+
+{% block content %}
+    {% set name = "fdsa" %}
+
+    {%  trans with {"%name%": name} %}
+    welcome
+    {% endtrans %}
+{% endblock %}
+

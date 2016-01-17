@@ -1,0 +1,14 @@
+{% set pageTitle = "Information | Status" %}
+{% extends 'base.twig' %}
+
+
+{% block content %}
+    <h1>{% trans %}
+        statsInformation
+    {% endtrans %}</h1>
+    {% for key,data in stats.resqueStatus %}
+        {{ key }}
+        {{ data }}
+    {% endfor %}
+{% endblock %}
+
