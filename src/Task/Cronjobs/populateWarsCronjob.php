@@ -16,7 +16,6 @@ class populateWarsCronjob
      *
      * @param mixed $pid
      * @param mixed $md5
-     * @param RenaApp $app
      */
 
     public static function execute($pid, $md5)
@@ -39,15 +38,12 @@ class populateWarsCronjob
 
                 // If nothing is inserted we'll update
                 if (empty($inserted))
-                    \Resque::enqueue("turbo", "\\ProjectRena\\Task\\Resque\\populateWars", array("url" => $war["href"]));
+                    \Resque::enqueue("default", "\\ProjectRena\\Task\\Resque\\populateWars", array("url" => $war["href"]));
 
                 $date = new DateTime("+36 hour");
                 $dateIn36Hours = $date->format("Y-m-d H:i:s");
                 if (!empty($inserted) && $inserted["lastUpdated"] > $dateIn36Hours)
-                    \Resque::enqueue("turbo", "\\ProjectRena\\Task\\Resque\\populateWars", array("url" => $war["href"]));
-
-                //$app->Cache->returnRedis()->sRem("queues")
-
+                    \Resque::enqueue("default", "\\ProjectRena\\Task\\Resque\\populateWars", array("url" => $war["href"]));
             }
             // Increment the currentPage variable, so we can fetch the next set of wars
             $currPage++;

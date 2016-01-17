@@ -67,12 +67,12 @@ class killmailParser
         }
 
         // Add the victim/attacker character and corporation to the database
-        \Resque::enqueue("default", "\\ProjectRena\\Task\\Resque\\updateCharacter", array("characterID" => $killData["victim"]["characterID"]));
-        \Resque::enqueue("default", "\\ProjectRena\\Task\\Resque\\updateCorporation", array("corporationID" => $killData["victim"]["corporationID"]));
+        \Resque::enqueue("now", "\\ProjectRena\\Task\\Resque\\updateCharacter", array("characterID" => $killData["victim"]["characterID"]));
+        \Resque::enqueue("now", "\\ProjectRena\\Task\\Resque\\updateCorporation", array("corporationID" => $killData["victim"]["corporationID"]));
 
         foreach ($killData["attackers"] as $attacker) {
-            \Resque::enqueue("default", "\\ProjectRena\\Task\\Resque\\updateCharacter", array("characterID" => $attacker["characterID"]));
-            \Resque::enqueue("default", "\\ProjectRena\\Task\\Resque\\updateCorporation", array("corporationID" => $attacker["corporationID"]));
+            \Resque::enqueue("now", "\\ProjectRena\\Task\\Resque\\updateCharacter", array("characterID" => $attacker["characterID"]));
+            \Resque::enqueue("now", "\\ProjectRena\\Task\\Resque\\updateCorporation", array("corporationID" => $attacker["corporationID"]));
         }
 
         // Defaults
