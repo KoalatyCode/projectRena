@@ -41,6 +41,8 @@ use ProjectRena\Model\Database\EVE\coalitions;
 use ProjectRena\Model\Database\EVE\corporations;
 use ProjectRena\Model\Database\EVE\killmails;
 use ProjectRena\Model\Database\EVE\participants;
+use ProjectRena\Model\Database\EVE\warKillmails;
+use ProjectRena\Model\Database\EVE\wars;
 use ProjectRena\Model\Database\Site\Groups;
 use ProjectRena\Model\Database\Site\Paste;
 use ProjectRena\Model\Database\Site\Search;
@@ -173,6 +175,8 @@ use ProjectRena\Model\EVEApi\Server\ServerStatus as EVEServerServerStatus;
  * @property corporations corporations
  * @property killmails killmails
  * @property participants participants
+ * @property warKillmails warKillmails
+ * @property wars wars
  * @property Groups Groups
  * @property Paste Paste
  * @property Search Search

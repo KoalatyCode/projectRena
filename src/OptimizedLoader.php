@@ -194,6 +194,16 @@ $app->container->singleton("participants", function($container) use ($app)
 		return new \ProjectRena\Model\Database\EVE\participants($app);
 });
 
+$app->container->singleton("warKillmails", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\EVE\warKillmails($app);
+});
+
+$app->container->singleton("wars", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\EVE\wars($app);
+});
+
 $app->container->singleton("Groups", function($container) use ($app)
 {
 		return new \ProjectRena\Model\Database\Site\Groups($app);
