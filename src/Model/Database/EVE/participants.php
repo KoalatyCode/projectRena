@@ -393,6 +393,77 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
+    public function getAllKillsAfterDate($afterDate = null, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
+    {
+        if($afterDate == null)
+            $afterDate = date("Y-m-d H:i:s");
+
+        // Validate extraArguments
+        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order, $groupBy);
+        $vQuery = $validated["queryString"];
+        $vArray = $validated["argumentArray"];
+
+        // Merge the arrays
+        $array = array_merge(array(":afterDate" => $afterDate), $vArray);
+        $query = "SELECT * FROM participants WHERE killTime >= :afterDate" . $vQuery;
+
+        // Execute the query
+        return $this->db->query($query, $array, $cacheTime);
+    }
+
+    public function getAllKillsBeforeDate($beforeDate = null, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
+    {
+        if($beforeDate == null)
+            $beforeDate = date("Y-m-d H:i:s");
+
+        // Validate extraArguments
+        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order, $groupBy);
+        $vQuery = $validated["queryString"];
+        $vArray = $validated["argumentArray"];
+
+        // Merge the arrays
+        $array = array_merge(array(":beforeDate" => $beforeDate), $vArray);
+        $query = "SELECT * FROM participants WHERE killTime <= :beforeDate" . $vQuery;
+
+        // Execute the query
+        return $this->db->query($query, $array, $cacheTime);
+    }
+
+    public function getAllKillsBetweenDates($beforeDate = null, $afterDate = null, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
+    {
+        if($afterDate == null)
+            $afterDate = date("Y-m-d H:i:s");
+
+        if($beforeDate == null)
+            $beforeDate = date("Y-m-d H:i:s");
+
+        // Validate extraArguments
+        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order, $groupBy);
+        $vQuery = $validated["queryString"];
+        $vArray = $validated["argumentArray"];
+
+        // Merge the arrays
+        $array = array_merge(array(":afterDate" => $afterDate, ":beforeDate" => $beforeDate), $vArray);
+        $query = "SELECT * FROM participants WHERE killTime >= :afterDate AND killTime <= :beforeDate" . $vQuery;
+
+        // Execute the query
+        return $this->db->query($query, $array, $cacheTime);
+    }
+
+    public function getAllKills($extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
+    {
+        // Validate extraArguments
+        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order, $groupBy);
+        $vQuery = $validated["queryString"];
+        $array = $validated["argumentArray"];
+
+        // Merge the arrays
+        $query = "SELECT * FROM participants" . $vQuery;
+
+        // Execute the query
+        return $this->db->query($query, $array, $cacheTime);
+    }
+
     /**
      * @param int $allianceID
      * @return array|bool
