@@ -110,6 +110,9 @@ class killmails
      */
     public function getKill_jsonByKillIDs($killIDs = array())
     {
+        if(empty($killIDs))
+            return array();
+
         // make sure it's IDs, otherwise discard it
         foreach($killIDs as $key => $check)
             if(!is_numeric($check))
