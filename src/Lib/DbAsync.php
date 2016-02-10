@@ -8,22 +8,47 @@ use ProjectRena\RenaApp;
  */
 class DbAsync
 {
+    /**
+     * @var int
+     */
     public $timeout = 10;
+    /**
+     * @var RenaApp
+     */
     private $app;
+    /**
+     * @var array
+     */
     protected $credentials = array();
+    /**
+     * @var array
+     */
     protected $connections = array();
 
+    /**
+     * DbAsync constructor.
+     * @param RenaApp $app
+     */
     function __construct(RenaApp $app)
     {
         $this->app = $app;
     }
 
+    /**
+     *
+     */
     function __destruct()
     {
         foreach($this->connections as $connection)
             $connection->close();
     }
 
+    /**
+     * @param $name
+     * @param $query
+     * @param int $cacheTime
+     * @return bool|\mysqli_result|void
+     */
     public function executeQuery($name, $query, $cacheTime = 3600)
     {
         $key = sha1($name);
@@ -46,6 +71,11 @@ class DbAsync
         return $connection->query($query, MYSQLI_ASYNC);
     }
 
+    /**
+     * @param $name
+     * @param int $cacheTime
+     * @return array|bool|mixed|null
+     */
     public function getData($name, $cacheTime = 3600)
     {
         $key = sha1($name);
