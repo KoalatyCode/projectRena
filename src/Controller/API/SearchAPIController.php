@@ -64,8 +64,8 @@ class SearchAPIController
         $this->contentType = "application/json";
     }
 
-    public function search($query){
-    	$results = $this->app->Search->search($query, array("alliance"));
+    public function search($searchTerm, $searchType){
+    	$results = $this->app->Search->search($searchTerm, $searchType);
     	render("", $results, null, $this->contentType);
     }
 

@@ -143,7 +143,7 @@ class upgradeKillmail
         // Need to get max DPS with stock ammo, just gotta load some ammo into it - must be a way to determine what to load
         $osmiumData = array();
 
-        if (!empty($nk["items"]))
+        if (!empty($nk["items"])) // @todo fix so that osmium can actually go down without this going apeshit.. try/catch or something..
             $osmiumData = json_decode($this->app->cURL->getData("https://o.smium.org/api/json/loadout/dna/attributes/loc:ship,a:tank,a:ehpAndResonances,a:capacitors,a:damage?input=" . $nk["dna"]), true);
 
         $nk["osmium"] = $osmiumData;

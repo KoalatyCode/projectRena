@@ -142,7 +142,7 @@ class DiscordController
     /**
      * @param $serverHash
      */
-    public function begin($serverHash)
+    public function auth($serverHash)
     {
         if(!empty($this->app->discordServers->getAllByServerHash($serverHash))) {
             $ssoURL = $this->app->EVEOAuth->LoginURL("/discord/{$serverHash}/verify/");

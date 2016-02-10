@@ -69,8 +69,8 @@ class Search
         $valid = array("faction", "alliance", "corporation", "character", "item", "system", "region");
         $searchArray = array();
         foreach ($searchIn as $lookIn)
-            if (in_array($lookIn, $valid))
-                if (count($this->$lookIn("%".$searchTerm. "%")) > 0)
+            if(in_array($lookIn, $valid))
+                if(count($this->$lookIn("%".$searchTerm. "%")) > 0)
                     $searchArray[$lookIn] = $this->$lookIn("%".$searchTerm. "%");
 
         return $searchArray;
@@ -78,7 +78,7 @@ class Search
 
     private function faction($searchTerm)
     {
-        return $this->db->query("SELECT factionID, name FROM factions WHERE (name LIKE :searchTerm OR ticker LIKE :searchTerm) LIMIT 5", array(":searchTerm" => $searchTerm));
+        return $this->db->query("SELECT factionID, factionName FROM factions WHERE (factionName LIKE :searchTerm OR factionTicker LIKE :searchTerm) LIMIT 5", array(":searchTerm" => $searchTerm));
     }
 
     private function alliance($searchTerm)

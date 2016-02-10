@@ -153,22 +153,24 @@ class CrestFunctions
     {
         $aggressors = array();
 
-        foreach ($attackers as $attacker) {
-            $aggressor = array();
-            $aggressor["characterID"] = (int)@$attacker["character"]["id"];
-            $aggressor["characterName"] = (string)@$attacker["character"]["name"];
-            $aggressor["corporationID"] = (int)@$attacker["corporation"]["id"];
-            $aggressor["corporationName"] = (string)@$attacker["corporation"]["name"];
-            $aggressor["allianceID"] = (int)@$attacker["alliance"]["id"];
-            $aggressor["allianceName"] = (string)@$attacker["alliance"]["name"];
-            $aggressor["factionID"] = (int)@$attacker["faction"]["id"];
-            $aggressor["factionName"] = (string)@$attacker["faction"]["name"];
-            $aggressor["securityStatus"] = (float)@$attacker["securityStatus"];
-            $aggressor["damageDone"] = (int)@$attacker["damageDone"];
-            $aggressor["finalBlow"] = (int)@$attacker["finalBlow"];
-            $aggressor["weaponTypeID"] = (int)@$attacker["weaponType"]["id"];
-            $aggressor["shipTypeID"] = (int)@$attacker["shipType"]["id"];
-            $aggressors[] = $aggressor;
+        if(is_array($attackers)) {
+            foreach ($attackers as $attacker) {
+                $aggressor = array();
+                $aggressor["characterID"] = (int)@$attacker["character"]["id"];
+                $aggressor["characterName"] = (string)@$attacker["character"]["name"];
+                $aggressor["corporationID"] = (int)@$attacker["corporation"]["id"];
+                $aggressor["corporationName"] = (string)@$attacker["corporation"]["name"];
+                $aggressor["allianceID"] = (int)@$attacker["alliance"]["id"];
+                $aggressor["allianceName"] = (string)@$attacker["alliance"]["name"];
+                $aggressor["factionID"] = (int)@$attacker["faction"]["id"];
+                $aggressor["factionName"] = (string)@$attacker["faction"]["name"];
+                $aggressor["securityStatus"] = (float)@$attacker["securityStatus"];
+                $aggressor["damageDone"] = (int)@$attacker["damageDone"];
+                $aggressor["finalBlow"] = (int)@$attacker["finalBlow"];
+                $aggressor["weaponTypeID"] = (int)@$attacker["weaponType"]["id"];
+                $aggressor["shipTypeID"] = (int)@$attacker["shipType"]["id"];
+                $aggressors[] = $aggressor;
+            }
         }
 
         return $aggressors;
@@ -182,17 +184,20 @@ class CrestFunctions
     private function getItems($items)
     {
         $itemsArray = array();
-        foreach ($items as $item) {
-            $i = array();
-            $i["typeID"] = (int)@$item["itemType"]["id"];
-            $i["flag"] = (int)@$item["flag"];
-            $i["qtyDropped"] = (int)@$item["quantityDropped"];
-            $i["qtyDestroyed"] = (int)@$item["quantityDestroyed"];
-            $i["singleton"] = (int)@$item["singleton"];
-            if (isset($i["items"]))
-                $i["items"] = $this->getItems($i["items"]);
 
-            $itemsArray[] = $i;
+        if(is_array($items)) {
+            foreach ($items as $item) {
+                $i = array();
+                $i["typeID"] = (int)@$item["itemType"]["id"];
+                $i["flag"] = (int)@$item["flag"];
+                $i["qtyDropped"] = (int)@$item["quantityDropped"];
+                $i["qtyDestroyed"] = (int)@$item["quantityDestroyed"];
+                $i["singleton"] = (int)@$item["singleton"];
+                if (isset($i["items"]))
+                    $i["items"] = $this->getItems($i["items"]);
+
+                $itemsArray[] = $i;
+            }
         }
 
         return $itemsArray;

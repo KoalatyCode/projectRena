@@ -80,6 +80,9 @@ class CronTask extends Command
                     $class = new $import();
                     $interval = $class->getRunTimes();
 
+		    if($interval == 0)
+			continue;
+
                     // If the current time is larger than the lastRunTime and Interval, then we run it again!
                     if ($currentTime > ($lastRan + $interval)) {
                         $time = time();

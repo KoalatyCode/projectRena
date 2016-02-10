@@ -80,9 +80,11 @@ $app->group("/api", function () use ($app) {
 
     });
     $app->group("/search", function() use ($app) {
-        $app->get("/:query", function($query) use ($app) {
-           (new \ProjectRena\Controller\API\SearchAPIController($app))->search($query);
+        $app->get("(/:type)/:query/", function($searchType = null, $searchTerm = null) use ($app) {
+            if(!$searchType)
+                $searchType = array("faction", "alliance", "corporation", "character", "item", "system", "region");
+
+            (new \ProjectRena\Controller\API\SearchAPIController($app))->search($searchTerm, $searchType);
         });
     });
-
 });

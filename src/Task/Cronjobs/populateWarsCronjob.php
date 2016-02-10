@@ -59,7 +59,7 @@ class populateWarsCronjob
 
     public static function getRunTimes()
     {
-        return 3600;
+        return 0;
         // Never runs
     }
 }
