@@ -69,8 +69,10 @@ class IndexController
     {
         $data = array();
         $killIDs = array();
-        // Get the killlist with the latest 50/100 kills ordered by killTime
-        $kills = $this->app->participants->getAllKills(array(), 100, 60, "DESC", 0, "killID");
+
+        $this->app->DbAsync->executeQuery("100latestKills", "SELECT killID FROM participants GROUP BY killID ORDER BY killTime DESC LIMIT 100", 100);
+        $kills = $this->app->DbAsync->getData("100latestKills", 100);
+
         foreach($kills as $kid)
             $killIDs[] = $kid["killID"];
 
