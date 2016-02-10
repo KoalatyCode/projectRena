@@ -102,6 +102,32 @@ class killmails
     }
 
     /**
+     * returns array data for multiple killIDs at the same time, saving some query time
+     *
+     * @param array $killIDs
+     * @return array
+     * @throws \Exception
+     */
+    public function getKill_jsonByKillIDs($killIDs = array())
+    {
+        // make sure it's IDs, otherwise discard it
+        foreach($killIDs as $key => $check)
+            if(!is_numeric($check))
+                unset($killIDs[$key]);
+
+        // Implode them all into a comma delimited string
+        $kIDs = implode(",", $killIDs);
+
+        // Danger Zone, Will Robinson!
+        $data = array();
+        $return = $this->db->query("SELECT kill_json FROM killmails WHERE killID IN ($kIDs)"); // passing variables directly into queries is a no no!
+
+        foreach($return as $killdata)
+            $data[] = json_decode($killdata["kill_json"], true);
+
+        return $data;
+    }
+    /**
      * @param mixed $hash
      * @return string
      */
