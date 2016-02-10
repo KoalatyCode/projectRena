@@ -5,6 +5,7 @@ namespace ProjectRena;
 use Slim\Slim;
 use ProjectRena\Lib\Cache;
 use ProjectRena\Lib\Db;
+use ProjectRena\Lib\DbAsync;
 use ProjectRena\Lib\Logging;
 use ProjectRena\Lib\Pheal;
 use ProjectRena\Lib\SessionHandler;
@@ -14,7 +15,6 @@ use ProjectRena\Lib\baseConfig;
 use ProjectRena\Lib\cURL;
 use ProjectRena\Lib\out;
 use ProjectRena\Lib\OAuth\EVEOAuth;
-use ProjectRena\Model\Config;
 use ProjectRena\Model\CrestFunctions;
 use ProjectRena\Model\EveCentral;
 use ProjectRena\Model\Database\CCP\dgmAttributeCategories;
@@ -43,6 +43,7 @@ use ProjectRena\Model\Database\EVE\killmails;
 use ProjectRena\Model\Database\EVE\participants;
 use ProjectRena\Model\Database\EVE\warKillmails;
 use ProjectRena\Model\Database\EVE\wars;
+use ProjectRena\Model\Database\Site\Config;
 use ProjectRena\Model\Database\Site\Groups;
 use ProjectRena\Model\Database\Site\Paste;
 use ProjectRena\Model\Database\Site\Search;
@@ -139,6 +140,7 @@ use ProjectRena\Model\EVEApi\Server\ServerStatus as EVEServerServerStatus;
 /**
  * @property Cache Cache
  * @property Db Db
+ * @property DbAsync DbAsync
  * @property Logging Logging
  * @property Pheal Pheal
  * @property SessionHandler SessionHandler
@@ -148,7 +150,6 @@ use ProjectRena\Model\EVEApi\Server\ServerStatus as EVEServerServerStatus;
  * @property cURL cURL
  * @property out out
  * @property EVEOAuth EVEOAuth
- * @property Config Config
  * @property CrestFunctions CrestFunctions
  * @property EveCentral EveCentral
  * @property dgmAttributeCategories dgmAttributeCategories
@@ -177,6 +178,7 @@ use ProjectRena\Model\EVEApi\Server\ServerStatus as EVEServerServerStatus;
  * @property participants participants
  * @property warKillmails warKillmails
  * @property wars wars
+ * @property Config Config
  * @property Groups Groups
  * @property Paste Paste
  * @property Search Search

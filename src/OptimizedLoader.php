@@ -14,6 +14,11 @@ $app->container->singleton("Db", function($container) use ($app)
 		return new \ProjectRena\Lib\Db($app);
 });
 
+$app->container->singleton("DbAsync", function($container) use ($app)
+{
+		return new \ProjectRena\Lib\DbAsync($app);
+});
+
 $app->container->singleton("Logging", function($container) use ($app)
 {
 		return new \ProjectRena\Lib\Logging($app);
@@ -57,11 +62,6 @@ $app->container->set("out", function($container) use ($app)
 $app->container->singleton("EVEOAuth", function($container) use ($app)
 {
 		return new \ProjectRena\Lib\OAuth\EVEOAuth($app);
-});
-
-$app->container->singleton("Config", function($container) use ($app)
-{
-		return new \ProjectRena\Model\Config($app);
 });
 
 $app->container->singleton("CrestFunctions", function($container) use ($app)
@@ -202,6 +202,11 @@ $app->container->singleton("warKillmails", function($container) use ($app)
 $app->container->singleton("wars", function($container) use ($app)
 {
 		return new \ProjectRena\Model\Database\EVE\wars($app);
+});
+
+$app->container->singleton("Config", function($container) use ($app)
+{
+		return new \ProjectRena\Model\Database\Site\Config($app);
 });
 
 $app->container->singleton("Groups", function($container) use ($app)
