@@ -136,9 +136,11 @@ class KillAPIController
         $killIDs = $this->app->participants->getBySolarSystemID($solarSystemID, $parameters, $limit, 3600, $order, $offset);
 
         // Fetch all the JSON data for all the killIDs
-        $data = array();
+        $ids = array();
         foreach($killIDs as $killID)
-            $data[] = json_decode($this->app->killmails->getKill_jsonByKillID($killID["killID"]), true);
+            $ids[] = $killID["killID"];
+
+        $data = $this->app->killmails->getKill_jsonByKillIDs($ids);
 
         render("", $data, null, $this->contentType);
     }
@@ -159,9 +161,11 @@ class KillAPIController
         $killIDs = $this->app->participants->getByRegionID($regionID, $parameters, $limit, 3600, $order, $offset);
 
         // Fetch all the JSON data for all the killIDs
-        $data = array();
+        $ids = array();
         foreach($killIDs as $killID)
-            $data[] = json_decode($this->app->killmails->getKill_jsonByKillID($killID["killID"]), true);
+            $ids[] = $killID["killID"];
+
+        $data = $this->app->killmails->getKill_jsonByKillIDs($ids);
 
         render("", $data, null, $this->contentType);
     }
@@ -182,9 +186,11 @@ class KillAPIController
         $killIDs = $this->app->participants->getByCharacterID($characterID, $parameters, $limit, 3600, $order, $offset);
 
         // Fetch all the JSON data for all the killIDs
-        $data = array();
+        $ids = array();
         foreach($killIDs as $killID)
-            $data[] = json_decode($this->app->killmails->getKill_jsonByKillID($killID["killID"]), true);
+            $ids[] = $killID["killID"];
+
+        $data = $this->app->killmails->getKill_jsonByKillIDs($ids);
 
         render("", $data, null, $this->contentType);
     }
@@ -205,9 +211,11 @@ class KillAPIController
         $killIDs = $this->app->participants->getByCorporationID($corporationID, $parameters, $limit, 3600, $order, $offset);
 
         // Fetch all the JSON data for all the killIDs
-        $data = array();
+        $ids = array();
         foreach($killIDs as $killID)
-            $data[] = json_decode($this->app->killmails->getKill_jsonByKillID($killID["killID"]), true);
+            $ids[] = $killID["killID"];
+
+        $data = $this->app->killmails->getKill_jsonByKillIDs($ids);
 
         render("", $data, null, $this->contentType);
     }
@@ -228,9 +236,11 @@ class KillAPIController
         $killIDs = $this->app->participants->getByAllianceID($allianceID, $parameters, $limit, 3600, $order, $offset);
 
         // Fetch all the JSON data for all the killIDs
-        $data = array();
+        $ids = array();
         foreach($killIDs as $killID)
-            $data[] = json_decode($this->app->killmails->getKill_jsonByKillID($killID["killID"]), true);
+            $ids[] = $killID["killID"];
+
+        $data = $this->app->killmails->getKill_jsonByKillIDs($ids);
 
         render("", $data, null, $this->contentType);
     }
@@ -251,9 +261,11 @@ class KillAPIController
         $killIDs = $this->app->participants->getByFactionID($factionID, $parameters, $limit, 3600, $order, $offset);
 
         // Fetch all the JSON data for all the killIDs
-        $data = array();
+        $ids = array();
         foreach($killIDs as $killID)
-            $data[] = json_decode($this->app->killmails->getKill_jsonByKillID($killID["killID"]), true);
+            $ids[] = $killID["killID"];
+
+        $data = $this->app->killmails->getKill_jsonByKillIDs($ids);
 
         render("", $data, null, $this->contentType);
     }
@@ -274,9 +286,11 @@ class KillAPIController
         $killIDs = $this->app->participants->getByShipTypeID($shipTypeID, $parameters, $limit, 3600, $order, $offset);
 
         // Fetch all the JSON data for all the killIDs
-        $data = array();
+        $ids = array();
         foreach($killIDs as $killID)
-            $data[] = json_decode($this->app->killmails->getKill_jsonByKillID($killID["killID"]), true);
+            $ids[] = $killID["killID"];
+
+        $data = $this->app->killmails->getKill_jsonByKillIDs($ids);
 
         render("", $data, null, $this->contentType);
     }
@@ -297,9 +311,11 @@ class KillAPIController
         $killIDs = $this->app->participants->getByGroupID($groupID, $parameters, $limit, 3600, $order, $offset);
 
         // Fetch all the JSON data for all the killIDs
-        $data = array();
+        $ids = array();
         foreach($killIDs as $killID)
-            $data[] = json_decode($this->app->killmails->getKill_jsonByKillID($killID["killID"]), true);
+            $ids[] = $killID["killID"];
+
+        $data = $this->app->killmails->getKill_jsonByKillIDs($ids);
 
         render("", $data, null, $this->contentType);
     }
@@ -320,9 +336,11 @@ class KillAPIController
         $killIDs = $this->app->participants->getByVGroupID($vGroupID, $parameters, $limit, 3600, $order, $offset);
 
         // Fetch all the JSON data for all the killIDs
-        $data = array();
+        $ids = array();
         foreach($killIDs as $killID)
-            $data[] = json_decode($this->app->killmails->getKill_jsonByKillID($killID["killID"]), true);
+            $ids[] = $killID["killID"];
+
+        $data = $this->app->killmails->getKill_jsonByKillIDs($ids);
 
         render("", $data, null, $this->contentType);
     }
@@ -343,9 +361,11 @@ class KillAPIController
         $killIDs = $this->app->participants->getByWeaponTypeID($weaponTypeID, $parameters, $limit, 3600, $order, $offset);
 
         // Fetch all the JSON data for all the killIDs
-        $data = array();
+        $ids = array();
         foreach($killIDs as $killID)
-            $data[] = json_decode($this->app->killmails->getKill_jsonByKillID($killID["killID"]), true);
+            $ids[] = $killID["killID"];
+
+        $data = $this->app->killmails->getKill_jsonByKillIDs($ids);
 
         render("", $data, null, $this->contentType);
     }
