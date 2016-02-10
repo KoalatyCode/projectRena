@@ -41,7 +41,7 @@ class participants
      * @return array|bool
      * @throws \Exception
      */
-    public function getByKillID($killID, $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null)
+    public function getByKillID($killID, $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
         $validated = $this->verifyExtraArguments(array(), $offset, $limit, $order);
@@ -55,15 +55,7 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
-    /**
-     * @param array $extraArguments
-     * @param null $offset
-     * @param int $limit
-     * @param $order
-     *
-     * @return array
-     */
-    private function verifyExtraArguments($extraArguments = array(), $offset = null, $limit = 100, $order = "DESC")
+    private function verifyExtraArguments($extraArguments = array(), $offset = null, $limit = 100, $order = "DESC", $groupBy = "killID")
     {
         $queryString = "";
         $argumentArray = array();
@@ -101,27 +93,16 @@ class participants
         }
 
         if ($offset > 0) $limit = "$offset, $limit ";
-
-        $queryString .= " GROUP BY killID ORDER BY killTime $order LIMIT $limit";
+        if($groupBy) $queryString .= " GROUP BY $groupBy";
+        $queryString .= " ORDER BY killTime $order LIMIT $limit";
 
         return array("queryString" => $queryString, "argumentArray" => $argumentArray);
     }
 
-    /**
-     * @param $killTime
-     * @param array $extraArguments
-     * @param int $limit
-     * @param int $cacheTime
-     * @param string $order
-     * @param null $offset
-     *
-     * @return array|bool
-     * @throws \Exception
-     */
-    public function getByKillTime($killTime, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null)
+    public function getByKillTime($killTime, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
-        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order);
+        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order, $groupBy);
         $vQuery = $validated["queryString"];
         $vArray = $validated["argumentArray"];
 
@@ -133,21 +114,10 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
-    /**
-     * @param $solarSystemID
-     * @param array $extraArguments
-     * @param int $limit
-     * @param int $cacheTime
-     * @param string $order
-     * @param null $offset
-     *
-     * @return array|bool
-     * @throws \Exception
-     */
-    public function getBySolarSystemID($solarSystemID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null)
+    public function getBySolarSystemID($solarSystemID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
-        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order);
+        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order, $groupBy);
         $vQuery = $validated["queryString"];
         $vArray = $validated["argumentArray"];
 
@@ -159,21 +129,10 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
-    /**
-     * @param $regionID
-     * @param array $extraArguments
-     * @param int $limit
-     * @param int $cacheTime
-     * @param string $order
-     * @param null $offset
-     *
-     * @return array|bool
-     * @throws \Exception
-     */
-    public function getByRegionID($regionID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null)
+    public function getByRegionID($regionID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
-        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order);
+        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order, $groupBy);
         $vQuery = $validated["queryString"];
         $vArray = $validated["argumentArray"];
 
@@ -185,21 +144,10 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
-    /**
-     * @param $characterID
-     * @param array $extraArguments
-     * @param int $limit
-     * @param int $cacheTime
-     * @param string $order
-     * @param null $offset
-     *
-     * @return array|bool
-     * @throws \Exception
-     */
-    public function getByCharacterID($characterID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null)
+    public function getByCharacterID($characterID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
-        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order);
+        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order, $groupBy);
         $vQuery = $validated["queryString"];
         $vArray = $validated["argumentArray"];
 
@@ -211,21 +159,10 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
-    /**
-     * @param $corporationID
-     * @param array $extraArguments
-     * @param int $limit
-     * @param int $cacheTime
-     * @param string $order
-     * @param null $offset
-     *
-     * @return array|bool
-     * @throws \Exception
-     */
-    public function getByCorporationID($corporationID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null)
+    public function getByCorporationID($corporationID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
-        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order);
+        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order, $groupBy);
         $vQuery = $validated["queryString"];
         $vArray = $validated["argumentArray"];
 
@@ -237,47 +174,25 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
-    /**
-     * @param $allianceID
-     * @param array $extraArguments
-     * @param int $limit
-     * @param int $cacheTime
-     * @param string $order
-     * @param null $offset
-     *
-     * @return array|bool
-     * @throws \Exception
-     */
-    public function getByAllianceID($allianceID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null)
+    public function getByAllianceID($allianceID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
-        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order);
+        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order, $groupBy);
         $vQuery = $validated["queryString"];
         $vArray = $validated["argumentArray"];
 
         // Merge the arrays
         $array = array_merge(array(":allianceID" => $allianceID), $vArray);
         $query = "SELECT * FROM participants WHERE allianceID = :allianceID" . $vQuery;
-
+        
         // Execute the query
         return $this->db->query($query, $array, $cacheTime);
     }
 
-    /**
-     * @param $factionID
-     * @param array $extraArguments
-     * @param int $limit
-     * @param int $cacheTime
-     * @param string $order
-     * @param null $offset
-     *
-     * @return array|bool
-     * @throws \Exception
-     */
-    public function getByFactionID($factionID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null)
+    public function getByFactionID($factionID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
-        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order);
+        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order, $groupBy);
         $vQuery = $validated["queryString"];
         $vArray = $validated["argumentArray"];
 
@@ -289,21 +204,10 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
-    /**
-     * @param $shipTypeID
-     * @param array $extraArguments
-     * @param int $limit
-     * @param int $cacheTime
-     * @param string $order
-     * @param null $offset
-     *
-     * @return array|bool
-     * @throws \Exception
-     */
-    public function getByShipTypeID($shipTypeID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null)
+    public function getByShipTypeID($shipTypeID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
-        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order);
+        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order, $groupBy);
         $vQuery = $validated["queryString"];
         $vArray = $validated["argumentArray"];
 
@@ -315,21 +219,10 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
-    /**
-     * @param $groupID
-     * @param array $extraArguments
-     * @param int $limit
-     * @param int $cacheTime
-     * @param string $order
-     * @param null $offset
-     *
-     * @return array|bool
-     * @throws \Exception
-     */
-    public function getByGroupID($groupID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null)
+    public function getByGroupID($groupID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
-        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order);
+        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order, $groupBy);
         $vQuery = $validated["queryString"];
         $vArray = $validated["argumentArray"];
 
@@ -341,21 +234,10 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
-    /**
-     * @param $vGroupID
-     * @param array $extraArguments
-     * @param int $limit
-     * @param int $cacheTime
-     * @param string $order
-     * @param null $offset
-     *
-     * @return array|bool
-     * @throws \Exception
-     */
-    public function getByVGroupID($vGroupID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null)
+    public function getByVGroupID($vGroupID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
-        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order);
+        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order, $groupBy);
         $vQuery = $validated["queryString"];
         $vArray = $validated["argumentArray"];
 
@@ -367,21 +249,10 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
-    /**
-     * @param $weaponTypeID
-     * @param array $extraArguments
-     * @param int $limit
-     * @param int $cacheTime
-     * @param string $order
-     * @param null $offset
-     *
-     * @return array|bool
-     * @throws \Exception
-     */
-    public function getByWeaponTypeID($weaponTypeID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null)
+    public function getByWeaponTypeID($weaponTypeID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
-        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order);
+        $validated = $this->verifyExtraArguments($extraArguments, $offset, $limit, $order, $groupBy);
         $vQuery = $validated["queryString"];
         $vArray = $validated["argumentArray"];
 

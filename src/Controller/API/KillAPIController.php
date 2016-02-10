@@ -133,7 +133,7 @@ class KillAPIController
         $parameters = $this->validateParameters($parameters, "solarSystemID");
 
         // Fetch all the killIDs (and everything else too apparently, should probably cut it down?)
-        $killIDs = $this->app->participants->getBySolarSystemID($solarSystemID, $parameters, $limit, 3600, $order, $offset);
+        $killIDs = $this->app->participants->getBySolarSystemID($solarSystemID, $parameters, $limit, 3600, $order, $offset, "killID");
 
         // Fetch all the JSON data for all the killIDs
         $ids = array();
@@ -158,7 +158,7 @@ class KillAPIController
         $parameters = $this->validateParameters($parameters, "regionID");
 
         // Fetch all the killIDs (and everything else too apparently, should probably cut it down?)
-        $killIDs = $this->app->participants->getByRegionID($regionID, $parameters, $limit, 3600, $order, $offset);
+        $killIDs = $this->app->participants->getByRegionID($regionID, $parameters, $limit, 3600, $order, $offset, "killID");
 
         // Fetch all the JSON data for all the killIDs
         $ids = array();
@@ -183,7 +183,7 @@ class KillAPIController
         $parameters = $this->validateParameters($parameters, "characterID");
 
         // Fetch all the killIDs (and everything else too apparently, should probably cut it down?)
-        $killIDs = $this->app->participants->getByCharacterID($characterID, $parameters, $limit, 3600, $order, $offset);
+        $killIDs = $this->app->participants->getByCharacterID($characterID, $parameters, $limit, 3600, $order, $offset, "killID");
 
         // Fetch all the JSON data for all the killIDs
         $ids = array();
@@ -208,7 +208,7 @@ class KillAPIController
         $parameters = $this->validateParameters($parameters, "corporationID");
 
         // Fetch all the killIDs (and everything else too apparently, should probably cut it down?)
-        $killIDs = $this->app->participants->getByCorporationID($corporationID, $parameters, $limit, 3600, $order, $offset);
+        $killIDs = $this->app->participants->getByCorporationID($corporationID, $parameters, $limit, 3600, $order, $offset, "killID");
 
         // Fetch all the JSON data for all the killIDs
         $ids = array();
@@ -233,7 +233,7 @@ class KillAPIController
         $parameters = $this->validateParameters($parameters, "allianceID");
 
         // Fetch all the killIDs (and everything else too apparently, should probably cut it down?)
-        $killIDs = $this->app->participants->getByAllianceID($allianceID, $parameters, $limit, 3600, $order, $offset);
+        $killIDs = $this->app->participants->getByAllianceID($allianceID, $parameters, $limit, 3600, $order, $offset, "killID");
 
         // Fetch all the JSON data for all the killIDs
         $ids = array();
@@ -258,7 +258,7 @@ class KillAPIController
         $parameters = $this->validateParameters($parameters, "factionID");
 
         // Fetch all the killIDs (and everything else too apparently, should probably cut it down?)
-        $killIDs = $this->app->participants->getByFactionID($factionID, $parameters, $limit, 3600, $order, $offset);
+        $killIDs = $this->app->participants->getByFactionID($factionID, $parameters, $limit, 3600, $order, $offset, "killID");
 
         // Fetch all the JSON data for all the killIDs
         $ids = array();
@@ -283,7 +283,7 @@ class KillAPIController
         $parameters = $this->validateParameters($parameters, "shipTypeID");
 
         // Fetch all the killIDs (and everything else too apparently, should probably cut it down?)
-        $killIDs = $this->app->participants->getByShipTypeID($shipTypeID, $parameters, $limit, 3600, $order, $offset);
+        $killIDs = $this->app->participants->getByShipTypeID($shipTypeID, $parameters, $limit, 3600, $order, $offset, "killID");
 
         // Fetch all the JSON data for all the killIDs
         $ids = array();
@@ -308,7 +308,7 @@ class KillAPIController
         $parameters = $this->validateParameters($parameters, "groupID");
 
         // Fetch all the killIDs (and everything else too apparently, should probably cut it down?)
-        $killIDs = $this->app->participants->getByGroupID($groupID, $parameters, $limit, 3600, $order, $offset);
+        $killIDs = $this->app->participants->getByGroupID($groupID, $parameters, $limit, 3600, $order, $offset, "killID");
 
         // Fetch all the JSON data for all the killIDs
         $ids = array();
@@ -333,7 +333,7 @@ class KillAPIController
         $parameters = $this->validateParameters($parameters, "vGroupID");
 
         // Fetch all the killIDs (and everything else too apparently, should probably cut it down?)
-        $killIDs = $this->app->participants->getByVGroupID($vGroupID, $parameters, $limit, 3600, $order, $offset);
+        $killIDs = $this->app->participants->getByVGroupID($vGroupID, $parameters, $limit, 3600, $order, $offset, "killID");
 
         // Fetch all the JSON data for all the killIDs
         $ids = array();
@@ -358,7 +358,7 @@ class KillAPIController
         $parameters = $this->validateParameters($parameters, "weaponTypeID");
 
         // Fetch all the killIDs (and everything else too apparently, should probably cut it down?)
-        $killIDs = $this->app->participants->getByWeaponTypeID($weaponTypeID, $parameters, $limit, 3600, $order, $offset);
+        $killIDs = $this->app->participants->getByWeaponTypeID($weaponTypeID, $parameters, $limit, 3600, $order, $offset, "killID");
 
         // Fetch all the JSON data for all the killIDs
         $ids = array();
