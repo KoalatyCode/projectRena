@@ -68,7 +68,7 @@ class EveCentral
      */
     public function getPrice($typeID, $regionID = 10000002)
     {
-        $address = "http://api.eve-central.com/api/marketstat";
+        $address = "https://api.eve-central.com/api/marketstat";
         $data = $this->app->cURL->getData($address . "?typeid={$typeID}&regionlimit={$regionID}");
         $data = json_decode(json_encode(simplexml_load_string($data)), true);
 
@@ -85,7 +85,7 @@ class EveCentral
      */
     public function getPrices($typeID = array(), $regionID = 10000002)
     {
-        $address = "http://api.eve-central.com/api/marketstat?regionlimit={$regionID}";
+        $address = "https://api.eve-central.com/api/marketstat?regionlimit={$regionID}";
 
         foreach ($typeID as $id)
             $address .= "&typeid={$id}";
