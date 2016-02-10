@@ -55,6 +55,14 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
+    /**
+     * @param array $extraArguments
+     * @param null $offset
+     * @param int $limit
+     * @param string $order
+     * @param string $groupBy
+     * @return array
+     */
     private function verifyExtraArguments($extraArguments = array(), $offset = null, $limit = 100, $order = "DESC", $groupBy = "killID")
     {
         $queryString = "";
@@ -99,6 +107,17 @@ class participants
         return array("queryString" => $queryString, "argumentArray" => $argumentArray);
     }
 
+    /**
+     * @param $killTime
+     * @param array $extraArguments
+     * @param int $limit
+     * @param int $cacheTime
+     * @param string $order
+     * @param null $offset
+     * @param string $groupBy
+     * @return array|bool
+     * @throws \Exception
+     */
     public function getByKillTime($killTime, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
@@ -114,6 +133,17 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
+    /**
+     * @param $solarSystemID
+     * @param array $extraArguments
+     * @param int $limit
+     * @param int $cacheTime
+     * @param string $order
+     * @param null $offset
+     * @param string $groupBy
+     * @return array|bool
+     * @throws \Exception
+     */
     public function getBySolarSystemID($solarSystemID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
@@ -129,6 +159,17 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
+    /**
+     * @param $regionID
+     * @param array $extraArguments
+     * @param int $limit
+     * @param int $cacheTime
+     * @param string $order
+     * @param null $offset
+     * @param string $groupBy
+     * @return array|bool
+     * @throws \Exception
+     */
     public function getByRegionID($regionID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
@@ -144,6 +185,17 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
+    /**
+     * @param $characterID
+     * @param array $extraArguments
+     * @param int $limit
+     * @param int $cacheTime
+     * @param string $order
+     * @param null $offset
+     * @param string $groupBy
+     * @return array|bool
+     * @throws \Exception
+     */
     public function getByCharacterID($characterID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
@@ -159,6 +211,17 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
+    /**
+     * @param $corporationID
+     * @param array $extraArguments
+     * @param int $limit
+     * @param int $cacheTime
+     * @param string $order
+     * @param null $offset
+     * @param string $groupBy
+     * @return array|bool
+     * @throws \Exception
+     */
     public function getByCorporationID($corporationID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
@@ -174,6 +237,17 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
+    /**
+     * @param $allianceID
+     * @param array $extraArguments
+     * @param int $limit
+     * @param int $cacheTime
+     * @param string $order
+     * @param null $offset
+     * @param string $groupBy
+     * @return array|bool
+     * @throws \Exception
+     */
     public function getByAllianceID($allianceID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
@@ -184,11 +258,22 @@ class participants
         // Merge the arrays
         $array = array_merge(array(":allianceID" => $allianceID), $vArray);
         $query = "SELECT * FROM participants WHERE allianceID = :allianceID" . $vQuery;
-        
+
         // Execute the query
         return $this->db->query($query, $array, $cacheTime);
     }
 
+    /**
+     * @param $factionID
+     * @param array $extraArguments
+     * @param int $limit
+     * @param int $cacheTime
+     * @param string $order
+     * @param null $offset
+     * @param string $groupBy
+     * @return array|bool
+     * @throws \Exception
+     */
     public function getByFactionID($factionID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
@@ -204,6 +289,17 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
+    /**
+     * @param $shipTypeID
+     * @param array $extraArguments
+     * @param int $limit
+     * @param int $cacheTime
+     * @param string $order
+     * @param null $offset
+     * @param string $groupBy
+     * @return array|bool
+     * @throws \Exception
+     */
     public function getByShipTypeID($shipTypeID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
@@ -219,6 +315,17 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
+    /**
+     * @param $groupID
+     * @param array $extraArguments
+     * @param int $limit
+     * @param int $cacheTime
+     * @param string $order
+     * @param null $offset
+     * @param string $groupBy
+     * @return array|bool
+     * @throws \Exception
+     */
     public function getByGroupID($groupID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
@@ -234,6 +341,17 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
+    /**
+     * @param $vGroupID
+     * @param array $extraArguments
+     * @param int $limit
+     * @param int $cacheTime
+     * @param string $order
+     * @param null $offset
+     * @param string $groupBy
+     * @return array|bool
+     * @throws \Exception
+     */
     public function getByVGroupID($vGroupID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
@@ -249,6 +367,17 @@ class participants
         return $this->db->query($query, $array, $cacheTime);
     }
 
+    /**
+     * @param $weaponTypeID
+     * @param array $extraArguments
+     * @param int $limit
+     * @param int $cacheTime
+     * @param string $order
+     * @param null $offset
+     * @param string $groupBy
+     * @return array|bool
+     * @throws \Exception
+     */
     public function getByWeaponTypeID($weaponTypeID, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         // Validate extraArguments
@@ -5181,6 +5310,28 @@ class participants
         }
     }
 
+    /**
+     * @param $killID
+     * @param $killTime
+     * @param $solarSystemID
+     * @param $regionID
+     * @param $characterID
+     * @param $corporationID
+     * @param $allianceID
+     * @param $factionID
+     * @param $shipTypeID
+     * @param $groupID
+     * @param $vGroupID
+     * @param $weaponTypeID
+     * @param $shipValue
+     * @param $damageDone
+     * @param $totalValue
+     * @param $pointValue
+     * @param $numberInvolved
+     * @param $isVictim
+     * @param $finalBlow
+     * @param $isNPC
+     */
     public function insertIntoParticipants($killID, $killTime, $solarSystemID, $regionID, $characterID, $corporationID, $allianceID, $factionID, $shipTypeID, $groupID, $vGroupID, $weaponTypeID, $shipValue, $damageDone, $totalValue, $pointValue, $numberInvolved, $isVictim, $finalBlow, $isNPC)
     {
         $this->db->execute("INSERT INTO participants (killID, killTime, solarSystemID, regionID, characterID, corporationID, allianceID, factionID, shipTypeID, groupID, vGroupID, weaponTypeID, shipValue, damageDone, totalValue, pointValue, numberInvolved, isVictim, finalBlow, isNPC) VALUES (:killID, :killTime, :solarSystemID, :regionID, :characterID, :corporationID, :allianceID, :factionID, :shipTypeID, :groupID, :vGroupID, :weaponTypeID, :shipValue, :damageDone, :totalValue, :pointValue, :numberInvolved, :isVictim, :finalBlow, :isNPC)", array(":killID" => $killID, ":killTime" => $killTime, ":solarSystemID" => $solarSystemID, ":regionID" => $regionID, ":characterID" => $characterID, ":corporationID" => $corporationID, ":allianceID" => $allianceID, ":factionID" => $factionID, ":shipTypeID" => $shipTypeID, ":groupID" => $groupID, ":vGroupID" => $vGroupID, ":weaponTypeID" => $weaponTypeID, ":shipValue" => $shipValue, ":damageDone" => $damageDone, ":totalValue" => $totalValue, ":pointValue" => $pointValue, ":numberInvolved" => $numberInvolved, ":isVictim" => $isVictim, ":finalBlow" => $finalBlow, ":isNPC" => $isNPC));
