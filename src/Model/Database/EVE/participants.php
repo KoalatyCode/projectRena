@@ -102,7 +102,7 @@ class participants
 
         if ($offset > 0) $limit = "$offset, $limit ";
 
-        $queryString .= " ORDER BY killTime $order LIMIT $limit";
+        $queryString .= " GROUP BY killID ORDER BY killTime $order LIMIT $limit";
 
         return array("queryString" => $queryString, "argumentArray" => $argumentArray);
     }
