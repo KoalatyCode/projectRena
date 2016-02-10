@@ -24,6 +24,14 @@ if (file_exists(__DIR__ . "/config/config.php")) {
 // Init Slim
 $app = new \ProjectRena\RenaApp($config["slim"]);
 
+// Set the 404 page
+$app->notFound(function() use ($app) {
+    if(strstr($app->request()->getPath(), "/api/"))
+        render("", array("ErrorType" => "404", "ErrorMessage" => "Not Fonud"), null, "application/json");
+    else
+        render("404.twig");
+});
+
 // Session
 $session = new SessionHandler();
 session_set_save_handler($session, true);
