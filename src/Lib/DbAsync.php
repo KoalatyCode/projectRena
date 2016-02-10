@@ -66,7 +66,10 @@ class DbAsync
             mysqli_poll($links, $errors, $reject, $this->timeout);
         } while(!in_array($connection, $links, true) && !in_array($connection, $errors, true) && !in_array($connection, $reject, true));
 
-        $data = $connection->reap_async_query()->fetch_assoc();
+        $data = array();
+        $con = $connection->reap_async_query();
+        while($row = $con->fetch_assoc())
+            $data[] = $row;
 
         if($cacheTime > 0)
             $this->app->Cache->set($key, serialize($data), min(3600, $cacheTime));

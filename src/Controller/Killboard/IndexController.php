@@ -78,11 +78,11 @@ class IndexController
         $data["killListData"] = $this->app->killmails->getKill_jsonByKillIDs($killIDs);
 
         // Get the current count of active chars/corps/alliance/ships/systems
-        $this->app->DbAsync->executeQuery("currentActiveCharacters", "SELECT COUNT(DISTINCT(characterID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)", 3600);
-        $this->app->DbAsync->executeQuery("currentActiveCorporations", "SELECT COUNT(DISTINCT(corporationID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)", 3600);
-        $this->app->DbAsync->executeQuery("currentActiveAlliances", "SELECT COUNT(DISTINCT(allianceID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)", 3600);
-        $this->app->DbAsync->executeQuery("currentActiveShipTypes", "SELECT COUNT(DISTINCT(shipTypeID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)", 3600);
-        $this->app->DbAsync->executeQuery("currentActiveSolarSystems", "SELECT COUNT(DISTINCT(solarSystemID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)", 3600);
+        $this->app->DbAsync->executeQuery("currentlyActiveCharacters", "SELECT COUNT(DISTINCT(characterID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)", 3600);
+        $this->app->DbAsync->executeQuery("currentlyActiveCorporations", "SELECT COUNT(DISTINCT(corporationID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)", 3600);
+        $this->app->DbAsync->executeQuery("currentlyActiveAlliances", "SELECT COUNT(DISTINCT(allianceID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)", 3600);
+        $this->app->DbAsync->executeQuery("currentlyActiveShipTypes", "SELECT COUNT(DISTINCT(shipTypeID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)", 3600);
+        $this->app->DbAsync->executeQuery("currentlyActiveSolarSystems", "SELECT COUNT(DISTINCT(solarSystemID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)", 3600);
 
         // Get the current amount of kills done over the last 7 days
         $this->app->DbAsync->executeQuery("killCountOverLast7Days", "SELECT COUNT(*) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day) AND isVictim = 1", 3600);
@@ -96,14 +96,15 @@ class IndexController
         $this->app->DbAsync->executeQuery("top10Regions", "SELECT regionID, COUNT(DISTINCT(killID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day) AND regionID != 0 GROUP BY regionID ORDER BY count DESC LIMIT 10", 3600);
 
         // Get the most valuable kills for the last 7 days
+        $this->app->DbAsync->executeQuery("mostValuableKillsLast7Days", "SELECT killID, characterID, shipValue FROM participants WHERE killTime >= DATE_SUB(NOW(), interval 7 day) AND isVictim = 1 ORDER BY shipValue DESC LIMIT 5", 3600);
 
-
-        $data["currentActive"]["characters"] = $this->app->DbAsync->getData("currentActiveCharacters", 3600)["count"];
-        $data["currentActive"]["corporations"] = $this->app->DbAsync->getData("currentActiveCorporations", 3600)["count"];
-        $data["currentActive"]["alliances"] = $this->app->DbAsync->getData("currentActiveAlliances", 3600)["count"];
-        $data["currentActive"]["shipTypes"] = $this->app->DbAsync->getData("currentActiveShipTypes", 3600)["count"];
-        $data["currentActive"]["solarSystems"] = $this->app->DbAsync->getData("currentActiveSolarSystems", 3600)["count"];
-        $data["killCountOverLast7Days"] = $this->app->DbAsync->getData("killCountOverLast7Days", 3600)["count"];
+        $data["currentlyActive"]["characters"] = $this->app->DbAsync->getData("currentlyActiveCharacters", 3600)[0]["count"];
+        $data["currentlyActive"]["corporations"] = $this->app->DbAsync->getData("currentlyActiveCorporations", 3600)[0]["count"];
+        $data["currentlyActive"]["alliances"] = $this->app->DbAsync->getData("currentlyActiveAlliances", 3600)[0]["count"];
+        $data["currentlyActive"]["shipTypes"] = $this->app->DbAsync->getData("currentlyActiveShipTypes", 3600)[0]["count"];
+        $data["currentlyActive"]["solarSystems"] = $this->app->DbAsync->getData("currentlyActiveSolarSystems", 3600)[0]["count"];
+        $data["top5MostValuableKillsOverLast7Days"] = $this->app->DbAsync->getData("mostValuableKillsLast7Days", 3600);
+        $data["killCountOverLast7Days"] = $this->app->DbAsync->getData("killCountOverLast7Days", 3600)[0]["count"];
         $data["top10"]["characters"] = $this->app->DbAsync->getData("top10Characters", 3600);
         $data["top10"]["corporations"] = $this->app->DbAsync->getData("top10Corporations", 3600);
         $data["top10"]["alliances"] = $this->app->DbAsync->getData("top10Alliances", 3600);
