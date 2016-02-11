@@ -22,6 +22,10 @@ class DbAsync
      */
     protected $connections = array();
     /**
+     * @var int
+     */
+    protected $queryCount = 0;
+    /**
      * @var RenaApp
      */
     private $app;
@@ -63,8 +67,12 @@ class DbAsync
         $port = $this->app->baseConfig->getConfig('port', 'database', 3306);
         $socket = $this->app->baseConfig->getConfig("unixSocket", "database", "/var/run/mysqld/mysqld.sock");
 
+        // Start up the mysqli connection
         $connection = mysqli_connect($host, $username, $password, $dbName, $port, $socket);
         $this->connections[$name] = $connection;
+
+        // Increment the query count
+        $this->queryCount++;
 
         return $connection->query($query, MYSQLI_ASYNC);
     }
@@ -103,5 +111,13 @@ class DbAsync
             $this->app->Cache->set($key, serialize($data), min(3600, $cacheTime));
 
         return $data;
+    }
+
+    /**
+     * @return int
+     */
+    public function getQueryCount()
+    {
+        return $this->queryCount;
     }
 }

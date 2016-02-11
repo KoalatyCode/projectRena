@@ -24,6 +24,9 @@ if (file_exists(__DIR__ . "/config/config.php")) {
 // Init Slim
 $app = new \ProjectRena\RenaApp($config["slim"]);
 
+// Start the timer
+$app->timer = new \ProjectRena\Lib\Timer();
+
 // Set the 404 page
 $app->notFound(function() use ($app) {
     if(strstr($app->request()->getPath(), "/api/"))
