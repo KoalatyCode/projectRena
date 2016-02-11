@@ -22,6 +22,14 @@ class DbAsync
      */
     protected $connections = array();
     /**
+     * @var array
+     */
+    protected $timers = array();
+    /**
+     * @var array
+     */
+    protected $queryTime = array();
+    /**
      * @var int
      */
     protected $queryCount = 0;
@@ -67,6 +75,9 @@ class DbAsync
         $port = $this->app->baseConfig->getConfig('port', 'database', 3306);
         $socket = $this->app->baseConfig->getConfig("unixSocket", "database", "/var/run/mysqld/mysqld.sock");
 
+        // Start up the timer
+        $this->timers[$name] = new Timer();
+
         // Start up the mysqli connection
         $connection = mysqli_connect($host, $username, $password, $dbName, $port, $socket);
         $this->connections[$name] = $connection;
@@ -95,12 +106,16 @@ class DbAsync
         if (!isset($this->connections[$name]))
             return false;
 
+        /** @var \mysqli $connection */
         $connection = $this->connections[$name];
 
         do {
             $links = $errors = $reject = $this->connections;
             mysqli_poll($links, $errors, $reject, $this->timeout);
         } while (!in_array($connection, $links, true) && !in_array($connection, $errors, true) && !in_array($connection, $reject, true));
+
+        // Stop the timer
+        $this->queryTime[] = $this->timers[$name]->stop();
 
         $data = array();
         $con = $connection->reap_async_query();
@@ -119,5 +134,15 @@ class DbAsync
     public function getQueryCount()
     {
         return $this->queryCount;
+    }
+
+    /**
+     * @return float
+     */
+    public function getQueryTime()
+    {
+        if(count($this->queryTime) > 0)
+            return (float) array_sum($this->queryTime) / count($this->queryTime);
+        return 0;
     }
 }

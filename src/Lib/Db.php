@@ -16,6 +16,10 @@ class Db
      */
     protected $queryCount = 0;
     /**
+     * @var int
+     */
+    protected $queryTime = 0;
+    /**
      * @var RenaApp
      */
     private $app;
@@ -109,7 +113,7 @@ class Db
 
         try {
             // Start the timer
-            $timer = $this->timer;
+            $timer = new Timer();
 
             // Increment the queryCounter
             $this->queryCount++;
@@ -133,11 +137,11 @@ class Db
 
             // Stop the timer
             $duration = $timer->stop();
+            $this->queryTime += $timer->stop();
 
             // If cache time is above 0 seconds, lets store it in the cache.
-            if ($cacheTime > 0) {
+            if ($cacheTime > 0)
                 $this->cache->set($key, serialize($result), min(3600, $cacheTime));
-            } // Store it in the cache system
 
             // Log the query
             $this->logQuery($query, $parameters, $duration);
@@ -211,7 +215,7 @@ class Db
     public function execute($query, $parameters = array(), $returnID = false)
     {
         // Init the timer
-        $timer = $this->timer;
+        $timer = new Timer();
 
         // Increment the amount of queries done
         $this->queryCount++;
@@ -315,6 +319,14 @@ class Db
     public function getQueryCount()
     {
         return $this->queryCount;
+    }
+
+    /**
+     * @return int
+     */
+    public function getQueryTime()
+    {
+        return $this->queryTime;
     }
 
     /**
