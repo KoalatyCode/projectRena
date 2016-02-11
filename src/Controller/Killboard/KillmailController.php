@@ -6,7 +6,7 @@ use ProjectRena\RenaApp;
 /**
  * Functions for the API
  */
-class IndexController
+class KillmailController
 {
     /**
      * The Slim Application
