@@ -70,14 +70,8 @@ class IndexController
         $data = array();
         $killIDs = array();
 
+        // Fetch the killlist data
         $this->app->DbAsync->executeQuery("100latestKills", "SELECT killID FROM participants GROUP BY killID ORDER BY killTime DESC LIMIT 100", 100);
-        $kills = $this->app->DbAsync->getData("100latestKills", 100);
-
-        foreach($kills as $kid)
-            $killIDs[] = $kid["killID"];
-
-        // Get the json data for the killlist
-        $data["killListData"] = $this->app->killmails->getKill_jsonByKillIDs($killIDs);
 
         // Get the current count of active chars/corps/alliance/ships/systems
         $this->app->DbAsync->executeQuery("currentlyActiveCharacters", "SELECT COUNT(DISTINCT(characterID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)", 3600);
@@ -100,6 +94,14 @@ class IndexController
         // Get the most valuable kills for the last 7 days
         $this->app->DbAsync->executeQuery("mostValuableKillsLast7Days", "SELECT killID, characterID, shipValue FROM participants WHERE killTime >= DATE_SUB(NOW(), interval 7 day) AND isVictim = 1 ORDER BY shipValue DESC LIMIT 5", 3600);
 
+        // Populate the killIDs list, with the data from the killlist query
+        $kills = $this->app->DbAsync->getData("100latestKills", 100);
+
+        foreach($kills as $kid)
+            $killIDs[] = $kid["killID"];
+
+        // Populate the $data array with data from the async query executions..
+        $data["killListData"] = $this->app->killmails->getKill_jsonByKillIDs($killIDs);
         $data["currentlyActive"]["characters"] = $this->app->DbAsync->getData("currentlyActiveCharacters", 3600)[0]["count"];
         $data["currentlyActive"]["corporations"] = $this->app->DbAsync->getData("currentlyActiveCorporations", 3600)[0]["count"];
         $data["currentlyActive"]["alliances"] = $this->app->DbAsync->getData("currentlyActiveAlliances", 3600)[0]["count"];
