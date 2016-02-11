@@ -1,6 +1,7 @@
 <?php
 
 namespace ProjectRena\Lib;
+
 use ProjectRena\RenaApp;
 
 /**
@@ -13,10 +14,6 @@ class DbAsync
      */
     public $timeout = 10;
     /**
-     * @var RenaApp
-     */
-    private $app;
-    /**
      * @var array
      */
     protected $credentials = array();
@@ -24,6 +21,10 @@ class DbAsync
      * @var array
      */
     protected $connections = array();
+    /**
+     * @var RenaApp
+     */
+    private $app;
 
     /**
      * DbAsync constructor.
@@ -39,24 +40,21 @@ class DbAsync
      */
     function __destruct()
     {
-        foreach($this->connections as $connection)
+        foreach ($this->connections as $connection)
             $connection->close();
     }
 
     /**
      * @param $name
      * @param $query
-     * @param int $cacheTime
      * @return bool|\mysqli_result|void
      */
-    public function executeQuery($name, $query, $cacheTime = 3600)
+    public function executeQuery($name, $query)
     {
         $key = sha1($name);
 
-        if($cacheTime > 0) {
-            if(!empty($this->app->Cache->get($key)))
-                return;
-        }
+        if (!empty($this->app->Cache->get($key)))
+            return;
 
         $host = $this->app->baseConfig->getConfig("host", "database", "127.0.0.1");
         $username = $this->app->baseConfig->getConfig('username', 'database');
@@ -80,13 +78,13 @@ class DbAsync
     {
         $key = sha1($name);
 
-        if($cacheTime > 0) {
+        if ($cacheTime > 0) {
             $result = !empty($this->app->Cache->get($key)) ? unserialize($this->app->Cache->get($key)) : null;
-            if(!empty($result))
+            if (!empty($result))
                 return $result;
         }
 
-        if(!isset($this->connections[$name]))
+        if (!isset($this->connections[$name]))
             return false;
 
         $connection = $this->connections[$name];
@@ -94,17 +92,16 @@ class DbAsync
         do {
             $links = $errors = $reject = $this->connections;
             mysqli_poll($links, $errors, $reject, $this->timeout);
-        } while(!in_array($connection, $links, true) && !in_array($connection, $errors, true) && !in_array($connection, $reject, true));
+        } while (!in_array($connection, $links, true) && !in_array($connection, $errors, true) && !in_array($connection, $reject, true));
 
         $data = array();
         $con = $connection->reap_async_query();
-        while($row = $con->fetch_assoc())
+        while ($row = $con->fetch_assoc())
             $data[] = $row;
 
-        if($cacheTime > 0)
+        if ($cacheTime > 0)
             $this->app->Cache->set($key, serialize($data), min(3600, $cacheTime));
 
         return $data;
-
     }
 }

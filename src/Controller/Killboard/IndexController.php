@@ -71,28 +71,28 @@ class IndexController
         $killIDs = array();
 
         // Fetch the killlist data
-        $this->app->DbAsync->executeQuery("100latestKills", "SELECT killID FROM participants GROUP BY killID ORDER BY killTime DESC LIMIT 100", 100);
+        $this->app->DbAsync->executeQuery("100latestKills", "SELECT killID FROM participants GROUP BY killID ORDER BY killTime DESC LIMIT 100");
 
         // Get the current count of active chars/corps/alliance/ships/systems
-        $this->app->DbAsync->executeQuery("currentlyActiveCharacters", "SELECT COUNT(DISTINCT(characterID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)", 3600);
-        $this->app->DbAsync->executeQuery("currentlyActiveCorporations", "SELECT COUNT(DISTINCT(corporationID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)", 3600);
-        $this->app->DbAsync->executeQuery("currentlyActiveAlliances", "SELECT COUNT(DISTINCT(allianceID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)", 3600);
-        $this->app->DbAsync->executeQuery("currentlyActiveShipTypes", "SELECT COUNT(DISTINCT(shipTypeID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)", 3600);
-        $this->app->DbAsync->executeQuery("currentlyActiveSolarSystems", "SELECT COUNT(DISTINCT(solarSystemID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)", 3600);
+        $this->app->DbAsync->executeQuery("currentlyActiveCharacters", "SELECT COUNT(DISTINCT(characterID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)");
+        $this->app->DbAsync->executeQuery("currentlyActiveCorporations", "SELECT COUNT(DISTINCT(corporationID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)");
+        $this->app->DbAsync->executeQuery("currentlyActiveAlliances", "SELECT COUNT(DISTINCT(allianceID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)");
+        $this->app->DbAsync->executeQuery("currentlyActiveShipTypes", "SELECT COUNT(DISTINCT(shipTypeID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)");
+        $this->app->DbAsync->executeQuery("currentlyActiveSolarSystems", "SELECT COUNT(DISTINCT(solarSystemID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day)");
 
         // Get the current amount of kills done over the last 7 days
-        $this->app->DbAsync->executeQuery("killCountOverLast7Days", "SELECT COUNT(*) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day) AND isVictim = 1", 3600);
+        $this->app->DbAsync->executeQuery("killCountOverLast7Days", "SELECT COUNT(*) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day) AND isVictim = 1");
 
         // Get the top 10 characters/corporations/alliances/ships/systems/regions for the last 7 days
-        $this->app->DbAsync->executeQuery("top10Characters", "SELECT characterID, COUNT(DISTINCT(killID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day) AND characterID != 0 GROUP BY characterID ORDER BY count DESC LIMIT 10", 3600);
-        $this->app->DbAsync->executeQuery("top10Corporations", "SELECT corporationID, COUNT(DISTINCT(killID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day) AND corporationID != 0 GROUP BY corporationID ORDER BY count DESC LIMIT 10", 3600);
-        $this->app->DbAsync->executeQuery("top10Alliances", "SELECT allianceID, COUNT(DISTINCT(killID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day) AND allianceID != 0 GROUP BY allianceID ORDER BY count DESC LIMIT 10", 3600);
-        $this->app->DbAsync->executeQuery("top10ShipTypes", "SELECT shipTypeID, COUNT(DISTINCT(killID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day) AND shipTypeID != 0 GROUP BY shipTypeID ORDER BY count DESC LIMIT 10", 3600);
-        $this->app->DbAsync->executeQuery("top10SolarSystems", "SELECT solarSystemID, COUNT(DISTINCT(killID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day) AND solarSystemID != 0 GROUP BY solarSystemID ORDER BY count DESC LIMIT 10", 3600);
-        $this->app->DbAsync->executeQuery("top10Regions", "SELECT regionID, COUNT(DISTINCT(killID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day) AND regionID != 0 GROUP BY regionID ORDER BY count DESC LIMIT 10", 3600);
+        $this->app->DbAsync->executeQuery("top10Characters", "SELECT characterID, COUNT(DISTINCT(killID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day) AND characterID != 0 GROUP BY characterID ORDER BY count DESC LIMIT 10");
+        $this->app->DbAsync->executeQuery("top10Corporations", "SELECT corporationID, COUNT(DISTINCT(killID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day) AND corporationID != 0 GROUP BY corporationID ORDER BY count DESC LIMIT 10");
+        $this->app->DbAsync->executeQuery("top10Alliances", "SELECT allianceID, COUNT(DISTINCT(killID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day) AND allianceID != 0 GROUP BY allianceID ORDER BY count DESC LIMIT 10");
+        $this->app->DbAsync->executeQuery("top10ShipTypes", "SELECT shipTypeID, COUNT(DISTINCT(killID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day) AND shipTypeID != 0 GROUP BY shipTypeID ORDER BY count DESC LIMIT 10");
+        $this->app->DbAsync->executeQuery("top10SolarSystems", "SELECT solarSystemID, COUNT(DISTINCT(killID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day) AND solarSystemID != 0 GROUP BY solarSystemID ORDER BY count DESC LIMIT 10");
+        $this->app->DbAsync->executeQuery("top10Regions", "SELECT regionID, COUNT(DISTINCT(killID)) AS count FROM participants WHERE killTime >= DATE_SUB(now(), interval 7 day) AND regionID != 0 GROUP BY regionID ORDER BY count DESC LIMIT 10");
 
         // Get the most valuable kills for the last 7 days
-        $this->app->DbAsync->executeQuery("mostValuableKillsLast7Days", "SELECT killID, characterID, shipValue FROM participants WHERE killTime >= DATE_SUB(NOW(), interval 7 day) AND isVictim = 1 ORDER BY shipValue DESC LIMIT 5", 3600);
+        $this->app->DbAsync->executeQuery("mostValuableKillsLast7Days", "SELECT killID, characterID, shipValue FROM participants WHERE killTime >= DATE_SUB(NOW(), interval 7 day) AND isVictim = 1 ORDER BY shipValue DESC LIMIT 5");
 
         // Populate the killIDs list, with the data from the killlist query
         $kills = $this->app->DbAsync->getData("100latestKills", 100);
