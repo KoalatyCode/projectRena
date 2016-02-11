@@ -106,7 +106,7 @@ class CharacterController
         $data["top10"]["solarSystems"] = $this->app->DbAsync->getData("top10SolarSystems", 3600);
         $data["top10"]["regions"] = $this->app->DbAsync->getData("top10Regions", 3600);
 
-        // Extra stats
+        // Extra stats (Should be moved to async queries)
         $corporationID = $data["characterInfo"]["corporationID"];
         $allianceID = $data["characterInfo"]["allianceID"];
         $lastSeenSystemID = $this->app->Db->queryField("SELECT solarSystemID FROM participants WHERE characterID = :charID ORDER BY killTime DESC LIMIT 1", "solarSystemID", array(":charID" => $characterID));
