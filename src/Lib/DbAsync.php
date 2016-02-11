@@ -51,7 +51,7 @@ class DbAsync
      */
     public function executeQuery($name, $query)
     {
-        $key = sha1($name);
+        $key = sha1($name . $this->app->request()->getPath());
 
         if (!empty($this->app->Cache->get($key)))
             return;
@@ -76,7 +76,7 @@ class DbAsync
      */
     public function getData($name, $cacheTime = 3600)
     {
-        $key = sha1($name);
+        $key = sha1($name . $this->app->request()->getPath());
 
         if ($cacheTime > 0) {
             $result = !empty($this->app->Cache->get($key)) ? unserialize($this->app->Cache->get($key)) : null;
