@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet' type='text/css'>
+
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Import custom css-->
+    <link type="text/css" rel="stylesheet" href="/css/main.css"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+    <!-- Navigation -->
+    {% include "killboard/navbar.twig" %}
+
+    <!-- Content -->
+    <div class="container" name="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!--Import jQuery before materialize.js-->
+    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script type="application/javascript">
+        $( document ).ready(function(){
+            $(".button-collapse").sideNav({
+                menuWidth: 200,
+                edge: "left",
+                closeOnClick: true
+            });
+        });
+
+        (function($) {
+            $(function() {
+                $('.dropdown-button').dropdown({
+                            inDuration: 300,
+                            outDuration: 225,
+                            hover: true, // Activate on hover
+                            belowOrigin: true, // Displays dropdown below the button
+                            alignment: 'right' // Displays dropdown with edge aligned to the left of button
+                        }
+                );
+
+            }); // End Document Ready
+        })(jQuery); // End of jQuery name space
+    </script>
+    <!-- JS Twig Block -->
+    {% block js %}{% endblock %}
+</body>
+</html>

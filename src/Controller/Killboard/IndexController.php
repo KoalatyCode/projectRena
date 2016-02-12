@@ -116,6 +116,6 @@ class IndexController
         $data["top10"]["solarSystems"] = $this->app->DbAsync->getData("top10SolarSystems", 3600);
         $data["top10"]["regions"] = $this->app->DbAsync->getData("top10Regions", 3600);
 
-        render("", $data, null);
+        render("killboard/index.twig", $data, null);
     }
 }
