@@ -1,4 +1,4 @@
-<!-- Dropdown Structure -->
+<!-- Kills Dropdown Structure -->
 <ul id="kills" class="dropdown-content">
     <li class="divider"></li>
     <li><a href="#!">Big Kills</a></li>
@@ -15,19 +15,19 @@
     <li><a href="#!">Freighters</a></li>
     <li><a href="#!">Supers</a></li>
 </ul>
-
+<!-- Tools Dropdown Structure -->
 <ul id="tools" class="dropdown-content">
     <li><a href="#!">Wars</a></li>
     <li><a href="#!">Supers List</a></li>
     <li><a href="#!">Top Ranks</a></li>
 </ul>
-
+<!-- Dust514 Dropdown Structure -->
 <ul id="dust514" class="dropdown-content">
     <li><a href="#!">All Kills</a></li>
     <li><a href="#!">Vehicles</a></li>
 </ul>
 
-<!-- Dropdown Structure -->
+<!-- Account Dropdown Structure -->
 <ul id="dropdown" class="dropdown-content collection" style="min-width: 300px;">
     <li class="collection-item avatar">
         <img src="{{ siteData.imageServer }}/Character/{{ userData.characterID }}_32.jpg" alt="" class="circle">
@@ -40,10 +40,12 @@
     </li>
 </ul>
 
+<!-- Navbar -->
 <nav class="grey darken-3" role="navigation">
     <div class="nav-wrapper container">
-        <a href="#!" class="brand-logo">Project Rena</a>
+        <a href="" class="brand-logo">Project Rena</a>
         <a href="#" data-activates="mobileMenu" class="button-collapse"><i class="material-icons">menu</i></a>
+        <!-- Desktop menu -->
         <ul class="right hide-on-med-and-down valign-wrapper">
             <li><a href="">Post Mail</a></li>
             <li><a class="dropdown-button" href="#!" data-activates="kills">Kills<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -55,10 +57,12 @@
                 <li><a id="login" href="{{ siteData.EVESSOURL }}"><img class="valign responsive-img" src="https://images.contentful.com/idjq7aai9ylm/18BxKSXCymyqY4QKo8KwKe/c2bdded6118472dd587c8107f24104d7/EVE_SSO_Login_Buttons_Small_White.png?w=195&h=28"></a></li>
             {% endif %}
         </ul>
+        <!-- Mobile Menu -->
         <ul id="mobileMenu" class="side-nav valign-wrapper">
             {% if userData.loggedIn %}
                 <li><img class="valign circle" src="{{ siteData.imageServer }}/Character/{{ userData.characterID }}_64.jpg" width="48px"></li>
             {% endif %}
+
             <li><a href="#!">Post Mail</a></li>
 
             {% if userData.loggedIn == false %}

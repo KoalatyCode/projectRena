@@ -4,16 +4,119 @@
 
 {% block content %}
     <div class="row">
-        <div class="col s12 red"><p>s12</p></div>
-        <div class="col s12 m4 l2 blue"><p>s12 m4</p></div>
-        <div class="col s12 m4 l8 green"><p>s12 m4</p></div>
-        <div class="col s12 m4 l2 teal"><p>s12 m4</p></div>
+        <div class="col s12 m2 13 red">
+            asdf
+        </div>
+        <div class="col s12 m2 13 blue">
+            asdf
+        </div>
+        <div class="col s12 m2 13 red">
+            asdf
+        </div>
+        <div class="col s12 m2 13 blue">
+            asdf
+        </div>
+        <div class="col s12 m2 13 red">
+            asdf
+        </div>
+        <div class="col s12 m2 13 blue">
+            asdf
+        </div>
     </div>
     <div class="row">
-        <div class="col s12 m6 l3 grey"><p>s12 m6 l3</p></div>
-        <div class="col s12 m6 l3 black"><p>s12 m6 l3</p></div>
-        <div class="col s12 m6 l3 yellow"><p>s12 m6 l3</p></div>
-        <div class="col s12 m6 l3 pink"><p>s12 m6 l3</p></div>
+        <div class="col s12 m6 l10">
+            <table class="highlight bordered">
+                <thead>
+                <tr>
+                    <th data-field="time">Time</th>
+                    <th data-field="ship" class="hide-on-small-only">Ship</th>
+                    <th data-field="place">Place</th>
+                    <th data-field="victimCorpLogo" class="hide-on-small-only"></th>
+                    <th data-field="victim">Victim</th>
+                    <th data-field="finalBlowCorpLogo" class="hide-on-small-only"></th>
+                    <th data-field="finalBlow" class="hide-on-small-only">Final Blow</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for kill in pageData.killListData|reverse %}
+                    <tr>
+                        <td>
+                            {{ kill.killTime|date("H:i") }}
+                            <br/>
+                            {{ kill.totalValue }} ISK
+                        </td>
+                        <td class="hide-on-small-only">
+                            <img src="http://image.eveonline.com/Render/{{ kill.victim.shipTypeID }}_64.png" style="width:52px;" alt="{{ kill.victim.shipTypeName }}" class="circle tooltipped" data-position="bottom" data-delay="50" data-tooltip="{{ kill.victim.shipTypeName }}">
+                        </td>
+                        <td>
+                            <a href="#">{{ kill.solarSystemName }}</a>
+                            <br/>
+                            <a href="#">{{ kill.regionName }}</a>
+                        </td>
+                        <td class="hide-on-small-only">
+                            <a href="#"><img src="http://image.eveonline.com/Corporation/{{ kill.victim.corporationID }}_64.png" style="width:52px;" alt="{{ kill.victim.corporationName }}" class="circle tooltipped" data-position="bottom" data-delay="50" data-tooltip="{{ kill.victim.corporationName }}"></a>
+                        </td>
+                        <td>
+                            <a href="#">{{ kill.victim.characterName }}</a> (<a href="#">{{ kill.victim.shipTypeName }}</a>)
+                            <br/>
+                            <a href="#">{{ kill.victim.corporationName }}</a>{% if kill.victim.allianceName != "" %}<a href="#" class="hide-on-small-only"> / {{ kill.victim.allianceName }}</a>{% endif %}
+                        </td>
+                        {% for attacker in kill.attackers %}
+                            {% if attacker.finalBlow == 1 %}
+                                <td class="hide-on-small-only">
+                                    <a href="#"><img src="http://image.eveonline.com/Corporation/{{ attacker.corporationID }}_64.png" style="width:52px;" alt="{{ attacker.corporationName }}" class="circle tooltipped" data-position="bottom" data-delay="50" data-tooltip="{{ attacker.corporationName }}"></a>
+                                </td>
+                                <td class="hide-on-small-only">
+                                    <a href="#">{{ attacker.characterName }}</a> ({{ kill.attackers|length }})
+                                    <br/>
+                                    <a href="#">{{ attacker.corporationName }}</a>{% if attacker.allianceName != "" %}<a href="#" class="hide-on-small-only"> / {{ attacker.allianceName }}</a>{% endif %}
+                                </td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col s12 m6 l2">
+            <h5>Currently Active Count</h5>
+            <table class="highlight bordered">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for key,data in pageData.currentlyActive %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ data }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            {% for key,data in pageData.top10 %}
+                <br/><h5>{{ key|capitalize }}</h5>
+                <table class="highlight bordered">
+                    <thead>
+                    <tr>
+                        <td></td>
+                        <td>Kills</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for d in data %}
+                        <tr>
+                            <td>{{ d.id }}</td>
+                            <td>{{ d.count }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
 
