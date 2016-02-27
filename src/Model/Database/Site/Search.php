@@ -76,9 +76,9 @@ class Search
         foreach ($searchIn as $lookIn)
             if(in_array($lookIn, $valid)) {
                 // Only do a single lookup, not two as before..
-                $singleSearch = $this->$lookIn($searchTerm);
+                $singleSearch = $this->$lookIn($searchTerm, 1);
                 $multiSearch = $this->$lookIn("%" . $searchTerm . "%");
-
+                
                 // First look for one
                 if(count($singleSearch) == 1)
                     $searchArray[$lookIn] = $singleSearch;
@@ -95,7 +95,7 @@ class Search
      * @return array|bool
      * @throws \Exception
      */
-    private function faction($searchTerm)
+    private function faction($searchTerm, $limit = 5)
     {
         return $this->db->query("SELECT factionID, factionName FROM factions WHERE (factionName LIKE :searchTerm OR factionTicker LIKE :searchTerm) LIMIT 5", array(":searchTerm" => $searchTerm));
     }
@@ -105,7 +105,7 @@ class Search
      * @return array|bool
      * @throws \Exception
      */
-    private function alliance($searchTerm)
+    private function alliance($searchTerm, $limit = 5)
     {
         return $this->db->query("SELECT allianceID, allianceName, allianceTicker FROM alliances WHERE (allianceName LIKE :searchTerm OR allianceTicker LIKE :searchTerm) LIMIT 5", array(":searchTerm" => $searchTerm));
     }
@@ -115,7 +115,7 @@ class Search
      * @return array|bool
      * @throws \Exception
      */
-    private function corporation($searchTerm)
+    private function corporation($searchTerm, $limit = 5)
     {
         return $this->db->query("SELECT corporationID, corporationName, corpTicker FROM corporations WHERE (corporationName LIKE :searchTerm OR corpTicker LIKE :searchTerm) LIMIT 5", array(":searchTerm" => $searchTerm));
     }
@@ -127,9 +127,12 @@ class Search
      * @return array|bool
      * @throws \Exception
      */
-    private function character($searchTerm)
+    private function character($searchTerm, $limit = 5)
     {
-        return $this->db->query("SELECT characterID, characterName FROM characters WHERE MATCH(characterName) AGAINST(:searchTerm) LIMIT 5", array(":searchTerm" => $searchTerm));
+        if($limit == 1)
+            return $this->db->query("SELECT characterID, characterName FROM characters WHERE characterName LIKE :searchTerm LIMIT 1", array(":searchTerm" => $searchTerm));
+        else
+            return $this->db->query("SELECT characterID, characterName FROM characters WHERE MATCH(characterName) AGAINST(:searchTerm) LIMIT 5", array(":searchTerm" => $searchTerm));
     }
 
     /**
@@ -137,7 +140,7 @@ class Search
      * @return array|bool
      * @throws \Exception
      */
-    private function item($searchTerm)
+    private function item($searchTerm, $limit = 5)
     {
         return $this->db->query("SELECT typeID, typeName FROM invTypes WHERE typeName LIKE :searchTerm LIMIT 5", array(":searchTerm" => $searchTerm));
     }
@@ -147,7 +150,7 @@ class Search
      * @return array|bool
      * @throws \Exception
      */
-    private function system($searchTerm)
+    private function system($searchTerm, $limit = 5)
     {
         return $this->db->query("SELECT solarSystemID, solarSystemName FROM mapSolarSystems WHERE solarSystemName LIKE :searchTerm LIMIT 5", array(":searchTerm" => $searchTerm));
     }
@@ -157,7 +160,7 @@ class Search
      * @return array|bool
      * @throws \Exception
      */
-    private function region($searchTerm)
+    private function region($searchTerm, $limit = 5)
     {
         return $this->db->query("SELECT regionID, regionName FROM mapRegions WHERE regionName LIKE :searchTerm LIMIT 5", array(":searchTerm" => $searchTerm));
     }
