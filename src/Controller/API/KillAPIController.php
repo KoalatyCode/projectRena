@@ -431,7 +431,7 @@ class KillAPIController
         render("", $data, null, $this->contentType);
     }
 
-    public function betweenDateKills($beforeDate, $afterDate, $parameters) {
+    public function betweenDateKills($afterDate, $beforeDate, $parameters) {
         // Convert the url to an array of parameters
         $parameters = $this->urlToArrayConverter($parameters);
 
@@ -444,7 +444,7 @@ class KillAPIController
         $parameters = $this->validateParameters($parameters);
 
         // Fetch all the killIDs (and everything else too apparently, should probably cut it down?)
-        $killIDs = $this->app->participants->getAllKillsBetweenDates($beforeDate, $afterDate, $parameters, $limit, 3600, $order, $offset, "killID");
+        $killIDs = $this->app->participants->getAllKillsBetweenDates($afterDate, $beforeDate, $parameters, $limit, 3600, $order, $offset, "killID");
 
         // Fetch all the JSON data for all the killIDs
         $ids = array();

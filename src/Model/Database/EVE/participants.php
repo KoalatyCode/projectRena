@@ -463,7 +463,7 @@ class participants
      * @return array|bool
      * @throws \Exception
      */
-    public function getAllKillsBetweenDates($beforeDate = null, $afterDate = null, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
+    public function getAllKillsBetweenDates($afterDate = null, $beforeDate = null, $extraArguments = array(), $limit = 100, $cacheTime = 3600, $order = "DESC", $offset = null, $groupBy = "killID")
     {
         if($afterDate == null)
             $afterDate = date("Y-m-d H:i:s");
@@ -479,7 +479,7 @@ class participants
         // Merge the arrays
         $array = array_merge(array(":afterDate" => $afterDate, ":beforeDate" => $beforeDate), $vArray);
         $query = "SELECT * FROM participants WHERE killTime >= :afterDate AND killTime <= :beforeDate" . $vQuery;
-        
+
         // Execute the query
         return $this->db->query($query, $array, $cacheTime);
     }
