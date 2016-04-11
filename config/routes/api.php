@@ -616,7 +616,7 @@ $app->group("/api", function () use ($app) {
         });
 
         /**
-         * @api {get} /celestial/information/:solarSystemID/ Show information for a single celestial
+         * @api {get} /celestial/information/:solarSystemID/ Show all celestials in a system
          * @apiVersion 0.1.2
          * @apiName Information
          * @apiGroup celestial
