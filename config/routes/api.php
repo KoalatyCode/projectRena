@@ -616,29 +616,16 @@ $app->group("/api", function () use ($app) {
         });
 
         /**
-         * @api {get} /celestial/information/:celestialID/ Show information for a single celestial
+         * @api {get} /celestial/information/:solarSystemID/ Show information for a single celestial
          * @apiVersion 0.1.2
          * @apiName Information
          * @apiGroup celestial
          * @apiPermission public
-         * @apiParam {Integer} celestialID the celestialID
-         * @apiSampleRequest /api/celestial/information/:celestialID/
+         * @apiParam {Integer} solarSystemID the solarSystemID
+         * @apiSampleRequest /api/celestial/information/:solarSystemID/
          */
         $app->get("/information/:systemID/", function ($systemID) use ($app) {
             (new \ProjectRena\Controller\API\CelestialsAPIController($app))->celestialInformation($systemID);
-        });
-
-        /**
-         * @api {get} /celestial/find/:celestialName/ Find a celestial
-         * @apiVersion 0.1.2
-         * @apiName Find
-         * @apiGroup celestial
-         * @apiPermission public
-         * @apiParam {String} celestialName the celestialName
-         * @apiSampleRequest /api/celestial/find/:celestialName/
-         */
-        $app->get("/find/:searchTerm/", function ($searchTerm) use ($app) {
-            (new \ProjectRena\Controller\API\CelestialsAPIController($app))->findCelestial($searchTerm, 50);
         });
     });
 

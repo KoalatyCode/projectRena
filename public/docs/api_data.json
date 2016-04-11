@@ -140,40 +140,7 @@
   },
   {
     "type": "get",
-    "url": "/celestial/find/:celestialName/",
-    "title": "Find a celestial",
-    "version": "0.1.2",
-    "name": "Find",
-    "group": "celestial",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "celestialName",
-            "description": "<p>the celestialName</p>"
-          }
-        ]
-      }
-    },
-    "sampleRequest": [
-      {
-        "url": "/api/celestial/find/:celestialName/"
-      }
-    ],
-    "filename": "config/routes/api.php",
-    "groupTitle": "celestial"
-  },
-  {
-    "type": "get",
-    "url": "/celestial/information/:celestialID/",
+    "url": "/celestial/information/:solarSystemID/",
     "title": "Show information for a single celestial",
     "version": "0.1.2",
     "name": "Information",
@@ -190,15 +157,15 @@
             "group": "Parameter",
             "type": "Integer",
             "optional": false,
-            "field": "celestialID",
-            "description": "<p>the celestialID</p>"
+            "field": "solarSystemID",
+            "description": "<p>the solarSystemID</p>"
           }
         ]
       }
     },
     "sampleRequest": [
       {
-        "url": "/api/celestial/information/:celestialID/"
+        "url": "/api/celestial/information/:solarSystemID/"
       }
     ],
     "filename": "config/routes/api.php",
