@@ -120,6 +120,26 @@
   },
   {
     "type": "get",
+    "url": "/alliance/count/",
+    "title": "Total amount of alliances in the system",
+    "version": "0.1.2",
+    "name": "count",
+    "group": "alliance",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/alliance/count/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "alliance"
+  },
+  {
+    "type": "get",
     "url": "/alliance/",
     "title": "List the endpoints available for the alliance api",
     "version": "0.1.2",
@@ -259,6 +279,26 @@
   },
   {
     "type": "get",
+    "url": "/character/count/",
+    "title": "Total amount of characters in the system",
+    "version": "0.1.2",
+    "name": "count",
+    "group": "character",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/character/count/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "character"
+  },
+  {
+    "type": "get",
     "url": "/character/",
     "title": "List the endpoints available for the character api",
     "version": "0.1.2",
@@ -371,6 +411,26 @@
     "sampleRequest": [
       {
         "url": "/api/corporation/members/:corporationID/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "corporation"
+  },
+  {
+    "type": "get",
+    "url": "/corporation/count/",
+    "title": "Total amount of corporations in the system",
+    "version": "0.1.2",
+    "name": "count",
+    "group": "corporation",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/corporation/count/"
       }
     ],
     "filename": "config/routes/api.php",
@@ -543,7 +603,7 @@
             "group": "Parameter",
             "type": "Integer",
             "optional": true,
-            "field": "corporationId",
+            "field": "corporationID",
             "description": "<p>Limit to a specific corporationID</p>"
           },
           {
@@ -737,7 +797,7 @@
             "group": "Parameter",
             "type": "Integer",
             "optional": true,
-            "field": "corporationId",
+            "field": "corporationID",
             "description": "<p>Limit to a specific corporationID</p>"
           },
           {
@@ -924,7 +984,7 @@
             "group": "Parameter",
             "type": "Integer",
             "optional": true,
-            "field": "corporationId",
+            "field": "corporationID",
             "description": "<p>Limit to a specific corporationID</p>"
           },
           {
@@ -1125,7 +1185,7 @@
             "group": "Parameter",
             "type": "Integer",
             "optional": true,
-            "field": "corporationId",
+            "field": "corporationID",
             "description": "<p>Limit to a specific corporationID</p>"
           },
           {
@@ -1312,7 +1372,7 @@
             "group": "Parameter",
             "type": "Integer",
             "optional": true,
-            "field": "corporationId",
+            "field": "corporationID",
             "description": "<p>Limit to a specific corporationID</p>"
           },
           {
@@ -1506,13 +1566,6 @@
             "group": "Parameter",
             "type": "Integer",
             "optional": true,
-            "field": "corporationId",
-            "description": "<p>Limit to a specific corporationID</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "optional": true,
             "field": "allianceID",
             "description": "<p>Limit to a specific allianceID</p>"
           },
@@ -1641,6 +1694,26 @@
   },
   {
     "type": "get",
+    "url": "/kill/count/",
+    "title": "Total amount of kills in the system",
+    "version": "0.1.2",
+    "name": "count",
+    "group": "kill",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/kill/count/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "kill"
+  },
+  {
+    "type": "get",
     "url": "/kill/faction/:factionID/",
     "title": "List kills for a certain faction",
     "version": "0.1.2",
@@ -1700,7 +1773,7 @@
             "group": "Parameter",
             "type": "Integer",
             "optional": true,
-            "field": "corporationId",
+            "field": "corporationID",
             "description": "<p>Limit to a specific corporationID</p>"
           },
           {
@@ -1887,7 +1960,7 @@
             "group": "Parameter",
             "type": "Integer",
             "optional": true,
-            "field": "corporationId",
+            "field": "corporationID",
             "description": "<p>Limit to a specific corporationID</p>"
           },
           {
@@ -2173,7 +2246,7 @@
             "group": "Parameter",
             "type": "Integer",
             "optional": true,
-            "field": "corporationId",
+            "field": "corporationID",
             "description": "<p>Limit to a specific corporationID</p>"
           },
           {
@@ -2367,7 +2440,7 @@
             "group": "Parameter",
             "type": "Integer",
             "optional": true,
-            "field": "corporationId",
+            "field": "corporationID",
             "description": "<p>Limit to a specific corporationID</p>"
           },
           {
@@ -2547,7 +2620,7 @@
             "group": "Parameter",
             "type": "Integer",
             "optional": true,
-            "field": "corporationId",
+            "field": "corporationID",
             "description": "<p>Limit to a specific corporationID</p>"
           },
           {
@@ -2741,7 +2814,7 @@
             "group": "Parameter",
             "type": "Integer",
             "optional": true,
-            "field": "corporationId",
+            "field": "corporationID",
             "description": "<p>Limit to a specific corporationID</p>"
           },
           {
@@ -2928,7 +3001,7 @@
             "group": "Parameter",
             "type": "Integer",
             "optional": true,
-            "field": "corporationId",
+            "field": "corporationID",
             "description": "<p>Limit to a specific corporationID</p>"
           },
           {
@@ -3935,6 +4008,26 @@
     ],
     "filename": "config/routes/api.php",
     "groupTitle": "tools"
+  },
+  {
+    "type": "get",
+    "url": "/war/count/",
+    "title": "Total amount of wars in the system",
+    "version": "0.1.2",
+    "name": "count",
+    "group": "war",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/war/count/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "war"
   },
   {
     "type": "get",

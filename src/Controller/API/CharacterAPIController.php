@@ -76,5 +76,4 @@ class CharacterAPIController
         $results = $this->app->Search->search($searchTerm, "character");
         render("", $results, null, $this->contentType);
     }
-
 }

@@ -89,7 +89,7 @@ foreach ($configFiles as $configFile) {
 }
 
 // Try and auto login the person
-$app->Users->tryAutologin();
+$app->Users->tryAutoLogin();
 
 // Run app
 $app->run();

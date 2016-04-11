@@ -64,8 +64,7 @@ class Db
         $this->statsd = $app->StatsD;
 
         if ($this->persistence === false) $this->cache->persistence = false;
-
-        // @todo - fix host and unixsocket stuff so it can actually be defined in the config
+        
         $host = $app->baseConfig->getConfig("unixSocket", "database", null) ? ";unix_socket=" . $app->baseConfig->getConfig("unixSocket", "database", "/var/run/mysqld/mysqld.sock") : ";host=" . $app->baseConfig->getConfig("host", "database", "127.0.0.1");
         $dsn = 'mysql:dbname=' . $app->baseConfig->getConfig('name', 'database') . "$host;charset=utf8";
         try {

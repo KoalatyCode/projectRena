@@ -350,6 +350,19 @@ $app->group("/api", function () use ($app) {
         });
 
         /**
+         * @api {get} /character/count/ Total amount of characters in the system
+         * @apiVersion 0.1.2
+         * @apiName count
+         * @apiGroup character
+         * @apiPermission public
+         * @apiSampleRequest /api/character/count/
+         */
+        $app->get("/count/", function () use ($app) {
+            $results = $app->Db->queryRow("SELECT COUNT(*) as count FROM characters");
+            render("", $results, null, "application/json");
+        });
+
+        /**
          * @api {get} /character/information/:characterID/ Show information for a single character
          * @apiVersion 0.1.2
          * @apiName Information
@@ -387,6 +400,19 @@ $app->group("/api", function () use ($app) {
          */
         $app->get("/", function () use ($app) {
             render("", $app->apiDoc["corporation"], null, "application/json");
+        });
+
+        /**
+         * @api {get} /corporation/count/ Total amount of corporations in the system
+         * @apiVersion 0.1.2
+         * @apiName count
+         * @apiGroup corporation
+         * @apiPermission public
+         * @apiSampleRequest /api/corporation/count/
+         */
+        $app->get("/count/", function () use ($app) {
+            $results = $app->Db->queryRow("SELECT COUNT(*) as count FROM corporations");
+            render("", $results, null, "application/json");
         });
 
         /**
@@ -440,6 +466,19 @@ $app->group("/api", function () use ($app) {
          */
         $app->get("/", function () use ($app) {
             render("", $app->apiDoc["alliance"], null, "application/json");
+        });
+
+        /**
+         * @api {get} /alliance/count/ Total amount of alliances in the system
+         * @apiVersion 0.1.2
+         * @apiName count
+         * @apiGroup alliance
+         * @apiPermission public
+         * @apiSampleRequest /api/alliance/count/
+         */
+        $app->get("/count/", function () use ($app) {
+            $results = $app->Db->queryRow("SELECT COUNT(*) as count FROM alliances");
+            render("", $results, null, "application/json");
         });
 
         /**
@@ -656,6 +695,19 @@ $app->group("/api", function () use ($app) {
         });
 
         /**
+         * @api {get} /kill/count/ Total amount of kills in the system
+         * @apiVersion 0.1.2
+         * @apiName count
+         * @apiGroup kill
+         * @apiPermission public
+         * @apiSampleRequest /api/kill/count/
+         */
+        $app->get("/count/", function () use ($app) {
+            $results = $app->Db->queryRow("SELECT COUNT(*) as count FROM killmails");
+            render("", $results, null, "application/json");
+        });
+
+        /**
          * @api {get} /kill/mail/:killID/ List a single killmails data
          * @apiVersion 0.1.2
          * @apiName killmail
@@ -692,7 +744,7 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
          * @apiParam {Integer} [regionID] Limit to a specific regionID
          * @apiParam {Integer} [characterID] Limit to a specific characterID
-         * @apiParam {Integer} [corporationId] Limit to a specific corporationID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
          * @apiParam {Integer} [allianceID] Limit to a specific allianceID
          * @apiParam {Integer} [factionID] Limit to a specific factionID
          * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
@@ -728,7 +780,7 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
          * @apiParam {Integer} [regionID] Limit to a specific regionID
          * @apiParam {Integer} [characterID] Limit to a specific characterID
-         * @apiParam {Integer} [corporationId] Limit to a specific corporationID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
          * @apiParam {Integer} [allianceID] Limit to a specific allianceID
          * @apiParam {Integer} [factionID] Limit to a specific factionID
          * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
@@ -764,7 +816,7 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
          * @apiParam {Integer} [regionID] Limit to a specific regionID
          * @apiParam {Integer} [characterID] Limit to a specific characterID
-         * @apiParam {Integer} [corporationId] Limit to a specific corporationID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
          * @apiParam {Integer} [allianceID] Limit to a specific allianceID
          * @apiParam {Integer} [factionID] Limit to a specific factionID
          * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
@@ -800,7 +852,7 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
          * @apiParam {Integer} [regionID] Limit to a specific regionID
          * @apiParam {Integer} [characterID] Limit to a specific characterID
-         * @apiParam {Integer} [corporationId] Limit to a specific corporationID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
          * @apiParam {Integer} [allianceID] Limit to a specific allianceID
          * @apiParam {Integer} [factionID] Limit to a specific factionID
          * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
@@ -836,7 +888,7 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
          * @apiParam {Integer} [regionID] Limit to a specific regionID
          * @apiParam {Integer} [characterID] Limit to a specific characterID
-         * @apiParam {Integer} [corporationId] Limit to a specific corporationID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
          * @apiParam {Integer} [allianceID] Limit to a specific allianceID
          * @apiParam {Integer} [factionID] Limit to a specific factionID
          * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
@@ -872,7 +924,7 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
          * @apiParam {Integer} [regionID] Limit to a specific regionID
          * @apiParam {Integer} [characterID] Limit to a specific characterID
-         * @apiParam {Integer} [corporationId] Limit to a specific corporationID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
          * @apiParam {Integer} [allianceID] Limit to a specific allianceID
          * @apiParam {Integer} [factionID] Limit to a specific factionID
          * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
@@ -908,7 +960,7 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
          * @apiParam {Integer} [regionID] Limit to a specific regionID
          * @apiParam {Integer} [characterID] Limit to a specific characterID
-         * @apiParam {Integer} [corporationId] Limit to a specific corporationID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
          * @apiParam {Integer} [allianceID] Limit to a specific allianceID
          * @apiParam {Integer} [factionID] Limit to a specific factionID
          * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
@@ -944,7 +996,7 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
          * @apiParam {Integer} [regionID] Limit to a specific regionID
          * @apiParam {Integer} [characterID] Limit to a specific characterID
-         * @apiParam {Integer} [corporationId] Limit to a specific corporationID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
          * @apiParam {Integer} [allianceID] Limit to a specific allianceID
          * @apiParam {Integer} [factionID] Limit to a specific factionID
          * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
@@ -980,7 +1032,7 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
          * @apiParam {Integer} [regionID] Limit to a specific regionID
          * @apiParam {Integer} [characterID] Limit to a specific characterID
-         * @apiParam {Integer} [corporationId] Limit to a specific corporationID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
          * @apiParam {Integer} [allianceID] Limit to a specific allianceID
          * @apiParam {Integer} [factionID] Limit to a specific factionID
          * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
@@ -1016,7 +1068,7 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
          * @apiParam {Integer} [regionID] Limit to a specific regionID
          * @apiParam {Integer} [characterID] Limit to a specific characterID
-         * @apiParam {Integer} [corporationId] Limit to a specific corporationID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
          * @apiParam {Integer} [allianceID] Limit to a specific allianceID
          * @apiParam {Integer} [factionID] Limit to a specific factionID
          * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
@@ -1052,7 +1104,7 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
          * @apiParam {Integer} [regionID] Limit to a specific regionID
          * @apiParam {Integer} [characterID] Limit to a specific characterID
-         * @apiParam {Integer} [corporationId] Limit to a specific corporationID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
          * @apiParam {Integer} [allianceID] Limit to a specific allianceID
          * @apiParam {Integer} [factionID] Limit to a specific factionID
          * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
@@ -1088,7 +1140,7 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
          * @apiParam {Integer} [regionID] Limit to a specific regionID
          * @apiParam {Integer} [characterID] Limit to a specific characterID
-         * @apiParam {Integer} [corporationId] Limit to a specific corporationID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
          * @apiParam {Integer} [allianceID] Limit to a specific allianceID
          * @apiParam {Integer} [factionID] Limit to a specific factionID
          * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
@@ -1125,7 +1177,7 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
          * @apiParam {Integer} [regionID] Limit to a specific regionID
          * @apiParam {Integer} [characterID] Limit to a specific characterID
-         * @apiParam {Integer} [corporationId] Limit to a specific corporationID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
          * @apiParam {Integer} [allianceID] Limit to a specific allianceID
          * @apiParam {Integer} [factionID] Limit to a specific factionID
          * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
@@ -1456,6 +1508,19 @@ $app->group("/api", function () use ($app) {
          */
         $app->get("/", function () use ($app) {
             render("", $app->apiDoc["wars"], null, "application/json");
+        });
+
+        /**
+         * @api {get} /war/count/ Total amount of wars in the system
+         * @apiVersion 0.1.2
+         * @apiName count
+         * @apiGroup war
+         * @apiPermission public
+         * @apiSampleRequest /api/war/count/
+         */
+        $app->get("/count/", function () use ($app) {
+            $results = $app->Db->queryRow("SELECT COUNT(*) as count FROM wars");
+            render("", $results, null, "application/json");
         });
 
         /**

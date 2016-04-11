@@ -91,7 +91,7 @@ class Users
     /**
      * Tries to autologin the person
      */
-    public function tryAutologin()
+    public function tryAutoLogin()
     {
         $cookieName = $this->config->getConfig("name", "cookies");
         $cookieData = $this->app->getEncryptedCookie($cookieName, false);
