@@ -70,4 +70,11 @@ class CharacterAPIController
         $data["history"] = json_decode($data["history"], true);
         render("", $data, null, $this->contentType);
     }
+
+    public function findCharacter($searchTerm)
+    {
+        $results = $this->app->Search->search($searchTerm, "character");
+        render("", $results, null, $this->contentType);
+    }
+
 }

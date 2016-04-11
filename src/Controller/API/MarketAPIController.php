@@ -6,7 +6,7 @@ use ProjectRena\RenaApp;
 /**
  * Functions for the API
  */
-class FactionAPIController
+class MarketAPIController
 {
 
     /**
@@ -64,10 +64,15 @@ class FactionAPIController
         $this->contentType = "application/json";
     }
 
-    public function findFaction($searchTerm)
+    public function getItemValue($itemID)
     {
-        $results = $this->app->Search->search($searchTerm, "faction");
-        render("", $results, null, $this->contentType);
+        $data = $this->db->query("SELECT id, typeID, AVG(avgSell) AS avgSell, AVG(avgBuy) as avgBuy, AVG(lowSell) as lowSell, AVG(lowBuy) as lowBuy, AVG(highSell) as highSell, AVG(highBuy) as highBuy, DATE_FORMAT(created, '%Y-%m-%d') AS created FROM invPrices WHERE typeID = :typeID ORDER BY created DESC LIMIT 1", array(":typeID" => $itemID));
+        render("", $data, null, $this->contentType);
     }
 
+    public function getItemValues($itemID)
+    {
+        $data = $this->db->query("SELECT id, typeID, AVG(avgSell) AS avgSell, AVG(avgBuy) as avgBuy, AVG(lowSell) as lowSell, AVG(lowBuy) as lowBuy, AVG(highSell) as highSell, AVG(highBuy) as highBuy, DATE_FORMAT(created, '%Y-%m-%d') AS created FROM invPrices WHERE typeID = :typeID GROUP BY YEAR(created), MONTH(created), DAY(created) ORDER BY created DESC", array(":typeID" => $itemID));
+        render("", $data, null, $this->contentType);
+    }
 }

@@ -78,12 +78,12 @@ class CrestFunctions
 
         $attackers = $killData["attackers"];
         $attacker = null;
-        if($attackers != null)
-            foreach($attackers as $attackerData)
-                if($attackerData["finalBlow"] != 0)
+        if ($attackers != null)
+            foreach ($attackers as $attackerData)
+                if ($attackerData["finalBlow"] != 0)
                     $attacker = $attackerData;
 
-        if($attacker == null)
+        if ($attacker == null)
             $attacker = $attackers[0];
 
         $attackerID = $attacker["characterID"] == 0 ? "None" : $attacker["characterID"];
@@ -153,7 +153,7 @@ class CrestFunctions
     {
         $aggressors = array();
 
-        if(is_array($attackers)) {
+        if (is_array($attackers)) {
             foreach ($attackers as $attacker) {
                 $aggressor = array();
                 $aggressor["characterID"] = (int)@$attacker["character"]["id"];
@@ -185,7 +185,7 @@ class CrestFunctions
     {
         $itemsArray = array();
 
-        if(is_array($items)) {
+        if (is_array($items)) {
             foreach ($items as $item) {
                 $i = array();
                 $i["typeID"] = (int)@$item["itemType"]["id"];

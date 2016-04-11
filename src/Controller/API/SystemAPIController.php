@@ -6,7 +6,7 @@ use ProjectRena\RenaApp;
 /**
  * Functions for the API
  */
-class FactionAPIController
+class SystemAPIController
 {
 
     /**
@@ -64,9 +64,15 @@ class FactionAPIController
         $this->contentType = "application/json";
     }
 
-    public function findFaction($searchTerm)
+    public function systemInformation($solarSystemID)
     {
-        $results = $this->app->Search->search($searchTerm, "faction");
+        $data = $this->app->mapSolarSystems->getAllByID($solarSystemID);
+        render("", $data, null, $this->contentType);
+    }
+    
+    public function findSystem($searchTerm)
+    {
+        $results = $this->app->Search->search($searchTerm, "system");
         render("", $results, null, $this->contentType);
     }
 

@@ -38,7 +38,7 @@ class upgradeKillmail
         // Fetch the killmail data and lets get going with upgrading it!
         $killData = $this->app->Db->queryRow("SELECT * FROM killmails WHERE killID = :killID", array(":killID" => $killID), 0);
         $killHash = $killData["hash"];
-        $killData = json_decode($killData["kill_json"], true);
+        //$killData = json_decode($killData["kill_json"], true);
 
         // refetch it from CREST unless CREST bugs out
         $killMail = json_decode($this->app->cURL->getData("https://public-crest.eveonline.com/killmails/{$killID}/{$killHash}/"), true);
@@ -71,6 +71,7 @@ class upgradeKillmail
         $nk["fittingValue"] = (float)$killValues["itemValue"];
         $nk["totalValue"] = (float)$killValues["totalValue"];
         $nk["dna"] = $this->getDNA($killData["items"], $killData["victim"]["shipTypeID"]);
+        $nk["crestHash"] = $killHash;
 
         // Victim Data
         $nk["victim"]["x"] = (float)$killData["victim"]["x"];

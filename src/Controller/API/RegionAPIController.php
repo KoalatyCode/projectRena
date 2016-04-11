@@ -6,7 +6,7 @@ use ProjectRena\RenaApp;
 /**
  * Functions for the API
  */
-class FactionAPIController
+class RegionAPIController
 {
 
     /**
@@ -64,9 +64,15 @@ class FactionAPIController
         $this->contentType = "application/json";
     }
 
-    public function findFaction($searchTerm)
+    public function regionInformation($regionID)
     {
-        $results = $this->app->Search->search($searchTerm, "faction");
+        $data = $this->app->mapRegions->getAllByRegionID($regionID);
+        render("", $data, null, $this->contentType);
+    }
+
+    public function findRegion($searchTerm)
+    {
+        $results = $this->app->Search->search($searchTerm, "region");
         render("", $results, null, $this->contentType);
     }
 

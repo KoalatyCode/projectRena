@@ -76,4 +76,10 @@ class AllianceAPIController
         $data = $this->app->alliances->getMembersByID($allianceID);
         render("", $data, null, $this->contentType);
     }
+
+    public function findAlliance($searchTerm)
+    {
+        $results = $this->app->Search->search($searchTerm, "alliance");
+        render("", $results, null, $this->contentType);
+    }
 }

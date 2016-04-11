@@ -76,4 +76,11 @@ class CorporationAPIController
         $data = $this->app->corporations->getMembersByID($corporationID);
         render("", $data, null, $this->contentType);
     }
+
+    public function findCorporation($searchTerm)
+    {
+        $results = $this->app->Search->search($searchTerm, "corporation");
+        render("", $results, null, $this->contentType);
+    }
+
 }

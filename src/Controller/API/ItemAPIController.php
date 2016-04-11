@@ -6,7 +6,7 @@ use ProjectRena\RenaApp;
 /**
  * Functions for the API
  */
-class FactionAPIController
+class ItemAPIController
 {
 
     /**
@@ -64,9 +64,15 @@ class FactionAPIController
         $this->contentType = "application/json";
     }
 
-    public function findFaction($searchTerm)
+    public function itemInformation($itemID)
     {
-        $results = $this->app->Search->search($searchTerm, "faction");
+        $data = $this->app->invTypes->getAllByID($itemID);
+        render("", $data, null, $this->contentType);
+    }
+    
+    public function findItem($searchTerm)
+    {
+        $results = $this->app->Search->search($searchTerm, "item");
         render("", $results, null, $this->contentType);
     }
 

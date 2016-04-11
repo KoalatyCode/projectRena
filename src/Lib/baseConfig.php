@@ -1,4 +1,5 @@
 <?php
+
 namespace ProjectRena\Lib;
 
 class baseConfig

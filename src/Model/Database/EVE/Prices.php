@@ -83,7 +83,7 @@ class Prices
      */
     public function calculateKillValue($killData)
     {
-        if(!empty($killData["items"]) || !isset($killData["items"]))
+        if(empty($killData["items"]) || !isset($killData["items"]))
             return array("itemValue" => 0, "shipValue" => 0, "totalValue" => 0);
 
         $items = $killData["items"];

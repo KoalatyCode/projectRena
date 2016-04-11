@@ -24,6 +24,7 @@ if (file_exists(__DIR__ . "/config/config.php")) {
 // Init Slim
 $app = new \ProjectRena\RenaApp($config["slim"]);
 
+header("Access-Control-Allow-Origin: *");
 // Start the timer
 $app->timer = new \ProjectRena\Lib\Timer();
 
