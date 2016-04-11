@@ -120,6 +120,17 @@ class KillAPIController
         return $returnArray;
     }
 
+    public function last100Kills()
+    {
+        $kills = $this->db->query("SELECT killID FROM participants GROUP BY killID ORDER BY killTime DESC LIMIT 100", array(), 60);
+        $killIDs = array();
+        foreach($kills as $kid)
+            $killIDs[] = $kid["killID"];
+
+        $data = $this->app->killmails->getKill_jsonByKillIDs($killIDs);
+        render("", $data, null, $this->contentType);
+    }
+
     public function solarSystemKills($solarSystemID, $parameters) {
         // Convert the url to an array of parameters
         $parameters = $this->urlToArrayConverter($parameters);

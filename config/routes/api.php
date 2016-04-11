@@ -1,6 +1,6 @@
 <?php
 
-$app->apiDoc =  array(
+$app->apiDoc = array(
     "character" => array(
         "information" => array(
             "method" => "GET",
@@ -101,6 +101,11 @@ $app->apiDoc =  array(
             "description" => "Get a single killmails data for a certain killID",
             "url" => $app->request->getUrl() . "/api/kill/mail/:killID/"
         ),
+        "latest" => array(
+            "method" => "GET",
+            "description" => "Returns the last 100 kills done",
+            "url" => $app->request->getUrl() . "/api/kill/latest/"
+        ),
         "solarSystem" => array(
             "method" => "GET",
             "description" => "Get kills for a solarSystem",
@@ -171,6 +176,73 @@ $app->apiDoc =  array(
             "example" => $app->request->getUrl() . "/api/kill/weaponType/2905/",
             "url" => $app->request->getUrl() . "/api/kill/weaponType/:weaponTypeID/(:extraParameters+)/"
         )
+    ),
+    "stats" => array(
+        "top10Characters" => array(
+            "method" => "GET",
+            "description" => "Shows the Top 10 Characters for the last 7 days",
+            "url" => $app->request->getUrl() . "/api/stats/top10Characters/"
+        ),
+        "top10Corporations" => array(
+            "method" => "GET",
+            "description" => "Shows the Top 10 Corporations for the last 7 days",
+            "url" => $app->request->getUrl() . "/api/stats/top10Corporations/"
+        ),
+        "top10Alliances" => array(
+            "method" => "GET",
+            "description" => "Shows the Top 10 Alliances for the last 7 days",
+            "url" => $app->request->getUrl() . "/api/stats/top10Alliances/"
+        ),
+        "top10ShipTypes" => array(
+            "method" => "GET",
+            "description" => "Shows the Top 10 Ship Types for the last 7 days",
+            "url" => $app->request->getUrl() . "/api/stats/top10ShipTypes/"
+        ),
+        "top10SolarSystems" => array(
+            "method" => "GET",
+            "description" => "Shows the Top 10 Solar Systems for the last 7 days",
+            "url" => $app->request->getUrl() . "/api/stats/top10SolarSystems/"
+        ),
+        "top10Regions" => array(
+            "method" => "GET",
+            "description" => "Shows the Top 10 Regions for the last 7 days",
+            "url" => $app->request->getUrl() . "/api/stats/top10Regions/"
+        ),
+        "mostValuableKillsLast7Days" => array(
+            "method" => "GET",
+            "description" => "5 Most valuable kills over the last 7 days",
+            "url" => $app->request->getUrl() . "/api/stats/mostValuableKillsLast7Days/"
+        ),
+        "sevenDayKillCount" => array(
+            "method" => "GET",
+            "description" => "Kills done over the last 7 days",
+            "url" => $app->request->getUrl() . "/api/stats/sevenDayKillCount/"
+        ),
+        "currentlyActiveCharacters" => array(
+            "method" => "GET",
+            "description" => "Amount of active characters over the last 7 days",
+            "url" => $app->request->getUrl() . "/api/stats/currentlyActiveCharacters/"
+        ),
+        "currentlyActiveCorporations" => array(
+            "method" => "GET",
+            "description" => "Amount of active corporations over the last 7 days",
+            "url" => $app->request->getUrl() . "/api/stats/currentlyActiveCorporations/"
+        ),
+        "currentlyActiveAlliances" => array(
+            "method" => "GET",
+            "description" => "Amount of active alliances over the last 7 days",
+            "url" => $app->request->getUrl() . "/api/stats/currentlyActiveAlliances/"
+        ),
+        "currentlyActiveShipTypes" => array(
+            "method" => "GET",
+            "description" => "Amount of active ship types over the last 7 days",
+            "url" => $app->request->getUrl() . "/api/stats/currentlyActiveShipTypes/"
+        ),
+        "currentlyActiveSolarSystems" => array(
+            "method" => "GET",
+            "description" => "Amount of active solar systems over the last 7 days",
+            "url" => $app->request->getUrl() . "/api/stats/currentlyActiveSolarSystems/"
+        ),
     ),
     "search" => array(
         "faction" => array(
@@ -245,7 +317,7 @@ $app->group("/api", function () use ($app) {
     });
 
     $app->group("/character", function () use ($app) {
-        $app->get("/", function() use ($app) {
+        $app->get("/", function () use ($app) {
             render("", $app->apiDoc["character"], null, "application/json");
         });
 
@@ -259,7 +331,7 @@ $app->group("/api", function () use ($app) {
     });
 
     $app->group("/corporation", function () use ($app) {
-        $app->get("/", function() use ($app) {
+        $app->get("/", function () use ($app) {
             render("", $app->apiDoc["corporation"], null, "application/json");
         });
         $app->get("/information/:corporationID/", function ($corporationID) use ($app) {
@@ -274,7 +346,7 @@ $app->group("/api", function () use ($app) {
     });
 
     $app->group("/alliance", function () use ($app) {
-        $app->get("/", function() use ($app) {
+        $app->get("/", function () use ($app) {
             render("", $app->apiDoc["alliance"], null, "application/json");
         });
         $app->get("/information/:allianceID/", function ($allianceID) use ($app) {
@@ -289,7 +361,7 @@ $app->group("/api", function () use ($app) {
     });
 
     $app->group("/item", function () use ($app) {
-        $app->get("/", function() use ($app) {
+        $app->get("/", function () use ($app) {
             render("", $app->apiDoc["item"], null, "application/json");
         });
         $app->get("/information/:itemID/", function ($itemID) use ($app) {
@@ -301,7 +373,7 @@ $app->group("/api", function () use ($app) {
     });
 
     $app->group("/system", function () use ($app) {
-        $app->get("/", function() use ($app) {
+        $app->get("/", function () use ($app) {
             render("", $app->apiDoc["system"], null, "application/json");
         });
         $app->get("/information/:systemID/", function ($systemID) use ($app) {
@@ -313,7 +385,7 @@ $app->group("/api", function () use ($app) {
     });
 
     $app->group("/region", function () use ($app) {
-        $app->get("/", function() use ($app) {
+        $app->get("/", function () use ($app) {
             render("", $app->apiDoc["region"], null, "application/json");
         });
         $app->get("/information/:regionID/", function ($regionID) use ($app) {
@@ -325,7 +397,7 @@ $app->group("/api", function () use ($app) {
     });
 
     $app->group("/celestial", function () use ($app) {
-        $app->get("/", function() use ($app) {
+        $app->get("/", function () use ($app) {
             render("", $app->apiDoc["celestial"], null, "application/json");
         });
         $app->get("/information/:systemID/", function ($systemID) use ($app) {
@@ -341,11 +413,15 @@ $app->group("/api", function () use ($app) {
     });
 
     $app->group("/kill", function () use ($app) {
-        $app->get("/", function() use ($app) {
+        $app->get("/", function () use ($app) {
             render("", $app->apiDoc["kill"], null, "application/json");
         });
         $app->get("/mail/:killID/", function ($killID) use ($app) {
             (new \ProjectRena\Controller\API\KillmailsAPIController($app))->killData($killID);
+        });
+
+        $app->get("/latest/", function () use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->last100Kills();
         });
 
         $app->get("/solarSystem/:solarSystemID/(:extraParameters+)", function ($solarSystemID, $parameters = array()) use ($app) {
@@ -390,8 +466,65 @@ $app->group("/api", function () use ($app) {
 
     });
 
+    $app->group("/stats", function () use ($app) {
+        $app->get("/", function () use ($app) {
+            render("", $app->apiDoc["stats"], null, "application/json");
+        });
+
+        $app->get("/top10Characters/", function () use ($app) {
+            (new \ProjectRena\Controller\API\StatsAPIController($app))->top10Characters();
+        });
+
+        $app->get("/top10Corporations/", function () use ($app) {
+            (new \ProjectRena\Controller\API\StatsAPIController($app))->top10Corporations();
+        });
+
+        $app->get("/top10Alliances/", function () use ($app) {
+            (new \ProjectRena\Controller\API\StatsAPIController($app))->top10Alliances();
+        });
+
+        $app->get("/top10ShipTypes/", function () use ($app) {
+            (new \ProjectRena\Controller\API\StatsAPIController($app))->top10ShipTypes();
+        });
+
+        $app->get("/top10SolarSystems/", function () use ($app) {
+            (new \ProjectRena\Controller\API\StatsAPIController($app))->top10SolarSystems();
+        });
+
+        $app->get("/top10Regions/", function () use ($app) {
+            (new \ProjectRena\Controller\API\StatsAPIController($app))->top10Regions();
+        });
+
+        $app->get("/mostValuableKillsLast7Days/", function () use ($app) {
+            (new \ProjectRena\Controller\API\StatsAPIController($app))->mostValuableKillsLast7Days();
+        });
+
+        $app->get("/sevenDayKillCount/", function () use ($app) {
+            (new \ProjectRena\Controller\API\StatsAPIController($app))->sevenDayKillCount();
+        });
+
+        $app->get("/currentlyActiveCharacters/", function () use ($app) {
+            (new \ProjectRena\Controller\API\StatsAPIController($app))->currentlyActiveCharacters();
+        });
+
+        $app->get("/currentlyActiveCorporations/", function () use ($app) {
+            (new \ProjectRena\Controller\API\StatsAPIController($app))->currentlyActiveCorporations();
+        });
+
+        $app->get("/currentlyActiveAlliances/", function () use ($app) {
+            (new \ProjectRena\Controller\API\StatsAPIController($app))->currentlyActiveAlliances();
+        });
+
+        $app->get("/currentlyActiveShipTypes/", function () use ($app) {
+            (new \ProjectRena\Controller\API\StatsAPIController($app))->currentlyActiveShipTypes();
+        });
+
+        $app->get("/currentlyActiveSolarSystems/", function () use ($app) {
+            (new \ProjectRena\Controller\API\StatsAPIController($app))->currentlyActiveSolarSystems();
+        });
+    });
     $app->group("/search", function () use ($app) {
-        $app->get("/", function() use ($app) {
+        $app->get("/", function () use ($app) {
             render("", $app->apiDoc["search"], null, "application/json");
         });
         $app->get("(/:type)/:query/", function ($searchType = null, $searchTerm = null) use ($app) {
@@ -403,7 +536,7 @@ $app->group("/api", function () use ($app) {
     });
 
     $app->group("/tools", function () use ($app) {
-        $app->get("/", function() use ($app) {
+        $app->get("/", function () use ($app) {
             render("", $app->apiDoc["tools"], null, "application/json");
         });
         $app->post("/calculateCrestHash/", function () use ($app) {
@@ -414,27 +547,27 @@ $app->group("/api", function () use ($app) {
         });
     });
 
-    $app->group("/wars", function() use ($app){
-        $app->get("/", function() use ($app) {
+    $app->group("/wars", function () use ($app) {
+        $app->get("/", function () use ($app) {
             render("", $app->apiDoc["wars"], null, "application/json");
         });
-        $app->get("/wars/", function() use ($app) {
+        $app->get("/wars/", function () use ($app) {
 
         });
-        $app->get("/kills/:warID/", function($warID) use ($app) {
+        $app->get("/kills/:warID/", function ($warID) use ($app) {
 
         });
     });
 
-    $app->group("/market", function() use ($app) {
-        $app->get("/", function() use ($app) {
+    $app->group("/market", function () use ($app) {
+        $app->get("/", function () use ($app) {
             render("", $app->apiDoc["market"], null, "application/json");
         });
-        $app->get("/price/:typeID/", function($typeID) use ($app) {
+        $app->get("/price/:typeID/", function ($typeID) use ($app) {
             (new \ProjectRena\Controller\API\MarketAPIController($app))->getItemValue($typeID);
         });
 
-        $app->get("/prices/:typeID/", function($typeID) use ($app) {
+        $app->get("/prices/:typeID/", function ($typeID) use ($app) {
             (new \ProjectRena\Controller\API\MarketAPIController($app))->getItemValues($typeID);
         });
     });
