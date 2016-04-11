@@ -381,4 +381,78 @@ class KillAPIController
         render("", $data, null, $this->contentType);
     }
 
+    public function afterDateKills($afterDate, $parameters) {
+        // Convert the url to an array of parameters
+        $parameters = $this->urlToArrayConverter($parameters);
+
+        // Get the limit, order and offset before we validate the parameters
+        $limit = isset($parameters["limit"]) ? (int) $parameters["limit"] > 100 ? 100 : (int) $parameters["limit"] : 100;
+        $order = isset($parameters["order"]) ? strtolower($parameters["order"]) == "asc" ? "asc" : "desc" : "desc";
+        $offset = isset($parameters["offset"]) ? (int) $parameters["offset"] : null;
+
+        // Validate the parameters
+        $parameters = $this->validateParameters($parameters);
+
+        // Fetch all the killIDs (and everything else too apparently, should probably cut it down?)
+        $killIDs = $this->app->participants->getAllKillsAfterDate($afterDate, $parameters, $limit, 3600, $order, $offset, "killID");
+
+        // Fetch all the JSON data for all the killIDs
+        $ids = array();
+        foreach($killIDs as $killID)
+            $ids[] = $killID["killID"];
+
+        $data = $this->app->killmails->getKill_jsonByKillIDs($ids);
+
+        render("", $data, null, $this->contentType);
+    }
+
+    public function beforeDateKills($beforeDate, $parameters) {
+        // Convert the url to an array of parameters
+        $parameters = $this->urlToArrayConverter($parameters);
+
+        // Get the limit, order and offset before we validate the parameters
+        $limit = isset($parameters["limit"]) ? (int) $parameters["limit"] > 100 ? 100 : (int) $parameters["limit"] : 100;
+        $order = isset($parameters["order"]) ? strtolower($parameters["order"]) == "asc" ? "asc" : "desc" : "desc";
+        $offset = isset($parameters["offset"]) ? (int) $parameters["offset"] : null;
+
+        // Validate the parameters
+        $parameters = $this->validateParameters($parameters);
+
+        // Fetch all the killIDs (and everything else too apparently, should probably cut it down?)
+        $killIDs = $this->app->participants->getAllKillsBeforeDate($beforeDate, $parameters, $limit, 3600, $order, $offset, "killID");
+
+        // Fetch all the JSON data for all the killIDs
+        $ids = array();
+        foreach($killIDs as $killID)
+            $ids[] = $killID["killID"];
+
+        $data = $this->app->killmails->getKill_jsonByKillIDs($ids);
+
+        render("", $data, null, $this->contentType);
+    }
+
+    public function betweenDateKills($beforeDate, $afterDate, $parameters) {
+        // Convert the url to an array of parameters
+        $parameters = $this->urlToArrayConverter($parameters);
+
+        // Get the limit, order and offset before we validate the parameters
+        $limit = isset($parameters["limit"]) ? (int) $parameters["limit"] > 100 ? 100 : (int) $parameters["limit"] : 100;
+        $order = isset($parameters["order"]) ? strtolower($parameters["order"]) == "asc" ? "asc" : "desc" : "desc";
+        $offset = isset($parameters["offset"]) ? (int) $parameters["offset"] : null;
+
+        // Validate the parameters
+        $parameters = $this->validateParameters($parameters);
+
+        // Fetch all the killIDs (and everything else too apparently, should probably cut it down?)
+        $killIDs = $this->app->participants->getAllKillsBetweenDates($beforeDate, $afterDate, $parameters, $limit, 3600, $order, $offset, "killID");
+
+        // Fetch all the JSON data for all the killIDs
+        $ids = array();
+        foreach($killIDs as $killID)
+            $ids[] = $killID["killID"];
+
+        $data = $this->app->killmails->getKill_jsonByKillIDs($ids);
+
+        render("", $data, null, $this->contentType);
+    }
 }

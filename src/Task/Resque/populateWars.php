@@ -28,7 +28,7 @@ class populateWars
         $warID = $data["id"];
         $timeDeclared = $data["timeDeclared"];
         $timeStarted = $data["timeStarted"];
-        $timeFinished = $data["timeFinished"];
+        $timeFinished = isset($data["timeFinished"]) ? $data["timeFinished"] : "0000-00-00 00:00:00";
         $openForAllies = $data["openForAllies"];
         $mutual = $data["mutual"];
         $aggressor = $data["aggressor"]["id"];
@@ -38,14 +38,14 @@ class populateWars
         $defenderShipsKilled = $data["defender"]["shipsKilled"];
         $defenderISKKilled = $data["defender"]["iskKilled"];
         $lastUpdated = date("Y-m-d H:i:s");
+        $killmailURL = $data["killmails"];
 
         $this->app->wars->insertWar($warID, $timeDeclared, $timeStarted, $timeFinished, $openForAllies, $mutual, $aggressor, $aggressorShipsKilled, $aggressorISKKilled, $defender, $defenderShipsKilled, $defenderISKKilled);
         $this->app->Db->execute("UPDATE wars SET lastUpdated = :lastUpdated WHERE warID = :warID", array(":lastUpdated" => $lastUpdated, ":warID" => $warID));
 
         // Throw the killmail url after the killmail populate task
         if($aggressorShipsKilled > 0 || $defenderShipsKilled > 0) {
-            $killmailURL = $data["killmails"];
-            \Resque::enqueue("default", "\\ProjectRena\\Task\\Resque\\populateWarKillmails", array("url" => $killmailURL, "warID" => $warID));
+            \Resque::enqueue("important", "\\ProjectRena\\Task\\Resque\\populateWarKillmails", array("url" => $killmailURL, "warID" => $warID));
         }
 
     }

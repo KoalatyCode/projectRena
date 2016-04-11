@@ -35,14 +35,16 @@ class populateWarsCronjob
             foreach($data["items"] as $war) {
                 // Figure out if it's already inserted, and if it has ended (or has zero kills)
                 $inserted = $app->wars->getWarByID($war["id"]);
-
+                
                 // If nothing is inserted we'll update
                 if (empty($inserted))
                     \Resque::enqueue("default", "\\ProjectRena\\Task\\Resque\\populateWars", array("url" => $war["href"]));
-
+                
                 $date = new DateTime("+36 hour");
                 $dateIn36Hours = $date->format("Y-m-d H:i:s");
-                if (!empty($inserted) && $inserted["lastUpdated"] > $dateIn36Hours)
+                
+                // If $inserted isn't empty, and the lastUpdated time was more than 36hours ago AND timeFinished isn't set, then we update
+                if (!empty($inserted) && $inserted["lastUpdated"] >= $dateIn36Hours && $inserted["timeFinished"] == "0000-00-00 00:00:00")
                     \Resque::enqueue("default", "\\ProjectRena\\Task\\Resque\\populateWars", array("url" => $war["href"]));
             }
             // Increment the currentPage variable, so we can fetch the next set of wars
@@ -59,7 +61,7 @@ class populateWarsCronjob
 
     public static function getRunTimes()
     {
-        return 0;
+        return 86400; // Set down to 2 hours
         // Never runs
     }
 }

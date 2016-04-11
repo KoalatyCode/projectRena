@@ -31,7 +31,7 @@ $app->timer = new \ProjectRena\Lib\Timer();
 // Set the 404 page
 $app->notFound(function() use ($app) {
     if(strstr($app->request()->getPath(), "/api/"))
-        render("", array("ErrorType" => "404", "ErrorMessage" => "Not Fonud"), null, "application/json");
+        render("", array("ErrorType" => "404", "ErrorMessage" => "Not Found"), null, "application/json");
     else
         render("404.twig");
 });
