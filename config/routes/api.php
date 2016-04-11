@@ -5,304 +5,304 @@ $app->apiDoc = array(
         "kills" => array(
             "method" => "wss",
             "description" => "Provides a steady stream of the latest killmails inserted into Rena",
-            "url" => "wss://ws.eve-kill.net/kills"
+            "href" => "wss://ws.eve-kill.net/kills"
         ),
         "echo" => array(
             "method" => "wss",
             "description" => "Echos back whatever is sent to it",
-            "url" => "wss://ws.eve-kill.net/echo"
+            "href" => "wss://ws.eve-kill.net/echo"
         ),
     ),
     "character" => array(
         "information" => array(
             "method" => "GET",
             "description" => "Get information for a character",
-            "url" => $app->request->getUrl() . "/api/character/information/:characterID/"
+            "href" => $app->request->getUrl() . "/api/character/information/:characterID/"
         ),
         "find" => array(
             "method" => "GET",
             "description" => "Look for a character with a certain name",
-            "url" => $app->request->getUrl() . "/api/character/find/:searchTerm/"
+            "href" => $app->request->getUrl() . "/api/character/find/:searchTerm/"
         )
     ),
     "corporation" => array(
         "information" => array(
             "method" => "GET",
             "description" => "Get information for a corporation",
-            "url" => $app->request->getUrl() . "/api/corporation/information/:corporationID/"
+            "href" => $app->request->getUrl() . "/api/corporation/information/:corporationID/"
         ),
         "members" => array(
             "method" => "GET",
             "description" => "Get a list of members of a corporation",
-            "url" => $app->request->getUrl() . "/api/corporation/members/:corporationID/"
+            "href" => $app->request->getUrl() . "/api/corporation/members/:corporationID/"
         ),
         "find" => array(
             "method" => "GET",
             "description" => "Look for a corporation with a certain name",
-            "url" => $app->request->getUrl() . "/api/corporation/find/:searchTerm/"
+            "href" => $app->request->getUrl() . "/api/corporation/find/:searchTerm/"
         )
     ),
     "alliance" => array(
         "information" => array(
             "method" => "GET",
             "description" => "Get information on an alliance",
-            "url" => $app->request->getUrl() . "/api/alliance/information/:allianceID/"
+            "href" => $app->request->getUrl() . "/api/alliance/information/:allianceID/"
         ),
         "members" => array(
             "method" => "GET",
             "description" => "Get a list of all members of an alliance and it's corporations",
-            "url" => $app->request->getUrl() . "/api/alliance/members/:allianceID/"
+            "href" => $app->request->getUrl() . "/api/alliance/members/:allianceID/"
         ),
         "find" => array(
             "method" => "GET",
             "description" => "Look for an alliance with a certain name",
-            "url" => $app->request->getUrl() . "/api/alliance/find/:searchTerm/"
+            "href" => $app->request->getUrl() . "/api/alliance/find/:searchTerm/"
         )
     ),
     "item" => array(
         "information" => array(
             "method" => "GET",
             "description" => "Show information for a single typeID",
-            "url" => $app->request->getUrl() . "/api/item/information/:itemID/"
+            "href" => $app->request->getUrl() . "/api/item/information/:itemID/"
         ),
         "find" => array(
             "method" => "GET",
             "description" => "Look for the typeID of an item with a certain name",
-            "url" => $app->request->getUrl() . "/api/item/find/:searchTerm/"
+            "href" => $app->request->getUrl() . "/api/item/find/:searchTerm/"
         )
     ),
     "system" => array(
         "information" => array(
             "method" => "GET",
             "description" => "Show information for a single solarSystemID",
-            "url" => $app->request->getUrl() . "/api/system/information/:solarSystemID/"
+            "href" => $app->request->getUrl() . "/api/system/information/:solarSystemID/"
         ),
         "find" => array(
             "method" => "GET",
             "description" => "Look for the solarSystemID of a solarSystem with a certain name",
-            "url" => $app->request->getUrl() . "/api/system/find/:searchTerm/"
+            "href" => $app->request->getUrl() . "/api/system/find/:searchTerm/"
         )
     ),
     "region" => array(
         "information" => array(
             "method" => "GET",
             "description" => "Show information for a single regionID",
-            "url" => $app->request->getUrl() . "/api/region/information/:regionID/"
+            "href" => $app->request->getUrl() . "/api/region/information/:regionID/"
         ),
         "find" => array(
             "method" => "GET",
             "description" => "Look for the regionID of a region with a certain name",
-            "url" => $app->request->getUrl() . "/api/region/find/:searchTerm/"
+            "href" => $app->request->getUrl() . "/api/region/find/:searchTerm/"
         )
     ),
     "celestial" => array(
         "information" => array(
             "method" => "GET",
             "description" => "List all celestials in a system with a certain solarSystemID",
-            "url" => $app->request->getUrl() . "/api/celestial/information/:solarSystemID/"
+            "href" => $app->request->getUrl() . "/api/celestial/information/:solarSystemID/"
         )
     ),
     "killmail" => array(
         "method" => "GET",
         "description" => "Get a single killmails data for a certain killID",
-        "url" => $app->request->getUrl() . "/api/killmail/:killID/"
+        "href" => $app->request->getUrl() . "/api/killmail/:killID/"
     ),
     "kill" => array(
         "mail" => array(
             "method" => "GET",
             "description" => "Get a single killmails data for a certain killID",
-            "url" => $app->request->getUrl() . "/api/kill/mail/:killID/"
+            "href" => $app->request->getUrl() . "/api/kill/mail/:killID/"
         ),
         "latest" => array(
             "method" => "GET",
             "description" => "Returns the last 100 kills done",
-            "url" => $app->request->getUrl() . "/api/kill/latest/"
+            "href" => $app->request->getUrl() . "/api/kill/latest/"
         ),
         "solarSystem" => array(
             "method" => "GET",
             "description" => "Get kills for a solarSystem",
             "validParameters" => array("killID", "killTime", "regionID", "characterID", "corporationID", "allianceID", "factionID", "shipTypeID", "groupID", "vGroupID", "weaponTypeID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
             "example" => $app->request->getUrl() . "/api/kill/solarSystem/30000142/characterID/95516434/",
-            "url" => $app->request->getUrl() . "/api/kill/solarSystem/:solarSystemID/(:extraParameters+)/"
+            "href" => $app->request->getUrl() . "/api/kill/solarSystem/:solarSystemID/(:extraParameters+)/"
         ),
         "region" => array(
             "method" => "GET",
             "description" => "Get kills for a region",
             "validParameters" => array("killID", "killTime", "solarSystemID", "characterID", "corporationID", "allianceID", "factionID", "shipTypeID", "groupID", "vGroupID", "weaponTypeID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
             "example" => $app->request->getUrl() . "/api/kill/region/10000043/",
-            "url" => $app->request->getUrl() . "/api/kill/region/:regionID/(:extraParameters+)/"
+            "href" => $app->request->getUrl() . "/api/kill/region/:regionID/(:extraParameters+)/"
         ),
         "character" => array(
             "method" => "GET",
             "description" => "Get kills for a character",
             "validParameters" => array("killID", "killTime", "solarSystemID", "regionID", "corporationID", "allianceID", "factionID", "shipTypeID", "groupID", "vGroupID", "weaponTypeID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
             "example" => $app->request->getUrl() . "/api/kill/character/95516434/",
-            "url" => $app->request->getUrl() . "/api/kill/character/:characterID/(:extraParameters+)/"
+            "href" => $app->request->getUrl() . "/api/kill/character/:characterID/(:extraParameters+)/"
         ),
         "corporation" => array(
             "method" => "GET",
             "description" => "Get kills for a corporation",
             "validParameters" => array("killID", "killTime", "solarSystemID", "regionID", "characterID", "allianceID", "factionID", "shipTypeID", "groupID", "vGroupID", "weaponTypeID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
             "example" => $app->request->getUrl() . "/api/kill/corporation/98442635/",
-            "url" => $app->request->getUrl() . "/api/kill/corporation/:corporationID/(:extraParameters+)/"
+            "href" => $app->request->getUrl() . "/api/kill/corporation/:corporationID/(:extraParameters+)/"
         ),
         "alliance" => array(
             "method" => "GET",
             "description" => "Get kills for a alliance",
             "validParameters" => array("killID", "killTime", "solarSystemID", "regionID", "characterID", "corporationID", "factionID", "shipTypeID", "groupID", "vGroupID", "weaponTypeID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
             "example" => $app->request->getUrl() . "/api/kill/alliance/99000554/",
-            "url" => $app->request->getUrl() . "/api/kill/alliance/:allianceID/(:extraParameters+)/"
+            "href" => $app->request->getUrl() . "/api/kill/alliance/:allianceID/(:extraParameters+)/"
         ),
         "faction" => array(
             "method" => "GET",
             "description" => "Get kills for a faction",
             "validParameters" => array("killID", "killTime", "solarSystemID", "regionID", "characterID", "corporationID", "allianceID", "shipTypeID", "groupID", "vGroupID", "weaponTypeID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
             "example" => $app->request->getUrl() . "/api/kill/faction/500019/",
-            "url" => $app->request->getUrl() . "/api/kill/faction/:factionID/(:extraParameters+)/"
+            "href" => $app->request->getUrl() . "/api/kill/faction/:factionID/(:extraParameters+)/"
         ),
         "shipType" => array(
             "method" => "GET",
             "description" => "Get kills for a shipType",
             "validParameters" => array("killID", "killTime", "solarSystemID", "regionID", "characterID", "corporationID", "allianceID", "factionID", "groupID", "vGroupID", "weaponTypeID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
             "example" => $app->request->getUrl() . "/api/kill/shipType/29990/",
-            "url" => $app->request->getUrl() . "/api/kill/shipType/:shipTypeID/(:extraParameters+)/"
+            "href" => $app->request->getUrl() . "/api/kill/shipType/:shipTypeID/(:extraParameters+)/"
         ),
         "group" => array(
             "method" => "GET",
             "description" => "Get kills for a group",
             "validParameters" => array("killID", "killTime", "solarSystemID", "regionID", "characterID", "corporationID", "allianceID", "factionID", "shipTypeID", "vGroupID", "weaponTypeID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
             "example" => $app->request->getUrl() . "/api/kill/group/29/",
-            "url" => $app->request->getUrl() . "/api/kill/group/:groupID/(:extraParameters+)/"
+            "href" => $app->request->getUrl() . "/api/kill/group/:groupID/(:extraParameters+)/"
         ),
         "vGroup" => array(
             "method" => "GET",
             "description" => "Get kills for a vGroup",
             "validParameters" => array("killID", "killTime", "solarSystemID", "regionID", "characterID", "corporationID", "allianceID", "factionID", "shipTypeID", "groupID", "weaponTypeID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
             "example" => $app->request->getUrl() . "/api/kill/vGroup/29/",
-            "url" => $app->request->getUrl() . "/api/kill/vGroup/:vGroupID/(:extraParameters+)/"
+            "href" => $app->request->getUrl() . "/api/kill/vGroup/:vGroupID/(:extraParameters+)/"
         ),
         "weaponType" => array(
             "method" => "GET",
             "description" => "Get kills for a weaponType",
             "validParameters" => array("killID", "killTime", "solarSystemID", "regionID", "characterID", "corporationID", "allianceID", "factionID", "shipTypeID", "groupID", "vGroupID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
             "example" => $app->request->getUrl() . "/api/kill/weaponType/2905/",
-            "url" => $app->request->getUrl() . "/api/kill/weaponType/:weaponTypeID/(:extraParameters+)/"
+            "href" => $app->request->getUrl() . "/api/kill/weaponType/:weaponTypeID/(:extraParameters+)/"
         )
     ),
     "stats" => array(
         "top10Characters" => array(
             "method" => "GET",
             "description" => "Shows the Top 10 Characters for the last 7 days",
-            "url" => $app->request->getUrl() . "/api/stats/top10Characters/"
+            "href" => $app->request->getUrl() . "/api/stats/top10Characters/"
         ),
         "top10Corporations" => array(
             "method" => "GET",
             "description" => "Shows the Top 10 Corporations for the last 7 days",
-            "url" => $app->request->getUrl() . "/api/stats/top10Corporations/"
+            "href" => $app->request->getUrl() . "/api/stats/top10Corporations/"
         ),
         "top10Alliances" => array(
             "method" => "GET",
             "description" => "Shows the Top 10 Alliances for the last 7 days",
-            "url" => $app->request->getUrl() . "/api/stats/top10Alliances/"
+            "href" => $app->request->getUrl() . "/api/stats/top10Alliances/"
         ),
         "top10ShipTypes" => array(
             "method" => "GET",
             "description" => "Shows the Top 10 Ship Types for the last 7 days",
-            "url" => $app->request->getUrl() . "/api/stats/top10ShipTypes/"
+            "href" => $app->request->getUrl() . "/api/stats/top10ShipTypes/"
         ),
         "top10SolarSystems" => array(
             "method" => "GET",
             "description" => "Shows the Top 10 Solar Systems for the last 7 days",
-            "url" => $app->request->getUrl() . "/api/stats/top10SolarSystems/"
+            "href" => $app->request->getUrl() . "/api/stats/top10SolarSystems/"
         ),
         "top10Regions" => array(
             "method" => "GET",
             "description" => "Shows the Top 10 Regions for the last 7 days",
-            "url" => $app->request->getUrl() . "/api/stats/top10Regions/"
+            "href" => $app->request->getUrl() . "/api/stats/top10Regions/"
         ),
         "mostValuableKillsLast7Days" => array(
             "method" => "GET",
             "description" => "5 Most valuable kills over the last 7 days",
-            "url" => $app->request->getUrl() . "/api/stats/mostValuableKillsLast7Days/"
+            "href" => $app->request->getUrl() . "/api/stats/mostValuableKillsLast7Days/"
         ),
         "sevenDayKillCount" => array(
             "method" => "GET",
             "description" => "Kills done over the last 7 days",
-            "url" => $app->request->getUrl() . "/api/stats/sevenDayKillCount/"
+            "href" => $app->request->getUrl() . "/api/stats/sevenDayKillCount/"
         ),
         "currentlyActiveCharacters" => array(
             "method" => "GET",
             "description" => "Amount of active characters over the last 7 days",
-            "url" => $app->request->getUrl() . "/api/stats/currentlyActiveCharacters/"
+            "href" => $app->request->getUrl() . "/api/stats/currentlyActiveCharacters/"
         ),
         "currentlyActiveCorporations" => array(
             "method" => "GET",
             "description" => "Amount of active corporations over the last 7 days",
-            "url" => $app->request->getUrl() . "/api/stats/currentlyActiveCorporations/"
+            "href" => $app->request->getUrl() . "/api/stats/currentlyActiveCorporations/"
         ),
         "currentlyActiveAlliances" => array(
             "method" => "GET",
             "description" => "Amount of active alliances over the last 7 days",
-            "url" => $app->request->getUrl() . "/api/stats/currentlyActiveAlliances/"
+            "href" => $app->request->getUrl() . "/api/stats/currentlyActiveAlliances/"
         ),
         "currentlyActiveShipTypes" => array(
             "method" => "GET",
             "description" => "Amount of active ship types over the last 7 days",
-            "url" => $app->request->getUrl() . "/api/stats/currentlyActiveShipTypes/"
+            "href" => $app->request->getUrl() . "/api/stats/currentlyActiveShipTypes/"
         ),
         "currentlyActiveSolarSystems" => array(
             "method" => "GET",
             "description" => "Amount of active solar systems over the last 7 days",
-            "url" => $app->request->getUrl() . "/api/stats/currentlyActiveSolarSystems/"
+            "href" => $app->request->getUrl() . "/api/stats/currentlyActiveSolarSystems/"
         ),
     ),
     "search" => array(
         "faction" => array(
             "method" => "GET",
             "description" => "Search for a faction with a certain name",
-            "url" => $app->request->getUrl() . "/api/search/faction/:searchTerm/"
+            "href" => $app->request->getUrl() . "/api/search/faction/:searchTerm/"
         ),
         "alliance" => array(
             "method" => "GET",
             "description" => "Search for an alliance with a certain name",
-            "url" => $app->request->getUrl() . "/api/search/alliance/:searchTerm/"
+            "href" => $app->request->getUrl() . "/api/search/alliance/:searchTerm/"
         ),
         "corporation" => array(
             "method" => "GET",
             "description" => "Search for a corporation with a certain name",
-            "url" => $app->request->getUrl() . "/api/search/corporation/:searchTerm/"
+            "href" => $app->request->getUrl() . "/api/search/corporation/:searchTerm/"
         ),
         "character" => array(
             "method" => "GET",
             "description" => "Search for a character with a certain name",
-            "url" => $app->request->getUrl() . "/api/search/character/:searchTerm/"
+            "href" => $app->request->getUrl() . "/api/search/character/:searchTerm/"
         ),
         "item" => array(
             "method" => "GET",
             "description" => "Search for an item with a certain name",
-            "url" => $app->request->getUrl() . "/api/search/item/:searchTerm/"
+            "href" => $app->request->getUrl() . "/api/search/item/:searchTerm/"
         ),
         "system" => array(
             "method" => "GET",
             "description" => "Search for a system with a certain name",
-            "url" => $app->request->getUrl() . "/api/search/system/:searchTerm/"
+            "href" => $app->request->getUrl() . "/api/search/system/:searchTerm/"
         ),
         "region" => array(
             "method" => "GET",
             "description" => "Search for a region with a certain name",
-            "url" => $app->request->getUrl() . "/api/search/region/:searchTerm/"
+            "href" => $app->request->getUrl() . "/api/search/region/:searchTerm/"
         ),
         "celestial" => array(
             "method" => "GET",
             "description" => "Search for a celestial with a certain name",
-            "url" => $app->request->getUrl() . "/api/search/celestial/:searchTerm/"
+            "href" => $app->request->getUrl() . "/api/search/celestial/:searchTerm/"
         ),
     ),
     "tools" => array(
         "calculateCrestHash" => array(
             "method" => "POST",
             "description" => "Post killmail data from a CREST style killmail, and receive the CREST Hash for said Killmail",
-            "url" => $app->request->getUrl() . "/api/tools/calculateCrestHash/"
+            "href" => $app->request->getUrl() . "/api/tools/calculateCrestHash/"
         )
     ),
     "wars" => array(
@@ -313,12 +313,12 @@ $app->apiDoc = array(
         "price" => array(
             "method" => "GET",
             "description" => "Get latest low/high/avg buy/sell prices for an itemID",
-            "url" => $app->request->getUrl() . "/api/market/price/:itemID/"
+            "href" => $app->request->getUrl() . "/api/market/price/:itemID/"
         ),
         "prices" => array(
             "method" => "GET",
             "description" => "Get daily low/high/avg buy/sell prices for an itemID, going back to the beginning",
-            "url" => $app->request->getUrl() . "/api/market/prices/:itemID/"
+            "href" => $app->request->getUrl() . "/api/market/prices/:itemID/"
         )
     ),
 );
@@ -1480,7 +1480,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/wars/wars/
          */
         $app->get("/wars/", function () use ($app) {
-
+            (new \ProjectRena\Controller\API\WarsAPIController($app))->listWars();
         });
 
         /**
@@ -1493,7 +1493,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/wars/kills/:warID/
          */
         $app->get("/kills/:warID/", function ($warID) use ($app) {
-
+            (new \ProjectRena\Controller\API\WarsAPIController($app))->listKillsFromWar($warID);
         });
     });
 

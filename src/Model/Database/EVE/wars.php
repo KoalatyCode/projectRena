@@ -70,7 +70,7 @@ class wars
      */
     public function getAllWars()
     {
-        return $this->app->Db->query("SELECT * FROM wars ORDER BY warID");
+        return $this->app->Db->query("SELECT * FROM wars ORDER BY warID", array(), 120);
     }
 
     /**
