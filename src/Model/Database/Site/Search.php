@@ -81,7 +81,7 @@ class Search
                 $multiSearch = $this->$lookIn("%" . $searchTerm . "%", $limit);
 
                 // Look for multiple results before going with one
-                if(count($multiSearch) > 1)
+                if(count($multiSearch) >= 1)
                     $searchArray[$lookIn] = $multiSearch;
                 else
                     $searchArray[$lookIn] = $singleSearch;
