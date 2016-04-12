@@ -125,6 +125,8 @@ class out
             )
         );
 
+        // Add the authorization token for the API into the headers for now.
+        $this->app->response->header("X-AuthorizationToken", $this->app->Users->getRenaApiTokenByCharacterID($_SESSION["characterID"]));
         $dataArray = array_merge($extraData, array("pageData" => $dataArray));
 
         $this->app->render($templateFile, $dataArray, $status);
