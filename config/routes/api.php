@@ -23,7 +23,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/character/count/
          */
         $app->get("/count/", function () use ($app) {
-            $results = $app->Db->queryRow("SELECT COUNT(*) as count FROM characters");
+            $results = $app->Db->queryRow("SELECT COUNT(*) AS count FROM characters");
             render("", $results, null, "application/json");
         });
 
@@ -64,7 +64,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/corporation/count/
          */
         $app->get("/count/", function () use ($app) {
-            $results = $app->Db->queryRow("SELECT COUNT(*) as count FROM corporations");
+            $results = $app->Db->queryRow("SELECT COUNT(*) AS count FROM corporations");
             render("", $results, null, "application/json");
         });
 
@@ -118,7 +118,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/alliance/count/
          */
         $app->get("/count/", function () use ($app) {
-            $results = $app->Db->queryRow("SELECT COUNT(*) as count FROM alliances");
+            $results = $app->Db->queryRow("SELECT COUNT(*) AS count FROM alliances");
             render("", $results, null, "application/json");
         });
 
@@ -261,7 +261,7 @@ $app->group("/api", function () use ($app) {
         });
     });
 
-    $app->group("/killmail", function() use ($app) {
+    $app->group("/killmail", function () use ($app) {
         /**
          * @api {get} /killmail/count/ Total amount of kills in the system
          * @apiVersion 0.1.2
@@ -271,20 +271,8 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/killmail/count/
          */
         $app->get("/count/", function () use ($app) {
-            $results = $app->Db->queryRow("SELECT COUNT(*) as count FROM killmails");
+            $results = $app->Db->queryRow("SELECT COUNT(*) AS count FROM killmails");
             render("", $results, null, "application/json");
-        });
-
-        /**
-         * @api {get} /killmail/latest/ Shows the 100 latest killmails
-         * @apiVersion 0.1.2
-         * @apiName kill
-         * @apiGroup killmail
-         * @apiPermission public
-         * @apiSampleRequest /api/killmail/latest/
-         */
-        $app->get("/latest/", function () use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->last100Kills();
         });
 
         /**
@@ -298,6 +286,166 @@ $app->group("/api", function () use ($app) {
          */
         $app->get("/kill/:killID/", function ($killID) use ($app) {
             (new \ProjectRena\Controller\API\KillmailsAPIController($app))->killData($killID);
+        });
+    });
+
+    $app->group("/killlist", function () use ($app) {
+        /**
+         * @api {get} /killlist/latest/ Shows the 100 latest killmails
+         * @apiVersion 0.1.2
+         * @apiName kill
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/latest/
+         */
+        $app->get("/latest/", function () use ($app) {
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->last100Kills();
+        });
+
+        /**
+         * @api {get} /killlist/bigkills/ Show the last 100 big kills (>5b in value)
+         * @apiVersion 0.1.2
+         * @apiName bigkills
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/bigkills/
+         */
+        $app->get("/bigkills/", function () use ($app) {
+
+        });
+
+        /**
+         * @api {get} /killlist/wspace/ Show the last 100 kills done in Wormhole space
+         * @apiVersion 0.1.2
+         * @apiName wspace
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/wspace/
+         */
+        $app->get("/wspace/", function () use ($app) {
+
+        });
+
+        /**
+         * @api {get} /killlist/highsec/ Show the last 100 kills done in high security space
+         * @apiVersion 0.1.2
+         * @apiName highsec
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/highsec/
+         */
+        $app->get("/highsec/", function () use ($app) {
+
+        });
+
+        /**
+         * @api {get} /killlist/lowsec/ Show the last 100 kills done in low security space
+         * @apiVersion 0.1.2
+         * @apiName lowsec
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/lowsec/
+         */
+        $app->get("/lowsec/", function () use ($app) {
+
+        });
+
+        /**
+         * @api {get} /killlist/nullsec/ Show the last 100 kills done in null security space
+         * @apiVersion 0.1.2
+         * @apiName nullsec
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/nullsec/
+         */
+        $app->get("/nullsec/", function () use ($app) {
+
+        });
+
+        /**
+         * @api {get} /killlist/solo/ Show the last 100 solo kills
+         * @apiVersion 0.1.2
+         * @apiName solo
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/solo/
+         */
+        $app->get("/solo/", function () use ($app) {
+
+        });
+
+        /**
+         * @api {get} /killlist/5b/ Show the last 100 kills with a value of minimum 5b isk
+         * @apiVersion 0.1.2
+         * @apiName 5b
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/5b/
+         */
+        $app->get("/5b/", function () use ($app) {
+
+        });
+
+        /**
+         * @api {get} /killlist/10b/ Show the last 100 kills with a value of minimum 10b isk
+         * @apiVersion 0.1.2
+         * @apiName 10b
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/10b/
+         */
+        $app->get("/10b/", function () use ($app) {
+
+        });
+
+        /**
+         * @api {get} /killlist/capitals/ Show the latest carrier kills
+         * @apiDescription FAX machines fall into this one aswell
+         * @apiVersion 0.1.2
+         * @apiName capitals
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/capitals/
+         */
+        $app->get("/capitals/", function () use ($app) {
+
+        });
+
+        /**
+         * @api {get} /killlist/freighters/ Show the latest freighter kills
+         * @apiDescription Rorq and Orca fall into this one aswell
+         * @apiVersion 0.1.2
+         * @apiName freighters
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/freighters/
+         */
+        $app->get("/freighters/", function () use ($app) {
+
+        });
+
+        /**
+         * @api {get} /killlist/supercarriers/ Show the latest super carrier kills
+         * @apiVersion 0.1.2
+         * @apiName supercarriers
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/supercarriers/
+         */
+        $app->get("/supercarriers/", function () use ($app) {
+
+        });
+
+        /**
+         * @api {get} /killlist/titans/ Show the latest titan kills
+         * @apiVersion 0.1.2
+         * @apiName titans
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/titans/
+         */
+        $app->get("/titans/", function () use ($app) {
+
         });
     });
 
@@ -335,7 +483,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/kills/solarSystem/:solarSystemID/
          */
         $app->get("/solarSystem/:solarSystemID/(:extraParameters+)", function ($solarSystemID, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->solarSystemKills($solarSystemID, $parameters);
+            (new \ProjectRena\Controller\API\KillsAPIController($app))->solarSystemKills($solarSystemID, $parameters);
         });
 
         /**
@@ -371,7 +519,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/kills/region/:regionID/
          */
         $app->get("/region/:regionID/(:extraParameters+)", function ($regionID, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->regionKills($regionID, $parameters);
+            (new \ProjectRena\Controller\API\KillsAPIController($app))->regionKills($regionID, $parameters);
         });
 
         /**
@@ -407,7 +555,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/kills/character/:characterID/
          */
         $app->get("/character/:characterID/(:extraParameters+)", function ($characterID, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->characterKills($characterID, $parameters);
+            (new \ProjectRena\Controller\API\KillsAPIController($app))->characterKills($characterID, $parameters);
         });
 
         /**
@@ -443,7 +591,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/kills/corporation/:corporationID/
          */
         $app->get("/corporation/:corporationID/(:extraParameters+)", function ($corporationID, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->corporationKills($corporationID, $parameters);
+            (new \ProjectRena\Controller\API\KillsAPIController($app))->corporationKills($corporationID, $parameters);
         });
 
         /**
@@ -479,7 +627,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/kills/alliance/:allianceID/
          */
         $app->get("/alliance/:allianceID/(:extraParameters+)", function ($allianceID, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->allianceKills($allianceID, $parameters);
+            (new \ProjectRena\Controller\API\KillsAPIController($app))->allianceKills($allianceID, $parameters);
         });
 
         /**
@@ -515,7 +663,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/kills/faction/:factionID/
          */
         $app->get("/faction/:factionID/(:extraParameters+)", function ($factionID, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->factionKills($factionID, $parameters);
+            (new \ProjectRena\Controller\API\KillsAPIController($app))->factionKills($factionID, $parameters);
         });
 
         /**
@@ -551,7 +699,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/kills/shipType/:shipTypeID/
          */
         $app->get("/shipType/:shipTypeID/(:extraParameters+)", function ($shipTypeID, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->shipTypeKills($shipTypeID, $parameters);
+            (new \ProjectRena\Controller\API\KillsAPIController($app))->shipTypeKills($shipTypeID, $parameters);
         });
 
         /**
@@ -587,7 +735,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/kills/group/:groupID/
          */
         $app->get("/group/:groupID/(:extraParameters+)", function ($groupID, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->groupKills($groupID, $parameters);
+            (new \ProjectRena\Controller\API\KillsAPIController($app))->groupKills($groupID, $parameters);
         });
 
         /**
@@ -623,7 +771,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/kills/vGroup/:vGroupID/
          */
         $app->get("/vGroup/:vGroupID/(:extraParameters+)", function ($vGroupID, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->vGroupKills($vGroupID, $parameters);
+            (new \ProjectRena\Controller\API\KillsAPIController($app))->vGroupKills($vGroupID, $parameters);
         });
 
         /**
@@ -659,7 +807,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/kills/weaponType/:weaponTypeID/
          */
         $app->get("/weaponType/:weaponTypeID/(:extraParameters+)", function ($weaponTypeID, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->weaponTypeKills($weaponTypeID, $parameters);
+            (new \ProjectRena\Controller\API\KillsAPIController($app))->weaponTypeKills($weaponTypeID, $parameters);
         });
 
         /**
@@ -695,7 +843,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/kills/afterDate/:afterDate/
          */
         $app->get("/afterDate/:afterDate/(:extraParameters+)", function ($afterDate, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->beforeDateKills($afterDate, $parameters);
+            (new \ProjectRena\Controller\API\KillsAPIController($app))->beforeDateKills($afterDate, $parameters);
         });
 
         /**
@@ -731,7 +879,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/kills/beforeDate/:beforeDate/
          */
         $app->get("/beforeDate/:beforeDate/(:extraParameters+)", function ($beforeDate, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->afterDateKills($beforeDate, $parameters);
+            (new \ProjectRena\Controller\API\KillsAPIController($app))->afterDateKills($beforeDate, $parameters);
         });
 
         /**
@@ -768,7 +916,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/kills/betweenDates/:afterDate/:beforeDate/
          */
         $app->get("/betweenDates/:afterDate/:beforeDate/(:extraParameters+)", function ($afterDate, $beforeDate, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->betweenDateKills($afterDate, $beforeDate, $parameters);
+            (new \ProjectRena\Controller\API\KillsAPIController($app))->betweenDateKills($afterDate, $beforeDate, $parameters);
         });
     });
 
@@ -806,7 +954,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/losses/character/:characterID/
          */
         $app->get("/character/:characterID/(:extraParameters+)", function ($characterID, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->characterLosses($characterID, $parameters);
+            (new \ProjectRena\Controller\API\LossesAPIController($app))->characterLosses($characterID, $parameters);
         });
 
         /**
@@ -842,7 +990,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/losses/corporation/:corporationID/
          */
         $app->get("/corporation/:corporationID/(:extraParameters+)", function ($corporationID, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->corporationLosses($corporationID, $parameters);
+            (new \ProjectRena\Controller\API\LossesAPIController($app))->corporationLosses($corporationID, $parameters);
         });
 
         /**
@@ -878,7 +1026,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/losses/alliance/:allianceID/
          */
         $app->get("/alliance/:allianceID/(:extraParameters+)", function ($allianceID, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->allianceLosses($allianceID, $parameters);
+            (new \ProjectRena\Controller\API\LossesAPIController($app))->allianceLosses($allianceID, $parameters);
         });
 
         /**
@@ -914,7 +1062,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/losses/faction/:factionID/
          */
         $app->get("/faction/:factionID/(:extraParameters+)", function ($factionID, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->factionLosses($factionID, $parameters);
+            (new \ProjectRena\Controller\API\LossesAPIController($app))->factionLosses($factionID, $parameters);
         });
 
         /**
@@ -950,7 +1098,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/losses/shipType/:shipTypeID/
          */
         $app->get("/shipType/:shipTypeID/(:extraParameters+)", function ($shipTypeID, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->shipTypeLosses($shipTypeID, $parameters);
+            (new \ProjectRena\Controller\API\LossesAPIController($app))->shipTypeLosses($shipTypeID, $parameters);
         });
 
         /**
@@ -986,7 +1134,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/losses/group/:groupID/
          */
         $app->get("/group/:groupID/(:extraParameters+)", function ($groupID, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->groupLosses($groupID, $parameters);
+            (new \ProjectRena\Controller\API\LossesAPIController($app))->groupLosses($groupID, $parameters);
         });
 
         /**
@@ -1022,7 +1170,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/losses/vGroup/:vGroupID/
          */
         $app->get("/vGroup/:vGroupID/(:extraParameters+)", function ($vGroupID, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->vGroupLosses($vGroupID, $parameters);
+            (new \ProjectRena\Controller\API\LossesAPIController($app))->vGroupLosses($vGroupID, $parameters);
         });
 
         /**
@@ -1058,7 +1206,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/losses/afterDate/:afterDate/
          */
         $app->get("/afterDate/:afterDate/(:extraParameters+)", function ($afterDate, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->beforeDateLosses($afterDate, $parameters);
+            (new \ProjectRena\Controller\API\LossesAPIController($app))->beforeDateLosses($afterDate, $parameters);
         });
 
         /**
@@ -1094,7 +1242,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/losses/beforeDate/:beforeDate/
          */
         $app->get("/beforeDate/:beforeDate/(:extraParameters+)", function ($beforeDate, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->afterDateLosses($beforeDate, $parameters);
+            (new \ProjectRena\Controller\API\LossesAPIController($app))->afterDateLosses($beforeDate, $parameters);
         });
 
         /**
@@ -1131,7 +1279,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/losses/betweenDates/:afterDate/:beforeDate/
          */
         $app->get("/betweenDates/:afterDate/:beforeDate/(:extraParameters+)", function ($afterDate, $beforeDate, $parameters = array()) use ($app) {
-            (new \ProjectRena\Controller\API\KillAPIController($app))->betweenDateLosses($afterDate, $beforeDate, $parameters);
+            (new \ProjectRena\Controller\API\LossesAPIController($app))->betweenDateLosses($afterDate, $beforeDate, $parameters);
         });
     });
 
@@ -1415,7 +1563,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/wars/count/
          */
         $app->get("/count/", function () use ($app) {
-            $results = $app->Db->queryRow("SELECT COUNT(*) as count FROM wars");
+            $results = $app->Db->queryRow("SELECT COUNT(*) AS count FROM wars");
             render("", $results, null, "application/json");
         });
 

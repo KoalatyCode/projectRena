@@ -444,6 +444,268 @@
   },
   {
     "type": "get",
+    "url": "/killlist/10b/",
+    "title": "Show the last 100 kills with a value of minimum 10b isk",
+    "version": "0.1.2",
+    "name": "10b",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/10b/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
+    "url": "/killlist/5b/",
+    "title": "Show the last 100 kills with a value of minimum 5b isk",
+    "version": "0.1.2",
+    "name": "5b",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/5b/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
+    "url": "/killlist/bigkills/",
+    "title": "Show the last 100 big kills (>5b in value)",
+    "version": "0.1.2",
+    "name": "bigkills",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/bigkills/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
+    "url": "/killlist/capitals/",
+    "title": "Show the latest carrier kills",
+    "description": "<p>FAX machines fall into this one aswell</p>",
+    "version": "0.1.2",
+    "name": "capitals",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/capitals/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
+    "url": "/killlist/freighters/",
+    "title": "Show the latest freighter kills",
+    "description": "<p>Rorq and Orca fall into this one aswell</p>",
+    "version": "0.1.2",
+    "name": "freighters",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/freighters/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
+    "url": "/killlist/highsec/",
+    "title": "Show the last 100 kills done in high security space",
+    "version": "0.1.2",
+    "name": "highsec",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/highsec/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
+    "url": "/killlist/latest/",
+    "title": "Shows the 100 latest killmails",
+    "version": "0.1.2",
+    "name": "kill",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/latest/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
+    "url": "/killlist/lowsec/",
+    "title": "Show the last 100 kills done in low security space",
+    "version": "0.1.2",
+    "name": "lowsec",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/lowsec/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
+    "url": "/killlist/nullsec/",
+    "title": "Show the last 100 kills done in null security space",
+    "version": "0.1.2",
+    "name": "nullsec",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/nullsec/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
+    "url": "/killlist/solo/",
+    "title": "Show the last 100 solo kills",
+    "version": "0.1.2",
+    "name": "solo",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/solo/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
+    "url": "/killlist/supercarriers/",
+    "title": "Show the latest super carrier kills",
+    "version": "0.1.2",
+    "name": "supercarriers",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/supercarriers/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
+    "url": "/killlist/titans/",
+    "title": "Show the latest titan kills",
+    "version": "0.1.2",
+    "name": "titans",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/titans/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
+    "url": "/killlist/wspace/",
+    "title": "Show the last 100 kills done in Wormhole space",
+    "version": "0.1.2",
+    "name": "wspace",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/wspace/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
     "url": "/killmail/count/",
     "title": "Total amount of kills in the system",
     "version": "0.1.2",
@@ -457,26 +719,6 @@
     "sampleRequest": [
       {
         "url": "/api/killmail/count/"
-      }
-    ],
-    "filename": "config/routes/api.php",
-    "groupTitle": "killmail"
-  },
-  {
-    "type": "get",
-    "url": "/killmail/latest/",
-    "title": "Shows the 100 latest killmails",
-    "version": "0.1.2",
-    "name": "kill",
-    "group": "killmail",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "sampleRequest": [
-      {
-        "url": "/api/killmail/latest/"
       }
     ],
     "filename": "config/routes/api.php",
