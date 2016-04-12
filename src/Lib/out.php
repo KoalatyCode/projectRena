@@ -57,6 +57,7 @@ class out
     public function toJson($dataArray = array(), $status = 200)
     {
         $this->app->contentType("application/javascript; charset=utf-8");
+        $this->app->response->headers->set("Access-Control-Allow-Origin", "*");
         http_response_code($status);
         echo json_encode($dataArray, JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK | JSON_UNESCAPED_SLASHES);
     }
@@ -69,6 +70,7 @@ class out
     public function toXML($dataArray = array(), $status = 200)
     {
         $this->app->contentType("application/xml");
+        $this->app->response->headers->set("Access-Control-Allow-Origin", "*");
         http_response_code($status);
         $xml = XMLParser::encode($dataArray, "rena");
         echo $xml->asXML();
