@@ -1751,10 +1751,35 @@ $app->group("/api", function () use ($app) {
 
     $app->group("/authed", function() use ($app) {
         $headers = $app->request->headers;
-        
+
+        /**
+         * @api {get} /authed/userinfo/ Get all information for user
+         * @apiDescription This one contains everything CREST gives upon login, plus a few extras
+         * @apiVersion 0.1.2
+         * @apiName userInformation
+         * @apiGroup authed
+         * @apiHeader {String} Authorization The Authorization token that is generated upon login on the main site
+         * @apiPermission private
+         * @apiSampleRequest /api/authed/userinfo/
+         */
         $app->get("/userinfo/", function() use ($app, $headers) {
             $renaApiToken = $headers["Authorization"];
             (new \ProjectRena\Controller\API\AuthedAPIController($app))->userInfo($renaApiToken);
+        });
+
+        /**
+         * @api {get} /authed/apikeys/ Get all the API Keys belonging to user
+         * @apiDescription All the APIKeys currently added for this user
+         * @apiVersion 0.1.2
+         * @apiName apiKeys
+         * @apiGroup authed
+         * @apiHeader {String} Authorization The Authorization token that is generated upon login on the main site
+         * @apiPermission private
+         * @apiSampleRequest /api/authed/apikeys/
+         */
+        $app->get("/apikeys/", function() use ($app, $headers) {
+            $renaApiToken = $headers["Authorization"];
+            (new \ProjectRena\Controller\API\AuthedAPIController($app))->apiKeys($renaApiToken);
         });
     });
 });

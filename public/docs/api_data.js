@@ -120,6 +120,74 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/authed/apikeys/",
+    "title": "Get all the API Keys belonging to user",
+    "description": "<p>All the APIKeys currently added for this user</p>",
+    "version": "0.1.2",
+    "name": "apiKeys",
+    "group": "authed",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The Authorization token that is generated upon login on the main site</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "private"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/authed/apikeys/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "authed"
+  },
+  {
+    "type": "get",
+    "url": "/authed/userinfo/",
+    "title": "Get all information for user",
+    "description": "<p>This one contains everything CREST gives upon login, plus a few extras</p>",
+    "version": "0.1.2",
+    "name": "userInformation",
+    "group": "authed",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>The Authorization token that is generated upon login on the main site</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "private"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/authed/userinfo/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "authed"
+  },
+  {
+    "type": "get",
     "url": "/celestial/information/:solarSystemID/",
     "title": "Show all celestials in a system",
     "version": "0.1.2",

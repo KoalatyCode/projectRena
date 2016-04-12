@@ -101,4 +101,14 @@ class ApiKeys
     {
         return $this->db->execute("UPDATE apiKeys SET errorCode = :errorCode WHERE keyID = :keyID", array(":errorCode" => $errorCode, ":keyID" => $keyID));
     }
+
+    /**
+     * @param $userID
+     * @return array|bool
+     * @throws \Exception
+     */
+    public function getAllAPIKeysByUserID($userID)
+    {
+        return $this->db->query("SELECT * FROM apiKeys WHERE userID = :userID", array(":userID" => $userID));
+    }
 }

@@ -69,4 +69,48 @@ class AuthedAPIController
         $data = $this->app->Users->getAllByRenaApiToken($renaApiToken);
         render("", $data, null, "application/json");
     }
+
+    public function apiKeys($renaApiToken)
+    {
+        $userData = $this->app->Users->getAllByRenaApiToken($renaApiToken);
+        $data = $this->app->ApiKeys->getAllAPIKeysByUserID($userData["id"]);
+        render("", $data, null, "application/json");
+    }
+
+    public function getGroups($renaApiToken)
+    {
+
+    }
+
+    public function getPastes($renaApiToken)
+    {
+
+    }
+
+    public function getDScans($renaApiToken)
+    {
+
+    }
+
+    public function getShoppingLists($renaApiToken)
+    {
+
+    }
+
+    public function getLoginData($renaApiToken)
+    {
+
+    }
+
+    public function getConfigurationData($renaApiToken)
+    {
+
+    }
+
+    public function getComments($renaApiToken)
+    {
+
+    }
+
+
 }
