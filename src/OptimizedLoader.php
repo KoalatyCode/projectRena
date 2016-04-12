@@ -34,6 +34,11 @@ $app->container->set("SessionHandler", function($container) use ($app)
 		return new \ProjectRena\Lib\SessionHandler($app);
 });
 
+$app->container->singleton("SlimAPIAuthentication", function($container) use ($app)
+{
+		return new \ProjectRena\Lib\SlimAPIAuthentication($app);
+});
+
 $app->container->singleton("StatsD", function($container) use ($app)
 {
 		return new \ProjectRena\Lib\StatsD($app);

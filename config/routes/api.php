@@ -1748,4 +1748,13 @@ $app->group("/api", function () use ($app) {
             (new \ProjectRena\Controller\API\MarketAPIController($app))->getItemValues($typeID);
         });
     });
+
+    $app->group("/authed", function() use ($app) {
+        $headers = $app->request->headers;
+        
+        $app->get("/userinfo/", function() use ($app, $headers) {
+            $renaApiToken = $headers["Authorization"];
+            (new \ProjectRena\Controller\API\AuthedAPIController($app))->userInfo($renaApiToken);
+        });
+    });
 });

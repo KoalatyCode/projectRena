@@ -9,6 +9,7 @@ use ProjectRena\Lib\DbAsync;
 use ProjectRena\Lib\Logging;
 use ProjectRena\Lib\Pheal;
 use ProjectRena\Lib\SessionHandler;
+use ProjectRena\Lib\SlimAPIAuthentication;
 use ProjectRena\Lib\StatsD;
 use ProjectRena\Lib\Timer;
 use ProjectRena\Lib\baseConfig;
@@ -144,6 +145,7 @@ use ProjectRena\Model\EVEApi\Server\ServerStatus as EVEServerServerStatus;
  * @property Logging Logging
  * @property Pheal Pheal
  * @property SessionHandler SessionHandler
+ * @property SlimAPIAuthentication SlimAPIAuthentication
  * @property StatsD StatsD
  * @property Timer Timer
  * @property baseConfig baseConfig
