@@ -153,7 +153,9 @@ class out
             elseif($this->contentType == "application/json") {
                 echo json_encode($error, JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK | JSON_UNESCAPED_SLASHES);
             }
-            exit();
+
+            // Stop application execution right here
+            $this->app->stop();
         }
     }
     /**
