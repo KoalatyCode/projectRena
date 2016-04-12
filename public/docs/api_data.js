@@ -239,26 +239,6 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/character/",
-    "title": "List the endpoints available for the character api",
-    "version": "0.1.2",
-    "name": "index",
-    "group": "character",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "sampleRequest": [
-      {
-        "url": "/api/character/"
-      }
-    ],
-    "filename": "config/routes/api.php",
-    "groupTitle": "character"
-  },
-  {
-    "type": "get",
     "url": "/corporation/find/:corporationName/",
     "title": "Find a corporation",
     "version": "0.1.2",
@@ -863,6 +843,55 @@ define({ "api": [
     ],
     "filename": "config/routes/api.php",
     "groupTitle": "killlist"
+  },
+  {
+    "type": "post",
+    "url": "/killmail/add/",
+    "title": "Post a CREST killmail URL to the site for processing",
+    "version": "0.1.2",
+    "name": "add",
+    "group": "killmail",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killmail/add/"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "url",
+            "description": "<p>The URL for the killmail</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Post-Example:",
+          "content": "https://public-crest.eveonline.com/killmails/53124530/7c74ad07861c7e0f6dd65ed78138963f9b1fd365/",
+          "type": "String"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Example Return",
+          "content": "{ \"success\": true }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "config/routes/api.php",
+    "groupTitle": "killmail"
   },
   {
     "type": "get",
@@ -6032,9 +6061,10 @@ define({ "api": [
   {
     "type": "post",
     "url": "/tools/calculateCrestHash/",
-    "title": "Calculates the CREST hash for a non-crest verified killmail, remember to post to it using a CREST formatted killmail",
+    "title": "Calculates the CREST hash for a non-crest verified killmail",
     "version": "0.1.2",
-    "name": "calculateCrestHash",
+    "name": "calculateCRESTHash",
+    "description": "<p>Remember to post to it using a CREST formatted killmail</p>",
     "group": "tools",
     "permission": [
       {
@@ -6048,7 +6078,7 @@ define({ "api": [
             "group": "Parameter",
             "type": "json",
             "optional": false,
-            "field": "killmailData",
+            "field": "data",
             "description": "<p>The killmail data as a json string</p>"
           }
         ]
@@ -6071,7 +6101,56 @@ define({ "api": [
         {
           "title": "Example Return",
           "content": "66e1b9f27b9ce0947051240f2f594b74957fc30b",
-          "type": "string"
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "config/routes/api.php",
+    "groupTitle": "tools"
+  },
+  {
+    "type": "post",
+    "url": "/tools/validateCrestUrl/",
+    "title": "Validates a CREST URL, and returns it if it's valid",
+    "version": "0.1.2",
+    "name": "validateCRESTUrl",
+    "group": "tools",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "url",
+            "description": "<p>The URL for the killmail</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Post-Example:",
+          "content": "https://public-crest.eveonline.com/killmails/53124530/7c74ad07861c7e0f6dd65ed78138963f9b1fd365/",
+          "type": "String"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/tools/validateCrestUrl"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Example Return",
+          "content": "https://public-crest.eveonline.com/killmails/53124530/7c74ad07861c7e0f6dd65ed78138963f9b1fd365/",
+          "type": "json"
         }
       ]
     },

@@ -3,18 +3,6 @@
 $app->group("/api", function () use ($app) {
     $app->group("/character", function () use ($app) {
         /**
-         * @api {get} /character/ List the endpoints available for the character api
-         * @apiVersion 0.1.2
-         * @apiName index
-         * @apiGroup character
-         * @apiPermission public
-         * @apiSampleRequest /api/character/
-         */
-        $app->get("/", function () use ($app) {
-            render("", $app->apiDoc["character"], null, "application/json");
-        });
-
-        /**
          * @api {get} /character/count/ Total amount of characters in the system
          * @apiVersion 0.1.2
          * @apiName count
@@ -263,6 +251,31 @@ $app->group("/api", function () use ($app) {
 
     $app->group("/killmail", function () use ($app) {
         /**
+         * @api {post} /killmail/add/ Post a CREST killmail URL to the site for processing
+         * @apiVersion 0.1.2
+         * @apiName add
+         * @apiGroup killmail
+         * @apiPermission public
+         * @apiSampleRequest /api/killmail/add/
+         * @apiParam {String} url The URL for the killmail
+         * @apiParamExample {String} Post-Example:
+         * https://public-crest.eveonline.com/killmails/53124530/7c74ad07861c7e0f6dd65ed78138963f9b1fd365/
+         * @apiSuccessExample {json} Example Return
+         * { "success": true }
+         */
+        $app->post("/add/", function () use ($app) {
+            $data = $app->request->post("url");
+            $validated = $app->CrestFunctions->validateCRESTLink($data);
+
+            // Post it and return an array with success => true
+            if(!filter_var($validated, FILTER_VALIDATE_URL) === false) {
+                $app->CrestFunctions->postCRESTMail($validated);
+                return render("", array("success" => true), null, "application/json");
+            }
+            return render("", array("success" => false), null, "application/json");
+        });
+
+        /**
          * @api {get} /killmail/count/ Total amount of kills in the system
          * @apiVersion 0.1.2
          * @apiName count
@@ -459,7 +472,7 @@ $app->group("/api", function () use ($app) {
         $app->get("/t1/", function () use ($app) {
             (new \ProjectRena\Controller\API\KilllistAPIController($app))->t1();
         });
-        
+
         /**
          * @api {get} /killlist/t2/ Show the latest t2 kills
          * @apiVersion 0.1.2
@@ -471,7 +484,7 @@ $app->group("/api", function () use ($app) {
         $app->get("/t2/", function () use ($app) {
             (new \ProjectRena\Controller\API\KilllistAPIController($app))->t2();
         });
-        
+
         /**
          * @api {get} /killlist/t3/ Show the latest t3 kills
          * @apiVersion 0.1.2
@@ -483,7 +496,7 @@ $app->group("/api", function () use ($app) {
         $app->get("/t3/", function () use ($app) {
             (new \ProjectRena\Controller\API\KilllistAPIController($app))->t3();
         });
-        
+
         /**
          * @api {get} /killlist/frigates/ Show the latest frigates kills
          * @apiVersion 0.1.2
@@ -495,7 +508,7 @@ $app->group("/api", function () use ($app) {
         $app->get("/frigates/", function () use ($app) {
             (new \ProjectRena\Controller\API\KilllistAPIController($app))->frigates();
         });
-        
+
         /**
          * @api {get} /killlist/destroyers/ Show the latest destroyers kills
          * @apiVersion 0.1.2
@@ -507,7 +520,7 @@ $app->group("/api", function () use ($app) {
         $app->get("/destroyers/", function () use ($app) {
             (new \ProjectRena\Controller\API\KilllistAPIController($app))->destroyers();
         });
-        
+
         /**
          * @api {get} /killlist/cruisers/ Show the latest cruisers kills
          * @apiVersion 0.1.2
@@ -519,7 +532,7 @@ $app->group("/api", function () use ($app) {
         $app->get("/cruisers/", function () use ($app) {
             (new \ProjectRena\Controller\API\KilllistAPIController($app))->cruisers();
         });
-        
+
         /**
          * @api {get} /killlist/battlecruisers/ Show the latest battlecruisers kills
          * @apiVersion 0.1.2
@@ -531,7 +544,7 @@ $app->group("/api", function () use ($app) {
         $app->get("/battlecruisers/", function () use ($app) {
             (new \ProjectRena\Controller\API\KilllistAPIController($app))->battlecruisers();
         });
-        
+
         /**
          * @api {get} /killlist/battleships/ Show the latest battleships kills
          * @apiVersion 0.1.2
@@ -1629,23 +1642,42 @@ $app->group("/api", function () use ($app) {
 
     $app->group("/tools", function () use ($app) {
         /**
-         * @api {post} /tools/calculateCrestHash/ Calculates the CREST hash for a non-crest verified killmail, remember to post to it using a CREST formatted killmail
+         * @api {post} /tools/calculateCrestHash/ Calculates the CREST hash for a non-crest verified killmail
          * @apiVersion 0.1.2
-         * @apiName calculateCrestHash
+         * @apiName calculateCRESTHash
+         * @apiDescription Remember to post to it using a CREST formatted killmail
          * @apiGroup tools
          * @apiPermission public
-         * @apiParam {json} killmailData The killmail data as a json string
+         * @apiParam {json} data The killmail data as a json string
          * @apiParamExample {json} Post-Example:
          * {"killID":1,"killmail":[]}
          * @apiSampleRequest /api/tools/calculateCrestHash
-         * @apiSuccessExample {string} Example Return
+         * @apiSuccessExample {json} Example Return
          * 66e1b9f27b9ce0947051240f2f594b74957fc30b
          */
         $app->post("/calculateCrestHash/", function () use ($app) {
             $data = json_decode($app->request->post("data"), true);
             $crestHash = $app->CrestFunctions->generateCRESTHash($data);
 
-            echo $crestHash;
+            render("", $crestHash, null, "application/json");
+        });
+
+        /**
+         * @api {post} /tools/validateCrestUrl/ Validates a CREST URL, and returns it if it's valid
+         * @apiVersion 0.1.2
+         * @apiName validateCRESTUrl
+         * @apiGroup tools
+         * @apiPermission public
+         * @apiParam {String} url The URL for the killmail
+         * @apiParamExample {String} Post-Example:
+         * https://public-crest.eveonline.com/killmails/53124530/7c74ad07861c7e0f6dd65ed78138963f9b1fd365/
+         * @apiSampleRequest /api/tools/validateCrestUrl
+         * @apiSuccessExample {json} Example Return
+         * https://public-crest.eveonline.com/killmails/53124530/7c74ad07861c7e0f6dd65ed78138963f9b1fd365/
+         */
+        $app->post("/validateCrestUrl/", function () use ($app) {
+            $url = $app->request->post("url");
+            render("", $app->CrestFunctions->validateCRESTLink($url), null, "application/json");
         });
     });
 

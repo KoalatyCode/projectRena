@@ -24,12 +24,15 @@ class crestKillmailFetcher
     {
         $url = $this->args["url"];
         $warID = $this->args["warID"];
+
         $data = json_decode($this->app->cURL->getData($url, 0), true);
+
+        $source = isset($warID) ? "warID:{$warID}" : "CREST:{$data["killID"]}";
 
         $killmailData = $this->app->CrestFunctions->generateFromCREST(array("killID" => $data["killID"], "killmail" => $data));
         $hash = $this->app->CrestFunctions->generateCRESTHash($killmailData);
         $json = json_encode($killmailData, JSON_NUMERIC_CHECK);
-        $insert = $this->app->killmails->insertIntoKillmails($data["killID"], 0, $hash, "warID:$warID", $json);
+        $insert = $this->app->killmails->insertIntoKillmails($data["killID"], 0, $hash, $source, $json);
 
         // Upgrade it
         if($insert > 0)

@@ -66,6 +66,34 @@ class CrestFunctions
     }
 
     /**
+     * Validates a CREST URL
+     *
+     * @param $url
+     * @return string
+     */
+    public function validateCRESTLink($url)
+    {
+        // Check it's actually a URL
+        if(!filter_var($url, FILTER_VALIDATE_URL) === false) {
+            preg_match("/^https:\/\/public-crest.eveonline.com\/killmails\/[0-9]*\/[a-zA-Z0-9]*\//", $url, $out);
+            if(isset($out[0])) {
+                return $out[0];
+            }
+        }
+        return "Error, link is not valid";
+    }
+
+    /**
+     * Throw the CREST URL after the crestKillmailFetcher, so it'll be processed
+     * 
+     * @param $url
+     */
+    public function postCRESTMail($url)
+    {
+        \Resque::enqueue("turbo", "\\ProjectRena\\Task\\Resque\\crestKillmailFetcher", array("url" => $url, "warID" => null));
+    }
+    
+    /**
      * Generates a CREST hash based on the killmail data
      * @param $killData
      * @return string
