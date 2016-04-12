@@ -1,26 +1,6 @@
 [
   {
     "type": "get",
-    "url": "/",
-    "title": "Lists all API endpoints available, including method to use, url and examples",
-    "version": "0.1.2",
-    "name": "Index",
-    "group": "Index",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "sampleRequest": [
-      {
-        "url": "/api/"
-      }
-    ],
-    "filename": "config/routes/api.php",
-    "groupTitle": "Index"
-  },
-  {
-    "type": "get",
     "url": "/alliance/find/:allianceName/",
     "title": "Find a alliance",
     "version": "0.1.2",
@@ -140,26 +120,6 @@
   },
   {
     "type": "get",
-    "url": "/alliance/",
-    "title": "List the endpoints available for the alliance api",
-    "version": "0.1.2",
-    "name": "index",
-    "group": "alliance",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "sampleRequest": [
-      {
-        "url": "/api/alliance/"
-      }
-    ],
-    "filename": "config/routes/api.php",
-    "groupTitle": "alliance"
-  },
-  {
-    "type": "get",
     "url": "/celestial/information/:solarSystemID/",
     "title": "Show all celestials in a system",
     "version": "0.1.2",
@@ -186,26 +146,6 @@
     "sampleRequest": [
       {
         "url": "/api/celestial/information/:solarSystemID/"
-      }
-    ],
-    "filename": "config/routes/api.php",
-    "groupTitle": "celestial"
-  },
-  {
-    "type": "get",
-    "url": "/celestial/",
-    "title": "List the endpoints available for the celestial api",
-    "version": "0.1.2",
-    "name": "index",
-    "group": "celestial",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "sampleRequest": [
-      {
-        "url": "/api/celestial/"
       }
     ],
     "filename": "config/routes/api.php",
@@ -438,26 +378,6 @@
   },
   {
     "type": "get",
-    "url": "/corporation/",
-    "title": "List the endpoints available for the corporation api",
-    "version": "0.1.2",
-    "name": "index",
-    "group": "corporation",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "sampleRequest": [
-      {
-        "url": "/api/corporation/"
-      }
-    ],
-    "filename": "config/routes/api.php",
-    "groupTitle": "corporation"
-  },
-  {
-    "type": "get",
     "url": "/item/find/:itemName/",
     "title": "Find a item",
     "version": "0.1.2",
@@ -524,11 +444,11 @@
   },
   {
     "type": "get",
-    "url": "/item/",
-    "title": "List the endpoints available for the item api",
+    "url": "/killmail/count/",
+    "title": "Total amount of kills in the system",
     "version": "0.1.2",
-    "name": "index",
-    "group": "item",
+    "name": "count",
+    "group": "killmail",
     "permission": [
       {
         "name": "public"
@@ -536,19 +456,72 @@
     ],
     "sampleRequest": [
       {
-        "url": "/api/item/"
+        "url": "/api/killmail/count/"
       }
     ],
     "filename": "config/routes/api.php",
-    "groupTitle": "item"
+    "groupTitle": "killmail"
   },
   {
     "type": "get",
-    "url": "/kill/afterDate/:afterDate/",
+    "url": "/killmail/latest/",
+    "title": "Shows the 100 latest killmails",
+    "version": "0.1.2",
+    "name": "kill",
+    "group": "killmail",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killmail/latest/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killmail"
+  },
+  {
+    "type": "get",
+    "url": "/killmail/kill/:killID/",
+    "title": "List a single killmails data",
+    "version": "0.1.2",
+    "name": "killmail",
+    "group": "killmail",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "killID",
+            "description": "<p>the killID</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/killmail/kill/:killID/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killmail"
+  },
+  {
+    "type": "get",
+    "url": "/kills/afterDate/:afterDate/",
     "title": "List kills happening after a certain date",
     "version": "0.1.2",
     "name": "afterDate",
-    "group": "kill",
+    "group": "kills",
     "permission": [
       {
         "name": "public"
@@ -730,19 +703,19 @@
     },
     "sampleRequest": [
       {
-        "url": "/api/kill/afterDate/:afterDate/"
+        "url": "/api/kills/afterDate/:afterDate/"
       }
     ],
     "filename": "config/routes/api.php",
-    "groupTitle": "kill"
+    "groupTitle": "kills"
   },
   {
     "type": "get",
-    "url": "/kill/alliance/:allianceID/",
+    "url": "/kills/alliance/:allianceID/",
     "title": "List kills for a certain alliance",
     "version": "0.1.2",
     "name": "alliance",
-    "group": "kill",
+    "group": "kills",
     "permission": [
       {
         "name": "public"
@@ -917,19 +890,19 @@
     },
     "sampleRequest": [
       {
-        "url": "/api/kill/alliance/:allianceID/"
+        "url": "/api/kills/alliance/:allianceID/"
       }
     ],
     "filename": "config/routes/api.php",
-    "groupTitle": "kill"
+    "groupTitle": "kills"
   },
   {
     "type": "get",
-    "url": "/kill/beforeDate/:beforeDate/",
+    "url": "/kills/beforeDate/:beforeDate/",
     "title": "List kills happening before a certain date",
     "version": "0.1.2",
     "name": "beforeDate",
-    "group": "kill",
+    "group": "kills",
     "permission": [
       {
         "name": "public"
@@ -1111,19 +1084,19 @@
     },
     "sampleRequest": [
       {
-        "url": "/api/kill/beforeDate/:beforeDate/"
+        "url": "/api/kills/beforeDate/:beforeDate/"
       }
     ],
     "filename": "config/routes/api.php",
-    "groupTitle": "kill"
+    "groupTitle": "kills"
   },
   {
     "type": "get",
-    "url": "/kill/betweenDates/:afterDate/:beforeDate/",
+    "url": "/kills/betweenDates/:afterDate/:beforeDate/",
     "title": "List kills between two dates",
     "version": "0.1.2",
     "name": "betweenDates",
-    "group": "kill",
+    "group": "kills",
     "permission": [
       {
         "name": "public"
@@ -1312,19 +1285,19 @@
     },
     "sampleRequest": [
       {
-        "url": "/api/kill/betweenDates/:afterDate/:beforeDate/"
+        "url": "/api/kills/betweenDates/:afterDate/:beforeDate/"
       }
     ],
     "filename": "config/routes/api.php",
-    "groupTitle": "kill"
+    "groupTitle": "kills"
   },
   {
     "type": "get",
-    "url": "/kill/character/:characterID/",
+    "url": "/kills/character/:characterID/",
     "title": "List kills for a certain character",
     "version": "0.1.2",
     "name": "character",
-    "group": "kill",
+    "group": "kills",
     "permission": [
       {
         "name": "public"
@@ -1499,19 +1472,19 @@
     },
     "sampleRequest": [
       {
-        "url": "/api/kill/character/:characterID/"
+        "url": "/api/kills/character/:characterID/"
       }
     ],
     "filename": "config/routes/api.php",
-    "groupTitle": "kill"
+    "groupTitle": "kills"
   },
   {
     "type": "get",
-    "url": "/kill/corporation/:corporationID/",
+    "url": "/kills/corporation/:corporationID/",
     "title": "List kills for a certain corporation",
     "version": "0.1.2",
     "name": "corporation",
-    "group": "kill",
+    "group": "kills",
     "permission": [
       {
         "name": "public"
@@ -1686,39 +1659,19 @@
     },
     "sampleRequest": [
       {
-        "url": "/api/kill/corporation/:corporationID/"
+        "url": "/api/kills/corporation/:corporationID/"
       }
     ],
     "filename": "config/routes/api.php",
-    "groupTitle": "kill"
+    "groupTitle": "kills"
   },
   {
     "type": "get",
-    "url": "/kill/count/",
-    "title": "Total amount of kills in the system",
-    "version": "0.1.2",
-    "name": "count",
-    "group": "kill",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "sampleRequest": [
-      {
-        "url": "/api/kill/count/"
-      }
-    ],
-    "filename": "config/routes/api.php",
-    "groupTitle": "kill"
-  },
-  {
-    "type": "get",
-    "url": "/kill/faction/:factionID/",
+    "url": "/kills/faction/:factionID/",
     "title": "List kills for a certain faction",
     "version": "0.1.2",
     "name": "faction",
-    "group": "kill",
+    "group": "kills",
     "permission": [
       {
         "name": "public"
@@ -1893,19 +1846,19 @@
     },
     "sampleRequest": [
       {
-        "url": "/api/kill/faction/:factionID/"
+        "url": "/api/kills/faction/:factionID/"
       }
     ],
     "filename": "config/routes/api.php",
-    "groupTitle": "kill"
+    "groupTitle": "kills"
   },
   {
     "type": "get",
-    "url": "/kill/group/:groupID/",
+    "url": "/kills/group/:groupID/",
     "title": "List kills for a certain group",
     "version": "0.1.2",
     "name": "group",
-    "group": "kill",
+    "group": "kills",
     "permission": [
       {
         "name": "public"
@@ -2080,125 +2033,19 @@
     },
     "sampleRequest": [
       {
-        "url": "/api/kill/group/:groupID/"
+        "url": "/api/kills/group/:groupID/"
       }
     ],
     "filename": "config/routes/api.php",
-    "groupTitle": "kill"
+    "groupTitle": "kills"
   },
   {
     "type": "get",
-    "url": "/kill/",
-    "title": "List the endpoints available for the kill api",
-    "version": "0.1.2",
-    "name": "index",
-    "group": "kill",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "sampleRequest": [
-      {
-        "url": "/api/kill/"
-      }
-    ],
-    "filename": "config/routes/api.php",
-    "groupTitle": "kill"
-  },
-  {
-    "type": "get",
-    "url": "/kill/latest/",
-    "title": "Shows the 100 latest killmails",
-    "version": "0.1.2",
-    "name": "kill",
-    "group": "kill",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "sampleRequest": [
-      {
-        "url": "/api/kill/latest/"
-      }
-    ],
-    "filename": "config/routes/api.php",
-    "groupTitle": "kill"
-  },
-  {
-    "type": "get",
-    "url": "/kill/mail/:killID/",
-    "title": "List a single killmails data",
-    "version": "0.1.2",
-    "name": "killmail",
-    "group": "kill",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "killID",
-            "description": "<p>the killID</p>"
-          }
-        ]
-      }
-    },
-    "sampleRequest": [
-      {
-        "url": "/api/kill/mail/:killID/"
-      }
-    ],
-    "filename": "config/routes/api.php",
-    "groupTitle": "kill"
-  },
-  {
-    "type": "get",
-    "url": "/killmail/:killID/",
-    "title": "List a single killmails data",
-    "version": "0.1.2",
-    "name": "killmail",
-    "group": "kill",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "killID",
-            "description": "<p>the killID</p>"
-          }
-        ]
-      }
-    },
-    "sampleRequest": [
-      {
-        "url": "/api/killmail/:killID/"
-      }
-    ],
-    "filename": "config/routes/api.php",
-    "groupTitle": "kill"
-  },
-  {
-    "type": "get",
-    "url": "/kill/region/:regionID/",
+    "url": "/kills/region/:regionID/",
     "title": "List kills that has happened in a certain region",
     "version": "0.1.2",
     "name": "region",
-    "group": "kill",
+    "group": "kills",
     "permission": [
       {
         "name": "public"
@@ -2373,19 +2220,19 @@
     },
     "sampleRequest": [
       {
-        "url": "/api/kill/region/:regionID/"
+        "url": "/api/kills/region/:regionID/"
       }
     ],
     "filename": "config/routes/api.php",
-    "groupTitle": "kill"
+    "groupTitle": "kills"
   },
   {
     "type": "get",
-    "url": "/kill/shipType/:shipTypeID/",
+    "url": "/kills/shipType/:shipTypeID/",
     "title": "List kills for a certain shipType",
     "version": "0.1.2",
     "name": "shipType",
-    "group": "kill",
+    "group": "kills",
     "permission": [
       {
         "name": "public"
@@ -2560,19 +2407,19 @@
     },
     "sampleRequest": [
       {
-        "url": "/api/kill/shipType/:shipTypeID/"
+        "url": "/api/kills/shipType/:shipTypeID/"
       }
     ],
     "filename": "config/routes/api.php",
-    "groupTitle": "kill"
+    "groupTitle": "kills"
   },
   {
     "type": "get",
-    "url": "/kill/solarSystem/:solarSystemID/",
+    "url": "/kills/solarSystem/:solarSystemID/",
     "title": "List kills that has happened in a certain solar system",
     "version": "0.1.2",
     "name": "solarSystem",
-    "group": "kill",
+    "group": "kills",
     "permission": [
       {
         "name": "public"
@@ -2747,19 +2594,19 @@
     },
     "sampleRequest": [
       {
-        "url": "/api/kill/solarSystem/:solarSystemID/"
+        "url": "/api/kills/solarSystem/:solarSystemID/"
       }
     ],
     "filename": "config/routes/api.php",
-    "groupTitle": "kill"
+    "groupTitle": "kills"
   },
   {
     "type": "get",
-    "url": "/kill/vGroup/:vGroupID/",
+    "url": "/kills/vGroup/:vGroupID/",
     "title": "List kills for a certain vGroup",
     "version": "0.1.2",
     "name": "vGroup",
-    "group": "kill",
+    "group": "kills",
     "permission": [
       {
         "name": "public"
@@ -2934,19 +2781,19 @@
     },
     "sampleRequest": [
       {
-        "url": "/api/kill/vGroup/:vGroupID/"
+        "url": "/api/kills/vGroup/:vGroupID/"
       }
     ],
     "filename": "config/routes/api.php",
-    "groupTitle": "kill"
+    "groupTitle": "kills"
   },
   {
     "type": "get",
-    "url": "/kill/weaponType/:weaponTypeID/",
+    "url": "/kills/weaponType/:weaponTypeID/",
     "title": "List kills for a certain weaponType",
     "version": "0.1.2",
     "name": "weaponType",
-    "group": "kill",
+    "group": "kills",
     "permission": [
       {
         "name": "public"
@@ -3121,31 +2968,1909 @@
     },
     "sampleRequest": [
       {
-        "url": "/api/kill/weaponType/:weaponTypeID/"
+        "url": "/api/kills/weaponType/:weaponTypeID/"
       }
     ],
     "filename": "config/routes/api.php",
-    "groupTitle": "kill"
+    "groupTitle": "kills"
   },
   {
     "type": "get",
-    "url": "/market/",
-    "title": "List the endpoints available for the market api",
+    "url": "/losses/afterDate/:afterDate/",
+    "title": "List kills happening after a certain date",
     "version": "0.1.2",
-    "name": "index",
-    "group": "market",
+    "name": "afterDate",
+    "group": "losses",
     "permission": [
       {
         "name": "public"
       }
     ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "DateTime",
+            "optional": false,
+            "field": "afterDate",
+            "description": "<p>Return kills after a certain date (YYYY-mm-dd HH:ii:ss)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "killID",
+            "description": "<p>the killID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "DateTime",
+            "optional": true,
+            "field": "killTime",
+            "description": "<p>Limit to a specific time (YYYY-mm-dd HH:ii:ss)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "solarSystemID",
+            "description": "<p>Limit to a specific solarSystemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "regionID",
+            "description": "<p>Limit to a specific regionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "characterID",
+            "description": "<p>Limit to a specific characterID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "corporationID",
+            "description": "<p>Limit to a specific corporationID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "allianceID",
+            "description": "<p>Limit to a specific allianceID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "factionID",
+            "description": "<p>Limit to a specific factionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "shipTypeID",
+            "description": "<p>Limit to a specific shipTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "groupID",
+            "description": "<p>Limit to a specific groupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "vGroupID",
+            "description": "<p>Limit to a specific vGroupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "weaponTypeID",
+            "description": "<p>Limit to a specific weaponTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "shipValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "damageDone",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "totalValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "pointValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "numberInvolved",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isVictim",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "finalBlow",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isNPC",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>1 to 100</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "order",
+            "description": "<p>asc or desc (case sensitive)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "offset",
+            "description": "<p>Return records after a certain offset</p>"
+          }
+        ]
+      }
+    },
     "sampleRequest": [
       {
-        "url": "/api/market/"
+        "url": "/api/losses/afterDate/:afterDate/"
       }
     ],
     "filename": "config/routes/api.php",
-    "groupTitle": "market"
+    "groupTitle": "losses"
+  },
+  {
+    "type": "get",
+    "url": "/losses/alliance/:allianceID/",
+    "title": "List kills for a certain alliance",
+    "version": "0.1.2",
+    "name": "alliance",
+    "group": "losses",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "allianceID",
+            "description": "<p>Limit to a specific allianceID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "killID",
+            "description": "<p>the killID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "DateTime",
+            "optional": true,
+            "field": "killTime",
+            "description": "<p>Limit to a specific time (YYYY-mm-dd HH:ii:ss)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "solarSystemID",
+            "description": "<p>Limit to a specific solarSystemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "regionID",
+            "description": "<p>Limit to a specific regionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "characterID",
+            "description": "<p>Limit to a specific characterID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "corporationID",
+            "description": "<p>Limit to a specific corporationID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "factionID",
+            "description": "<p>Limit to a specific factionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "shipTypeID",
+            "description": "<p>Limit to a specific shipTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "groupID",
+            "description": "<p>Limit to a specific groupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "vGroupID",
+            "description": "<p>Limit to a specific vGroupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "weaponTypeID",
+            "description": "<p>Limit to a specific weaponTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "shipValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "damageDone",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "totalValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "pointValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "numberInvolved",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isVictim",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "finalBlow",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isNPC",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>1 to 100</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "order",
+            "description": "<p>asc or desc (case sensitive)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "offset",
+            "description": "<p>Return records after a certain offset</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/losses/alliance/:allianceID/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "losses"
+  },
+  {
+    "type": "get",
+    "url": "/losses/beforeDate/:beforeDate/",
+    "title": "List kills happening before a certain date",
+    "version": "0.1.2",
+    "name": "beforeDate",
+    "group": "losses",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "DateTime",
+            "optional": false,
+            "field": "beforeDate",
+            "description": "<p>Return kills before a certain date (YYYY-mm-dd HH:ii:ss)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "killID",
+            "description": "<p>the killID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "DateTime",
+            "optional": true,
+            "field": "killTime",
+            "description": "<p>Limit to a specific time (YYYY-mm-dd HH:ii:ss)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "solarSystemID",
+            "description": "<p>Limit to a specific solarSystemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "regionID",
+            "description": "<p>Limit to a specific regionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "characterID",
+            "description": "<p>Limit to a specific characterID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "corporationID",
+            "description": "<p>Limit to a specific corporationID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "allianceID",
+            "description": "<p>Limit to a specific allianceID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "factionID",
+            "description": "<p>Limit to a specific factionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "shipTypeID",
+            "description": "<p>Limit to a specific shipTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "groupID",
+            "description": "<p>Limit to a specific groupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "vGroupID",
+            "description": "<p>Limit to a specific vGroupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "weaponTypeID",
+            "description": "<p>Limit to a specific weaponTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "shipValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "damageDone",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "totalValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "pointValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "numberInvolved",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isVictim",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "finalBlow",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isNPC",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>1 to 100</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "order",
+            "description": "<p>asc or desc (case sensitive)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "offset",
+            "description": "<p>Return records after a certain offset</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/losses/beforeDate/:beforeDate/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "losses"
+  },
+  {
+    "type": "get",
+    "url": "/losses/betweenDates/:afterDate/:beforeDate/",
+    "title": "List kills between two dates",
+    "version": "0.1.2",
+    "name": "betweenDates",
+    "group": "losses",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "DateTime",
+            "optional": false,
+            "field": "afterDate",
+            "description": "<p>Get kills after this date (YYYY-mm-dd HH:ii:ss)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "DateTime",
+            "optional": false,
+            "field": "beforeDate",
+            "description": "<p>But before this date (YYYY-mm-dd HH:ii:ss)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "killID",
+            "description": "<p>the killID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "DateTime",
+            "optional": true,
+            "field": "killTime",
+            "description": "<p>Limit to a specific time (YYYY-mm-dd HH:ii:ss)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "solarSystemID",
+            "description": "<p>Limit to a specific solarSystemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "regionID",
+            "description": "<p>Limit to a specific regionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "characterID",
+            "description": "<p>Limit to a specific characterID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "corporationID",
+            "description": "<p>Limit to a specific corporationID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "allianceID",
+            "description": "<p>Limit to a specific allianceID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "factionID",
+            "description": "<p>Limit to a specific factionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "shipTypeID",
+            "description": "<p>Limit to a specific shipTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "groupID",
+            "description": "<p>Limit to a specific groupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "vGroupID",
+            "description": "<p>Limit to a specific vGroupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "weaponTypeID",
+            "description": "<p>Limit to a specific weaponTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "shipValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "damageDone",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "totalValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "pointValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "numberInvolved",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isVictim",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "finalBlow",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isNPC",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>1 to 100</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "order",
+            "description": "<p>asc or desc (case sensitive)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "offset",
+            "description": "<p>Return records after a certain offset</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/losses/betweenDates/:afterDate/:beforeDate/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "losses"
+  },
+  {
+    "type": "get",
+    "url": "/losses/character/:characterID/",
+    "title": "List kills for a certain character",
+    "version": "0.1.2",
+    "name": "character",
+    "group": "losses",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "characterID",
+            "description": "<p>Limit to a specific characterID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "killID",
+            "description": "<p>the killID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "DateTime",
+            "optional": true,
+            "field": "killTime",
+            "description": "<p>Limit to a specific time (YYYY-mm-dd HH:ii:ss)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "solarSystemID",
+            "description": "<p>Limit to a specific solarSystemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "regionID",
+            "description": "<p>Limit to a specific regionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "corporationID",
+            "description": "<p>Limit to a specific corporationID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "allianceID",
+            "description": "<p>Limit to a specific allianceID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "factionID",
+            "description": "<p>Limit to a specific factionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "shipTypeID",
+            "description": "<p>Limit to a specific shipTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "groupID",
+            "description": "<p>Limit to a specific groupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "vGroupID",
+            "description": "<p>Limit to a specific vGroupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "weaponTypeID",
+            "description": "<p>Limit to a specific weaponTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "shipValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "damageDone",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "totalValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "pointValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "numberInvolved",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isVictim",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "finalBlow",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isNPC",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>1 to 100</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "order",
+            "description": "<p>asc or desc (case sensitive)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "offset",
+            "description": "<p>Return records after a certain offset</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/losses/character/:characterID/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "losses"
+  },
+  {
+    "type": "get",
+    "url": "/losses/corporation/:corporationID/",
+    "title": "List kills for a certain corporation",
+    "version": "0.1.2",
+    "name": "corporation",
+    "group": "losses",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "corporationID",
+            "description": "<p>Limit to a specific corporationID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "killID",
+            "description": "<p>the killID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "DateTime",
+            "optional": true,
+            "field": "killTime",
+            "description": "<p>Limit to a specific time (YYYY-mm-dd HH:ii:ss)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "solarSystemID",
+            "description": "<p>Limit to a specific solarSystemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "regionID",
+            "description": "<p>Limit to a specific regionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "characterID",
+            "description": "<p>Limit to a specific characterID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "allianceID",
+            "description": "<p>Limit to a specific allianceID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "factionID",
+            "description": "<p>Limit to a specific factionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "shipTypeID",
+            "description": "<p>Limit to a specific shipTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "groupID",
+            "description": "<p>Limit to a specific groupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "vGroupID",
+            "description": "<p>Limit to a specific vGroupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "weaponTypeID",
+            "description": "<p>Limit to a specific weaponTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "shipValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "damageDone",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "totalValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "pointValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "numberInvolved",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isVictim",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "finalBlow",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isNPC",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>1 to 100</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "order",
+            "description": "<p>asc or desc (case sensitive)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "offset",
+            "description": "<p>Return records after a certain offset</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/losses/corporation/:corporationID/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "losses"
+  },
+  {
+    "type": "get",
+    "url": "/losses/faction/:factionID/",
+    "title": "List kills for a certain faction",
+    "version": "0.1.2",
+    "name": "faction",
+    "group": "losses",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "factionID",
+            "description": "<p>Limit to a specific factionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "killID",
+            "description": "<p>the killID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "DateTime",
+            "optional": true,
+            "field": "killTime",
+            "description": "<p>Limit to a specific time (YYYY-mm-dd HH:ii:ss)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "solarSystemID",
+            "description": "<p>Limit to a specific solarSystemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "regionID",
+            "description": "<p>Limit to a specific regionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "characterID",
+            "description": "<p>Limit to a specific characterID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "corporationID",
+            "description": "<p>Limit to a specific corporationID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "allianceID",
+            "description": "<p>Limit to a specific allianceID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "shipTypeID",
+            "description": "<p>Limit to a specific shipTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "groupID",
+            "description": "<p>Limit to a specific groupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "vGroupID",
+            "description": "<p>Limit to a specific vGroupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "weaponTypeID",
+            "description": "<p>Limit to a specific weaponTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "shipValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "damageDone",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "totalValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "pointValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "numberInvolved",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isVictim",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "finalBlow",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isNPC",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>1 to 100</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "order",
+            "description": "<p>asc or desc (case sensitive)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "offset",
+            "description": "<p>Return records after a certain offset</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/losses/faction/:factionID/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "losses"
+  },
+  {
+    "type": "get",
+    "url": "/losses/group/:groupID/",
+    "title": "List kills for a certain group",
+    "version": "0.1.2",
+    "name": "group",
+    "group": "losses",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "groupID",
+            "description": "<p>Limit to a specific groupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "killID",
+            "description": "<p>the killID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "DateTime",
+            "optional": true,
+            "field": "killTime",
+            "description": "<p>Limit to a specific time (YYYY-mm-dd HH:ii:ss)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "solarSystemID",
+            "description": "<p>Limit to a specific solarSystemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "regionID",
+            "description": "<p>Limit to a specific regionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "characterID",
+            "description": "<p>Limit to a specific characterID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "corporationID",
+            "description": "<p>Limit to a specific corporationID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "allianceID",
+            "description": "<p>Limit to a specific allianceID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "factionID",
+            "description": "<p>Limit to a specific factionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "shipTypeID",
+            "description": "<p>Limit to a specific shipTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "vGroupID",
+            "description": "<p>Limit to a specific vGroupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "weaponTypeID",
+            "description": "<p>Limit to a specific weaponTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "shipValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "damageDone",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "totalValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "pointValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "numberInvolved",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isVictim",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "finalBlow",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isNPC",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>1 to 100</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "order",
+            "description": "<p>asc or desc (case sensitive)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "offset",
+            "description": "<p>Return records after a certain offset</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/losses/group/:groupID/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "losses"
+  },
+  {
+    "type": "get",
+    "url": "/losses/shipType/:shipTypeID/",
+    "title": "List kills for a certain shipType",
+    "version": "0.1.2",
+    "name": "shipType",
+    "group": "losses",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "shipTypeID",
+            "description": "<p>Limit to a specific shipTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "killID",
+            "description": "<p>the killID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "DateTime",
+            "optional": true,
+            "field": "killTime",
+            "description": "<p>Limit to a specific time (YYYY-mm-dd HH:ii:ss)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "solarSystemID",
+            "description": "<p>Limit to a specific solarSystemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "regionID",
+            "description": "<p>Limit to a specific regionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "characterID",
+            "description": "<p>Limit to a specific characterID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "corporationID",
+            "description": "<p>Limit to a specific corporationID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "allianceID",
+            "description": "<p>Limit to a specific allianceID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "factionID",
+            "description": "<p>Limit to a specific factionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "groupID",
+            "description": "<p>Limit to a specific groupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "vGroupID",
+            "description": "<p>Limit to a specific vGroupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "weaponTypeID",
+            "description": "<p>Limit to a specific weaponTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "shipValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "damageDone",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "totalValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "pointValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "numberInvolved",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isVictim",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "finalBlow",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isNPC",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>1 to 100</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "order",
+            "description": "<p>asc or desc (case sensitive)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "offset",
+            "description": "<p>Return records after a certain offset</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/losses/shipType/:shipTypeID/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "losses"
+  },
+  {
+    "type": "get",
+    "url": "/losses/vGroup/:vGroupID/",
+    "title": "List kills for a certain vGroup",
+    "version": "0.1.2",
+    "name": "vGroup",
+    "group": "losses",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "vGroupID",
+            "description": "<p>Limit to a specific vGroupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "killID",
+            "description": "<p>the killID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "DateTime",
+            "optional": true,
+            "field": "killTime",
+            "description": "<p>Limit to a specific time (YYYY-mm-dd HH:ii:ss)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "solarSystemID",
+            "description": "<p>Limit to a specific solarSystemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "regionID",
+            "description": "<p>Limit to a specific regionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "characterID",
+            "description": "<p>Limit to a specific characterID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "corporationID",
+            "description": "<p>Limit to a specific corporationID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "allianceID",
+            "description": "<p>Limit to a specific allianceID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "factionID",
+            "description": "<p>Limit to a specific factionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "shipTypeID",
+            "description": "<p>Limit to a specific shipTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "groupID",
+            "description": "<p>Limit to a specific groupID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "weaponTypeID",
+            "description": "<p>Limit to a specific weaponTypeID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "shipValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "damageDone",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": true,
+            "field": "totalValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "pointValue",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "numberInvolved",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isVictim",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "finalBlow",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "isNPC",
+            "description": "<p>(1 or 0)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>1 to 100</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "order",
+            "description": "<p>asc or desc (case sensitive)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "offset",
+            "description": "<p>Return records after a certain offset</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/losses/vGroup/:vGroupID/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "losses"
   },
   {
     "type": "get",
@@ -3281,26 +5006,6 @@
   },
   {
     "type": "get",
-    "url": "/region/",
-    "title": "List the endpoints available for the region api",
-    "version": "0.1.2",
-    "name": "index",
-    "group": "region",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "sampleRequest": [
-      {
-        "url": "/api/region/"
-      }
-    ],
-    "filename": "config/routes/api.php",
-    "groupTitle": "region"
-  },
-  {
-    "type": "get",
     "url": "/search/alliance/:allianceName/",
     "title": "Search for an Alliance",
     "version": "0.1.2",
@@ -3327,6 +5032,39 @@
     "sampleRequest": [
       {
         "url": "/api/search/alliance/:allianceName/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "search"
+  },
+  {
+    "type": "get",
+    "url": "/search/:searchTerm/",
+    "title": "Do a multi-search, looking into every category",
+    "version": "0.1.2",
+    "name": "findAny",
+    "group": "search",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "searchTerm",
+            "description": "<p>A String to try and match to..</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/search/any/:searchTerm/"
       }
     ],
     "filename": "config/routes/api.php",
@@ -3565,26 +5303,6 @@
   },
   {
     "type": "get",
-    "url": "/search/",
-    "title": "List the endpoints available for the search api",
-    "version": "0.1.2",
-    "name": "index",
-    "group": "search",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "sampleRequest": [
-      {
-        "url": "/api/search/"
-      }
-    ],
-    "filename": "config/routes/api.php",
-    "groupTitle": "search"
-  },
-  {
-    "type": "get",
     "url": "/currentlyActiveAlliances/",
     "title": "List the amount of currently active alliances",
     "version": "0.1.2",
@@ -3678,26 +5396,6 @@
     "sampleRequest": [
       {
         "url": "/api/stats/currentlyActiveSolarSystems/"
-      }
-    ],
-    "filename": "config/routes/api.php",
-    "groupTitle": "stats"
-  },
-  {
-    "type": "get",
-    "url": "/stats/",
-    "title": "List the endpoints available for the stats api",
-    "version": "0.1.2",
-    "name": "index",
-    "group": "stats",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "sampleRequest": [
-      {
-        "url": "/api/stats/"
       }
     ],
     "filename": "config/routes/api.php",
@@ -3930,26 +5628,6 @@
     "groupTitle": "system"
   },
   {
-    "type": "get",
-    "url": "/system/",
-    "title": "List the endpoints available for the system api",
-    "version": "0.1.2",
-    "name": "index",
-    "group": "system",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "sampleRequest": [
-      {
-        "url": "/api/system/"
-      }
-    ],
-    "filename": "config/routes/api.php",
-    "groupTitle": "system"
-  },
-  {
     "type": "post",
     "url": "/tools/calculateCrestHash/",
     "title": "Calculates the CREST hash for a non-crest verified killmail, remember to post to it using a CREST formatted killmail",
@@ -3986,55 +5664,24 @@
         "url": "/api/tools/calculateCrestHash"
       }
     ],
+    "success": {
+      "examples": [
+        {
+          "title": "Example Return",
+          "content": "66e1b9f27b9ce0947051240f2f594b74957fc30b",
+          "type": "string"
+        }
+      ]
+    },
     "filename": "config/routes/api.php",
     "groupTitle": "tools"
   },
   {
     "type": "get",
-    "url": "/tools/",
-    "title": "List the endpoints available for the tools api",
-    "version": "0.1.2",
-    "name": "index",
-    "group": "tools",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "sampleRequest": [
-      {
-        "url": "/api/tools/"
-      }
-    ],
-    "filename": "config/routes/api.php",
-    "groupTitle": "tools"
-  },
-  {
-    "type": "get",
-    "url": "/war/count/",
+    "url": "/wars/count/",
     "title": "Total amount of wars in the system",
     "version": "0.1.2",
     "name": "count",
-    "group": "war",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "sampleRequest": [
-      {
-        "url": "/api/war/count/"
-      }
-    ],
-    "filename": "config/routes/api.php",
-    "groupTitle": "war"
-  },
-  {
-    "type": "get",
-    "url": "/wars/",
-    "title": "List the endpoints available for the wars api",
-    "version": "0.1.2",
-    "name": "index",
     "group": "wars",
     "permission": [
       {
@@ -4043,7 +5690,7 @@
     ],
     "sampleRequest": [
       {
-        "url": "/api/wars/"
+        "url": "/api/wars/count/"
       }
     ],
     "filename": "config/routes/api.php",

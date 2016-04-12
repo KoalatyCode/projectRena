@@ -1,341 +1,6 @@
 <?php
 
-$app->apiDoc = array(
-    "websocket" => array(
-        "kills" => array(
-            "method" => "wss",
-            "description" => "Provides a steady stream of the latest killmails inserted into Rena",
-            "href" => "wss://ws.eve-kill.net/kills"
-        ),
-        "echo" => array(
-            "method" => "wss",
-            "description" => "Echos back whatever is sent to it",
-            "href" => "wss://ws.eve-kill.net/echo"
-        ),
-    ),
-    "character" => array(
-        "information" => array(
-            "method" => "GET",
-            "description" => "Get information for a character",
-            "href" => $app->request->getUrl() . "/api/character/information/:characterID/"
-        ),
-        "find" => array(
-            "method" => "GET",
-            "description" => "Look for a character with a certain name",
-            "href" => $app->request->getUrl() . "/api/character/find/:searchTerm/"
-        )
-    ),
-    "corporation" => array(
-        "information" => array(
-            "method" => "GET",
-            "description" => "Get information for a corporation",
-            "href" => $app->request->getUrl() . "/api/corporation/information/:corporationID/"
-        ),
-        "members" => array(
-            "method" => "GET",
-            "description" => "Get a list of members of a corporation",
-            "href" => $app->request->getUrl() . "/api/corporation/members/:corporationID/"
-        ),
-        "find" => array(
-            "method" => "GET",
-            "description" => "Look for a corporation with a certain name",
-            "href" => $app->request->getUrl() . "/api/corporation/find/:searchTerm/"
-        )
-    ),
-    "alliance" => array(
-        "information" => array(
-            "method" => "GET",
-            "description" => "Get information on an alliance",
-            "href" => $app->request->getUrl() . "/api/alliance/information/:allianceID/"
-        ),
-        "members" => array(
-            "method" => "GET",
-            "description" => "Get a list of all members of an alliance and it's corporations",
-            "href" => $app->request->getUrl() . "/api/alliance/members/:allianceID/"
-        ),
-        "find" => array(
-            "method" => "GET",
-            "description" => "Look for an alliance with a certain name",
-            "href" => $app->request->getUrl() . "/api/alliance/find/:searchTerm/"
-        )
-    ),
-    "item" => array(
-        "information" => array(
-            "method" => "GET",
-            "description" => "Show information for a single typeID",
-            "href" => $app->request->getUrl() . "/api/item/information/:itemID/"
-        ),
-        "find" => array(
-            "method" => "GET",
-            "description" => "Look for the typeID of an item with a certain name",
-            "href" => $app->request->getUrl() . "/api/item/find/:searchTerm/"
-        )
-    ),
-    "system" => array(
-        "information" => array(
-            "method" => "GET",
-            "description" => "Show information for a single solarSystemID",
-            "href" => $app->request->getUrl() . "/api/system/information/:solarSystemID/"
-        ),
-        "find" => array(
-            "method" => "GET",
-            "description" => "Look for the solarSystemID of a solarSystem with a certain name",
-            "href" => $app->request->getUrl() . "/api/system/find/:searchTerm/"
-        )
-    ),
-    "region" => array(
-        "information" => array(
-            "method" => "GET",
-            "description" => "Show information for a single regionID",
-            "href" => $app->request->getUrl() . "/api/region/information/:regionID/"
-        ),
-        "find" => array(
-            "method" => "GET",
-            "description" => "Look for the regionID of a region with a certain name",
-            "href" => $app->request->getUrl() . "/api/region/find/:searchTerm/"
-        )
-    ),
-    "celestial" => array(
-        "information" => array(
-            "method" => "GET",
-            "description" => "List all celestials in a system with a certain solarSystemID",
-            "href" => $app->request->getUrl() . "/api/celestial/information/:solarSystemID/"
-        )
-    ),
-    "killmail" => array(
-        "method" => "GET",
-        "description" => "Get a single killmails data for a certain killID",
-        "href" => $app->request->getUrl() . "/api/killmail/:killID/"
-    ),
-    "kill" => array(
-        "mail" => array(
-            "method" => "GET",
-            "description" => "Get a single killmails data for a certain killID",
-            "href" => $app->request->getUrl() . "/api/kill/mail/:killID/"
-        ),
-        "latest" => array(
-            "method" => "GET",
-            "description" => "Returns the last 100 kills done",
-            "href" => $app->request->getUrl() . "/api/kill/latest/"
-        ),
-        "solarSystem" => array(
-            "method" => "GET",
-            "description" => "Get kills for a solarSystem",
-            "validParameters" => array("killID", "killTime", "regionID", "characterID", "corporationID", "allianceID", "factionID", "shipTypeID", "groupID", "vGroupID", "weaponTypeID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
-            "example" => $app->request->getUrl() . "/api/kill/solarSystem/30000142/characterID/95516434/",
-            "href" => $app->request->getUrl() . "/api/kill/solarSystem/:solarSystemID/(:extraParameters+)/"
-        ),
-        "region" => array(
-            "method" => "GET",
-            "description" => "Get kills for a region",
-            "validParameters" => array("killID", "killTime", "solarSystemID", "characterID", "corporationID", "allianceID", "factionID", "shipTypeID", "groupID", "vGroupID", "weaponTypeID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
-            "example" => $app->request->getUrl() . "/api/kill/region/10000043/",
-            "href" => $app->request->getUrl() . "/api/kill/region/:regionID/(:extraParameters+)/"
-        ),
-        "character" => array(
-            "method" => "GET",
-            "description" => "Get kills for a character",
-            "validParameters" => array("killID", "killTime", "solarSystemID", "regionID", "corporationID", "allianceID", "factionID", "shipTypeID", "groupID", "vGroupID", "weaponTypeID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
-            "example" => $app->request->getUrl() . "/api/kill/character/95516434/",
-            "href" => $app->request->getUrl() . "/api/kill/character/:characterID/(:extraParameters+)/"
-        ),
-        "corporation" => array(
-            "method" => "GET",
-            "description" => "Get kills for a corporation",
-            "validParameters" => array("killID", "killTime", "solarSystemID", "regionID", "characterID", "allianceID", "factionID", "shipTypeID", "groupID", "vGroupID", "weaponTypeID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
-            "example" => $app->request->getUrl() . "/api/kill/corporation/98442635/",
-            "href" => $app->request->getUrl() . "/api/kill/corporation/:corporationID/(:extraParameters+)/"
-        ),
-        "alliance" => array(
-            "method" => "GET",
-            "description" => "Get kills for a alliance",
-            "validParameters" => array("killID", "killTime", "solarSystemID", "regionID", "characterID", "corporationID", "factionID", "shipTypeID", "groupID", "vGroupID", "weaponTypeID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
-            "example" => $app->request->getUrl() . "/api/kill/alliance/99000554/",
-            "href" => $app->request->getUrl() . "/api/kill/alliance/:allianceID/(:extraParameters+)/"
-        ),
-        "faction" => array(
-            "method" => "GET",
-            "description" => "Get kills for a faction",
-            "validParameters" => array("killID", "killTime", "solarSystemID", "regionID", "characterID", "corporationID", "allianceID", "shipTypeID", "groupID", "vGroupID", "weaponTypeID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
-            "example" => $app->request->getUrl() . "/api/kill/faction/500019/",
-            "href" => $app->request->getUrl() . "/api/kill/faction/:factionID/(:extraParameters+)/"
-        ),
-        "shipType" => array(
-            "method" => "GET",
-            "description" => "Get kills for a shipType",
-            "validParameters" => array("killID", "killTime", "solarSystemID", "regionID", "characterID", "corporationID", "allianceID", "factionID", "groupID", "vGroupID", "weaponTypeID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
-            "example" => $app->request->getUrl() . "/api/kill/shipType/29990/",
-            "href" => $app->request->getUrl() . "/api/kill/shipType/:shipTypeID/(:extraParameters+)/"
-        ),
-        "group" => array(
-            "method" => "GET",
-            "description" => "Get kills for a group",
-            "validParameters" => array("killID", "killTime", "solarSystemID", "regionID", "characterID", "corporationID", "allianceID", "factionID", "shipTypeID", "vGroupID", "weaponTypeID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
-            "example" => $app->request->getUrl() . "/api/kill/group/29/",
-            "href" => $app->request->getUrl() . "/api/kill/group/:groupID/(:extraParameters+)/"
-        ),
-        "vGroup" => array(
-            "method" => "GET",
-            "description" => "Get kills for a vGroup",
-            "validParameters" => array("killID", "killTime", "solarSystemID", "regionID", "characterID", "corporationID", "allianceID", "factionID", "shipTypeID", "groupID", "weaponTypeID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
-            "example" => $app->request->getUrl() . "/api/kill/vGroup/29/",
-            "href" => $app->request->getUrl() . "/api/kill/vGroup/:vGroupID/(:extraParameters+)/"
-        ),
-        "weaponType" => array(
-            "method" => "GET",
-            "description" => "Get kills for a weaponType",
-            "validParameters" => array("killID", "killTime", "solarSystemID", "regionID", "characterID", "corporationID", "allianceID", "factionID", "shipTypeID", "groupID", "vGroupID", "shipValue", "damageDone", "totalValue", "pointValue", "numberInvolved", "isVictim", "finalBlow", "isNPC"),
-            "example" => $app->request->getUrl() . "/api/kill/weaponType/2905/",
-            "href" => $app->request->getUrl() . "/api/kill/weaponType/:weaponTypeID/(:extraParameters+)/"
-        )
-    ),
-    "stats" => array(
-        "top10Characters" => array(
-            "method" => "GET",
-            "description" => "Shows the Top 10 Characters for the last 7 days",
-            "href" => $app->request->getUrl() . "/api/stats/top10Characters/"
-        ),
-        "top10Corporations" => array(
-            "method" => "GET",
-            "description" => "Shows the Top 10 Corporations for the last 7 days",
-            "href" => $app->request->getUrl() . "/api/stats/top10Corporations/"
-        ),
-        "top10Alliances" => array(
-            "method" => "GET",
-            "description" => "Shows the Top 10 Alliances for the last 7 days",
-            "href" => $app->request->getUrl() . "/api/stats/top10Alliances/"
-        ),
-        "top10ShipTypes" => array(
-            "method" => "GET",
-            "description" => "Shows the Top 10 Ship Types for the last 7 days",
-            "href" => $app->request->getUrl() . "/api/stats/top10ShipTypes/"
-        ),
-        "top10SolarSystems" => array(
-            "method" => "GET",
-            "description" => "Shows the Top 10 Solar Systems for the last 7 days",
-            "href" => $app->request->getUrl() . "/api/stats/top10SolarSystems/"
-        ),
-        "top10Regions" => array(
-            "method" => "GET",
-            "description" => "Shows the Top 10 Regions for the last 7 days",
-            "href" => $app->request->getUrl() . "/api/stats/top10Regions/"
-        ),
-        "mostValuableKillsLast7Days" => array(
-            "method" => "GET",
-            "description" => "5 Most valuable kills over the last 7 days",
-            "href" => $app->request->getUrl() . "/api/stats/mostValuableKillsLast7Days/"
-        ),
-        "sevenDayKillCount" => array(
-            "method" => "GET",
-            "description" => "Kills done over the last 7 days",
-            "href" => $app->request->getUrl() . "/api/stats/sevenDayKillCount/"
-        ),
-        "currentlyActiveCharacters" => array(
-            "method" => "GET",
-            "description" => "Amount of active characters over the last 7 days",
-            "href" => $app->request->getUrl() . "/api/stats/currentlyActiveCharacters/"
-        ),
-        "currentlyActiveCorporations" => array(
-            "method" => "GET",
-            "description" => "Amount of active corporations over the last 7 days",
-            "href" => $app->request->getUrl() . "/api/stats/currentlyActiveCorporations/"
-        ),
-        "currentlyActiveAlliances" => array(
-            "method" => "GET",
-            "description" => "Amount of active alliances over the last 7 days",
-            "href" => $app->request->getUrl() . "/api/stats/currentlyActiveAlliances/"
-        ),
-        "currentlyActiveShipTypes" => array(
-            "method" => "GET",
-            "description" => "Amount of active ship types over the last 7 days",
-            "href" => $app->request->getUrl() . "/api/stats/currentlyActiveShipTypes/"
-        ),
-        "currentlyActiveSolarSystems" => array(
-            "method" => "GET",
-            "description" => "Amount of active solar systems over the last 7 days",
-            "href" => $app->request->getUrl() . "/api/stats/currentlyActiveSolarSystems/"
-        ),
-    ),
-    "search" => array(
-        "faction" => array(
-            "method" => "GET",
-            "description" => "Search for a faction with a certain name",
-            "href" => $app->request->getUrl() . "/api/search/faction/:searchTerm/"
-        ),
-        "alliance" => array(
-            "method" => "GET",
-            "description" => "Search for an alliance with a certain name",
-            "href" => $app->request->getUrl() . "/api/search/alliance/:searchTerm/"
-        ),
-        "corporation" => array(
-            "method" => "GET",
-            "description" => "Search for a corporation with a certain name",
-            "href" => $app->request->getUrl() . "/api/search/corporation/:searchTerm/"
-        ),
-        "character" => array(
-            "method" => "GET",
-            "description" => "Search for a character with a certain name",
-            "href" => $app->request->getUrl() . "/api/search/character/:searchTerm/"
-        ),
-        "item" => array(
-            "method" => "GET",
-            "description" => "Search for an item with a certain name",
-            "href" => $app->request->getUrl() . "/api/search/item/:searchTerm/"
-        ),
-        "system" => array(
-            "method" => "GET",
-            "description" => "Search for a system with a certain name",
-            "href" => $app->request->getUrl() . "/api/search/system/:searchTerm/"
-        ),
-        "region" => array(
-            "method" => "GET",
-            "description" => "Search for a region with a certain name",
-            "href" => $app->request->getUrl() . "/api/search/region/:searchTerm/"
-        ),
-        "celestial" => array(
-            "method" => "GET",
-            "description" => "Search for a celestial with a certain name",
-            "href" => $app->request->getUrl() . "/api/search/celestial/:searchTerm/"
-        ),
-    ),
-    "tools" => array(
-        "calculateCrestHash" => array(
-            "method" => "POST",
-            "description" => "Post killmail data from a CREST style killmail, and receive the CREST Hash for said Killmail",
-            "href" => $app->request->getUrl() . "/api/tools/calculateCrestHash/"
-        )
-    ),
-    "wars" => array(
-        "wars" => array(),
-        "kills" => array(),
-    ),
-    "market" => array(
-        "price" => array(
-            "method" => "GET",
-            "description" => "Get latest low/high/avg buy/sell prices for an itemID",
-            "href" => $app->request->getUrl() . "/api/market/price/:itemID/"
-        ),
-        "prices" => array(
-            "method" => "GET",
-            "description" => "Get daily low/high/avg buy/sell prices for an itemID, going back to the beginning",
-            "href" => $app->request->getUrl() . "/api/market/prices/:itemID/"
-        )
-    ),
-);
-
 $app->group("/api", function () use ($app) {
-    /**
-     * @api {get} / Lists all API endpoints available, including method to use, url and examples
-     * @apiVersion 0.1.2
-     * @apiName Index
-     * @apiGroup Index
-     * @apiPermission public
-     * @apiSampleRequest /api/
-     */
-    $app->get("/", function () use ($app) {
-        render("", $app->apiDoc, null, "application/json");
-    });
-
     $app->group("/character", function () use ($app) {
         /**
          * @api {get} /character/ List the endpoints available for the character api
@@ -391,18 +56,6 @@ $app->group("/api", function () use ($app) {
 
     $app->group("/corporation", function () use ($app) {
         /**
-         * @api {get} /corporation/ List the endpoints available for the corporation api
-         * @apiVersion 0.1.2
-         * @apiName index
-         * @apiGroup corporation
-         * @apiPermission public
-         * @apiSampleRequest /api/corporation/
-         */
-        $app->get("/", function () use ($app) {
-            render("", $app->apiDoc["corporation"], null, "application/json");
-        });
-
-        /**
          * @api {get} /corporation/count/ Total amount of corporations in the system
          * @apiVersion 0.1.2
          * @apiName count
@@ -456,18 +109,6 @@ $app->group("/api", function () use ($app) {
     });
 
     $app->group("/alliance", function () use ($app) {
-        /**
-         * @api {get} /alliance/ List the endpoints available for the alliance api
-         * @apiVersion 0.1.2
-         * @apiName index
-         * @apiGroup alliance
-         * @apiPermission public
-         * @apiSampleRequest /api/alliance/
-         */
-        $app->get("/", function () use ($app) {
-            render("", $app->apiDoc["alliance"], null, "application/json");
-        });
-
         /**
          * @api {get} /alliance/count/ Total amount of alliances in the system
          * @apiVersion 0.1.2
@@ -523,18 +164,6 @@ $app->group("/api", function () use ($app) {
 
     $app->group("/item", function () use ($app) {
         /**
-         * @api {get} /item/ List the endpoints available for the item api
-         * @apiVersion 0.1.2
-         * @apiName index
-         * @apiGroup item
-         * @apiPermission public
-         * @apiSampleRequest /api/item/
-         */
-        $app->get("/", function () use ($app) {
-            render("", $app->apiDoc["item"], null, "application/json");
-        });
-
-        /**
          * @api {get} /item/information/:itemID/ Show information for a single item
          * @apiVersion 0.1.2
          * @apiName Information
@@ -562,18 +191,6 @@ $app->group("/api", function () use ($app) {
     });
 
     $app->group("/system", function () use ($app) {
-        /**
-         * @api {get} /system/ List the endpoints available for the system api
-         * @apiVersion 0.1.2
-         * @apiName index
-         * @apiGroup system
-         * @apiPermission public
-         * @apiSampleRequest /api/system/
-         */
-        $app->get("/", function () use ($app) {
-            render("", $app->apiDoc["system"], null, "application/json");
-        });
-
         /**
          * @api {get} /system/information/:systemID/ Show information for a single system
          * @apiVersion 0.1.2
@@ -603,18 +220,6 @@ $app->group("/api", function () use ($app) {
 
     $app->group("/region", function () use ($app) {
         /**
-         * @api {get} /region/ List the endpoints available for the region api
-         * @apiVersion 0.1.2
-         * @apiName index
-         * @apiGroup region
-         * @apiPermission public
-         * @apiSampleRequest /api/region/
-         */
-        $app->get("/", function () use ($app) {
-            render("", $app->apiDoc["region"], null, "application/json");
-        });
-
-        /**
          * @api {get} /region/information/:regionID/ Show information for a single region
          * @apiVersion 0.1.2
          * @apiName Information
@@ -643,18 +248,6 @@ $app->group("/api", function () use ($app) {
 
     $app->group("/celestial", function () use ($app) {
         /**
-         * @api {get} /celestial/ List the endpoints available for the celestial api
-         * @apiVersion 0.1.2
-         * @apiName index
-         * @apiGroup celestial
-         * @apiPermission public
-         * @apiSampleRequest /api/celestial/
-         */
-        $app->get("/", function () use ($app) {
-            render("", $app->apiDoc["celestial"], null, "application/json");
-        });
-
-        /**
          * @api {get} /celestial/information/:solarSystemID/ Show all celestials in a system
          * @apiVersion 0.1.2
          * @apiName Information
@@ -668,39 +261,14 @@ $app->group("/api", function () use ($app) {
         });
     });
 
-    /**
-     * @api {get} /killmail/:killID/ List a single killmails data
-     * @apiVersion 0.1.2
-     * @apiName killmail
-     * @apiGroup kill
-     * @apiPermission public
-     * @apiParam {Integer} killID the killID
-     * @apiSampleRequest /api/killmail/:killID/
-     */
-    $app->get("/killmail/:killID/", function ($killID) use ($app) {
-        (new \ProjectRena\Controller\API\KillmailsAPIController($app))->killData($killID);
-    });
-
-    $app->group("/kill", function () use ($app) {
+    $app->group("/killmail", function() use ($app) {
         /**
-         * @api {get} /kill/ List the endpoints available for the kill api
-         * @apiVersion 0.1.2
-         * @apiName index
-         * @apiGroup kill
-         * @apiPermission public
-         * @apiSampleRequest /api/kill/
-         */
-        $app->get("/", function () use ($app) {
-            render("", $app->apiDoc["kill"], null, "application/json");
-        });
-
-        /**
-         * @api {get} /kill/count/ Total amount of kills in the system
+         * @api {get} /killmail/count/ Total amount of kills in the system
          * @apiVersion 0.1.2
          * @apiName count
-         * @apiGroup kill
+         * @apiGroup killmail
          * @apiPermission public
-         * @apiSampleRequest /api/kill/count/
+         * @apiSampleRequest /api/killmail/count/
          */
         $app->get("/count/", function () use ($app) {
             $results = $app->Db->queryRow("SELECT COUNT(*) as count FROM killmails");
@@ -708,35 +276,37 @@ $app->group("/api", function () use ($app) {
         });
 
         /**
-         * @api {get} /kill/mail/:killID/ List a single killmails data
-         * @apiVersion 0.1.2
-         * @apiName killmail
-         * @apiGroup kill
-         * @apiPermission public
-         * @apiParam {Integer} killID the killID
-         * @apiSampleRequest /api/kill/mail/:killID/
-         */
-        $app->get("/mail/:killID/", function ($killID) use ($app) {
-            (new \ProjectRena\Controller\API\KillmailsAPIController($app))->killData($killID);
-        });
-
-        /**
-         * @api {get} /kill/latest/ Shows the 100 latest killmails
+         * @api {get} /killmail/latest/ Shows the 100 latest killmails
          * @apiVersion 0.1.2
          * @apiName kill
-         * @apiGroup kill
+         * @apiGroup killmail
          * @apiPermission public
-         * @apiSampleRequest /api/kill/latest/
+         * @apiSampleRequest /api/killmail/latest/
          */
         $app->get("/latest/", function () use ($app) {
             (new \ProjectRena\Controller\API\KillAPIController($app))->last100Kills();
         });
 
         /**
-         * @api {get} /kill/solarSystem/:solarSystemID/ List kills that has happened in a certain solar system
+         * @api {get} /killmail/kill/:killID/ List a single killmails data
+         * @apiVersion 0.1.2
+         * @apiName killmail
+         * @apiGroup killmail
+         * @apiPermission public
+         * @apiParam {Integer} killID the killID
+         * @apiSampleRequest /api/killmail/kill/:killID/
+         */
+        $app->get("/kill/:killID/", function ($killID) use ($app) {
+            (new \ProjectRena\Controller\API\KillmailsAPIController($app))->killData($killID);
+        });
+    });
+
+    $app->group("/kills", function () use ($app) {
+        /**
+         * @api {get} /kills/solarSystem/:solarSystemID/ List kills that has happened in a certain solar system
          * @apiVersion 0.1.2
          * @apiName solarSystem
-         * @apiGroup kill
+         * @apiGroup kills
          * @apiPermission public
          * @apiParam {Integer} solarSystemID Limit to a specific solarSystemID
          * @apiParam {Integer} [killID] the killID
@@ -762,17 +332,17 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [limit] 1 to 100
          * @apiParam {String} [order] asc or desc (case sensitive)
          * @apiParam {Integer} [offset] Return records after a certain offset
-         * @apiSampleRequest /api/kill/solarSystem/:solarSystemID/
+         * @apiSampleRequest /api/kills/solarSystem/:solarSystemID/
          */
         $app->get("/solarSystem/:solarSystemID/(:extraParameters+)", function ($solarSystemID, $parameters = array()) use ($app) {
             (new \ProjectRena\Controller\API\KillAPIController($app))->solarSystemKills($solarSystemID, $parameters);
         });
 
         /**
-         * @api {get} /kill/region/:regionID/ List kills that has happened in a certain region
+         * @api {get} /kills/region/:regionID/ List kills that has happened in a certain region
          * @apiVersion 0.1.2
          * @apiName region
-         * @apiGroup kill
+         * @apiGroup kills
          * @apiPermission public
          * @apiParam {Integer} regionID Limit to a specific regionID
          * @apiParam {Integer} [killID] the killID
@@ -798,17 +368,17 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [limit] 1 to 100
          * @apiParam {String} [order] asc or desc (case sensitive)
          * @apiParam {Integer} [offset] Return records after a certain offset
-         * @apiSampleRequest /api/kill/region/:regionID/
+         * @apiSampleRequest /api/kills/region/:regionID/
          */
         $app->get("/region/:regionID/(:extraParameters+)", function ($regionID, $parameters = array()) use ($app) {
             (new \ProjectRena\Controller\API\KillAPIController($app))->regionKills($regionID, $parameters);
         });
 
         /**
-         * @api {get} /kill/character/:characterID/ List kills for a certain character
+         * @api {get} /kills/character/:characterID/ List kills for a certain character
          * @apiVersion 0.1.2
          * @apiName character
-         * @apiGroup kill
+         * @apiGroup kills
          * @apiPermission public
          * @apiParam {Integer} characterID Limit to a specific characterID
          * @apiParam {Integer} [killID] the killID
@@ -834,17 +404,17 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [limit] 1 to 100
          * @apiParam {String} [order] asc or desc (case sensitive)
          * @apiParam {Integer} [offset] Return records after a certain offset
-         * @apiSampleRequest /api/kill/character/:characterID/
+         * @apiSampleRequest /api/kills/character/:characterID/
          */
         $app->get("/character/:characterID/(:extraParameters+)", function ($characterID, $parameters = array()) use ($app) {
             (new \ProjectRena\Controller\API\KillAPIController($app))->characterKills($characterID, $parameters);
         });
 
         /**
-         * @api {get} /kill/corporation/:corporationID/ List kills for a certain corporation
+         * @api {get} /kills/corporation/:corporationID/ List kills for a certain corporation
          * @apiVersion 0.1.2
          * @apiName corporation
-         * @apiGroup kill
+         * @apiGroup kills
          * @apiPermission public
          * @apiParam {Integer} corporationID Limit to a specific corporationID
          * @apiParam {Integer} [killID] the killID
@@ -870,17 +440,17 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [limit] 1 to 100
          * @apiParam {String} [order] asc or desc (case sensitive)
          * @apiParam {Integer} [offset] Return records after a certain offset
-         * @apiSampleRequest /api/kill/corporation/:corporationID/
+         * @apiSampleRequest /api/kills/corporation/:corporationID/
          */
         $app->get("/corporation/:corporationID/(:extraParameters+)", function ($corporationID, $parameters = array()) use ($app) {
             (new \ProjectRena\Controller\API\KillAPIController($app))->corporationKills($corporationID, $parameters);
         });
 
         /**
-         * @api {get} /kill/alliance/:allianceID/ List kills for a certain alliance
+         * @api {get} /kills/alliance/:allianceID/ List kills for a certain alliance
          * @apiVersion 0.1.2
          * @apiName alliance
-         * @apiGroup kill
+         * @apiGroup kills
          * @apiPermission public
          * @apiParam {Integer} allianceID Limit to a specific allianceID
          * @apiParam {Integer} [killID] the killID
@@ -906,17 +476,17 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [limit] 1 to 100
          * @apiParam {String} [order] asc or desc (case sensitive)
          * @apiParam {Integer} [offset] Return records after a certain offset
-         * @apiSampleRequest /api/kill/alliance/:allianceID/
+         * @apiSampleRequest /api/kills/alliance/:allianceID/
          */
         $app->get("/alliance/:allianceID/(:extraParameters+)", function ($allianceID, $parameters = array()) use ($app) {
             (new \ProjectRena\Controller\API\KillAPIController($app))->allianceKills($allianceID, $parameters);
         });
 
         /**
-         * @api {get} /kill/faction/:factionID/ List kills for a certain faction
+         * @api {get} /kills/faction/:factionID/ List kills for a certain faction
          * @apiVersion 0.1.2
          * @apiName faction
-         * @apiGroup kill
+         * @apiGroup kills
          * @apiPermission public
          * @apiParam {Integer} factionID Limit to a specific factionID
          * @apiParam {Integer} [killID] the killID
@@ -942,17 +512,17 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [limit] 1 to 100
          * @apiParam {String} [order] asc or desc (case sensitive)
          * @apiParam {Integer} [offset] Return records after a certain offset
-         * @apiSampleRequest /api/kill/faction/:factionID/
+         * @apiSampleRequest /api/kills/faction/:factionID/
          */
         $app->get("/faction/:factionID/(:extraParameters+)", function ($factionID, $parameters = array()) use ($app) {
             (new \ProjectRena\Controller\API\KillAPIController($app))->factionKills($factionID, $parameters);
         });
 
         /**
-         * @api {get} /kill/shipType/:shipTypeID/ List kills for a certain shipType
+         * @api {get} /kills/shipType/:shipTypeID/ List kills for a certain shipType
          * @apiVersion 0.1.2
          * @apiName shipType
-         * @apiGroup kill
+         * @apiGroup kills
          * @apiPermission public
          * @apiParam {Integer} shipTypeID Limit to a specific shipTypeID
          * @apiParam {Integer} [killID] the killID
@@ -978,17 +548,17 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [limit] 1 to 100
          * @apiParam {String} [order] asc or desc (case sensitive)
          * @apiParam {Integer} [offset] Return records after a certain offset
-         * @apiSampleRequest /api/kill/shipType/:shipTypeID/
+         * @apiSampleRequest /api/kills/shipType/:shipTypeID/
          */
         $app->get("/shipType/:shipTypeID/(:extraParameters+)", function ($shipTypeID, $parameters = array()) use ($app) {
             (new \ProjectRena\Controller\API\KillAPIController($app))->shipTypeKills($shipTypeID, $parameters);
         });
 
         /**
-         * @api {get} /kill/group/:groupID/ List kills for a certain group
+         * @api {get} /kills/group/:groupID/ List kills for a certain group
          * @apiVersion 0.1.2
          * @apiName group
-         * @apiGroup kill
+         * @apiGroup kills
          * @apiPermission public
          * @apiParam {Integer} groupID Limit to a specific groupID
          * @apiParam {Integer} [killID] the killID
@@ -1014,17 +584,17 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [limit] 1 to 100
          * @apiParam {String} [order] asc or desc (case sensitive)
          * @apiParam {Integer} [offset] Return records after a certain offset
-         * @apiSampleRequest /api/kill/group/:groupID/
+         * @apiSampleRequest /api/kills/group/:groupID/
          */
         $app->get("/group/:groupID/(:extraParameters+)", function ($groupID, $parameters = array()) use ($app) {
             (new \ProjectRena\Controller\API\KillAPIController($app))->groupKills($groupID, $parameters);
         });
 
         /**
-         * @api {get} /kill/vGroup/:vGroupID/ List kills for a certain vGroup
+         * @api {get} /kills/vGroup/:vGroupID/ List kills for a certain vGroup
          * @apiVersion 0.1.2
          * @apiName vGroup
-         * @apiGroup kill
+         * @apiGroup kills
          * @apiPermission public
          * @apiParam {Integer} vGroupID Limit to a specific vGroupID
          * @apiParam {Integer} [killID] the killID
@@ -1050,17 +620,17 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [limit] 1 to 100
          * @apiParam {String} [order] asc or desc (case sensitive)
          * @apiParam {Integer} [offset] Return records after a certain offset
-         * @apiSampleRequest /api/kill/vGroup/:vGroupID/
+         * @apiSampleRequest /api/kills/vGroup/:vGroupID/
          */
         $app->get("/vGroup/:vGroupID/(:extraParameters+)", function ($vGroupID, $parameters = array()) use ($app) {
             (new \ProjectRena\Controller\API\KillAPIController($app))->vGroupKills($vGroupID, $parameters);
         });
 
         /**
-         * @api {get} /kill/weaponType/:weaponTypeID/ List kills for a certain weaponType
+         * @api {get} /kills/weaponType/:weaponTypeID/ List kills for a certain weaponType
          * @apiVersion 0.1.2
          * @apiName weaponType
-         * @apiGroup kill
+         * @apiGroup kills
          * @apiPermission public
          * @apiParam {Integer} weaponTypeID Limit to a specific weaponTypeID
          * @apiParam {Integer} [killID] the killID
@@ -1086,17 +656,17 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [limit] 1 to 100
          * @apiParam {String} [order] asc or desc (case sensitive)
          * @apiParam {Integer} [offset] Return records after a certain offset
-         * @apiSampleRequest /api/kill/weaponType/:weaponTypeID/
+         * @apiSampleRequest /api/kills/weaponType/:weaponTypeID/
          */
         $app->get("/weaponType/:weaponTypeID/(:extraParameters+)", function ($weaponTypeID, $parameters = array()) use ($app) {
             (new \ProjectRena\Controller\API\KillAPIController($app))->weaponTypeKills($weaponTypeID, $parameters);
         });
 
         /**
-         * @api {get} /kill/afterDate/:afterDate/ List kills happening after a certain date
+         * @api {get} /kills/afterDate/:afterDate/ List kills happening after a certain date
          * @apiVersion 0.1.2
          * @apiName afterDate
-         * @apiGroup kill
+         * @apiGroup kills
          * @apiPermission public
          * @apiParam {DateTime} afterDate Return kills after a certain date (YYYY-mm-dd HH:ii:ss)
          * @apiParam {Integer} [killID] the killID
@@ -1122,17 +692,17 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [limit] 1 to 100
          * @apiParam {String} [order] asc or desc (case sensitive)
          * @apiParam {Integer} [offset] Return records after a certain offset
-         * @apiSampleRequest /api/kill/afterDate/:afterDate/
+         * @apiSampleRequest /api/kills/afterDate/:afterDate/
          */
         $app->get("/afterDate/:afterDate/(:extraParameters+)", function ($afterDate, $parameters = array()) use ($app) {
             (new \ProjectRena\Controller\API\KillAPIController($app))->beforeDateKills($afterDate, $parameters);
         });
 
         /**
-         * @api {get} /kill/beforeDate/:beforeDate/ List kills happening before a certain date
+         * @api {get} /kills/beforeDate/:beforeDate/ List kills happening before a certain date
          * @apiVersion 0.1.2
          * @apiName beforeDate
-         * @apiGroup kill
+         * @apiGroup kills
          * @apiPermission public
          * @apiParam {DateTime} beforeDate Return kills before a certain date (YYYY-mm-dd HH:ii:ss)
          * @apiParam {Integer} [killID] the killID
@@ -1158,17 +728,17 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [limit] 1 to 100
          * @apiParam {String} [order] asc or desc (case sensitive)
          * @apiParam {Integer} [offset] Return records after a certain offset
-         * @apiSampleRequest /api/kill/beforeDate/:beforeDate/
+         * @apiSampleRequest /api/kills/beforeDate/:beforeDate/
          */
         $app->get("/beforeDate/:beforeDate/(:extraParameters+)", function ($beforeDate, $parameters = array()) use ($app) {
             (new \ProjectRena\Controller\API\KillAPIController($app))->afterDateKills($beforeDate, $parameters);
         });
 
         /**
-         * @api {get} /kill/betweenDates/:afterDate/:beforeDate/ List kills between two dates
+         * @api {get} /kills/betweenDates/:afterDate/:beforeDate/ List kills between two dates
          * @apiVersion 0.1.2
          * @apiName betweenDates
-         * @apiGroup kill
+         * @apiGroup kills
          * @apiPermission public
          * @apiParam {DateTime} afterDate Get kills after this date (YYYY-mm-dd HH:ii:ss)
          * @apiParam {DateTime} beforeDate But before this date (YYYY-mm-dd HH:ii:ss)
@@ -1195,26 +765,377 @@ $app->group("/api", function () use ($app) {
          * @apiParam {Integer} [limit] 1 to 100
          * @apiParam {String} [order] asc or desc (case sensitive)
          * @apiParam {Integer} [offset] Return records after a certain offset
-         * @apiSampleRequest /api/kill/betweenDates/:afterDate/:beforeDate/
+         * @apiSampleRequest /api/kills/betweenDates/:afterDate/:beforeDate/
          */
         $app->get("/betweenDates/:afterDate/:beforeDate/(:extraParameters+)", function ($afterDate, $beforeDate, $parameters = array()) use ($app) {
             (new \ProjectRena\Controller\API\KillAPIController($app))->betweenDateKills($afterDate, $beforeDate, $parameters);
         });
     });
 
-    $app->group("/stats", function () use ($app) {
+    $app->group("/losses", function () use ($app) {
         /**
-         * @api {get} /stats/ List the endpoints available for the stats api
+         * @api {get} /losses/character/:characterID/ List kills for a certain character
          * @apiVersion 0.1.2
-         * @apiName index
-         * @apiGroup stats
+         * @apiName character
+         * @apiGroup losses
          * @apiPermission public
-         * @apiSampleRequest /api/stats/
+         * @apiParam {Integer} characterID Limit to a specific characterID
+         * @apiParam {Integer} [killID] the killID
+         * @apiParam {DateTime} [killTime] Limit to a specific time (YYYY-mm-dd HH:ii:ss)
+         * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
+         * @apiParam {Integer} [regionID] Limit to a specific regionID
+         * @apiParam {Integer} [characterID] Limit to a specific characterID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
+         * @apiParam {Integer} [allianceID] Limit to a specific allianceID
+         * @apiParam {Integer} [factionID] Limit to a specific factionID
+         * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
+         * @apiParam {Integer} [groupID] Limit to a specific groupID
+         * @apiParam {Integer} [vGroupID] Limit to a specific vGroupID
+         * @apiParam {Integer} [weaponTypeID] Limit to a specific weaponTypeID
+         * @apiParam {Float} [shipValue]
+         * @apiParam {Integer} [damageDone]
+         * @apiParam {Float} [totalValue]
+         * @apiParam {Integer} [pointValue]
+         * @apiParam {Integer} [numberInvolved]
+         * @apiParam {Integer} [isVictim] (1 or 0)
+         * @apiParam {Integer} [finalBlow] (1 or 0)
+         * @apiParam {Integer} [isNPC] (1 or 0)
+         * @apiParam {Integer} [limit] 1 to 100
+         * @apiParam {String} [order] asc or desc (case sensitive)
+         * @apiParam {Integer} [offset] Return records after a certain offset
+         * @apiSampleRequest /api/losses/character/:characterID/
          */
-        $app->get("/", function () use ($app) {
-            render("", $app->apiDoc["stats"], null, "application/json");
+        $app->get("/character/:characterID/(:extraParameters+)", function ($characterID, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->characterLosses($characterID, $parameters);
         });
 
+        /**
+         * @api {get} /losses/corporation/:corporationID/ List kills for a certain corporation
+         * @apiVersion 0.1.2
+         * @apiName corporation
+         * @apiGroup losses
+         * @apiPermission public
+         * @apiParam {Integer} corporationID Limit to a specific corporationID
+         * @apiParam {Integer} [killID] the killID
+         * @apiParam {DateTime} [killTime] Limit to a specific time (YYYY-mm-dd HH:ii:ss)
+         * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
+         * @apiParam {Integer} [regionID] Limit to a specific regionID
+         * @apiParam {Integer} [characterID] Limit to a specific characterID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
+         * @apiParam {Integer} [allianceID] Limit to a specific allianceID
+         * @apiParam {Integer} [factionID] Limit to a specific factionID
+         * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
+         * @apiParam {Integer} [groupID] Limit to a specific groupID
+         * @apiParam {Integer} [vGroupID] Limit to a specific vGroupID
+         * @apiParam {Integer} [weaponTypeID] Limit to a specific weaponTypeID
+         * @apiParam {Float} [shipValue]
+         * @apiParam {Integer} [damageDone]
+         * @apiParam {Float} [totalValue]
+         * @apiParam {Integer} [pointValue]
+         * @apiParam {Integer} [numberInvolved]
+         * @apiParam {Integer} [isVictim] (1 or 0)
+         * @apiParam {Integer} [finalBlow] (1 or 0)
+         * @apiParam {Integer} [isNPC] (1 or 0)
+         * @apiParam {Integer} [limit] 1 to 100
+         * @apiParam {String} [order] asc or desc (case sensitive)
+         * @apiParam {Integer} [offset] Return records after a certain offset
+         * @apiSampleRequest /api/losses/corporation/:corporationID/
+         */
+        $app->get("/corporation/:corporationID/(:extraParameters+)", function ($corporationID, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->corporationLosses($corporationID, $parameters);
+        });
+
+        /**
+         * @api {get} /losses/alliance/:allianceID/ List kills for a certain alliance
+         * @apiVersion 0.1.2
+         * @apiName alliance
+         * @apiGroup losses
+         * @apiPermission public
+         * @apiParam {Integer} allianceID Limit to a specific allianceID
+         * @apiParam {Integer} [killID] the killID
+         * @apiParam {DateTime} [killTime] Limit to a specific time (YYYY-mm-dd HH:ii:ss)
+         * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
+         * @apiParam {Integer} [regionID] Limit to a specific regionID
+         * @apiParam {Integer} [characterID] Limit to a specific characterID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
+         * @apiParam {Integer} [allianceID] Limit to a specific allianceID
+         * @apiParam {Integer} [factionID] Limit to a specific factionID
+         * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
+         * @apiParam {Integer} [groupID] Limit to a specific groupID
+         * @apiParam {Integer} [vGroupID] Limit to a specific vGroupID
+         * @apiParam {Integer} [weaponTypeID] Limit to a specific weaponTypeID
+         * @apiParam {Float} [shipValue]
+         * @apiParam {Integer} [damageDone]
+         * @apiParam {Float} [totalValue]
+         * @apiParam {Integer} [pointValue]
+         * @apiParam {Integer} [numberInvolved]
+         * @apiParam {Integer} [isVictim] (1 or 0)
+         * @apiParam {Integer} [finalBlow] (1 or 0)
+         * @apiParam {Integer} [isNPC] (1 or 0)
+         * @apiParam {Integer} [limit] 1 to 100
+         * @apiParam {String} [order] asc or desc (case sensitive)
+         * @apiParam {Integer} [offset] Return records after a certain offset
+         * @apiSampleRequest /api/losses/alliance/:allianceID/
+         */
+        $app->get("/alliance/:allianceID/(:extraParameters+)", function ($allianceID, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->allianceLosses($allianceID, $parameters);
+        });
+
+        /**
+         * @api {get} /losses/faction/:factionID/ List kills for a certain faction
+         * @apiVersion 0.1.2
+         * @apiName faction
+         * @apiGroup losses
+         * @apiPermission public
+         * @apiParam {Integer} factionID Limit to a specific factionID
+         * @apiParam {Integer} [killID] the killID
+         * @apiParam {DateTime} [killTime] Limit to a specific time (YYYY-mm-dd HH:ii:ss)
+         * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
+         * @apiParam {Integer} [regionID] Limit to a specific regionID
+         * @apiParam {Integer} [characterID] Limit to a specific characterID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
+         * @apiParam {Integer} [allianceID] Limit to a specific allianceID
+         * @apiParam {Integer} [factionID] Limit to a specific factionID
+         * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
+         * @apiParam {Integer} [groupID] Limit to a specific groupID
+         * @apiParam {Integer} [vGroupID] Limit to a specific vGroupID
+         * @apiParam {Integer} [weaponTypeID] Limit to a specific weaponTypeID
+         * @apiParam {Float} [shipValue]
+         * @apiParam {Integer} [damageDone]
+         * @apiParam {Float} [totalValue]
+         * @apiParam {Integer} [pointValue]
+         * @apiParam {Integer} [numberInvolved]
+         * @apiParam {Integer} [isVictim] (1 or 0)
+         * @apiParam {Integer} [finalBlow] (1 or 0)
+         * @apiParam {Integer} [isNPC] (1 or 0)
+         * @apiParam {Integer} [limit] 1 to 100
+         * @apiParam {String} [order] asc or desc (case sensitive)
+         * @apiParam {Integer} [offset] Return records after a certain offset
+         * @apiSampleRequest /api/losses/faction/:factionID/
+         */
+        $app->get("/faction/:factionID/(:extraParameters+)", function ($factionID, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->factionLosses($factionID, $parameters);
+        });
+
+        /**
+         * @api {get} /losses/shipType/:shipTypeID/ List kills for a certain shipType
+         * @apiVersion 0.1.2
+         * @apiName shipType
+         * @apiGroup losses
+         * @apiPermission public
+         * @apiParam {Integer} shipTypeID Limit to a specific shipTypeID
+         * @apiParam {Integer} [killID] the killID
+         * @apiParam {DateTime} [killTime] Limit to a specific time (YYYY-mm-dd HH:ii:ss)
+         * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
+         * @apiParam {Integer} [regionID] Limit to a specific regionID
+         * @apiParam {Integer} [characterID] Limit to a specific characterID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
+         * @apiParam {Integer} [allianceID] Limit to a specific allianceID
+         * @apiParam {Integer} [factionID] Limit to a specific factionID
+         * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
+         * @apiParam {Integer} [groupID] Limit to a specific groupID
+         * @apiParam {Integer} [vGroupID] Limit to a specific vGroupID
+         * @apiParam {Integer} [weaponTypeID] Limit to a specific weaponTypeID
+         * @apiParam {Float} [shipValue]
+         * @apiParam {Integer} [damageDone]
+         * @apiParam {Float} [totalValue]
+         * @apiParam {Integer} [pointValue]
+         * @apiParam {Integer} [numberInvolved]
+         * @apiParam {Integer} [isVictim] (1 or 0)
+         * @apiParam {Integer} [finalBlow] (1 or 0)
+         * @apiParam {Integer} [isNPC] (1 or 0)
+         * @apiParam {Integer} [limit] 1 to 100
+         * @apiParam {String} [order] asc or desc (case sensitive)
+         * @apiParam {Integer} [offset] Return records after a certain offset
+         * @apiSampleRequest /api/losses/shipType/:shipTypeID/
+         */
+        $app->get("/shipType/:shipTypeID/(:extraParameters+)", function ($shipTypeID, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->shipTypeLosses($shipTypeID, $parameters);
+        });
+
+        /**
+         * @api {get} /losses/group/:groupID/ List kills for a certain group
+         * @apiVersion 0.1.2
+         * @apiName group
+         * @apiGroup losses
+         * @apiPermission public
+         * @apiParam {Integer} groupID Limit to a specific groupID
+         * @apiParam {Integer} [killID] the killID
+         * @apiParam {DateTime} [killTime] Limit to a specific time (YYYY-mm-dd HH:ii:ss)
+         * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
+         * @apiParam {Integer} [regionID] Limit to a specific regionID
+         * @apiParam {Integer} [characterID] Limit to a specific characterID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
+         * @apiParam {Integer} [allianceID] Limit to a specific allianceID
+         * @apiParam {Integer} [factionID] Limit to a specific factionID
+         * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
+         * @apiParam {Integer} [groupID] Limit to a specific groupID
+         * @apiParam {Integer} [vGroupID] Limit to a specific vGroupID
+         * @apiParam {Integer} [weaponTypeID] Limit to a specific weaponTypeID
+         * @apiParam {Float} [shipValue]
+         * @apiParam {Integer} [damageDone]
+         * @apiParam {Float} [totalValue]
+         * @apiParam {Integer} [pointValue]
+         * @apiParam {Integer} [numberInvolved]
+         * @apiParam {Integer} [isVictim] (1 or 0)
+         * @apiParam {Integer} [finalBlow] (1 or 0)
+         * @apiParam {Integer} [isNPC] (1 or 0)
+         * @apiParam {Integer} [limit] 1 to 100
+         * @apiParam {String} [order] asc or desc (case sensitive)
+         * @apiParam {Integer} [offset] Return records after a certain offset
+         * @apiSampleRequest /api/losses/group/:groupID/
+         */
+        $app->get("/group/:groupID/(:extraParameters+)", function ($groupID, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->groupLosses($groupID, $parameters);
+        });
+
+        /**
+         * @api {get} /losses/vGroup/:vGroupID/ List kills for a certain vGroup
+         * @apiVersion 0.1.2
+         * @apiName vGroup
+         * @apiGroup losses
+         * @apiPermission public
+         * @apiParam {Integer} vGroupID Limit to a specific vGroupID
+         * @apiParam {Integer} [killID] the killID
+         * @apiParam {DateTime} [killTime] Limit to a specific time (YYYY-mm-dd HH:ii:ss)
+         * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
+         * @apiParam {Integer} [regionID] Limit to a specific regionID
+         * @apiParam {Integer} [characterID] Limit to a specific characterID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
+         * @apiParam {Integer} [allianceID] Limit to a specific allianceID
+         * @apiParam {Integer} [factionID] Limit to a specific factionID
+         * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
+         * @apiParam {Integer} [groupID] Limit to a specific groupID
+         * @apiParam {Integer} [vGroupID] Limit to a specific vGroupID
+         * @apiParam {Integer} [weaponTypeID] Limit to a specific weaponTypeID
+         * @apiParam {Float} [shipValue]
+         * @apiParam {Integer} [damageDone]
+         * @apiParam {Float} [totalValue]
+         * @apiParam {Integer} [pointValue]
+         * @apiParam {Integer} [numberInvolved]
+         * @apiParam {Integer} [isVictim] (1 or 0)
+         * @apiParam {Integer} [finalBlow] (1 or 0)
+         * @apiParam {Integer} [isNPC] (1 or 0)
+         * @apiParam {Integer} [limit] 1 to 100
+         * @apiParam {String} [order] asc or desc (case sensitive)
+         * @apiParam {Integer} [offset] Return records after a certain offset
+         * @apiSampleRequest /api/losses/vGroup/:vGroupID/
+         */
+        $app->get("/vGroup/:vGroupID/(:extraParameters+)", function ($vGroupID, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->vGroupLosses($vGroupID, $parameters);
+        });
+
+        /**
+         * @api {get} /losses/afterDate/:afterDate/ List kills happening after a certain date
+         * @apiVersion 0.1.2
+         * @apiName afterDate
+         * @apiGroup losses
+         * @apiPermission public
+         * @apiParam {DateTime} afterDate Return kills after a certain date (YYYY-mm-dd HH:ii:ss)
+         * @apiParam {Integer} [killID] the killID
+         * @apiParam {DateTime} [killTime] Limit to a specific time (YYYY-mm-dd HH:ii:ss)
+         * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
+         * @apiParam {Integer} [regionID] Limit to a specific regionID
+         * @apiParam {Integer} [characterID] Limit to a specific characterID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
+         * @apiParam {Integer} [allianceID] Limit to a specific allianceID
+         * @apiParam {Integer} [factionID] Limit to a specific factionID
+         * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
+         * @apiParam {Integer} [groupID] Limit to a specific groupID
+         * @apiParam {Integer} [vGroupID] Limit to a specific vGroupID
+         * @apiParam {Integer} [weaponTypeID] Limit to a specific weaponTypeID
+         * @apiParam {Float} [shipValue]
+         * @apiParam {Integer} [damageDone]
+         * @apiParam {Float} [totalValue]
+         * @apiParam {Integer} [pointValue]
+         * @apiParam {Integer} [numberInvolved]
+         * @apiParam {Integer} [isVictim] (1 or 0)
+         * @apiParam {Integer} [finalBlow] (1 or 0)
+         * @apiParam {Integer} [isNPC] (1 or 0)
+         * @apiParam {Integer} [limit] 1 to 100
+         * @apiParam {String} [order] asc or desc (case sensitive)
+         * @apiParam {Integer} [offset] Return records after a certain offset
+         * @apiSampleRequest /api/losses/afterDate/:afterDate/
+         */
+        $app->get("/afterDate/:afterDate/(:extraParameters+)", function ($afterDate, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->beforeDateLosses($afterDate, $parameters);
+        });
+
+        /**
+         * @api {get} /losses/beforeDate/:beforeDate/ List kills happening before a certain date
+         * @apiVersion 0.1.2
+         * @apiName beforeDate
+         * @apiGroup losses
+         * @apiPermission public
+         * @apiParam {DateTime} beforeDate Return kills before a certain date (YYYY-mm-dd HH:ii:ss)
+         * @apiParam {Integer} [killID] the killID
+         * @apiParam {DateTime} [killTime] Limit to a specific time (YYYY-mm-dd HH:ii:ss)
+         * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
+         * @apiParam {Integer} [regionID] Limit to a specific regionID
+         * @apiParam {Integer} [characterID] Limit to a specific characterID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
+         * @apiParam {Integer} [allianceID] Limit to a specific allianceID
+         * @apiParam {Integer} [factionID] Limit to a specific factionID
+         * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
+         * @apiParam {Integer} [groupID] Limit to a specific groupID
+         * @apiParam {Integer} [vGroupID] Limit to a specific vGroupID
+         * @apiParam {Integer} [weaponTypeID] Limit to a specific weaponTypeID
+         * @apiParam {Float} [shipValue]
+         * @apiParam {Integer} [damageDone]
+         * @apiParam {Float} [totalValue]
+         * @apiParam {Integer} [pointValue]
+         * @apiParam {Integer} [numberInvolved]
+         * @apiParam {Integer} [isVictim] (1 or 0)
+         * @apiParam {Integer} [finalBlow] (1 or 0)
+         * @apiParam {Integer} [isNPC] (1 or 0)
+         * @apiParam {Integer} [limit] 1 to 100
+         * @apiParam {String} [order] asc or desc (case sensitive)
+         * @apiParam {Integer} [offset] Return records after a certain offset
+         * @apiSampleRequest /api/losses/beforeDate/:beforeDate/
+         */
+        $app->get("/beforeDate/:beforeDate/(:extraParameters+)", function ($beforeDate, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->afterDateLosses($beforeDate, $parameters);
+        });
+
+        /**
+         * @api {get} /losses/betweenDates/:afterDate/:beforeDate/ List kills between two dates
+         * @apiVersion 0.1.2
+         * @apiName betweenDates
+         * @apiGroup losses
+         * @apiPermission public
+         * @apiParam {DateTime} afterDate Get kills after this date (YYYY-mm-dd HH:ii:ss)
+         * @apiParam {DateTime} beforeDate But before this date (YYYY-mm-dd HH:ii:ss)
+         * @apiParam {Integer} [killID] the killID
+         * @apiParam {DateTime} [killTime] Limit to a specific time (YYYY-mm-dd HH:ii:ss)
+         * @apiParam {Integer} [solarSystemID] Limit to a specific solarSystemID
+         * @apiParam {Integer} [regionID] Limit to a specific regionID
+         * @apiParam {Integer} [characterID] Limit to a specific characterID
+         * @apiParam {Integer} [corporationID] Limit to a specific corporationID
+         * @apiParam {Integer} [allianceID] Limit to a specific allianceID
+         * @apiParam {Integer} [factionID] Limit to a specific factionID
+         * @apiParam {Integer} [shipTypeID] Limit to a specific shipTypeID
+         * @apiParam {Integer} [groupID] Limit to a specific groupID
+         * @apiParam {Integer} [vGroupID] Limit to a specific vGroupID
+         * @apiParam {Integer} [weaponTypeID] Limit to a specific weaponTypeID
+         * @apiParam {Float} [shipValue]
+         * @apiParam {Integer} [damageDone]
+         * @apiParam {Float} [totalValue]
+         * @apiParam {Integer} [pointValue]
+         * @apiParam {Integer} [numberInvolved]
+         * @apiParam {Integer} [isVictim] (1 or 0)
+         * @apiParam {Integer} [finalBlow] (1 or 0)
+         * @apiParam {Integer} [isNPC] (1 or 0)
+         * @apiParam {Integer} [limit] 1 to 100
+         * @apiParam {String} [order] asc or desc (case sensitive)
+         * @apiParam {Integer} [offset] Return records after a certain offset
+         * @apiSampleRequest /api/losses/betweenDates/:afterDate/:beforeDate/
+         */
+        $app->get("/betweenDates/:afterDate/:beforeDate/(:extraParameters+)", function ($afterDate, $beforeDate, $parameters = array()) use ($app) {
+            (new \ProjectRena\Controller\API\KillAPIController($app))->betweenDateLosses($afterDate, $beforeDate, $parameters);
+        });
+    });
+
+    $app->group("/stats", function () use ($app) {
         /**
          * @api {get} /top10Characters/ List the top10 Characters
          * @apiVersion 0.1.2
@@ -1374,17 +1295,14 @@ $app->group("/api", function () use ($app) {
 
     $app->group("/search", function () use ($app) {
         /**
-         * @api {get} /search/ List the endpoints available for the search api
+         * @api {get} /search/:searchTerm/ Do a multi-search, looking into every category
          * @apiVersion 0.1.2
-         * @apiName index
+         * @apiName findAny
          * @apiGroup search
          * @apiPermission public
-         * @apiSampleRequest /api/search/
+         * @apiParam {String} searchTerm A String to try and match to..
+         * @apiSampleRequest /api/search/any/:searchTerm/
          */
-        $app->get("/", function () use ($app) {
-            render("", $app->apiDoc["search"], null, "application/json");
-        });
-
         /**
          * @api {get} /search/faction/:factionName/ Search for a Faction
          * @apiVersion 0.1.2
@@ -1457,27 +1375,15 @@ $app->group("/api", function () use ($app) {
          * @apiParam {String} SolarSystemName Partial Strings are accepted
          * @apiSampleRequest /api/search/celestial/:SolarSystemName/
          */
-        $app->get("(/:type)/:query/", function ($searchType = null, $searchTerm = null) use ($app) {
+        $app->get("(/:type)/:searchTerm/", function ($searchType = null, $searchTerm = null) use ($app) {
             if (!$searchType)
-                $searchType = array("faction", "alliance", "corporation", "character", "item", "system", "region", "celestial");
+                $searchType = array("faction", "alliance", "corporation", "character", "item", "system", "region");
 
             (new \ProjectRena\Controller\API\SearchAPIController($app))->search($searchTerm, $searchType);
         });
     });
 
     $app->group("/tools", function () use ($app) {
-        /**
-         * @api {get} /tools/ List the endpoints available for the tools api
-         * @apiVersion 0.1.2
-         * @apiName index
-         * @apiGroup tools
-         * @apiPermission public
-         * @apiSampleRequest /api/tools/
-         */
-        $app->get("/", function () use ($app) {
-            render("", $app->apiDoc["tools"], null, "application/json");
-        });
-        
         /**
          * @api {post} /tools/calculateCrestHash/ Calculates the CREST hash for a non-crest verified killmail, remember to post to it using a CREST formatted killmail
          * @apiVersion 0.1.2
@@ -1488,6 +1394,8 @@ $app->group("/api", function () use ($app) {
          * @apiParamExample {json} Post-Example:
          * {"killID":1,"killmail":[]}
          * @apiSampleRequest /api/tools/calculateCrestHash
+         * @apiSuccessExample {string} Example Return
+         * 66e1b9f27b9ce0947051240f2f594b74957fc30b
          */
         $app->post("/calculateCrestHash/", function () use ($app) {
             $data = json_decode($app->request->post("data"), true);
@@ -1499,24 +1407,12 @@ $app->group("/api", function () use ($app) {
 
     $app->group("/wars", function () use ($app) {
         /**
-         * @api {get} /wars/ List the endpoints available for the wars api
-         * @apiVersion 0.1.2
-         * @apiName index
-         * @apiGroup wars
-         * @apiPermission public
-         * @apiSampleRequest /api/wars/
-         */
-        $app->get("/", function () use ($app) {
-            render("", $app->apiDoc["wars"], null, "application/json");
-        });
-
-        /**
-         * @api {get} /war/count/ Total amount of wars in the system
+         * @api {get} /wars/count/ Total amount of wars in the system
          * @apiVersion 0.1.2
          * @apiName count
-         * @apiGroup war
+         * @apiGroup wars
          * @apiPermission public
-         * @apiSampleRequest /api/war/count/
+         * @apiSampleRequest /api/wars/count/
          */
         $app->get("/count/", function () use ($app) {
             $results = $app->Db->queryRow("SELECT COUNT(*) as count FROM wars");
@@ -1550,18 +1446,6 @@ $app->group("/api", function () use ($app) {
     });
 
     $app->group("/market", function () use ($app) {
-        /**
-         * @api {get} /market/ List the endpoints available for the market api
-         * @apiVersion 0.1.2
-         * @apiName index
-         * @apiGroup market
-         * @apiPermission public
-         * @apiSampleRequest /api/market/
-         */
-        $app->get("/", function () use ($app) {
-            render("", $app->apiDoc["market"], null, "application/json");
-        });
-
         /**
          * @api {get} /market/price/:typeID/ Return the latest pricing value for an item
          * @apiVersion 0.1.2
