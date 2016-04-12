@@ -2977,7 +2977,7 @@
   {
     "type": "get",
     "url": "/losses/afterDate/:afterDate/",
-    "title": "List kills happening after a certain date",
+    "title": "List losses happening after a certain date",
     "version": "0.1.2",
     "name": "afterDate",
     "group": "losses",
@@ -3171,7 +3171,7 @@
   {
     "type": "get",
     "url": "/losses/alliance/:allianceID/",
-    "title": "List kills for a certain alliance",
+    "title": "List losses for a certain alliance",
     "version": "0.1.2",
     "name": "alliance",
     "group": "losses",
@@ -3358,7 +3358,7 @@
   {
     "type": "get",
     "url": "/losses/beforeDate/:beforeDate/",
-    "title": "List kills happening before a certain date",
+    "title": "List losses happening before a certain date",
     "version": "0.1.2",
     "name": "beforeDate",
     "group": "losses",
@@ -3552,7 +3552,7 @@
   {
     "type": "get",
     "url": "/losses/betweenDates/:afterDate/:beforeDate/",
-    "title": "List kills between two dates",
+    "title": "List losses between two dates",
     "version": "0.1.2",
     "name": "betweenDates",
     "group": "losses",
@@ -3753,7 +3753,7 @@
   {
     "type": "get",
     "url": "/losses/character/:characterID/",
-    "title": "List kills for a certain character",
+    "title": "List losses for a certain character",
     "version": "0.1.2",
     "name": "character",
     "group": "losses",
@@ -3940,7 +3940,7 @@
   {
     "type": "get",
     "url": "/losses/corporation/:corporationID/",
-    "title": "List kills for a certain corporation",
+    "title": "List losses for a certain corporation",
     "version": "0.1.2",
     "name": "corporation",
     "group": "losses",
@@ -4127,7 +4127,7 @@
   {
     "type": "get",
     "url": "/losses/faction/:factionID/",
-    "title": "List kills for a certain faction",
+    "title": "List losses for a certain faction",
     "version": "0.1.2",
     "name": "faction",
     "group": "losses",
@@ -4314,7 +4314,7 @@
   {
     "type": "get",
     "url": "/losses/group/:groupID/",
-    "title": "List kills for a certain group",
+    "title": "List losses for a certain group",
     "version": "0.1.2",
     "name": "group",
     "group": "losses",
@@ -4501,7 +4501,7 @@
   {
     "type": "get",
     "url": "/losses/shipType/:shipTypeID/",
-    "title": "List kills for a certain shipType",
+    "title": "List losses for a certain shipType",
     "version": "0.1.2",
     "name": "shipType",
     "group": "losses",
@@ -4688,7 +4688,7 @@
   {
     "type": "get",
     "url": "/losses/vGroup/:vGroupID/",
-    "title": "List kills for a certain vGroup",
+    "title": "List losses for a certain vGroup",
     "version": "0.1.2",
     "name": "vGroup",
     "group": "losses",

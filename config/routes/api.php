@@ -774,7 +774,7 @@ $app->group("/api", function () use ($app) {
 
     $app->group("/losses", function () use ($app) {
         /**
-         * @api {get} /losses/character/:characterID/ List kills for a certain character
+         * @api {get} /losses/character/:characterID/ List losses for a certain character
          * @apiVersion 0.1.2
          * @apiName character
          * @apiGroup losses
@@ -810,7 +810,7 @@ $app->group("/api", function () use ($app) {
         });
 
         /**
-         * @api {get} /losses/corporation/:corporationID/ List kills for a certain corporation
+         * @api {get} /losses/corporation/:corporationID/ List losses for a certain corporation
          * @apiVersion 0.1.2
          * @apiName corporation
          * @apiGroup losses
@@ -846,7 +846,7 @@ $app->group("/api", function () use ($app) {
         });
 
         /**
-         * @api {get} /losses/alliance/:allianceID/ List kills for a certain alliance
+         * @api {get} /losses/alliance/:allianceID/ List losses for a certain alliance
          * @apiVersion 0.1.2
          * @apiName alliance
          * @apiGroup losses
@@ -882,7 +882,7 @@ $app->group("/api", function () use ($app) {
         });
 
         /**
-         * @api {get} /losses/faction/:factionID/ List kills for a certain faction
+         * @api {get} /losses/faction/:factionID/ List losses for a certain faction
          * @apiVersion 0.1.2
          * @apiName faction
          * @apiGroup losses
@@ -918,7 +918,7 @@ $app->group("/api", function () use ($app) {
         });
 
         /**
-         * @api {get} /losses/shipType/:shipTypeID/ List kills for a certain shipType
+         * @api {get} /losses/shipType/:shipTypeID/ List losses for a certain shipType
          * @apiVersion 0.1.2
          * @apiName shipType
          * @apiGroup losses
@@ -954,7 +954,7 @@ $app->group("/api", function () use ($app) {
         });
 
         /**
-         * @api {get} /losses/group/:groupID/ List kills for a certain group
+         * @api {get} /losses/group/:groupID/ List losses for a certain group
          * @apiVersion 0.1.2
          * @apiName group
          * @apiGroup losses
@@ -990,7 +990,7 @@ $app->group("/api", function () use ($app) {
         });
 
         /**
-         * @api {get} /losses/vGroup/:vGroupID/ List kills for a certain vGroup
+         * @api {get} /losses/vGroup/:vGroupID/ List losses for a certain vGroup
          * @apiVersion 0.1.2
          * @apiName vGroup
          * @apiGroup losses
@@ -1026,7 +1026,7 @@ $app->group("/api", function () use ($app) {
         });
 
         /**
-         * @api {get} /losses/afterDate/:afterDate/ List kills happening after a certain date
+         * @api {get} /losses/afterDate/:afterDate/ List losses happening after a certain date
          * @apiVersion 0.1.2
          * @apiName afterDate
          * @apiGroup losses
@@ -1062,7 +1062,7 @@ $app->group("/api", function () use ($app) {
         });
 
         /**
-         * @api {get} /losses/beforeDate/:beforeDate/ List kills happening before a certain date
+         * @api {get} /losses/beforeDate/:beforeDate/ List losses happening before a certain date
          * @apiVersion 0.1.2
          * @apiName beforeDate
          * @apiGroup losses
@@ -1098,7 +1098,7 @@ $app->group("/api", function () use ($app) {
         });
 
         /**
-         * @api {get} /losses/betweenDates/:afterDate/:beforeDate/ List kills between two dates
+         * @api {get} /losses/betweenDates/:afterDate/:beforeDate/ List losses between two dates
          * @apiVersion 0.1.2
          * @apiName betweenDates
          * @apiGroup losses
