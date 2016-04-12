@@ -311,7 +311,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/killlist/bigkills/
          */
         $app->get("/bigkills/", function () use ($app) {
-
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->bigKills();
         });
 
         /**
@@ -323,7 +323,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/killlist/wspace/
          */
         $app->get("/wspace/", function () use ($app) {
-
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->wSpace();
         });
 
         /**
@@ -335,7 +335,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/killlist/highsec/
          */
         $app->get("/highsec/", function () use ($app) {
-
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->highSec();
         });
 
         /**
@@ -347,7 +347,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/killlist/lowsec/
          */
         $app->get("/lowsec/", function () use ($app) {
-
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->lowSec();
         });
 
         /**
@@ -359,7 +359,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/killlist/nullsec/
          */
         $app->get("/nullsec/", function () use ($app) {
-
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->nullSec();
         });
 
         /**
@@ -371,7 +371,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/killlist/solo/
          */
         $app->get("/solo/", function () use ($app) {
-
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->solo();
         });
 
         /**
@@ -383,7 +383,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/killlist/5b/
          */
         $app->get("/5b/", function () use ($app) {
-
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->fiveB();
         });
 
         /**
@@ -395,7 +395,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/killlist/10b/
          */
         $app->get("/10b/", function () use ($app) {
-
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->tenB();
         });
 
         /**
@@ -408,7 +408,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/killlist/capitals/
          */
         $app->get("/capitals/", function () use ($app) {
-
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->capitals();
         });
 
         /**
@@ -421,7 +421,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/killlist/freighters/
          */
         $app->get("/freighters/", function () use ($app) {
-
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->freighters();
         });
 
         /**
@@ -433,7 +433,7 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/killlist/supercarriers/
          */
         $app->get("/supercarriers/", function () use ($app) {
-
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->superCarriers();
         });
 
         /**
@@ -445,7 +445,103 @@ $app->group("/api", function () use ($app) {
          * @apiSampleRequest /api/killlist/titans/
          */
         $app->get("/titans/", function () use ($app) {
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->titans();
+        });
 
+        /**
+         * @api {get} /killlist/t1/ Show the latest t1 kills
+         * @apiVersion 0.1.2
+         * @apiName t1
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/t1/
+         */
+        $app->get("/t1/", function () use ($app) {
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->t1();
+        });
+        
+        /**
+         * @api {get} /killlist/t2/ Show the latest t2 kills
+         * @apiVersion 0.1.2
+         * @apiName t2
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/t2/
+         */
+        $app->get("/t2/", function () use ($app) {
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->t2();
+        });
+        
+        /**
+         * @api {get} /killlist/t3/ Show the latest t3 kills
+         * @apiVersion 0.1.2
+         * @apiName t3
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/t3/
+         */
+        $app->get("/t3/", function () use ($app) {
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->t3();
+        });
+        
+        /**
+         * @api {get} /killlist/frigates/ Show the latest frigates kills
+         * @apiVersion 0.1.2
+         * @apiName frigates
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/frigates/
+         */
+        $app->get("/frigates/", function () use ($app) {
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->frigates();
+        });
+        
+        /**
+         * @api {get} /killlist/destroyers/ Show the latest destroyers kills
+         * @apiVersion 0.1.2
+         * @apiName destroyers
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/destroyers/
+         */
+        $app->get("/destroyers/", function () use ($app) {
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->destroyers();
+        });
+        
+        /**
+         * @api {get} /killlist/cruisers/ Show the latest cruisers kills
+         * @apiVersion 0.1.2
+         * @apiName cruisers
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/cruisers/
+         */
+        $app->get("/cruisers/", function () use ($app) {
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->cruisers();
+        });
+        
+        /**
+         * @api {get} /killlist/battlecruisers/ Show the latest battlecruisers kills
+         * @apiVersion 0.1.2
+         * @apiName battlecruisers
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/battlecruisers/
+         */
+        $app->get("/battlecruisers/", function () use ($app) {
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->battlecruisers();
+        });
+        
+        /**
+         * @api {get} /killlist/battleships/ Show the latest battleships kills
+         * @apiVersion 0.1.2
+         * @apiName battleships
+         * @apiGroup killlist
+         * @apiPermission public
+         * @apiSampleRequest /api/killlist/battleships/
+         */
+        $app->get("/battleships/", function () use ($app) {
+            (new \ProjectRena\Controller\API\KilllistAPIController($app))->battleships();
         });
     });
 

@@ -484,6 +484,46 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/killlist/battlecruisers/",
+    "title": "Show the latest battlecruisers kills",
+    "version": "0.1.2",
+    "name": "battlecruisers",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/battlecruisers/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
+    "url": "/killlist/battleships/",
+    "title": "Show the latest battleships kills",
+    "version": "0.1.2",
+    "name": "battleships",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/battleships/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
     "url": "/killlist/bigkills/",
     "title": "Show the last 100 big kills (>5b in value)",
     "version": "0.1.2",
@@ -525,6 +565,46 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/killlist/cruisers/",
+    "title": "Show the latest cruisers kills",
+    "version": "0.1.2",
+    "name": "cruisers",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/cruisers/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
+    "url": "/killlist/destroyers/",
+    "title": "Show the latest destroyers kills",
+    "version": "0.1.2",
+    "name": "destroyers",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/destroyers/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
     "url": "/killlist/freighters/",
     "title": "Show the latest freighter kills",
     "description": "<p>Rorq and Orca fall into this one aswell</p>",
@@ -539,6 +619,26 @@ define({ "api": [
     "sampleRequest": [
       {
         "url": "/api/killlist/freighters/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
+    "url": "/killlist/frigates/",
+    "title": "Show the latest frigates kills",
+    "version": "0.1.2",
+    "name": "frigates",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/frigates/"
       }
     ],
     "filename": "config/routes/api.php",
@@ -659,6 +759,66 @@ define({ "api": [
     "sampleRequest": [
       {
         "url": "/api/killlist/supercarriers/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
+    "url": "/killlist/t1/",
+    "title": "Show the latest t1 kills",
+    "version": "0.1.2",
+    "name": "t1",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/t1/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
+    "url": "/killlist/t2/",
+    "title": "Show the latest t2 kills",
+    "version": "0.1.2",
+    "name": "t2",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/t2/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "killlist"
+  },
+  {
+    "type": "get",
+    "url": "/killlist/t3/",
+    "title": "Show the latest t3 kills",
+    "version": "0.1.2",
+    "name": "t3",
+    "group": "killlist",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "/api/killlist/t3/"
       }
     ],
     "filename": "config/routes/api.php",
