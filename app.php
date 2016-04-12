@@ -24,6 +24,8 @@ if (file_exists(__DIR__ . "/config/config.php")) {
 // Init Slim
 $app = new \ProjectRena\RenaApp($config["slim"]);
 
+// Init the SlimAPIAuthenticationMiddleware
+$app->add(new \ProjectRena\Lib\SlimAPIAuthentication());
 
 // Start the timer
 $app->timer = new \ProjectRena\Lib\Timer();

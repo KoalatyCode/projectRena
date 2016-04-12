@@ -41,6 +41,9 @@ class out
         if ($contentType)
             $this->contentType = $contentType;
 
+        // Run the scrape checker
+        $this->scrapeChecker();
+
         if ($this->contentType == "application/json")
             return $this->toJson($dataArray, $status);
         if ($this->contentType == "application/xml")
@@ -53,11 +56,13 @@ class out
      * Outputs the dataArray to JSON
      *
      * @param array $dataArray
+     * @param int $status
      */
     public function toJson($dataArray = array(), $status = 200)
     {
-        $this->app->contentType("application/javascript; charset=utf-8");
+        $this->app->contentType("application/json; charset=utf-8");
         $this->app->response->headers->set("Access-Control-Allow-Origin", "*");
+        $this->app->response->headers->set("Access-Control-Allow-Methods", "GET, POST");
         http_response_code($status);
         echo json_encode($dataArray, JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK | JSON_UNESCAPED_SLASHES);
     }
@@ -66,11 +71,13 @@ class out
      * Outputs the dataArray to XML
      *
      * @param array $dataArray
+     * @param int $status
      */
     public function toXML($dataArray = array(), $status = 200)
     {
         $this->app->contentType("application/xml");
         $this->app->response->headers->set("Access-Control-Allow-Origin", "*");
+        $this->app->response->headers->set("Access-Control-Allow-Methods", "GET, POST");
         http_response_code($status);
         $xml = XMLParser::encode($dataArray, "rena");
         echo $xml->asXML();
@@ -123,6 +130,32 @@ class out
         $this->app->render($templateFile, $dataArray, $status);
     }
 
+    private function scrapeChecker()
+    {
+        // Add the request to the request bucket
+        $reqMD5 = md5("pageRequests" . $this->app->request->getIp());
+        $this->app->Cache->increment($reqMD5, 1, 60);
+        $pageRequests = $this->app->Cache->get($reqMD5);
+        $maxApiRequestsAllowedPrMinute = $this->app->baseConfig->getConfig("apiRequestsPrMinute", "site", 1800);
+        $this->app->response->headers->set("X-Bin-Request-Count", $pageRequests);
+        $this->app->response->headers->set("X-Bin-Max-Requests-Min", $maxApiRequestsAllowedPrMinute);
+        $this->app->response->headers->set("X-Bin-Max-Requests-Sec",  round(($maxApiRequestsAllowedPrMinute - $pageRequests) / 60));
+
+        // Someone hit the rate limit for the api, lets tell em to chillax
+        if ($pageRequests >= $maxApiRequestsAllowedPrMinute) {
+            $this->app->contentType($this->contentType);
+            $error = array("error" => "max requests hit, please consult the headers for how many requests you can do a minute, and how many you've done.");
+            http_response_code(429);
+            if($this->contentType == "application/xml") {
+                $xml = XMLParser::encode($error, "rena");
+                echo $xml->asXML();
+            }
+            elseif($this->contentType == "application/json") {
+                echo json_encode($error, JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK | JSON_UNESCAPED_SLASHES);
+            }
+            exit();
+        }
+    }
     /**
      *
      */
