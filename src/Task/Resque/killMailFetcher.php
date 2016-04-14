@@ -2,8 +2,6 @@
 namespace ProjectRena\Task\Resque;
 
 use ProjectRena\RenaApp;
-use ZMQ;
-use ZMQContext;
 
 /**
  * Fetches killmails and puts them into the killmails table

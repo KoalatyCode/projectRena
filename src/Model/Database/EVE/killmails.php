@@ -359,9 +359,9 @@ class killmails
     /**
      * @param $killID
      * @param $processed
-     * @param $hash
+     * @param string $hash
      * @param $source
-     * @param $kill_json
+     * @param string $kill_json
      * @return bool|int|string
      */
     public function insertIntoKillmails($killID, $processed = 0, $hash, $source, $kill_json)

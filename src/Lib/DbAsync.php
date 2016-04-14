@@ -97,7 +97,7 @@ class DbAsync
     }
 
     /**
-     * @param $name
+     * @param string $name
      * @param int $cacheTime
      * @return array|bool|mixed|null
      */

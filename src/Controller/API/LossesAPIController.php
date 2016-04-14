@@ -64,6 +64,9 @@ class LossesAPIController
         $this->contentType = "application/json";
     }
 
+    /**
+     * @param string $argumentToRemove
+     */
     private function validateParameters($parameters, $argumentToRemove = null) {
         $validArguments = array(
             "killID",
