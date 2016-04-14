@@ -63,6 +63,16 @@ class alliances
      *
      * @return string
      */
+    public function getNameByID($allianceID)
+    {
+        return $this->db->queryField("SELECT allianceName FROM alliances WHERE allianceID = :id", "allianceName", array(":id" => $allianceID), 3600);
+    }
+
+    /**
+     * @param $allianceID
+     *
+     * @return string
+     */
     public function getInformationByID($allianceID)
     {
         return $this->db->queryField("SELECT history FROM alliances WHERE allianceID = :id", "history", array(":id" => $allianceID), 3600);

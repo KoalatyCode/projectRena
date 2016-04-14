@@ -60,6 +60,15 @@ class characters
 
     /**
      * @param $characterID
+     * @return string
+     */
+    public function getNameByID($characterID)
+    {
+        return $this->db->queryField("SELECT characterName FROM characters WHERE characterID = :id", "characterName", array(":id" => $characterID), 3600);
+    }
+
+    /**
+     * @param $characterID
      *
      * @return string
      */

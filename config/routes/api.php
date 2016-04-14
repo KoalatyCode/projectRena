@@ -16,7 +16,7 @@ $app->group("/api", function () use ($app) {
         });
 
         /**
-         * @api {get} /character/information/:characterID/ Show information for a single character
+         * @api {get} /character/information/:characterID/ Show a lot of aggregated information for a single character
          * @apiVersion 0.1.2
          * @apiName Information
          * @apiGroup character
@@ -40,6 +40,96 @@ $app->group("/api", function () use ($app) {
         $app->get("/find/:searchTerm/", function ($searchTerm) use ($app) {
             (new \ProjectRena\Controller\API\CharacterAPIController($app))->findCharacter($searchTerm);
         });
+
+        $app->group("/top", function() use ($app) {
+            /**
+             * @api {get} /character/top/characters/:characterID/:limit/ Show the top characters in the character
+             * @apiVersion 0.1.2
+             * @apiName top10characters
+             * @apiGroup character
+             * @apiPermission public
+             * @apiParam {Integer} characterID The characterID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/character/top/characters/:characterID/:limit/
+             */
+            $app->get("/characters/:characterID(/:limit)/", function($characterID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\CharacterAPIController($app))->topCharacters($characterID, $limit);
+            });
+
+            /**
+             * @api {get} /character/top/corporations/:characterID/:limit/ Show the top corporations in the character
+             * @apiVersion 0.1.2
+             * @apiName top10corporations
+             * @apiGroup character
+             * @apiPermission public
+             * @apiParam {Integer} characterID The characterID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/character/top/corporations/:characterID/:limit/
+             */
+            $app->get("/corporations/:characterID(/:limit)/", function($characterID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\CharacterAPIController($app))->topCorporations($characterID, $limit);
+            });
+
+            /**
+             * @api {get} /character/top/characters/:characterID/:limit/ Show the top characters in the character
+             * @apiVersion 0.1.2
+             * @apiName top10characters
+             * @apiGroup character
+             * @apiPermission public
+             * @apiParam {Integer} characterID The characterID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/character/top/characters/:characterID/:limit/
+             */
+            $app->get("/characters/:characterID(/:limit)/", function($characterID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\CharacterAPIController($app))->topAlliances($characterID, $limit);
+            });
+
+            /**
+             * @api {get} /character/top/ships/:characterID/:limit/ Show the top ships in the character
+             * @apiVersion 0.1.2
+             * @apiName top10ships
+             * @apiGroup character
+             * @apiPermission public
+             * @apiParam {Integer} characterID The characterID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/character/top/ships/:characterID/:limit/
+             */
+            $app->get("/ships/:characterID(/:limit)/", function($characterID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\CharacterAPIController($app))->topShips($characterID, $limit);
+            });
+
+            /**
+             * @api {get} /character/top/systems/:characterID/:limit/ Show the top systems in the character
+             * @apiVersion 0.1.2
+             * @apiName top10systems
+             * @apiGroup character
+             * @apiPermission public
+             * @apiParam {Integer} characterID The characterID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/character/top/systems/:characterID/:limit/
+             */
+            $app->get("/systems/:characterID(/:limit)/", function($characterID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\CharacterAPIController($app))->topSystems($characterID, $limit);
+            });
+
+            /**
+             * @api {get} /character/top/regions/:characterID/:limit/ Show the top regions in the character
+             * @apiVersion 0.1.2
+             * @apiName top10regions
+             * @apiGroup character
+             * @apiPermission public
+             * @apiParam {Integer} characterID The characterID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/character/top/regions/:characterID/:limit/
+             */
+            $app->get("/regions/:characterID(/:limit)/", function($characterID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\CharacterAPIController($app))->topRegions($characterID, $limit);
+            });
+
+            //$app->get("/locations/:characterID(/:limit)/", function($characterID, $limit = 10) use ($app) {
+            //    (new \ProjectRena\Controller\API\CharacterAPIController($app))->topCharacters($characterID, $limit);
+            //});
+        });
     });
 
     $app->group("/corporation", function () use ($app) {
@@ -57,7 +147,7 @@ $app->group("/api", function () use ($app) {
         });
 
         /**
-         * @api {get} /corporation/information/:corporationID/ Show information for a single corporation
+         * @api {get} /corporation/information/:corporationID/ Show a lot of aggregated information for a single corporation
          * @apiVersion 0.1.2
          * @apiName Information
          * @apiGroup corporation
@@ -94,6 +184,96 @@ $app->group("/api", function () use ($app) {
         $app->get("/find/:searchTerm/", function ($searchTerm) use ($app) {
             (new \ProjectRena\Controller\API\CorporationAPIController($app))->findCorporation($searchTerm);
         });
+
+        $app->group("/top", function() use ($app) {
+            /**
+             * @api {get} /corporation/top/characters/:corporationID/:limit/ Show the top characters in the corporation
+             * @apiVersion 0.1.2
+             * @apiName top10characters
+             * @apiGroup corporation
+             * @apiPermission public
+             * @apiParam {Integer} corporationID The corporationID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/corporation/top/characters/:corporationID/:limit/
+             */
+            $app->get("/characters/:corporationID(/:limit)/", function($corporationID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\CorporationAPIController($app))->topCharacters($corporationID, $limit);
+            });
+
+            /**
+             * @api {get} /corporation/top/corporations/:corporationID/:limit/ Show the top corporations in the corporation
+             * @apiVersion 0.1.2
+             * @apiName top10corporations
+             * @apiGroup corporation
+             * @apiPermission public
+             * @apiParam {Integer} corporationID The corporationID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/corporation/top/corporations/:corporationID/:limit/
+             */
+            $app->get("/corporations/:corporationID(/:limit)/", function($corporationID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\CorporationAPIController($app))->topCorporations($corporationID, $limit);
+            });
+
+            /**
+             * @api {get} /corporation/top/alliances/:corporationID/:limit/ Show the top alliances in the corporation
+             * @apiVersion 0.1.2
+             * @apiName top10alliances
+             * @apiGroup corporation
+             * @apiPermission public
+             * @apiParam {Integer} corporationID The corporationID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/corporation/top/alliances/:corporationID/:limit/
+             */
+            $app->get("/alliances/:corporationID(/:limit)/", function($corporationID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\CorporationAPIController($app))->topAlliances($corporationID, $limit);
+            });
+
+            /**
+             * @api {get} /corporation/top/ships/:corporationID/:limit/ Show the top ships in the corporation
+             * @apiVersion 0.1.2
+             * @apiName top10ships
+             * @apiGroup corporation
+             * @apiPermission public
+             * @apiParam {Integer} corporationID The corporationID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/corporation/top/ships/:corporationID/:limit/
+             */
+            $app->get("/ships/:corporationID(/:limit)/", function($corporationID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\CorporationAPIController($app))->topShips($corporationID, $limit);
+            });
+
+            /**
+             * @api {get} /corporation/top/systems/:corporationID/:limit/ Show the top systems in the corporation
+             * @apiVersion 0.1.2
+             * @apiName top10systems
+             * @apiGroup corporation
+             * @apiPermission public
+             * @apiParam {Integer} corporationID The corporationID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/corporation/top/systems/:corporationID/:limit/
+             */
+            $app->get("/systems/:corporationID(/:limit)/", function($corporationID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\CorporationAPIController($app))->topSystems($corporationID, $limit);
+            });
+
+            /**
+             * @api {get} /corporation/top/regions/:corporationID/:limit/ Show the top regions in the corporation
+             * @apiVersion 0.1.2
+             * @apiName top10regions
+             * @apiGroup corporation
+             * @apiPermission public
+             * @apiParam {Integer} corporationID The corporationID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/corporation/top/regions/:corporationID/:limit/
+             */
+            $app->get("/regions/:corporationID(/:limit)/", function($corporationID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\CorporationAPIController($app))->topRegions($corporationID, $limit);
+            });
+
+            //$app->get("/locations/:corporationID(/:limit)/", function($corporationID, $limit = 10) use ($app) {
+            //    (new \ProjectRena\Controller\API\CorporationAPIController($app))->topCharacters($corporationID, $limit);
+            //});
+        });
     });
 
     $app->group("/alliance", function () use ($app) {
@@ -111,7 +291,7 @@ $app->group("/api", function () use ($app) {
         });
 
         /**
-         * @api {get} /alliance/information/:allianceID/ Show information for a single alliance
+         * @api {get} /alliance/information/:allianceID/ Show a lot of aggregated information for a single alliance
          * @apiVersion 0.1.2
          * @apiName Information
          * @apiGroup alliance
@@ -148,6 +328,201 @@ $app->group("/api", function () use ($app) {
         $app->get("/find/:searchTerm/", function ($searchTerm) use ($app) {
             (new \ProjectRena\Controller\API\AllianceAPIController($app))->findAlliance($searchTerm);
         });
+
+        $app->group("/top", function() use ($app) {
+            /**
+             * @api {get} /alliance/top/characters/:allianceID/:limit/ Show the top characters in the alliance
+             * @apiVersion 0.1.2
+             * @apiName top10characters
+             * @apiGroup alliance
+             * @apiPermission public
+             * @apiParam {Integer} allianceID The allianceID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/alliance/top/characters/:allianceID/:limit/
+             */
+            $app->get("/characters/:allianceID(/:limit)/", function($allianceID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\AllianceAPIController($app))->topCharacters($allianceID, $limit);
+            });
+
+            /**
+             * @api {get} /alliance/top/corporations/:allianceID/:limit/ Show the top corporations in the alliance
+             * @apiVersion 0.1.2
+             * @apiName top10corporations
+             * @apiGroup alliance
+             * @apiPermission public
+             * @apiParam {Integer} allianceID The allianceID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/alliance/top/corporations/:allianceID/:limit/
+             */
+            $app->get("/corporations/:allianceID(/:limit)/", function($allianceID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\AllianceAPIController($app))->topCorporations($allianceID, $limit);
+            });
+
+            /**
+             * @api {get} /alliance/top/alliances/:allianceID/:limit/ Show the top alliances in the alliance
+             * @apiVersion 0.1.2
+             * @apiName top10alliances
+             * @apiGroup alliance
+             * @apiPermission public
+             * @apiParam {Integer} allianceID The allianceID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/alliance/top/alliances/:allianceID/:limit/
+             */
+            $app->get("/alliances/:allianceID(/:limit)/", function($allianceID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\AllianceAPIController($app))->topAlliances($allianceID, $limit);
+            });
+
+            /**
+             * @api {get} /alliance/top/ships/:allianceID/:limit/ Show the top ships in the alliance
+             * @apiVersion 0.1.2
+             * @apiName top10ships
+             * @apiGroup alliance
+             * @apiPermission public
+             * @apiParam {Integer} allianceID The allianceID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/alliance/top/ships/:allianceID/:limit/
+             */
+            $app->get("/ships/:allianceID(/:limit)/", function($allianceID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\AllianceAPIController($app))->topShips($allianceID, $limit);
+            });
+
+            /**
+             * @api {get} /alliance/top/systems/:allianceID/:limit/ Show the top systems in the alliance
+             * @apiVersion 0.1.2
+             * @apiName top10systems
+             * @apiGroup alliance
+             * @apiPermission public
+             * @apiParam {Integer} allianceID The allianceID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/alliance/top/systems/:allianceID/:limit/
+             */
+            $app->get("/systems/:allianceID(/:limit)/", function($allianceID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\AllianceAPIController($app))->topSystems($allianceID, $limit);
+            });
+
+            /**
+             * @api {get} /alliance/top/regions/:allianceID/:limit/ Show the top regions in the alliance
+             * @apiVersion 0.1.2
+             * @apiName top10regions
+             * @apiGroup alliance
+             * @apiPermission public
+             * @apiParam {Integer} allianceID The allianceID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/alliance/top/regions/:allianceID/:limit/
+             */
+            $app->get("/regions/:allianceID(/:limit)/", function($allianceID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\AllianceAPIController($app))->topRegions($allianceID, $limit);
+            });
+
+            //$app->get("/locations/:allianceID(/:limit)/", function($allianceID, $limit = 10) use ($app) {
+            //    (new \ProjectRena\Controller\API\AllianceAPIController($app))->topCharacters($allianceID, $limit);
+            //});
+        });
+    });
+
+    $app->group("/faction", function () use ($app) {
+        /**
+         * @api {get} /faction/find/:factionName/ Find a faction
+         * @apiVersion 0.1.2
+         * @apiName Find
+         * @apiGroup faction
+         * @apiPermission public
+         * @apiParam {String} factionName the factionName
+         * @apiSampleRequest /api/faction/find/:factionName/
+         */
+        $app->get("/find/:searchTerm/", function ($searchTerm) use ($app) {
+            (new \ProjectRena\Controller\API\FactionAPIController($app))->findFaction($searchTerm);
+        });
+
+        $app->group("/top", function() use ($app) {
+            /**
+             * @api {get} /faction/top/characters/:factionID/:limit/ Show the top characters in the faction
+             * @apiVersion 0.1.2
+             * @apiName top10characters
+             * @apiGroup faction
+             * @apiPermission public
+             * @apiParam {Integer} factionID The factionID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/faction/top/characters/:factionID/:limit/
+             */
+            $app->get("/characters/:factionID(/:limit)/", function($factionID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\FactionAPIController($app))->topCharacters($factionID, $limit);
+            });
+
+            /**
+             * @api {get} /faction/top/corporations/:factionID/:limit/ Show the top corporations in the faction
+             * @apiVersion 0.1.2
+             * @apiName top10corporations
+             * @apiGroup faction
+             * @apiPermission public
+             * @apiParam {Integer} factionID The factionID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/faction/top/corporations/:factionID/:limit/
+             */
+            $app->get("/corporations/:factionID(/:limit)/", function($factionID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\FactionAPIController($app))->topCorporations($factionID, $limit);
+            });
+
+            /**
+             * @api {get} /faction/top/factions/:factionID/:limit/ Show the top factions in the faction
+             * @apiVersion 0.1.2
+             * @apiName top10factions
+             * @apiGroup faction
+             * @apiPermission public
+             * @apiParam {Integer} factionID The factionID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/faction/top/factions/:factionID/:limit/
+             */
+            $app->get("/factions/:factionID(/:limit)/", function($factionID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\FactionAPIController($app))->topAlliances($factionID, $limit);
+            });
+
+            /**
+             * @api {get} /faction/top/ships/:factionID/:limit/ Show the top ships in the faction
+             * @apiVersion 0.1.2
+             * @apiName top10ships
+             * @apiGroup faction
+             * @apiPermission public
+             * @apiParam {Integer} factionID The factionID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/faction/top/ships/:factionID/:limit/
+             */
+            $app->get("/ships/:factionID(/:limit)/", function($factionID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\FactionAPIController($app))->topShips($factionID, $limit);
+            });
+
+            /**
+             * @api {get} /faction/top/systems/:factionID/:limit/ Show the top systems in the faction
+             * @apiVersion 0.1.2
+             * @apiName top10systems
+             * @apiGroup faction
+             * @apiPermission public
+             * @apiParam {Integer} factionID The factionID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/faction/top/systems/:factionID/:limit/
+             */
+            $app->get("/systems/:factionID(/:limit)/", function($factionID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\FactionAPIController($app))->topSystems($factionID, $limit);
+            });
+
+            /**
+             * @api {get} /faction/top/regions/:factionID/:limit/ Show the top regions in the faction
+             * @apiVersion 0.1.2
+             * @apiName top10regions
+             * @apiGroup faction
+             * @apiPermission public
+             * @apiParam {Integer} factionID The factionID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/faction/top/regions/:factionID/:limit/
+             */
+            $app->get("/regions/:factionID(/:limit)/", function($factionID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\FactionAPIController($app))->topRegions($factionID, $limit);
+            });
+
+            //$app->get("/locations/:factionID(/:limit)/", function($factionID, $limit = 10) use ($app) {
+            //    (new \ProjectRena\Controller\API\AllianceAPIController($app))->topCharacters($factionID, $limit);
+            //});
+        });
     });
 
     $app->group("/item", function () use ($app) {
@@ -175,6 +550,96 @@ $app->group("/api", function () use ($app) {
          */
         $app->get("/find/:searchTerm/", function ($searchTerm) use ($app) {
             (new \ProjectRena\Controller\API\ItemAPIController($app))->findItem($searchTerm);
+        });
+
+        $app->group("/top", function() use ($app) {
+            /**
+             * @api {get} /item/top/characters/:itemID/:limit/ Show the top characters in the item
+             * @apiVersion 0.1.2
+             * @apiName top10characters
+             * @apiGroup item
+             * @apiPermission public
+             * @apiParam {Integer} itemID The itemID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/item/top/characters/:itemID/:limit/
+             */
+            $app->get("/characters/:itemID(/:limit)/", function($itemID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\ItemAPIController($app))->topCharacters($itemID, $limit);
+            });
+
+            /**
+             * @api {get} /item/top/corporations/:itemID/:limit/ Show the top corporations in the item
+             * @apiVersion 0.1.2
+             * @apiName top10corporations
+             * @apiGroup item
+             * @apiPermission public
+             * @apiParam {Integer} itemID The itemID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/item/top/corporations/:itemID/:limit/
+             */
+            $app->get("/corporations/:itemID(/:limit)/", function($itemID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\ItemAPIController($app))->topCorporations($itemID, $limit);
+            });
+
+            /**
+             * @api {get} /item/top/items/:itemID/:limit/ Show the top items in the item
+             * @apiVersion 0.1.2
+             * @apiName top10items
+             * @apiGroup item
+             * @apiPermission public
+             * @apiParam {Integer} itemID The itemID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/item/top/items/:itemID/:limit/
+             */
+            $app->get("/items/:itemID(/:limit)/", function($itemID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\ItemAPIController($app))->topAlliances($itemID, $limit);
+            });
+
+            /**
+             * @api {get} /item/top/ships/:itemID/:limit/ Show the top ships in the item
+             * @apiVersion 0.1.2
+             * @apiName top10ships
+             * @apiGroup item
+             * @apiPermission public
+             * @apiParam {Integer} itemID The itemID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/item/top/ships/:itemID/:limit/
+             */
+            $app->get("/ships/:itemID(/:limit)/", function($itemID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\ItemAPIController($app))->topShips($itemID, $limit);
+            });
+
+            /**
+             * @api {get} /item/top/systems/:itemID/:limit/ Show the top systems in the item
+             * @apiVersion 0.1.2
+             * @apiName top10systems
+             * @apiGroup item
+             * @apiPermission public
+             * @apiParam {Integer} itemID The itemID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/item/top/systems/:itemID/:limit/
+             */
+            $app->get("/systems/:itemID(/:limit)/", function($itemID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\ItemAPIController($app))->topSystems($itemID, $limit);
+            });
+
+            /**
+             * @api {get} /item/top/regions/:itemID/:limit/ Show the top regions in the item
+             * @apiVersion 0.1.2
+             * @apiName top10regions
+             * @apiGroup item
+             * @apiPermission public
+             * @apiParam {Integer} itemID The itemID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/item/top/regions/:itemID/:limit/
+             */
+            $app->get("/regions/:itemID(/:limit)/", function($itemID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\ItemAPIController($app))->topRegions($itemID, $limit);
+            });
+
+            //$app->get("/locations/:itemID(/:limit)/", function($itemID, $limit = 10) use ($app) {
+            //    (new \ProjectRena\Controller\API\ItemAPIController($app))->topCharacters($itemID, $limit);
+            //});
         });
     });
 
@@ -204,6 +669,96 @@ $app->group("/api", function () use ($app) {
         $app->get("/find/:searchTerm/", function ($searchTerm) use ($app) {
             (new \ProjectRena\Controller\API\SystemAPIController($app))->findSystem($searchTerm);
         });
+
+        $app->group("/top", function() use ($app) {
+            /**
+             * @api {get} /system/top/characters/:systemID/:limit/ Show the top characters in the system
+             * @apiVersion 0.1.2
+             * @apiName top10characters
+             * @apiGroup system
+             * @apiPermission public
+             * @apiParam {Integer} systemID The systemID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/system/top/characters/:systemID/:limit/
+             */
+            $app->get("/characters/:systemID(/:limit)/", function($systemID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\SystemAPIController($app))->topCharacters($systemID, $limit);
+            });
+
+            /**
+             * @api {get} /system/top/corporations/:systemID/:limit/ Show the top corporations in the system
+             * @apiVersion 0.1.2
+             * @apiName top10corporations
+             * @apiGroup system
+             * @apiPermission public
+             * @apiParam {Integer} systemID The systemID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/system/top/corporations/:systemID/:limit/
+             */
+            $app->get("/corporations/:systemID(/:limit)/", function($systemID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\SystemAPIController($app))->topCorporations($systemID, $limit);
+            });
+
+            /**
+             * @api {get} /system/top/systems/:systemID/:limit/ Show the top systems in the system
+             * @apiVersion 0.1.2
+             * @apiName top10systems
+             * @apiGroup system
+             * @apiPermission public
+             * @apiParam {Integer} systemID The systemID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/system/top/systems/:systemID/:limit/
+             */
+            $app->get("/systems/:systemID(/:limit)/", function($systemID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\SystemAPIController($app))->topAlliances($systemID, $limit);
+            });
+
+            /**
+             * @api {get} /system/top/ships/:systemID/:limit/ Show the top ships in the system
+             * @apiVersion 0.1.2
+             * @apiName top10ships
+             * @apiGroup system
+             * @apiPermission public
+             * @apiParam {Integer} systemID The systemID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/system/top/ships/:systemID/:limit/
+             */
+            $app->get("/ships/:systemID(/:limit)/", function($systemID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\SystemAPIController($app))->topShips($systemID, $limit);
+            });
+
+            /**
+             * @api {get} /system/top/systems/:systemID/:limit/ Show the top systems in the system
+             * @apiVersion 0.1.2
+             * @apiName top10systems
+             * @apiGroup system
+             * @apiPermission public
+             * @apiParam {Integer} systemID The systemID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/system/top/systems/:systemID/:limit/
+             */
+            $app->get("/systems/:systemID(/:limit)/", function($systemID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\SystemAPIController($app))->topSystems($systemID, $limit);
+            });
+
+            /**
+             * @api {get} /system/top/regions/:systemID/:limit/ Show the top regions in the system
+             * @apiVersion 0.1.2
+             * @apiName top10regions
+             * @apiGroup system
+             * @apiPermission public
+             * @apiParam {Integer} systemID The systemID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/system/top/regions/:systemID/:limit/
+             */
+            $app->get("/regions/:systemID(/:limit)/", function($systemID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\SystemAPIController($app))->topRegions($systemID, $limit);
+            });
+
+            //$app->get("/locations/:systemID(/:limit)/", function($systemID, $limit = 10) use ($app) {
+            //    (new \ProjectRena\Controller\API\SystemAPIController($app))->topCharacters($systemID, $limit);
+            //});
+        });
     });
 
     $app->group("/region", function () use ($app) {
@@ -231,6 +786,96 @@ $app->group("/api", function () use ($app) {
          */
         $app->get("/find/:searchTerm/", function ($searchTerm) use ($app) {
             (new \ProjectRena\Controller\API\RegionAPIController($app))->findRegion($searchTerm);
+        });
+
+        $app->group("/top", function() use ($app) {
+            /**
+             * @api {get} /region/top/characters/:regionID/:limit/ Show the top characters in the region
+             * @apiVersion 0.1.2
+             * @apiName top10characters
+             * @apiGroup region
+             * @apiPermission public
+             * @apiParam {Integer} regionID The regionID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/region/top/characters/:regionID/:limit/
+             */
+            $app->get("/characters/:regionID(/:limit)/", function($regionID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\RegionAPIController($app))->topCharacters($regionID, $limit);
+            });
+
+            /**
+             * @api {get} /region/top/corporations/:regionID/:limit/ Show the top corporations in the region
+             * @apiVersion 0.1.2
+             * @apiName top10corporations
+             * @apiGroup region
+             * @apiPermission public
+             * @apiParam {Integer} regionID The regionID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/region/top/corporations/:regionID/:limit/
+             */
+            $app->get("/corporations/:regionID(/:limit)/", function($regionID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\RegionAPIController($app))->topCorporations($regionID, $limit);
+            });
+
+            /**
+             * @api {get} /region/top/regions/:regionID/:limit/ Show the top regions in the region
+             * @apiVersion 0.1.2
+             * @apiName top10regions
+             * @apiGroup region
+             * @apiPermission public
+             * @apiParam {Integer} regionID The regionID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/region/top/regions/:regionID/:limit/
+             */
+            $app->get("/regions/:regionID(/:limit)/", function($regionID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\RegionAPIController($app))->topAlliances($regionID, $limit);
+            });
+
+            /**
+             * @api {get} /region/top/ships/:regionID/:limit/ Show the top ships in the region
+             * @apiVersion 0.1.2
+             * @apiName top10ships
+             * @apiGroup region
+             * @apiPermission public
+             * @apiParam {Integer} regionID The regionID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/region/top/ships/:regionID/:limit/
+             */
+            $app->get("/ships/:regionID(/:limit)/", function($regionID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\RegionAPIController($app))->topShips($regionID, $limit);
+            });
+
+            /**
+             * @api {get} /region/top/systems/:regionID/:limit/ Show the top systems in the region
+             * @apiVersion 0.1.2
+             * @apiName top10systems
+             * @apiGroup region
+             * @apiPermission public
+             * @apiParam {Integer} regionID The regionID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/region/top/systems/:regionID/:limit/
+             */
+            $app->get("/systems/:regionID(/:limit)/", function($regionID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\RegionAPIController($app))->topSystems($regionID, $limit);
+            });
+
+            /**
+             * @api {get} /region/top/regions/:regionID/:limit/ Show the top regions in the region
+             * @apiVersion 0.1.2
+             * @apiName top10regions
+             * @apiGroup region
+             * @apiPermission public
+             * @apiParam {Integer} regionID The regionID
+             * @apiParam {Integer} [limit] Limiting the amount of returns
+             * @apiSampleRequest /api/region/top/regions/:regionID/:limit/
+             */
+            $app->get("/regions/:regionID(/:limit)/", function($regionID, $limit = 10) use ($app) {
+                (new \ProjectRena\Controller\API\RegionAPIController($app))->topRegions($regionID, $limit);
+            });
+
+            //$app->get("/locations/:regionID(/:limit)/", function($regionID, $limit = 10) use ($app) {
+            //    (new \ProjectRena\Controller\API\RegionAPIController($app))->topCharacters($regionID, $limit);
+            //});
         });
     });
 
@@ -1781,5 +2426,291 @@ $app->group("/api", function () use ($app) {
             $renaApiToken = $headers["Authorization"];
             (new \ProjectRena\Controller\API\AuthedAPIController($app))->apiKeys($renaApiToken);
         });
+
+        // Directly call CCP using the built in Pheal stuff, and the APIKeys that the user has added.
+        // This might be completely useless, but whatever
+        $app->group("/api/:renaKeyID/", function($renaKeyID = null) use ($app) {
+            $app->group("/account", function() use ($app, $renaKeyID) {
+                $app->get("/accountstatus/", function() use ($app, $renaKeyID) {
+
+                });
+
+                $app->get("/apikeyinfo/", function() use ($app, $renaKeyID) {
+
+                });
+
+                $app->get("/characters/", function() use ($app, $renaKeyID) {
+
+                });
+
+            });
+
+            $app->group("/character", function() use ($app, $renaKeyID) {
+                $app->get("/accountbalance/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/assetlist/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/blueprints/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/calendareventattendees/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/charactersheet/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/contactlist/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/contactnotifications/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/contracts/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/contractitems/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/contractbids/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/facwarstats/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/industryjobs/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/industryjobshistory/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/killmails/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/locations/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/mailbodies/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/mailinglists/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/mailmessages/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/marketorders/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/medals/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/notifications/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/notificationtexts/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/planetarycolonies/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/planetarypins/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/planetaryroutes/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/planetarylinks/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/research/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/skillintraining/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/skillqueue/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/standings/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/upcomingcalendarevents/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/walletjournal/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/wallettransactions/", function() use ($app, $renaKeyID) {
+
+                });
+            });
+
+            $app->group("/corporation", function() use ($app, $renaKeyID) {
+                $app->get("/accountbalance/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/assetlist/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/blueprints/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/contactlist/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/containerlog/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/contracts/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/contractitems/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/contractbids/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/corporationsheet/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/customsoffices/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/facilities/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/facwarstats/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/industryjobs/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/industryjobshistory/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/killmails/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/locations/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/marketorders/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/medals/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/membermedals/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/membersecurity/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/membertracking/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/outpostlist/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/outpostservicedetail/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/shareholders/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/standings/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/starbasedetail/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/starbaselist/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/titles/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/walletjournal/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/walletransactions/", function() use ($app, $renaKeyID) {
+
+                });
+
+            });
+            $app->group("/eve", function() use ($app, $renaKeyID) {
+                $app->get("/alliancelist/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/certificatetree/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/characteraffiliation/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/characterid/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/characterinfo/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/charactername/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/conquerablestationlist/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/errorlist/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/facwarstats/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/facwartopstats/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/reftypes/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/skilltree/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/typename/", function() use ($app, $renaKeyID) {
+
+                });
+
+            });
+            $app->group("/map", function() use ($app, $renaKeyID) {
+                $app->get("/facwarsystems/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/jumps/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/kills/", function() use ($app, $renaKeyID) {
+
+                });
+                $app->get("/sovereignty/", function() use ($app, $renaKeyID) {
+
+                });
+
+            });
+            $app->group("/server", function() use ($app, $renaKeyID) {
+                $app->get("/serverstatus/", function() use ($app, $renaKeyID) {
+
+                });
+
+            });
+            $app->group("/api", function() use ($app, $renaKeyID) {
+                $app->get("/calllist/", function() use ($app, $renaKeyID) {
+
+                });
+
+            });
+
+        });
     });
+
 });

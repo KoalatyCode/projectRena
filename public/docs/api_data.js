@@ -35,7 +35,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/alliance/information/:allianceID/",
-    "title": "Show information for a single alliance",
+    "title": "Show a lot of aggregated information for a single alliance",
     "version": "0.1.2",
     "name": "Information",
     "group": "alliance",
@@ -113,6 +113,246 @@ define({ "api": [
     "sampleRequest": [
       {
         "url": "/api/alliance/count/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "alliance"
+  },
+  {
+    "type": "get",
+    "url": "/alliance/top/alliances/:allianceID/:limit/",
+    "title": "Show the top alliances in the alliance",
+    "version": "0.1.2",
+    "name": "top10alliances",
+    "group": "alliance",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "allianceID",
+            "description": "<p>The allianceID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/alliance/top/alliances/:allianceID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "alliance"
+  },
+  {
+    "type": "get",
+    "url": "/alliance/top/characters/:allianceID/:limit/",
+    "title": "Show the top characters in the alliance",
+    "version": "0.1.2",
+    "name": "top10characters",
+    "group": "alliance",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "allianceID",
+            "description": "<p>The allianceID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/alliance/top/characters/:allianceID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "alliance"
+  },
+  {
+    "type": "get",
+    "url": "/alliance/top/corporations/:allianceID/:limit/",
+    "title": "Show the top corporations in the alliance",
+    "version": "0.1.2",
+    "name": "top10corporations",
+    "group": "alliance",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "allianceID",
+            "description": "<p>The allianceID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/alliance/top/corporations/:allianceID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "alliance"
+  },
+  {
+    "type": "get",
+    "url": "/alliance/top/regions/:allianceID/:limit/",
+    "title": "Show the top regions in the alliance",
+    "version": "0.1.2",
+    "name": "top10regions",
+    "group": "alliance",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "allianceID",
+            "description": "<p>The allianceID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/alliance/top/regions/:allianceID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "alliance"
+  },
+  {
+    "type": "get",
+    "url": "/alliance/top/ships/:allianceID/:limit/",
+    "title": "Show the top ships in the alliance",
+    "version": "0.1.2",
+    "name": "top10ships",
+    "group": "alliance",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "allianceID",
+            "description": "<p>The allianceID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/alliance/top/ships/:allianceID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "alliance"
+  },
+  {
+    "type": "get",
+    "url": "/alliance/top/systems/:allianceID/:limit/",
+    "title": "Show the top systems in the alliance",
+    "version": "0.1.2",
+    "name": "top10systems",
+    "group": "alliance",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "allianceID",
+            "description": "<p>The allianceID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/alliance/top/systems/:allianceID/:limit/"
       }
     ],
     "filename": "config/routes/api.php",
@@ -255,7 +495,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/character/information/:characterID/",
-    "title": "Show information for a single character",
+    "title": "Show a lot of aggregated information for a single character",
     "version": "0.1.2",
     "name": "Information",
     "group": "character",
@@ -307,6 +547,246 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/character/top/characters/:characterID/:limit/",
+    "title": "Show the top characters in the character",
+    "version": "0.1.2",
+    "name": "top10characters",
+    "group": "character",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "characterID",
+            "description": "<p>The characterID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/character/top/characters/:characterID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "character"
+  },
+  {
+    "type": "get",
+    "url": "/character/top/characters/:characterID/:limit/",
+    "title": "Show the top characters in the character",
+    "version": "0.1.2",
+    "name": "top10characters",
+    "group": "character",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "characterID",
+            "description": "<p>The characterID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/character/top/characters/:characterID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "character"
+  },
+  {
+    "type": "get",
+    "url": "/character/top/corporations/:characterID/:limit/",
+    "title": "Show the top corporations in the character",
+    "version": "0.1.2",
+    "name": "top10corporations",
+    "group": "character",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "characterID",
+            "description": "<p>The characterID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/character/top/corporations/:characterID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "character"
+  },
+  {
+    "type": "get",
+    "url": "/character/top/regions/:characterID/:limit/",
+    "title": "Show the top regions in the character",
+    "version": "0.1.2",
+    "name": "top10regions",
+    "group": "character",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "characterID",
+            "description": "<p>The characterID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/character/top/regions/:characterID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "character"
+  },
+  {
+    "type": "get",
+    "url": "/character/top/ships/:characterID/:limit/",
+    "title": "Show the top ships in the character",
+    "version": "0.1.2",
+    "name": "top10ships",
+    "group": "character",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "characterID",
+            "description": "<p>The characterID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/character/top/ships/:characterID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "character"
+  },
+  {
+    "type": "get",
+    "url": "/character/top/systems/:characterID/:limit/",
+    "title": "Show the top systems in the character",
+    "version": "0.1.2",
+    "name": "top10systems",
+    "group": "character",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "characterID",
+            "description": "<p>The characterID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/character/top/systems/:characterID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "character"
+  },
+  {
+    "type": "get",
     "url": "/corporation/find/:corporationName/",
     "title": "Find a corporation",
     "version": "0.1.2",
@@ -341,7 +821,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/corporation/information/:corporationID/",
-    "title": "Show information for a single corporation",
+    "title": "Show a lot of aggregated information for a single corporation",
     "version": "0.1.2",
     "name": "Information",
     "group": "corporation",
@@ -426,6 +906,519 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/corporation/top/alliances/:corporationID/:limit/",
+    "title": "Show the top alliances in the corporation",
+    "version": "0.1.2",
+    "name": "top10alliances",
+    "group": "corporation",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "corporationID",
+            "description": "<p>The corporationID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/corporation/top/alliances/:corporationID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "corporation"
+  },
+  {
+    "type": "get",
+    "url": "/corporation/top/characters/:corporationID/:limit/",
+    "title": "Show the top characters in the corporation",
+    "version": "0.1.2",
+    "name": "top10characters",
+    "group": "corporation",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "corporationID",
+            "description": "<p>The corporationID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/corporation/top/characters/:corporationID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "corporation"
+  },
+  {
+    "type": "get",
+    "url": "/corporation/top/corporations/:corporationID/:limit/",
+    "title": "Show the top corporations in the corporation",
+    "version": "0.1.2",
+    "name": "top10corporations",
+    "group": "corporation",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "corporationID",
+            "description": "<p>The corporationID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/corporation/top/corporations/:corporationID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "corporation"
+  },
+  {
+    "type": "get",
+    "url": "/corporation/top/regions/:corporationID/:limit/",
+    "title": "Show the top regions in the corporation",
+    "version": "0.1.2",
+    "name": "top10regions",
+    "group": "corporation",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "corporationID",
+            "description": "<p>The corporationID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/corporation/top/regions/:corporationID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "corporation"
+  },
+  {
+    "type": "get",
+    "url": "/corporation/top/ships/:corporationID/:limit/",
+    "title": "Show the top ships in the corporation",
+    "version": "0.1.2",
+    "name": "top10ships",
+    "group": "corporation",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "corporationID",
+            "description": "<p>The corporationID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/corporation/top/ships/:corporationID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "corporation"
+  },
+  {
+    "type": "get",
+    "url": "/corporation/top/systems/:corporationID/:limit/",
+    "title": "Show the top systems in the corporation",
+    "version": "0.1.2",
+    "name": "top10systems",
+    "group": "corporation",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "corporationID",
+            "description": "<p>The corporationID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/corporation/top/systems/:corporationID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "corporation"
+  },
+  {
+    "type": "get",
+    "url": "/faction/find/:factionName/",
+    "title": "Find a faction",
+    "version": "0.1.2",
+    "name": "Find",
+    "group": "faction",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "factionName",
+            "description": "<p>the factionName</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/faction/find/:factionName/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "faction"
+  },
+  {
+    "type": "get",
+    "url": "/faction/top/characters/:factionID/:limit/",
+    "title": "Show the top characters in the faction",
+    "version": "0.1.2",
+    "name": "top10characters",
+    "group": "faction",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "factionID",
+            "description": "<p>The factionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/faction/top/characters/:factionID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "faction"
+  },
+  {
+    "type": "get",
+    "url": "/faction/top/corporations/:factionID/:limit/",
+    "title": "Show the top corporations in the faction",
+    "version": "0.1.2",
+    "name": "top10corporations",
+    "group": "faction",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "factionID",
+            "description": "<p>The factionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/faction/top/corporations/:factionID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "faction"
+  },
+  {
+    "type": "get",
+    "url": "/faction/top/factions/:factionID/:limit/",
+    "title": "Show the top factions in the faction",
+    "version": "0.1.2",
+    "name": "top10factions",
+    "group": "faction",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "factionID",
+            "description": "<p>The factionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/faction/top/factions/:factionID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "faction"
+  },
+  {
+    "type": "get",
+    "url": "/faction/top/regions/:factionID/:limit/",
+    "title": "Show the top regions in the faction",
+    "version": "0.1.2",
+    "name": "top10regions",
+    "group": "faction",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "factionID",
+            "description": "<p>The factionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/faction/top/regions/:factionID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "faction"
+  },
+  {
+    "type": "get",
+    "url": "/faction/top/ships/:factionID/:limit/",
+    "title": "Show the top ships in the faction",
+    "version": "0.1.2",
+    "name": "top10ships",
+    "group": "faction",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "factionID",
+            "description": "<p>The factionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/faction/top/ships/:factionID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "faction"
+  },
+  {
+    "type": "get",
+    "url": "/faction/top/systems/:factionID/:limit/",
+    "title": "Show the top systems in the faction",
+    "version": "0.1.2",
+    "name": "top10systems",
+    "group": "faction",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "factionID",
+            "description": "<p>The factionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/faction/top/systems/:factionID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "faction"
+  },
+  {
+    "type": "get",
     "url": "/item/find/:itemName/",
     "title": "Find a item",
     "version": "0.1.2",
@@ -485,6 +1478,246 @@ define({ "api": [
     "sampleRequest": [
       {
         "url": "/api/item/information/:itemID/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "item"
+  },
+  {
+    "type": "get",
+    "url": "/item/top/characters/:itemID/:limit/",
+    "title": "Show the top characters in the item",
+    "version": "0.1.2",
+    "name": "top10characters",
+    "group": "item",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "itemID",
+            "description": "<p>The itemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/item/top/characters/:itemID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "item"
+  },
+  {
+    "type": "get",
+    "url": "/item/top/corporations/:itemID/:limit/",
+    "title": "Show the top corporations in the item",
+    "version": "0.1.2",
+    "name": "top10corporations",
+    "group": "item",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "itemID",
+            "description": "<p>The itemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/item/top/corporations/:itemID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "item"
+  },
+  {
+    "type": "get",
+    "url": "/item/top/items/:itemID/:limit/",
+    "title": "Show the top items in the item",
+    "version": "0.1.2",
+    "name": "top10items",
+    "group": "item",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "itemID",
+            "description": "<p>The itemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/item/top/items/:itemID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "item"
+  },
+  {
+    "type": "get",
+    "url": "/item/top/regions/:itemID/:limit/",
+    "title": "Show the top regions in the item",
+    "version": "0.1.2",
+    "name": "top10regions",
+    "group": "item",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "itemID",
+            "description": "<p>The itemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/item/top/regions/:itemID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "item"
+  },
+  {
+    "type": "get",
+    "url": "/item/top/ships/:itemID/:limit/",
+    "title": "Show the top ships in the item",
+    "version": "0.1.2",
+    "name": "top10ships",
+    "group": "item",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "itemID",
+            "description": "<p>The itemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/item/top/ships/:itemID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "item"
+  },
+  {
+    "type": "get",
+    "url": "/item/top/systems/:itemID/:limit/",
+    "title": "Show the top systems in the item",
+    "version": "0.1.2",
+    "name": "top10systems",
+    "group": "item",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "itemID",
+            "description": "<p>The itemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/item/top/systems/:itemID/:limit/"
       }
     ],
     "filename": "config/routes/api.php",
@@ -5505,6 +6738,246 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/region/top/characters/:regionID/:limit/",
+    "title": "Show the top characters in the region",
+    "version": "0.1.2",
+    "name": "top10characters",
+    "group": "region",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "regionID",
+            "description": "<p>The regionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/region/top/characters/:regionID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "region"
+  },
+  {
+    "type": "get",
+    "url": "/region/top/corporations/:regionID/:limit/",
+    "title": "Show the top corporations in the region",
+    "version": "0.1.2",
+    "name": "top10corporations",
+    "group": "region",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "regionID",
+            "description": "<p>The regionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/region/top/corporations/:regionID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "region"
+  },
+  {
+    "type": "get",
+    "url": "/region/top/regions/:regionID/:limit/",
+    "title": "Show the top regions in the region",
+    "version": "0.1.2",
+    "name": "top10regions",
+    "group": "region",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "regionID",
+            "description": "<p>The regionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/region/top/regions/:regionID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "region"
+  },
+  {
+    "type": "get",
+    "url": "/region/top/regions/:regionID/:limit/",
+    "title": "Show the top regions in the region",
+    "version": "0.1.2",
+    "name": "top10regions",
+    "group": "region",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "regionID",
+            "description": "<p>The regionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/region/top/regions/:regionID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "region"
+  },
+  {
+    "type": "get",
+    "url": "/region/top/ships/:regionID/:limit/",
+    "title": "Show the top ships in the region",
+    "version": "0.1.2",
+    "name": "top10ships",
+    "group": "region",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "regionID",
+            "description": "<p>The regionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/region/top/ships/:regionID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "region"
+  },
+  {
+    "type": "get",
+    "url": "/region/top/systems/:regionID/:limit/",
+    "title": "Show the top systems in the region",
+    "version": "0.1.2",
+    "name": "top10systems",
+    "group": "region",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "regionID",
+            "description": "<p>The regionID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/region/top/systems/:regionID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "region"
+  },
+  {
+    "type": "get",
     "url": "/search/alliance/:allianceName/",
     "title": "Search for an Alliance",
     "version": "0.1.2",
@@ -6121,6 +7594,246 @@ define({ "api": [
     "sampleRequest": [
       {
         "url": "/api/system/information/:systemID/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "system"
+  },
+  {
+    "type": "get",
+    "url": "/system/top/characters/:systemID/:limit/",
+    "title": "Show the top characters in the system",
+    "version": "0.1.2",
+    "name": "top10characters",
+    "group": "system",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "systemID",
+            "description": "<p>The systemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/system/top/characters/:systemID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "system"
+  },
+  {
+    "type": "get",
+    "url": "/system/top/corporations/:systemID/:limit/",
+    "title": "Show the top corporations in the system",
+    "version": "0.1.2",
+    "name": "top10corporations",
+    "group": "system",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "systemID",
+            "description": "<p>The systemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/system/top/corporations/:systemID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "system"
+  },
+  {
+    "type": "get",
+    "url": "/system/top/regions/:systemID/:limit/",
+    "title": "Show the top regions in the system",
+    "version": "0.1.2",
+    "name": "top10regions",
+    "group": "system",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "systemID",
+            "description": "<p>The systemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/system/top/regions/:systemID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "system"
+  },
+  {
+    "type": "get",
+    "url": "/system/top/ships/:systemID/:limit/",
+    "title": "Show the top ships in the system",
+    "version": "0.1.2",
+    "name": "top10ships",
+    "group": "system",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "systemID",
+            "description": "<p>The systemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/system/top/ships/:systemID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "system"
+  },
+  {
+    "type": "get",
+    "url": "/system/top/systems/:systemID/:limit/",
+    "title": "Show the top systems in the system",
+    "version": "0.1.2",
+    "name": "top10systems",
+    "group": "system",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "systemID",
+            "description": "<p>The systemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/system/top/systems/:systemID/:limit/"
+      }
+    ],
+    "filename": "config/routes/api.php",
+    "groupTitle": "system"
+  },
+  {
+    "type": "get",
+    "url": "/system/top/systems/:systemID/:limit/",
+    "title": "Show the top systems in the system",
+    "version": "0.1.2",
+    "name": "top10systems",
+    "group": "system",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "systemID",
+            "description": "<p>The systemID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limiting the amount of returns</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "/api/system/top/systems/:systemID/:limit/"
       }
     ],
     "filename": "config/routes/api.php",

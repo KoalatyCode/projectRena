@@ -2,6 +2,7 @@
 
 namespace ProjectRena\Lib;
 
+use mysqli_result;
 use ProjectRena\RenaApp;
 
 /**
@@ -57,11 +58,13 @@ class DbAsync
     }
 
     /**
+     * If you're using parameters, remember to sanitize them thoroughly BEFORE passing them to this function
      * @param $name
      * @param $query
-     * @return bool|\mysqli_result|void
+     * @param array $parameters
+     * @return bool|mysqli_result|void
      */
-    public function executeQuery($name, $query)
+    public function executeQuery($name, $query, $parameters = array())
     {
         $key = sha1($name . $this->app->request()->getPath());
 
@@ -79,12 +82,17 @@ class DbAsync
         $this->timers[$name] = new Timer();
 
         // Start up the mysqli connection
+        /** @var \mysqli $connection */
         $connection = mysqli_connect($host, $username, $password, $dbName, $port, $socket);
         $this->connections[$name] = $connection;
 
         // Increment the query count
         $this->queryCount++;
 
+        // This is ugly, and dangerous
+        foreach($parameters as $key => $value)
+            $query = str_replace($key, mysqli_real_escape_string($connection, $value), $query);
+        
         return $connection->query($query, MYSQLI_ASYNC);
     }
 

@@ -64,7 +64,7 @@ class out
         $this->app->response->headers->set("Access-Control-Allow-Origin", "*");
         $this->app->response->headers->set("Access-Control-Allow-Methods", "GET, POST");
         http_response_code($status);
-        echo json_encode($dataArray, JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK | JSON_UNESCAPED_SLASHES);
+        echo json_encode($dataArray);
     }
 
     /**

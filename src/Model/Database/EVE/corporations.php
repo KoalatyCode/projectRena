@@ -50,6 +50,15 @@ class corporations
 
     /**
      * @param $corporationID
+     * @return string
+     */
+    public function getNameByID($corporationID)
+    {
+        return $this->db->queryField("SELECT corporationName FROM corporations WHERE corporationID = :id", "corporationName", array(":id" => $corporationID), 3600);
+    }
+
+    /**
+     * @param $corporationID
      *
      * @return string
      */
