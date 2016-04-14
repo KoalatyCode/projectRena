@@ -58,7 +58,7 @@ class Logging
     /**
      * Logs data into the logfile
      *
-     * @param $logType
+     * @param string $logType
      * @param $logMessage
      * @param array $logData
      */
