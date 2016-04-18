@@ -64,38 +64,59 @@ class LossesAPIController
         $this->contentType = "application/json";
     }
 
-    private function validateParameters($parameters, $argumentToRemove = null) {
+    private function validateParameters($parameters, $argumentToRemove = null)
+    {
         $validArguments = array(
-            "killID",
-            "killTime",
-            "solarSystemID",
-            "regionID",
-            "characterID",
-            "corporationID",
-            "allianceID",
-            "factionID",
-            "shipTypeID",
-            "groupID",
-            "vGroupID",
-            "weaponTypeID",
-            "shipValue",
-            "damageDone",
-            "totalValue",
-            "pointValue",
-            "numberInvolved",
-            "isVictim",
-            "finalBlow",
-            "isNPC",
+            "killID" => "int",
+            "killTime" => "datetime",
+            "solarSystemID" => "int",
+            "regionID" => "int",
+            "characterID" => "int",
+            "corporationID" => "int",
+            "allianceID" => "int",
+            "factionID" => "int",
+            "shipTypeID" => "int",
+            "groupID" => "int",
+            "vGroupID" => "int",
+            "weaponTypeID" => "int",
+            "shipValue" => "float",
+            "damageDone" => "int",
+            "totalValue" => "float",
+            "pointValue" => "int",
+            "numberInvolved" => "int",
+            "isVictim" => "int",
+            "finalBlow" => "int",
+            "isNPC" => "int",
         );
 
         // Remove an argument from the valid arguments
-        if(!empty($argumentToRemove))
+        if (!empty($argumentToRemove))
             unset($validArguments[$argumentToRemove]);
 
         $returnArray = array();
-        foreach($parameters as $key => $value)
-            if(in_array($key, $validArguments))
-                $returnArray[$key] = $value;
+        foreach ($parameters as $key => $value) {
+            foreach ($validArguments as $arg => $type) {
+                if ($key == $arg) {
+                    switch ($type) {
+                        case "int":
+                            if (!is_numeric($value))
+                                throw new \Exception("Error, {$key} is not an integer");
+                            break;
+                        case "float":
+                            if (!is_float($value))
+                                throw new \Exception("Error, {$key} is not a float");
+                            break;
+                        case "datetime":
+                            if ($this->app->participants->verifyDate($value) == false)
+                                throw new \Exception("Error, {key} is not a valid timestamp (Y-m-d H:i:s)");
+                            break;
+                    }
+
+                    // Everything passed inspection
+                    $returnArray[$key] = $value;
+                }
+            }
+        }
 
         return $returnArray;
     }
@@ -121,6 +142,9 @@ class LossesAPIController
     }
 
     public function characterLosses($characterID, $parameters) {
+        if(!is_numeric($characterID))
+            throw new \Exception("Error characterID is not an integer");
+        
         // Convert the url to an array of parameters
         $parameters = $this->urlToArrayConverter($parameters);
 
@@ -147,6 +171,9 @@ class LossesAPIController
     }
 
     public function corporationLosses($corporationID, $parameters) {
+        if(!is_numeric($corporationID))
+            throw new \Exception("Error corporationID is not an integer");
+        
         // Convert the url to an array of parameters
         $parameters = $this->urlToArrayConverter($parameters);
 
@@ -173,6 +200,9 @@ class LossesAPIController
     }
 
     public function allianceLosses($allianceID, $parameters) {
+        if(!is_numeric($allianceID))
+            throw new \Exception("Error allianceID is not an integer");
+        
         // Convert the url to an array of parameters
         $parameters = $this->urlToArrayConverter($parameters);
 
@@ -199,6 +229,9 @@ class LossesAPIController
     }
 
     public function factionLosses($factionID, $parameters) {
+        if(!is_numeric($factionID))
+            throw new \Exception("Error factionID is not an integer");
+        
         // Convert the url to an array of parameters
         $parameters = $this->urlToArrayConverter($parameters);
 
@@ -225,6 +258,9 @@ class LossesAPIController
     }
 
     public function shipTypeLosses($shipTypeID, $parameters) {
+        if(!is_numeric($shipTypeID))
+            throw new \Exception("Error shipTypeID is not an integer");
+        
         // Convert the url to an array of parameters
         $parameters = $this->urlToArrayConverter($parameters);
 
@@ -251,6 +287,9 @@ class LossesAPIController
     }
 
     public function groupLosses($groupID, $parameters) {
+        if(!is_numeric($groupID))
+            throw new \Exception("Error groupID is not an integer");
+        
         // Convert the url to an array of parameters
         $parameters = $this->urlToArrayConverter($parameters);
 
@@ -277,6 +316,9 @@ class LossesAPIController
     }
 
     public function vGroupLosses($vGroupID, $parameters) {
+        if(!is_numeric($vGroupID))
+            throw new \Exception("Error vGroupID is not an integer");
+        
         // Convert the url to an array of parameters
         $parameters = $this->urlToArrayConverter($parameters);
 
@@ -354,7 +396,7 @@ class LossesAPIController
         render("", $data, null, $this->contentType);
     }
 
-    public function betweenDateLosses($afterDate, $beforeDate, $parameters) {
+    public function betweenDateLosses($afterDate, $beforeDate, $parameters) {        
         // Convert the url to an array of parameters
         $parameters = $this->urlToArrayConverter($parameters);
 

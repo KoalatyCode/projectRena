@@ -1,6 +1,7 @@
 <?php
 namespace ProjectRena\Model\Database\EVE;
 
+use DateTime;
 use ProjectRena\RenaApp;
 
 
@@ -62,6 +63,7 @@ class participants
      * @param string $order
      * @param string $groupBy
      * @return array
+     * @throws \Exception
      */
     private function verifyExtraArguments($extraArguments = array(), $offset = null, $limit = 100, $order = "DESC", $groupBy = "killID")
     {
@@ -69,31 +71,46 @@ class participants
         $argumentArray = array();
         // Valid extra arguments
         $validArguments = array(
-            "killID",
-            "killTime",
-            "solarSystemID",
-            "regionID",
-            "characterID",
-            "corporationID",
-            "allianceID",
-            "factionID",
-            "shipTypeID",
-            "groupID",
-            "vGroupID",
-            "weaponTypeID",
-            "shipValue",
-            "damageDone",
-            "totalValue",
-            "pointValue",
-            "numberInvolved",
-            "isVictim",
-            "finalBlow",
-            "isNPC",
+            "killID" => "int",
+            "killTime" => "datetime",
+            "solarSystemID" => "int",
+            "regionID" => "int",
+            "characterID" => "int",
+            "corporationID" => "int",
+            "allianceID" => "int",
+            "factionID" => "int",
+            "shipTypeID" => "int",
+            "groupID" => "int",
+            "vGroupID" => "int",
+            "weaponTypeID" => "int",
+            "shipValue" => "float",
+            "damageDone" => "int",
+            "totalValue" => "float",
+            "pointValue" => "int",
+            "numberInvolved" => "int",
+            "isVictim" => "int",
+            "finalBlow" => "int",
+            "isNPC" => "int",
         );
 
         if (!empty($extraArguments)) {
-            foreach ($validArguments as $argument) {
+            foreach ($validArguments as $argument => $type) {
                 if (isset($extraArguments[$argument])) {
+                    // Validate
+                    switch($type) {
+                        case "int":
+                            if(!is_int($argument))
+                                throw new \Exception("Error, {$argument} is not an integer");
+                            break;
+                        case "datetime":
+                            if($this->verifyDate($argument) == false)
+                                throw new \Exception("Error, {$argument} is not a valid Y-m-d H:i:s timestamp");
+                            break;
+                        case "float":
+                            if(!is_float($argument))
+                                throw new \Exception("Error, {$argument} is not a float");
+                            break;
+                    }
                     $queryString .= " AND $argument = :$argument";
                     $argumentArray[":" . $argument] = $extraArguments[$argument];
                 }
@@ -103,8 +120,19 @@ class participants
         if ($offset > 0) $limit = "$offset, $limit ";
         if($groupBy) $queryString .= " GROUP BY $groupBy";
         $queryString .= " ORDER BY killTime $order LIMIT $limit";
-
+        
         return array("queryString" => $queryString, "argumentArray" => $argumentArray);
+    }
+
+    /**
+     * Validate a Y-m-d H:i:s timestamp
+     *
+     * @param $date
+     * @return bool
+     */
+    public function verifyDate($date)
+    {
+        return (DateTime::createFromFormat("Y-m-d H:i:s", $date) !== false);
     }
 
     /**

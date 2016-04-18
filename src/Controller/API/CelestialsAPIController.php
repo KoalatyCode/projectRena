@@ -66,6 +66,9 @@ class CelestialsAPIController
 
     public function celestialInformation($solarSystemID)
     {
+        if(!is_numeric($solarSystemID))
+            throw new \Exception("Error, the input solarSystemID is not a valid integer");
+        
         $data = $this->app->mapAllCelestials->getAllBySolarSystemID($solarSystemID);
         render("", $data, null, $this->contentType);
     }

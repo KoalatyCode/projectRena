@@ -72,6 +72,9 @@ class WarsAPIController
     
     public function listKillsFromWar($warID)
     {
+        if(!is_numeric($warID))
+            throw new \Exception("Error warID is not an integer");
+        
         $data = $this->app->warKillmails->getKillIDsByWarID($warID);
         render("", $data, null, $this->contentType);
     }

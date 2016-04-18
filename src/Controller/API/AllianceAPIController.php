@@ -66,6 +66,9 @@ class AllianceAPIController
 
     public function allianceInformation($allianceID)
     {
+        if(!is_numeric($allianceID))
+            throw new \Exception("Error, the input allianceID is not a valid integer");
+
         $data = $this->app->alliances->getAllByID($allianceID);
         $data["information"] = html_entity_decode($data["information"]);
 
@@ -97,6 +100,9 @@ class AllianceAPIController
 
     public function allianceMembers($allianceID)
     {
+        if(!is_numeric($allianceID))
+            throw new \Exception("Error, the input allianceID is not a valid integer");
+
         $data = $this->app->alliances->getMembersByID($allianceID);
         render("", $data, null, $this->contentType);
     }
@@ -109,6 +115,9 @@ class AllianceAPIController
 
     public function topCharacters($allianceID, $limit)
     {
+        if(!is_numeric($allianceID))
+            throw new \Exception("Error, the input allianceID is not a valid integer");
+
         $limit = is_numeric($limit) ? $limit : 10;
         $data = $this->db->query("SELECT characterID, COUNT(killID) AS kills FROM participants WHERE allianceID = :allianceID GROUP BY characterID ORDER BY kills DESC LIMIT {$limit}", array(":allianceID" => $allianceID));
         foreach($data as $key => $value)
@@ -119,6 +128,9 @@ class AllianceAPIController
 
     public function topCorporations($allianceID, $limit)
     {
+        if(!is_numeric($allianceID))
+            throw new \Exception("Error, the input allianceID is not a valid integer");
+
         $limit = is_numeric($limit) ? $limit : 10;
         $data = $this->db->query("SELECT corporationID, COUNT(killID) AS kills FROM participants WHERE allianceID = :allianceID GROUP BY corporationID ORDER BY kills DESC LIMIT {$limit}", array(":allianceID" => $allianceID));
         foreach($data as $key => $value)
@@ -129,6 +141,9 @@ class AllianceAPIController
 
     public function topAlliances($allianceID, $limit)
     {
+        if(!is_numeric($allianceID))
+            throw new \Exception("Error, the input allianceID is not a valid integer");
+
         $limit = is_numeric($limit) ? $limit : 10;
         $data = $this->db->query("SELECT allianceID, COUNT(killID) AS kills FROM participants WHERE allianceID = :allianceID GROUP BY allianceID ORDER BY kills DESC LIMIT {$limit}", array(":allianceID" => $allianceID));
         foreach($data as $key => $value)
@@ -140,6 +155,9 @@ class AllianceAPIController
 
     public function topShips($allianceID, $limit)
     {
+        if(!is_numeric($allianceID))
+            throw new \Exception("Error, the input allianceID is not a valid integer");
+
         $limit = is_numeric($limit) ? $limit : 10;
         $data = $this->db->query("SELECT shipTypeID, COUNT(killID) AS kills FROM participants WHERE allianceID = :allianceID GROUP BY shipTypeID ORDER BY kills DESC LIMIT {$limit}", array(":allianceID" => $allianceID));
         foreach($data as $key => $value)
@@ -151,6 +169,9 @@ class AllianceAPIController
 
     public function topSystems($allianceID, $limit)
     {
+        if(!is_numeric($allianceID))
+            throw new \Exception("Error, the input allianceID is not a valid integer");
+        
         $limit = is_numeric($limit) ? $limit : 10;
         $data = $this->db->query("SELECT solarSystemID, COUNT(killID) AS kills FROM participants WHERE allianceID = :allianceID GROUP BY solarSystemID ORDER BY kills DESC LIMIT {$limit}", array(":allianceID" => $allianceID));
         foreach($data as $key => $value)
@@ -161,6 +182,9 @@ class AllianceAPIController
 
     public function topRegions($allianceID, $limit)
     {
+        if(!is_numeric($allianceID))
+            throw new \Exception("Error, the input allianceID is not a valid integer");
+
         $limit = is_numeric($limit) ? $limit : 10;
         $data = $this->db->query("SELECT regionID, COUNT(killID) AS kills FROM participants WHERE allianceID = :allianceID GROUP BY regionID ORDER BY kills DESC LIMIT {$limit}", array(":allianceID" => $allianceID));
         foreach($data as $key => $value)
@@ -172,6 +196,9 @@ class AllianceAPIController
     // @TODO gotta add a field to participants where the nearest location is stored (as an ID referencing mapAllCelestials)
     /*public function topLocations($allianceID, $limit)
     {
+       if(!is_numeric($allianceID))
+            throw new \Exception("Error, the input allianceID is not a valid integer");
+
         $limit = is_numeric($limit) ? $limit : 10;
         $data = $this->db->query("SELECT solarSystemID, COUNT(killID) AS kills FROM participants WHERE allianceID = :allianceID GROUP BY solarSystemID ORDER BY kills DESC LIMIT {$limit}", array(":allianceID" => $allianceID));
         foreach($data as $key => $value)

@@ -66,6 +66,9 @@ class KillmailsAPIController
 
     public function killData($killID)
     {
+        if (!is_numeric($killID))
+            throw new \Exception("Error, the input killID is not a valid integer");
+        
         $data = json_decode($this->app->killmails->getKill_jsonByKillID($killID), true);
         render("", $data, null, $this->contentType);
     }
