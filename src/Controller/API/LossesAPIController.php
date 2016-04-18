@@ -63,9 +63,8 @@ class LossesAPIController
         $this->log = $app->Logging;
         $this->contentType = "application/json";
     }
-
-    private function validateParameters($parameters, $argumentToRemove = null)
-    {
+    
+    private function validateParameters($parameters, $argumentToRemove = null) {
         $validArguments = array(
             "killID" => "int",
             "killTime" => "datetime",

@@ -167,7 +167,7 @@ class participants
      * @param int $limit
      * @param int $cacheTime
      * @param string $order
-     * @param null $offset
+     * @param integer|null $offset
      * @param string $groupBy
      * @return array|bool
      * @throws \Exception
@@ -193,7 +193,7 @@ class participants
      * @param int $limit
      * @param int $cacheTime
      * @param string $order
-     * @param null $offset
+     * @param integer|null $offset
      * @param string $groupBy
      * @return array|bool
      * @throws \Exception
@@ -219,7 +219,7 @@ class participants
      * @param int $limit
      * @param int $cacheTime
      * @param string $order
-     * @param null $offset
+     * @param integer|null $offset
      * @param string $groupBy
      * @return array|bool
      * @throws \Exception
@@ -245,7 +245,7 @@ class participants
      * @param int $limit
      * @param int $cacheTime
      * @param string $order
-     * @param null $offset
+     * @param integer|null $offset
      * @param string $groupBy
      * @return array|bool
      * @throws \Exception
@@ -271,7 +271,7 @@ class participants
      * @param int $limit
      * @param int $cacheTime
      * @param string $order
-     * @param null $offset
+     * @param integer|null $offset
      * @param string $groupBy
      * @return array|bool
      * @throws \Exception
@@ -297,7 +297,7 @@ class participants
      * @param int $limit
      * @param int $cacheTime
      * @param string $order
-     * @param null $offset
+     * @param integer|null $offset
      * @param string $groupBy
      * @return array|bool
      * @throws \Exception
@@ -323,7 +323,7 @@ class participants
      * @param int $limit
      * @param int $cacheTime
      * @param string $order
-     * @param null $offset
+     * @param integer|null $offset
      * @param string $groupBy
      * @return array|bool
      * @throws \Exception
@@ -349,7 +349,7 @@ class participants
      * @param int $limit
      * @param int $cacheTime
      * @param string $order
-     * @param null $offset
+     * @param integer|null $offset
      * @param string $groupBy
      * @return array|bool
      * @throws \Exception
@@ -375,7 +375,7 @@ class participants
      * @param int $limit
      * @param int $cacheTime
      * @param string $order
-     * @param null $offset
+     * @param integer|null $offset
      * @param string $groupBy
      * @return array|bool
      * @throws \Exception
@@ -401,7 +401,7 @@ class participants
      * @param int $limit
      * @param int $cacheTime
      * @param string $order
-     * @param null $offset
+     * @param integer|null $offset
      * @param string $groupBy
      * @return array|bool
      * @throws \Exception
@@ -427,7 +427,7 @@ class participants
      * @param int $limit
      * @param int $cacheTime
      * @param string $order
-     * @param null $offset
+     * @param integer|null $offset
      * @param string $groupBy
      * @return array|bool
      * @throws \Exception
@@ -456,7 +456,7 @@ class participants
      * @param int $limit
      * @param int $cacheTime
      * @param string $order
-     * @param null $offset
+     * @param integer|null $offset
      * @param string $groupBy
      * @return array|bool
      * @throws \Exception
@@ -486,7 +486,7 @@ class participants
      * @param int $limit
      * @param int $cacheTime
      * @param string $order
-     * @param null $offset
+     * @param integer|null $offset
      * @param string $groupBy
      * @return array|bool
      * @throws \Exception
