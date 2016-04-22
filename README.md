@@ -1,11 +1,11 @@
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/EVE-KILL/projectRena/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/EVE-KILL/projectRena/)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/75374b67-bb51-4b3f-b00a-b14ea811058f/big.png)](https://insight.sensiolabs.com/projects/75374b67-bb51-4b3f-b00a-b14ea811058f)
 
-# Documentation
-_http://eve-kill.github.io/projectRena/api/_
-
 # Project Rena
 ProjectRena is a complete from the ground up rewrite of the backend for EVSCO/EVE-KILL
+
+# API Docs
+https://evedata.xyz/docs/
 
 # WARNING
 Project Rena is in development and shouldn't be used by anyone!
@@ -19,13 +19,13 @@ _http://chat.mibbit.com/?channel=%23esc-dev&server=irc.coldfront.net_
 MIT, check LICENSE for more information
 
 # Requirements
-- PHP 5.6 / HHVM 3.*
+- PHP 7
 - Nginx
 - Linux
 - MariaDB 10+ with TokuDB
 - Composer
-- cURL and PHP5-cURL
-- Redis and PHP5-Redis
+- cURL and PHP7-cURL
+- Redis and PHP7-Redis
 
 # Installation
 1. Clone to a directory of your choice
