@@ -37,7 +37,6 @@
     "react/zmq": "~0.3.0",
     "zkillboard/redisq": "dev-master",
     "ratchet/pawl": "~0.1.2",
-    "cleanse/discord-hypertext": "dev-master",
     "jtrumbull/xml-parser": "dev-master"
   },
   "autoload": {

@@ -91,8 +91,3 @@ $config["zmq"] = array(
     "host" => "127.0.0.1",
     "port" => 5555
 );
-// Discord
-$config["discord"] = array(
-    "username" => "",
-    "password" => ""
-);
